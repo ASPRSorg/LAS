@@ -1,0 +1,24 @@
+Domain Profiles
+--------------------------------------------------------------------------------
+
+A derivative of the base LAS specification that adds (but does not remove or
+alter existing) point classes and attributes to meet the application-specific
+needs of a particular subset of the broad lidar community (e.g., the
+coastal/bathymetric lidar community, or the powerline mapping community). So as
+to not alter the LAS base specification, new classes can only be added to Point
+Data Record Formats 6-10, and classification values cannot start below 39. New
+attributes must be incorporated using Extra Bytes VLRs. It is strongly
+recommended that the development of Domain Profiles be coordinated, so as to
+avoid unnecessary overlap or conflicts (e.g., conflicting class numbers)
+between profiles.
+
+Domain Profile Description
+................................................................................
+
+The specification for a particular domain profile. The Description must
+contain: 1) an overview of the purpose and intended use; 2) table of new point
+classifications (PDRF 6-10); and 3) table of new attributes to be stored using
+Extra Bytes VLRs (must contain fields for units, data type, name, no data,
+scale, and description). LAS Domain Profile Descriptions reviewed and approved
+by the LAS Working Group will be posted on the ASPRS website. A template Domain
+Profile Description is available on the ASPRS website.

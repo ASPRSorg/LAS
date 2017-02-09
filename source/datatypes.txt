@@ -1,0 +1,20 @@
+Data Types
+................................................................................
+
+The following data types are used in the LAS format definition. Note that these
+data types are conformant to the 1999 ANSI C Language Specification
+(ANSI/ISO/IEC 9899:1999 ("C99")).
+
+* char (1 byte)
+* unsigned char (1 byte)
+* short (2 bytes)
+* unsigned short (2 bytes)
+* long (4 bytes)
+* unsigned long (4 bytes)
+* long long (8 bytes)
+* unsigned long long (8 bytes)
+* float (4 byte IEEE floating point format)
+* double (8 byte IEEE floating point format)
+* string (a variable series of 1 byte characters, ASCII encoded, null terminated)
+
+

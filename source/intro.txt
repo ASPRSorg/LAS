@@ -1,0 +1,54 @@
+Purpose, Scope, and Applicability
+--------------------------------------------------------------------------------
+
+The LAS file is intended to contain LIDAR (or other) point cloud data records.
+The data will generally be put into this format from software (e.g. provided by
+LIDAR hardware vendors) which combines GPS, IMU, and laser pulse range data to
+produce X, Y, and Z point data. The intention of the data format is to provide
+an open format that allows different LIDAR hardware and software tools to
+output data in a common format.
+
+This document reflects the fourth revision of the LAS format specification
+since its initial version 1.0 release.
+
+The additions of las 1.4 include:
+
+* Backward compatibility with LAS 1.1 – LAS 1.3 when payloads consist of only
+  legacy content
+* LAS 1.4 Mode which supports
+    * Extension of offsets and field sizes to support full 64 bit o Support for
+      up to 15 returns per outgoing pulse
+    * Extension of the Point Class field to support 256 classes o Definition of
+      several new ASPRS standard classes
+    * Extension of the Scan Angle field to 2 bytes to support finer angle resolution
+    * Addition of a Sensor Channel bit field to support mobile mapping systems
+    * Addition of Well Known Text (WKT) definitions for Coordinate Reference
+      Systems
+    * Addition of an Overlap bit to allow indicating pulses in the overlap
+      region while maintaining the class definition
+    * Addition of an (optional) Extra Byte Variable Length Record to describe
+      "extra bytes" stored with each point
+
+* Other minor changes
+    * Added definitions for “LAS Domain Profile” and “LAS Domain Profile
+      Description”
+
+.. raw:: latex
+
+    \newpage
+
+Conformance
+--------------------------------------------------------------------------------
+
+The data types used in the LAS format definition are conformant to the 1999
+ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
+
+Authority
+--------------------------------------------------------------------------------
+
+The American Society for Photogrammetry & Remote Sensing (ASPRS) is the owner
+of the LAS Specification. The standard is maintained by committees within the
+organization as directed by the ASPRS Board of Directors. Questions related to
+this standard can be directed to ASPRS at 301-493-0290, by email at
+asprs@asprs.org, or by mail at 5410 Grosvenor Lane, Suite 210, Bethesda,
+Maryland 20814-2160.

@@ -1,0 +1,385 @@
+Public Header Block
+--------------------------------------------------------------------------------
+
+.. raw:: latex
+
+    \newpage
+
+.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+
+.. table:: Public Header Block
+
+    +----------------------------------+-------------------------+-----------+----------+
+    | Item                             | Format                  | Size      | Required |
+    +----------------------------------+-------------------------+-----------+----------+
+    | File Signature (“LASF”)          | char[4]                 | 4 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | File Source ID                   | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Global Encoding                  | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Project ID - GUID data 1         | unsigned long           | 4 bytes   |          |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Project ID - GUID data 2         | unsigned short          | 2 bytes   |          |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Project ID - GUID data 3         | unsigned short          | 2 bytes   |          |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Project ID - GUID data 4         | unsigned char[8]        | 8 bytes   |          |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Version Major                    | unsigned char           | 1 byte    | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Version Minor                    | unsigned char           | 1 byte    | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | System Identifier                | char[32]                | 32 bytes  | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Generating Software              | char[32]                | 32 bytes  | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | File Creation Day of Year        | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | File Creation Year               | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Header Size                      | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Offset to point data             | unsigned long           | 4 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Number of Variable Length Records| unsigned long           | 4 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Point Data Record Format         | unsigned char           | 1 byte    | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Point Data Record Length         | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Legacy Number of Point Records   | unsigned long           | 5 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Legacy Number of Point by Return | unsigned long[5]        | 20 bytes  | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | X scale factor                   | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Y scale factor                   | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Z scale factor                   | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | X offset                         | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Y offset                         | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Z offset                         | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Max X                            | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Max Y                            | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Max Z                            | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Min X                            | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Min Y                            | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Min Z                            | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Start of Waveform Data Packet    | unsigned long long      | 8 bytes   | yes      |
+    | Record                           |                         |           |          |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Start of First Extended Variable | unsigned long long      | 8 bytes   | yes      |
+    | Length Record                    |                         |           |          |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Number of Extended Variable      | unsigned long           | 4 bytes   | yes      |
+    | Length Records                   |                         |           |          |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Number of Point Records          | unsigned long long      | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Number of Points by Return       | unsigned long long [15] | 120 bytes | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+
+.. note::
+
+    Any field in the Public Header Block that is not required and is not used
+    must be zero filled.
+
+
+File Signature
+................................................................................
+
+The file signature must contain the four characters “LASF”, and it is required
+by the LAS specification. These four characters can be checked by user software
+as a quick look initial determination of file type.
+
+File Source ID
+................................................................................
+
+This field should be set to a value ranging from 1 to 65,535. If this file was
+derived from an original flight line, this is often the flight line number. A
+value of zero (0) is interpreted to mean that an ID has not been assigned. In
+this case, processing software is free to assign a number. Note that this
+scheme allows a LIDAR project to contain up to 65,535 unique sources. A source
+can be an original flight line or it can be result of merge and/or extract
+operations.
+
+Global Encoding
+................................................................................
+
+This is a bit field used to indicate certain global properties about the file.
+In LAS 1.2 (the version in which this field was introduced), only the low bit
+is defined (this is the bit, that if set, would have the unsigned integer yield
+a value of 1). This bit field is defined as:
+
+
+.. tabularcolumns:: |p{2.0cm}|p{6.0cm}|p{8.5cm}|
+
+.. table:: Global Encoding -- Bit Field Encoding
+
+    +-------+-------------------------+------------------------------------------+
+    | Bits  |  Field Name             | Description                              |
+    +=======+=========================+==========================================+
+    | 0     | GPS Time Type           | The meaning of GPS Time in the point     |
+    |       |                         | records. If this bit is not set, the GPS |
+    |       |                         | time in the point record fields is GPS   |
+    |       |                         | Week Time (the same as versions 1.0      |
+    |       |                         | through 1.2 of LAS). Otherwise, if this  |
+    |       |                         | bit is set, the GPS Time is standard GPS |
+    |       |                         | Time (satellite GPS Time) minus 1 x 109  |
+    |       |                         | (Adjusted Standard GPS Time). The offset |
+    |       |                         | moves the time back to near zero to      |
+    |       |                         | improve floating point resolution.       |
+    +-------+-------------------------+------------------------------------------+
+    | 1     | Waveform Data Packets   | If this bit is set, the waveform data    |
+    |       | Internal                | packets are located within this file     |
+    |       |                         | (note that this bit is mutually          |
+    |       |                         | exclusive with bit 2). This is           |
+    |       |                         | deprecated now.                          |
+    +-------+-------------------------+------------------------------------------+
+    | 2     | Waveform Data Packets   | If this bit is set, the waveform data    |
+    |       | External                | packets are located externally in an     |
+    |       |                         | auxiliary file with the same base name   |
+    |       |                         | as this file but the extension \*.wdp.   |
+    |       |                         | (note that this bit is mutually          |
+    |       |                         | exclusive with bit 1)                    |
+    +-------+-------------------------+------------------------------------------+
+    | 3     | Return numbers have     | If this bit is set, the point return     |
+    |       | been synthetically      | numbers in the point data records have   |
+    |       | generated               | been synthetically generated. This could |
+    |       |                         | be the case, for example, when a         |
+    |       |                         | composite file is created by combining a |
+    |       |                         | First Return File and a Last Return      |
+    |       |                         | File. In this case, first return data    |
+    |       |                         | will be labeled "1 of 2" and second      |
+    |       |                         | return data will be labeled "2 of 2".    |
+    +-------+-------------------------+------------------------------------------+
+    | 4     | WKT                     | If set, the Coordinate Reference System  |
+    |       |                         | (CRS) is WKT. If not set, the CRS is     |
+    |       |                         | GeoTIFF. It should not be set if the     |
+    |       |                         | file writer wishes to ensure legacy      |
+    |       |                         | compatibility (which means the CRS must  |
+    |       |                         | be GeoTIFF).                             |
+    +-------+-------------------------+------------------------------------------+
+    | 5:15  | Reserved                | Must be set to zero (0).                 |
+    +-------+-------------------------+------------------------------------------+
+
+Project ID (GUID data)
+................................................................................
+
+The four fields that comprise a complete Globally Unique Identifier (GUID) are
+now reserved for use as a Project Identifier (Project ID). The field remains
+optional. The time of assignment of the Project ID is at the discretion of
+processing software. The Project ID should be the same for all files that are
+associated with a unique project. By assigning a Project ID and using a File
+Source ID (defined above) every file within a project and every point within a
+file can be uniquely identified, globally.
+
+Version Number
+...............................................................................
+
+The version number consists of a major and minor field. The major and minor
+fields combine to form the number that indicates the format number of the
+current specification itself. For example, specification number 1.4 would
+contain 1 in the major field and 4 in the minor field. It should be noted that
+the LAS Working Group does not associate any particular meaning to major or
+minor version number.
+
+System Identifier
+................................................................................
+
+The version 1.0 specification assumed that LAS files are exclusively generated
+as a result of collection by a hardware sensor. Subsequent versions recognize
+that files often result from extraction, merging or modifying existing data
+files. Thus System ID becomes:
+
+.. tabularcolumns:: |p{6.5cm}|p{9.5cm}|
+
+.. table:: System Identifier
+
+    +-----------------------------+---------------------------------------------+
+    | Generating Agent            | System ID                                   |
+    +=============================+=============================================+
+    | Hardware system             | String identifying hardware (e.g. "ALTM     |
+    |                             | 1210", "ALS50", "LMS-Q680i" etc.            |
+    +-----------------------------+---------------------------------------------+
+    | Merge of one or more files  | "MERGE"                                     |
+    +-----------------------------+---------------------------------------------+
+    | Modification of a single    | "MODIFICATION"                              |
+    | file                        |                                             |
+    +-----------------------------+---------------------------------------------+
+    | Extraction from one or more | "EXTRACTION"                                |
+    | files                       |                                             |
+    +-----------------------------+---------------------------------------------+
+    | Reprojection, rescaling,    | "TRANSFORMATION"                            |
+    | warping, etc.               |                                             |
+    +-----------------------------+---------------------------------------------+
+    | Some other operation        | "OTHER" or a string of up to 32 characters  |
+    |                             | identifying the operation                   |
+    +-----------------------------+---------------------------------------------+
+
+
+
+Generating Software
+................................................................................
+
+This information is ASCII data describing the generating software itself. This
+field provides a mechanism for specifying which generating software package and
+version was used during LAS file creation (e.g.  "TerraScan V-10.8", "REALM
+V-4.2" etc.). If the character data is less than 32 characters, the remaining
+data must be null.
+
+File Creation Day of Year
+................................................................................
+
+Day, expressed as an unsigned short, on which this file was created. Day is
+computed as the Greenwich Mean Time (GMT) day. January 1 is considered day 1.
+
+File Creation Year
+................................................................................
+
+The year, expressed as a four digit number, in which the file was created.
+
+
+Header Size
+................................................................................
+
+The size, in bytes, of the Public Header Block itself. For LAS 1.4 this size is
+375 bytes. In the event that the header is extended by a new revision of the
+LAS specification through the addition of data at the end of the header, the
+Header Size field will be updated with the new header size. The Public Header
+Block may not be extended by users.
+
+Offset to point data
+................................................................................
+
+The actual number of bytes from the beginning of the file to the first field of
+the first point record data field. This data offset must be updated if any
+software adds/removes data to/from the Variable Length Records.
+
+Number of Variable Length Records
+................................................................................
+
+This field contains the current number of VLRs that are stored in the file
+preceding the Point Data Records. This number must be updated if the number of
+VLRs changes.
+
+Point Data Record Format
+................................................................................
+
+The point data record indicates the type of point data records contains in the
+file. LAS 1.4 defines types 0 through 10. These types are defined in the Point
+Data Record Format section of this specification.
+
+Point Data Record Length
+................................................................................
+
+The size, in bytes, of the Point Data Record. All Point Data Records within a
+single LAS file must be the same type and hence the same length. If the
+specified size is larger than implied by the point format type (e.g. 32 bytes
+instead of 28 bytes for type 1) the remaining bytes are user-specific “extra
+bytes. The format and meaning of such “extra bytes” can (optionally) be
+described with an Extra Bytes VLR (see Table 24 and Table 25).
+
+
+Legacy Number of point records
+................................................................................
+
+This field contains the total number of point records within the file if the
+file is maintaining legacy compatibility and the number of points is no greater
+than UINT32_MAX. It must be zero otherwise.
+
+
+Legacy Number of points by return
+................................................................................
+
+These fields contain an array of the total point records per return if the file
+is maintaining legacy compatibility and the number of points is no greater than
+UINT32_MAX. The first value will be the total number of records from the first
+return, the second contains the total number for return two, and so on up to
+five returns. If the file is not maintaining legacy compatibility, each member
+of the array must be set to zero.
+
+
+X, Y, and Z scale factors
+................................................................................
+
+The scale factor fields contain a double floating point value that is used to
+scale the corresponding X, Y, and Z long values within the point records. The
+corresponding X, Y, and Z scale factor must be multiplied by the X, Y, or Z
+point record value to get the actual X, Y, or Z coordinate. For example, if the
+X, Y, and Z coordinates are intended to have two decimal digits, then each
+scale factor will contain the number 0.01.
+
+
+X, Y, and Z offset
+................................................................................
+
+The offset fields should be used to set the overall offset for the point
+records. In general these numbers will be zero, but for certain cases the
+resolution of the point data may not be large enough for a given projection
+system. However, it should always be assumed that these numbers are used. So to
+scale a given X from the point record, take the point record X multiplied by
+the X scale factor, and then add the X offset.
+
+ .. math::
+    :nowrap:
+
+        \begin{eqnarray}
+            X_{coordinate} &= (X_{record} * X_{scale}) + X_{offset} \\
+            Y_{coordinate} &= (Y_{record} * Y_{scale}) + Y_{offset} \\
+            Z_{coordinate} &= (Z_{record} * Z_{scale}) + Z_{offset}
+        \end {eqnarray}
+
+Start of Waveform Data Packet Record
+................................................................................
+
+This value provides the offset, in bytes, from the beginning of the LAS file to
+the first byte of the Waveform Data Package Record. Note that this will be the
+first byte of the Waveform Data Packet header. If no waveform records are
+contained within the file, this value must be zero. It should be noted that LAS
+1.4 allows multiple Extended Variable Length Records (EVLR) and that the
+Waveform Data Packet Record is not necessarily the first EVLR in the file.
+
+
+Start of First Extended Variable Length Record
+................................................................................
+
+This value provides the offset, in bytes, from the beginning of the LAS file to
+the first byte of the first EVLR.
+
+Number of Extended Variable Length Records
+................................................................................
+
+This field contains the current number of EVLRs (including, if present, the
+Waveform Data Packet Record) that are stored in the file after the Point Data
+Records. This number must be updated if the number of EVLRs changes. If there
+are no EVLRs this value is zero.
+
+Number of point records
+................................................................................
+
+This field contains the total number of point records in the file. Note that
+this field must always be correctly populated, regardless of legacy mode
+intent.
+
+Number of points by return
+................................................................................
+
+These fields contain an array of the total point records per return. The first
+value will be the total number of records from the first return, the second
+contains the total number for return two, and so on up to fifteen returns. Note
+that these fields must always be correctly populated, regardless of legacy mode
+intent.
+
+

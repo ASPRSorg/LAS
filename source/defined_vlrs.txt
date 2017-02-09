@@ -1,0 +1,351 @@
+Defined Variable Length Records
+--------------------------------------------------------------------------------
+
+LAS 1.4 defines Variable Length Records (VLR) and Extended Variable Length
+Records (EVLR). A writer who wishes to maintain legacy compatibility must use
+only VLRs (except for internally stored waveform data). A writer who is not
+concerned with a legacy LAS reader having access to a VLR can elect to use an
+EVLR, even for predefined VLRs such as Coordinate Reference System (CRS)
+information. This ability is useful, for example, when a user wishes to update
+information normally contained within a VLR without the need of rewriting the
+point data.
+
+A new LASF_Spec "Superseded" (value 7) has been defined to allow a writer to
+indicate that a VLR should no longer be used. For example, if a user appends a
+new WKT EVLR to a file, the existing WKT VLR should have its LASF Spec number
+changed to Superseded to indicate that it is no longer in use.
+
+Coordinate Reference System Information
+................................................................................
+
+The Coordinate Reference System (CRS) information for the point data is
+required for all data. The CRS information will be placed in Variable Length
+Records or Extended Variable Length Records (note that if the writer wishes to
+maintain legacy compatibility, then GeoTIFF in VLRs must be used). The CRS is
+represented by either GeoTIFF or Well Know Text as indicated by the WKT Global
+Encoding bit. Point Record Formats 0-5 can use either GeoTIFF or WKT (but not
+both simultaneously). Point Record Formats 6-10 must use WKT.
+
+Georeferencing Information using WKT
+................................................................................
+
+For definition of WKT, we refer to Open Geospatial Consortium (OGC)
+specification "OpenGIS coordinate transformation service implementation
+specification" revision 1.00 released 12 January 2001, section 7 (coordinate
+transformation services spec). This specification may be found at
+www.opengeospatial.org/standards/ct. As there are a few dialects of WKT, please
+note that LAS is not using the "ESRI WKT" dialect, which does not include
+TOWGS84 and authority nodes.
+
+WKT georeferencing information can be specified in two optional variable length
+records, the OGC math transform WKT record and the OGC coordinate system WKT
+record, as follows. Note that the math transform WKT record is added for
+completeness, and a coordinate system WKT *may* or *may not* require a math
+transform WKT record (a parameterized math transform definition).
+
+OGC Math Transform WKT Record
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Projection             |
++---------------------+-----------------------------+
+| Record ID           | 2111                        |
++---------------------+-----------------------------+
+
+This record contains the textual data representing a Math Transform WKT as
+defined in section 7 of the Coordinate Transformation Services Spec, with the
+following notes:
+
+* The OGC Math Transform WKT VLR data shall be a null-terminated string.
+* The OGC Math Transform WKT VLR data shall be considered UTF-8.
+* The OGC Math Transform WKT VLR data shall be considered C locale-based, and
+  no localization of the numeric strings within the WKT should be performed.
+
+OGC Coordinate System WKT
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Projection             |
++---------------------+-----------------------------+
+| Record ID           | 2112                        |
++---------------------+-----------------------------+
+
+* The OGC Coordinate System WKT VLR data shall be a null-terminated string.
+* The OGC Coordinate System WKT VLR data shall be considered UTF-8.
+* The OGC Coordinate System WKT VLR data shall be considered C locale-based, and
+  no localization of the numeric strings within the WKT should be performed.
+
+Georeferencing Information using GeoTIFF
+................................................................................
+
+The GeoTIFF specification is defined by http://www.remotesensing.org/geotiff/geotiff.html.
+
+GeoTIFF georeferencing for the LAS formats uses the same mechanism that was
+developed for the GeoTIFF standard. The variable length header records section
+may contain the same data that would be contained in the GeoTIFF key tags of a
+TIFF file. Since LAS is not a raster format and each point contains its own
+absolute location information, only 3 of the 6 GeoTIFF tags are necessary when
+using GeoTIFF records instead of WKT records. The ModelTiePointTag (33922),
+ModelPixelScaleTag (33550), and ModelTransformationTag (34264) records can be
+excluded. The GeoKeyDirectoryTag (34735), GeoDoubleParamsTag (34736), and
+GeoASCIIParamsTag (34737) records are used.
+
+Only the GeoKeyDirectoryTag record is required when using GEOTIFF records
+instead of WKT records. The GeoDoubleParamsTag and GeoASCIIParamsTag records
+may or may not be present, depending on the content of the GeoKeyDirectoryTag
+record.
+
++---------------------+-----------------------------+
+| User ID             | LASF_Projection             |
++---------------------+-----------------------------+
+| Record ID           | 34735                       |
++---------------------+-----------------------------+
+
+This record contains the key values that define the coordinate system. A
+complete description can be found in the GeoTIFF format specification. Here is
+a summary from a programmatic point of view for someone interested in
+implementation.
+
+The GeoKeyDirectoryTag is defined as just an array of unsigned short values.
+But, programmatically, the data can be seen as something like this:
+
+::
+
+    struct sGeoKeys {
+        unsigned short wKeyDirectoryVersion;
+        unsigned short wKeyRevision;
+        unsigned short wMinorRevision;
+        unsigned short wNumberOfKeys;
+
+        struct sKeyEntry
+        {
+            unsigned short wKeyID;
+            unsigned short wTIFFTagLocation;
+            unsigned short wCount;
+            unsigned short wValue_Offset;
+        } pKey[1];
+    };
+
+Where:
+
+::
+
+    wKeyDirectoryVersion = 1; // Always
+    wKeyRevision = 1; // Always
+    wMinorRevision = 0; // Always
+    wNumberOfKeys // Number of sets of 4 unsigned shorts to follow
+
+.. tabularcolumns:: |p{4.5cm}|p{12.0cm}|
+
+.. table:: GeoKey Four Unsigned Shorts
+
+    +---------------------------------+----------------------------------------------------------+
+    | Name                            | Definition                                               |
+    +=================================+==========================================================+
+    | ``wKeyID``                      | Defined key ID for each piece of GeoTIFF data. IDs       |
+    |                                 | contained in the GeoTIFF specification.                  |
+    +---------------------------------+----------------------------------------------------------+
+    | ``wTIFFTagLocation``            | Indicates where the data for this key is located:        |
+    |                                 |                                                          |
+    |                                 | * 0 means data is in the ``wValue_Offset`` field as an   |
+    |                                 |   unsigned short.                                        |
+    |                                 |                                                          |
+    |                                 | * 34736 means the data is located at index               |
+    |                                 |   ``wValue_Offset`` of the GeoDoubleParamsTag record.    |
+    |                                 |                                                          |
+    |                                 | * 34737 means the data is located at index               |
+    |                                 |   ``wValue_Offset`` of the GeoAsciiParamsTag record.     |
+    +---------------------------------+----------------------------------------------------------+
+    | ``wCount``                      | Number of characters in string for values of             |
+    |                                 | GeoAsciiParamsTag , otherwise is 1                       |
+    +---------------------------------+----------------------------------------------------------+
+    | ``wValue_Offset``               | Contents vary depending on value for wTIFFTagLocation    |
+    |                                 | above                                                    |
+    +---------------------------------+----------------------------------------------------------+
+
+
+
+GeoDoubleParamsTag Record (optional)
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Projection             |
++---------------------+-----------------------------+
+| Record ID           | 34736                       |
++---------------------+-----------------------------+
+
+This record is simply an array of doubles that contain values referenced by tag
+sets in the GeoKeyDirectoryTag record.
+
+GeoAsciiParamsTag Record (optional)
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Projection             |
++---------------------+-----------------------------+
+| Record ID           | 34737                       |
++---------------------+-----------------------------+
+
+This record is simply an array of doubles that contain values referenced by tag
+sets in the GeoKeyDirectoryTag record.
+
+
+Classification Lookup
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Spec                   |
++---------------------+-----------------------------+
+| Record ID           | 0                           |
++---------------------+-----------------------------+
+
+Record Length after Header: 256 recs X 16 byte struct len
+
+::
+
+    struct CLASSIFICATION
+    {
+        unsigned char ClassNumber;
+        char Description[15];
+    };
+
+
+Text Area Description
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Spec                   |
++---------------------+-----------------------------+
+| Record ID           | 3                           |
++---------------------+-----------------------------+
+
+This VLR/EVLR is used for providing a textual description of the content of the
+LAS file. It is a null terminated, free-form ASCII string.
+
+.. include:: ./extra_bytes.txt
+
+Superseded (optional)
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Spec                   |
++---------------------+-----------------------------+
+| Record ID           | 7                           |
++---------------------+-----------------------------+
+
+This LASF Record ID is used to negate an existing VLR/EVLR when rewriting the
+file (to remove the undesired VLR/EVLR).. It is used, for example, when
+updating a record such as projection information where a new EVLR is appended
+to the end of the LAS file. The existing VLR which has been superseded must be
+marked with the SUPERSEDED Record ID.
+
+
+Waveform Packet Descriptor
+................................................................................
+
++---------------------+-----------------------------+
+| User ID             | LASF_Spec                   |
++---------------------+-----------------------------+
+| Record ID           | n: where n > 99 and n <355  |
++---------------------+-----------------------------+
+
+.. warning::
+
+    This VLR is REQUIRED when using Point Formats 4,
+    5, 9 or 10.
+
+These records contain information that describes the configuration of the
+waveform packets. Since systems may be configured differently at different
+times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
+
+
+
+.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+
+.. table:: Waveform Packet Descriptor User Defined Record
+
+    +----------------------------------+-------------------------+-----------+----------+
+    | Item                             | Format                  | Size      | Required |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Bits per sample                  | unsigned char           | 1 byte    | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Waveform Compression Type        | unsigned char           | 1 byte    | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Number of samples                | unsigned long           | 4 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Temporal Sample Spacing          | unsigned long           | 4 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Digitizer Gain                   | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Digitizer Offset                 | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+
+Bits per sample
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+2 through 32 bits are supported.
+
+Waveform Compression type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is expected that in the future standard compression types will be adopted by
+the LAS committee. This field will indicate the compression algorithm used for
+the waveform packets associated with this descriptor. A value of 0 indicates no
+compression. Zero is the only value currently supported.
+
+Number of Samples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The number of samples associated with this waveform packet type. This value
+always represents the fully decompressed waveform packet.
+
+Temporal Sample Spacing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The temporal sample spacing in picoseconds. Example values might be 500, 1000,
+2000 and so on, representing digitizer frequencies of 2 GHz, 1 GHz and 500 MHz
+respectively.
+
+Digitizer Gain
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The gain and offset are used to convert the raw digitized value to an absolute
+digitizer voltage using the formula:
+
+.. math::
+
+    VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
+
+Digitizer Offset
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The gain and voltage offset are used to convert the raw digitized value to a
+voltage using the formula:
+
+.. math::
+
+    VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
+
+
+
+Defined Extended Variable Length Records
+--------------------------------------------------------------------------------
+
+Waveform Data Packets
+...............................................................................
+
+.. warning::
+
+    This EVLR is REQUIRED when using Point Formats 4, 5, 9, or 10.
+
++---------------------+-----------------------------+
+| User ID             | LASF_Spec                   |
++---------------------+-----------------------------+
+| Record ID           | 65535                       |
++---------------------+-----------------------------+
+
+The packet of Raw Waveform Amplitude values for all records immediately follow
+this variable length header. Note that when using a bit resolution that is not
+an even increment of 8, the last byte of each waveform packet must be padded
+such that the next waveform record will start on an even byte boundary.
+
