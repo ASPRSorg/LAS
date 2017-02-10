@@ -1,0 +1,25 @@
+# This is the config file for building proj.4 and running its test suite
+# with Travis-ci.org
+
+language: c
+
+services:
+    docker
+
+
+sudo:
+    required
+
+os:
+  - linux
+
+before_install: ./travis/before_install.sh
+
+script:
+  - echo "done"
+
+after_success:
+  - echo "$TRAVIS_SECURE_ENV_VARS"
+  - sh -c "./travis/build_docs.sh"
+  - sh -c 'if test "$TRAVIS_SECURE_ENV_VARS" = "true" -a "$TRAVIS_BRANCH" = "master"; then echo "publish website"; ./travis/add_deploy_key.sh; ./travis/deploy_website.sh $TRAVIS_BUILD_DIR/docs/build /tmp; fi'
+
