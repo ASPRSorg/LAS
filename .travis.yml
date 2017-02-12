@@ -10,7 +10,7 @@ after_success:
 - echo "$TRAVIS_SECURE_ENV_VARS"
 - sh -c "./scripts/build_docs.sh"
 - sh -c 'if test "$TRAVIS_SECURE_ENV_VARS" = "true"; then echo "publish "; ./scripts/stage.sh; fi'
-- echo "PDF at https://s3.amazonaws.com/asprs-las/LAS-specification-$TRAVIS_PULL_REQUEST_SHA.pdf"
+- echo "PDF at https://s3.amazonaws.com/asprs-las/LAS-specification-$TRAVIS_COMMIT.pdf"
 
 env:
   global:
