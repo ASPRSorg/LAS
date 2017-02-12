@@ -5,13 +5,15 @@ os:
 - linux
 before_install: "./scripts/before_install.sh"
 script:
-- echo "done"
+- echo "no compile needed. We just build the docs in after_success"
 after_success:
 - echo "$TRAVIS_SECURE_ENV_VARS"
 - sh -c "./scripts/build_docs.sh"
 - sh -c 'if test "$TRAVIS_SECURE_ENV_VARS" = "true";
   then echo "publish "; ./scripts/stage.sh;
   fi'
+  echo "PDF at https://s3.amazonaws.com/asprs-las/LAS-specification-$TRAVIS_PULL_REQUEST_SHA.pdf"
+
 env:
   global:
   - secure: wJwGbbWxTl/mKS+qtgzlSOPydZNC2uJ/lAh35W3Tw5pufrLflFondwuxTMu8vnYR1kk2c5uxu5TFf6bjNDhEv5M/L4wYvt5rISYuqeU7C7iisl02VfbdXzZGBqLFRsB6z2Oho6nYB+nszFEMerd5m9r3qPSPILDlYuxmyjE0oZeptBOGLF9URhL4DrCRw00e7qjuOR09D9s5roZgK81FmOAtohQEfx0T8u5bqMFHcViWQGHsIGrowmObQd+4vnogV6WdydR87ezMtJn+L1Nc7EfXnmDme7NiGQRiBoVNQGxdDE07YAM4ev7sKgt+VeZSWidfHVKbUGyCxs1rhZfjsMF1f2efeSbfnN4nCI3+qrr7WNVU+da93U3PSVzk005/bMDz7KGXNZbh7yQyOmTitCxT557KWxz6twO87DxyoWDi+eZceC+ArrpycA1qR7QwMzjECHwVqITuSzXtMFfS3dps7kxUTcO8CyTXd01DeGt+5AUaoFWBLBFtq6BFgnFG/2rjuzK5DCz590hdDZV7jb4SVcWmOz9+Ig172CfwfIatLboyfm5RlFSXI5bXFPED7z83ZEqf5LWrWZaGr5l5mcIL/4OJaqsagvEPiY9rrvBRJ2LnoumMK1Glk6Iror4m4ovDcFA16CVnHZe3f45UJ4EJ+sCE+0vZYkkr6PvHEoE=
