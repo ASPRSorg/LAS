@@ -3,6 +3,6 @@
 # asprsorg/las image has all of the Sphinx
 # dependencies need to build the LAS specification
 
-docker pull aspsrsorg/las
+docker pull asprsorg/las
 
 
