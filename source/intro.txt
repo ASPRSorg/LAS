@@ -30,8 +30,8 @@ The additions of las 1.4 include:
       "extra bytes" stored with each point
 
 * Other minor changes
-    * Added definitions for “LAS Domain Profile” and “LAS Domain Profile
-      Description”
+    * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
+      Description"
 
 .. raw:: latex
 

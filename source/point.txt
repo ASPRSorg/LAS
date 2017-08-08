@@ -797,7 +797,7 @@ Point Data Record Format 7
 ................................................................................
 
 Point Data Record Format 7 is the same as Point Data Record Format 6 with the
-addition of three RGB color channels. These fields are used when “colorizing” a
+addition of three RGB color channels. These fields are used when "colorizing" a
 LIDAR point using ancillary data, typically from a camera
 
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|

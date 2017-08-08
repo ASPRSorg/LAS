@@ -6,10 +6,10 @@ value of :math:`2^{32}-1 \equiv 4,294,967,295 \equiv \mbox{UINT32\_MAX}`) to a
 64 bit file structure (:math:`2^{64} - 1`).
 
 To maintain the ability to place a LAS 1.1 through LAS 1.3 payload (point
-record types 0-5, GeoTIFF coordinate reference system, referred to as “Legacy”
+record types 0-5, GeoTIFF coordinate reference system, referred to as "Legacy"
 payloads) in a LAS 1.4 file structure, it was necessary to duplicate some of
 the fields within the LAS 1.4 file structure. These duplicate fields are named
-“Legacy xxx” where “xxx” denotes the meaning of the field.
+"Legacy xxx" where "xxx" denotes the meaning of the field.
 
 A LAS 1.4 file writer who wishes to maintain backward compatibility must
 maintain both the legacy fields and the equivalent non-legacy fields in

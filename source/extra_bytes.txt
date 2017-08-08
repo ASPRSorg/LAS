@@ -19,8 +19,8 @@ bytes will simply copy these bytes when manipulating files.
 This record is only needed for LAS files where points contain user-defined
 "extra bytes". This happens when the point record size is set to a larger value
 than required by the point type. For example, when a LAS file that contains
-point type 1 has a point record size of 32 instead of 28 there are 4 “extra
-bytes”. The Extra Bytes VLR contains a simple description of the type and the
+point type 1 has a point record size of 32 instead of 28 there are 4 "extra
+bytes". The Extra Bytes VLR contains a simple description of the type and the
 meaning of these "extra bytes" so they can be accessed in a consistent manner
 across applications. The 4 "extra bytes" could, for example, be of data_type 9
 - a floating point value - that specifies an "echo width" for each return. In
@@ -39,7 +39,7 @@ width", or "shading normal" are encouraged. The use of generic names such as
 
 The bit mask in the options field specifies whether the min and max range of
 the value have been set (i.e. are meaningful), whether the scale and/or offset
-values are set with which the “extra bytes” are to be multiplied and translated
+values are set with which the "extra bytes" are to be multiplied and translated
 to compute their actual value, and whether there is a special value that should
 be interpreted as NO_DATA. By default all bits are zero which means that the
 values in the corresponding fields are to be disregarded.

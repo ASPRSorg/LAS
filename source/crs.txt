@@ -7,7 +7,7 @@ by LAS 1.4.
 
 GeoTIFF is maintained for legacy reasons for point types 0-5.
 
-A “WKT” bit has been added to the Global Encoding flag in the Public Header
+A "WKT" bit has been added to the Global Encoding flag in the Public Header
 Block. If this bit is set, the CRS for the file will be located in the WKT
 (Extended) Variable Length Records (EVLR, VLR).
 
@@ -27,8 +27,8 @@ and ensure that the WKT bit is false.
 
 It is considered a file error to have more than one GeoTIFF (E)VLR or more than
 one WKT (E)VLR in the file. A writer can append a new CRS EVLR to a file by
-“superseding” the existing CRS (E)VLR. Superseding is performed by changing the
-LAS_Spec ID of the record to “Superseded”, a new LASF_Spec defined in this
+"superseding" the existing CRS (E)VLR. Superseding is performed by changing the
+LAS_Spec ID of the record to "Superseded", a new LASF_Spec defined in this
 release.
 
 

@@ -12,7 +12,7 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
     +----------------------------------+-------------------------+-----------+----------+
-    | File Signature (“LASF”)          | char[4]                 | 4 bytes   | yes      |
+    | File Signature ("LASF")          | char[4]                 | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | File Source ID                   | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -99,7 +99,7 @@ Public Header Block
 File Signature
 ................................................................................
 
-The file signature must contain the four characters “LASF”, and it is required
+The file signature must contain the four characters "LASF", and it is required
 by the LAS specification. These four characters can be checked by user software
 as a quick look initial determination of file type.
 
@@ -287,8 +287,8 @@ Point Data Record Length
 The size, in bytes, of the Point Data Record. All Point Data Records within a
 single LAS file must be the same type and hence the same length. If the
 specified size is larger than implied by the point format type (e.g. 32 bytes
-instead of 28 bytes for type 1) the remaining bytes are user-specific “extra
-bytes. The format and meaning of such “extra bytes” can (optionally) be
+instead of 28 bytes for type 1) the remaining bytes are user-specific "extra
+bytes. The format and meaning of such "extra bytes" can (optionally) be
 described with an Extra Bytes VLR (see Table 24 and Table 25).
 
 

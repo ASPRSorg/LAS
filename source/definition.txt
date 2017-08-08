@@ -6,7 +6,7 @@ of (optional) Variable Length Records (VLRs), the Point Data Records, and any
 number of (optional) Extended Variable Length Records (EVLRs). All data are in
 little-endian format. The public header block contains generic data such as
 point numbers and point data bounds. We refer to the data content of the file
-as the “payload.”
+as the "payload."
 
 The Variable Length Records (VLRs) contain variable types of data including
 projection information, metadata, waveform packet information, and user
@@ -35,7 +35,7 @@ A LAS file that contains point record types 4, 5, 9, or 10 could potentially
 contain one block of waveform data packets that is stored as the payload of any
 Extended Variable Length Record (EVLR). Unlike other EVLRs, the Waveform Data
 Packets (if stored internally to the file) have the offset to the storage
-header contained within the Public Header Block (“Start of Waveform Data Packet
-Record”).
+header contained within the Public Header Block ("Start of Waveform Data Packet
+Record").
 
 
