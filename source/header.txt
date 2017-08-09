@@ -127,52 +127,53 @@ a value of 1). This bit field is defined as:
 
 .. table:: Global Encoding -- Bit Field Encoding
 
-    +-------+-------------------------+------------------------------------------+
-    | Bits  |  Field Name             | Description                              |
-    +=======+=========================+==========================================+
-    | 0     | GPS Time Type           | The meaning of GPS Time in the point     |
-    |       |                         | records. If this bit is not set, the GPS |
-    |       |                         | time in the point record fields is GPS   |
-    |       |                         | Week Time (the same as versions 1.0      |
-    |       |                         | through 1.2 of LAS). Otherwise, if this  |
-    |       |                         | bit is set, the GPS Time is standard GPS |
-    |       |                         | Time (satellite GPS Time) minus 1 x 109  |
-    |       |                         | (Adjusted Standard GPS Time). The offset |
-    |       |                         | moves the time back to near zero to      |
-    |       |                         | improve floating point resolution.       |
-    +-------+-------------------------+------------------------------------------+
-    | 1     | Waveform Data Packets   | If this bit is set, the waveform data    |
-    |       | Internal                | packets are located within this file     |
-    |       |                         | (note that this bit is mutually          |
-    |       |                         | exclusive with bit 2). This is           |
-    |       |                         | deprecated now.                          |
-    +-------+-------------------------+------------------------------------------+
-    | 2     | Waveform Data Packets   | If this bit is set, the waveform data    |
-    |       | External                | packets are located externally in an     |
-    |       |                         | auxiliary file with the same base name   |
-    |       |                         | as this file but the extension \*.wdp.   |
-    |       |                         | (note that this bit is mutually          |
-    |       |                         | exclusive with bit 1)                    |
-    +-------+-------------------------+------------------------------------------+
-    | 3     | Return numbers have     | If this bit is set, the point return     |
-    |       | been synthetically      | numbers in the point data records have   |
-    |       | generated               | been synthetically generated. This could |
-    |       |                         | be the case, for example, when a         |
-    |       |                         | composite file is created by combining a |
-    |       |                         | First Return File and a Last Return      |
-    |       |                         | File. In this case, first return data    |
-    |       |                         | will be labeled "1 of 2" and second      |
-    |       |                         | return data will be labeled "2 of 2".    |
-    +-------+-------------------------+------------------------------------------+
-    | 4     | WKT                     | If set, the Coordinate Reference System  |
-    |       |                         | (CRS) is WKT. If not set, the CRS is     |
-    |       |                         | GeoTIFF. It should not be set if the     |
-    |       |                         | file writer wishes to ensure legacy      |
-    |       |                         | compatibility (which means the CRS must  |
-    |       |                         | be GeoTIFF).                             |
-    +-------+-------------------------+------------------------------------------+
-    | 5:15  | Reserved                | Must be set to zero (0).                 |
-    +-------+-------------------------+------------------------------------------+
+    +-------+-----------------------+------------------------------------------+
+    | Bits  |  Field Name           | Description                              |
+    +=======+=======================+==========================================+
+    | 0     | GPS Time Type         | The meaning of GPS Time in the point     |
+    |       |                       | records. If this bit is not set, the GPS |
+    |       |                       | time in the point record fields is GPS   |
+    |       |                       | Week Time (the same as versions 1.0      |
+    |       |                       | through 1.2 of LAS). Otherwise, if this  |
+    |       |                       | bit is set, the GPS Time is standard GPS |
+    |       |                       | Time (satellite GPS Time) minus          |
+    |       |                       | 1 x :math:`10^9` (Adjusted Standard GPS  |
+    |       |                       | Time). The offset moves the time back to |
+    |       |                       | near zero to improve floating point      |
+    |       |                       | resolution.                              |
+    +-------+-----------------------+------------------------------------------+
+    | 1     | Waveform Data Packets | If this bit is set, the waveform data    |
+    |       | Internal              | packets are located within this file     |
+    |       |                       | (note that this bit is mutually          |
+    |       |                       | exclusive with bit 2). This is           |
+    |       |                       | deprecated now.                          |
+    +-------+-----------------------+------------------------------------------+
+    | 2     | Waveform Data Packets | If this bit is set, the waveform data    |
+    |       | External              | packets are located externally in an     |
+    |       |                       | auxiliary file with the same base name   |
+    |       |                       | as this file but the extension \*.wdp.   |
+    |       |                       | (note that this bit is mutually          |
+    |       |                       | exclusive with bit 1)                    |
+    +-------+-----------------------+------------------------------------------+
+    | 3     | Return numbers have   | If this bit is set, the point return     |
+    |       | been synthetically    | numbers in the point data records have   |
+    |       | generated             | been synthetically generated. This could |
+    |       |                       | be the case, for example, when a         |
+    |       |                       | composite file is created by combining a |
+    |       |                       | First Return File and a Last Return      |
+    |       |                       | File. In this case, first return data    |
+    |       |                       | will be labeled "1 of 2" and second      |
+    |       |                       | return data will be labeled "2 of 2".    |
+    +-------+-----------------------+------------------------------------------+
+    | 4     | WKT                   | If set, the Coordinate Reference System  |
+    |       |                       | (CRS) is WKT. If not set, the CRS is     |
+    |       |                       | GeoTIFF. It should not be set if the     |
+    |       |                       | file writer wishes to ensure legacy      |
+    |       |                       | compatibility (which means the CRS must  |
+    |       |                       | be GeoTIFF).                             |
+    +-------+-----------------------+------------------------------------------+
+    | 5:15  | Reserved              | Must be set to zero (0).                 |
+    +-------+-----------------------+------------------------------------------+
 
 Project ID (GUID data)
 ................................................................................
