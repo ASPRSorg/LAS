@@ -11,15 +11,15 @@ output data in a common format.
 This document reflects the fourth revision of the LAS format specification
 since its initial version 1.0 release.
 
-The additions of las 1.4 include:
+The additions of LAS 1.4 include:
 
 * Backward compatibility with LAS 1.1 – LAS 1.3 when payloads consist of only
   legacy content
 * LAS 1.4 Mode which supports
-    * Extension of offsets and field sizes to support full 64 bit o Support for
-      up to 15 returns per outgoing pulse
-    * Extension of the Point Class field to support 256 classes o Definition of
-      several new ASPRS standard classes
+    * Extension of offsets and field sizes to support full 64 bit
+    * Support for up to 15 returns per outgoing pulse
+    * Extension of the Point Class field to support 256 classes
+    * Definition of several new ASPRS standard classes
     * Extension of the Scan Angle field to 2 bytes to support finer angle resolution
     * Addition of a Sensor Channel bit field to support mobile mapping systems
     * Addition of Well Known Text (WKT) definitions for Coordinate Reference
@@ -28,10 +28,9 @@ The additions of las 1.4 include:
       region while maintaining the class definition
     * Addition of an (optional) Extra Byte Variable Length Record to describe
       "extra bytes" stored with each point
-
 * Other minor changes
-    * Added definitions for “LAS Domain Profile” and “LAS Domain Profile
-      Description”
+    * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
+      Description"
 
 .. raw:: latex
 

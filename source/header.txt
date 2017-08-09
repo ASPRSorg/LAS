@@ -1,10 +1,6 @@
 Public Header Block
 --------------------------------------------------------------------------------
 
-.. raw:: latex
-
-    \newpage
-
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
 
 .. table:: Public Header Block
@@ -12,7 +8,7 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
     +----------------------------------+-------------------------+-----------+----------+
-    | File Signature (“LASF”)          | char[4]                 | 4 bytes   | yes      |
+    | File Signature ("LASF")          | char[4]                 | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | File Source ID                   | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -40,7 +36,7 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+----------+
     | Header Size                      | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Offset to point data             | unsigned long           | 4 bytes   | yes      |
+    | Offset to Point Data             | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Number of Variable Length Records| unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -48,21 +44,21 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+----------+
     | Point Data Record Length         | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Legacy Number of Point Records   | unsigned long           | 5 bytes   | yes      |
+    | Legacy Number of Point Records   | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Legacy Number of Point by Return | unsigned long[5]        | 20 bytes  | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | X scale factor                   | double                  | 8 bytes   | yes      |
+    | X Scale Factor                   | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Y scale factor                   | double                  | 8 bytes   | yes      |
+    | Y Scale Factor                   | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Z scale factor                   | double                  | 8 bytes   | yes      |
+    | Z Scale Factor                   | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | X offset                         | double                  | 8 bytes   | yes      |
+    | X Offset                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Y offset                         | double                  | 8 bytes   | yes      |
+    | Y Offset                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Z offset                         | double                  | 8 bytes   | yes      |
+    | Z Offset                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Max X                            | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -99,7 +95,7 @@ Public Header Block
 File Signature
 ................................................................................
 
-The file signature must contain the four characters “LASF”, and it is required
+The file signature must contain the four characters "LASF", and it is required
 by the LAS specification. These four characters can be checked by user software
 as a quick look initial determination of file type.
 
@@ -288,8 +284,8 @@ Point Data Record Length
 The size, in bytes, of the Point Data Record. All Point Data Records within a
 single LAS file must be the same type and hence the same length. If the
 specified size is larger than implied by the point format type (e.g. 32 bytes
-instead of 28 bytes for type 1) the remaining bytes are user-specific “extra
-bytes. The format and meaning of such “extra bytes” can (optionally) be
+instead of 28 bytes for type 1) the remaining bytes are user-specific "extra
+bytes. The format and meaning of such "extra bytes" can (optionally) be
 described with an Extra Bytes VLR (see Table 24 and Table 25).
 
 
