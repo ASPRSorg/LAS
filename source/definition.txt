@@ -1,4 +1,4 @@
-Format Definition
+LAS Format Definition
 --------------------------------------------------------------------------------
 
 The format contains binary data consisting of a public header block, any number
