@@ -32,7 +32,7 @@ Record Header is 54 bytes in length.
 Reserved
 ................................................................................
 
-This value must be zero.
+This value must be set to zero.
 
 User ID
 ................................................................................

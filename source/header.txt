@@ -338,6 +338,11 @@ the X scale factor, and then add the X offset.
             Z_{coordinate} &= (Z_{record} * Z_{scale}) + Z_{offset}
         \end {eqnarray}
 
+Max and Min X, Y, and Z
+................................................................................
+The max and min data fields are the actual unscaled extents of the LAS point
+file data, specified in the coordinate system of the LAS data.
+
 Start of Waveform Data Packet Record
 ................................................................................
 
