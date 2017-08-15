@@ -11,7 +11,7 @@ integers).
 Point Data Record Format 6-10 have improved several aspects of the core
 information in the point data records, particularly support for 256 classes and
 the definition of a specific "Overlap" bit. While all point record formats
-(0–10) are supported in LAS 1.4, the preferred formats are 6-10.
+(0-10) are supported in LAS 1.4, the preferred formats are 6-10.
 
 
 Point Data Record Format 0
@@ -45,7 +45,7 @@ Data Record Formats 0 to 5.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -58,7 +58,7 @@ X, Y, and Z
 
 The X, Y, and Z values are stored as long integers. The X, Y, and Z values are
 used in conjunction with the scale values and the offset values to determine
-the coordinate for each point as described in the Public Header Block section.
+the coordinate for each point as described in the `Public Header Block`_ section.
 
 Intensity
 ................................................................................
@@ -276,7 +276,7 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -335,7 +335,7 @@ LIDAR point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -380,7 +380,7 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -427,7 +427,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -551,7 +551,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
