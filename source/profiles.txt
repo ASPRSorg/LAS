@@ -24,7 +24,7 @@ The specification for a particular domain profile. The Description must contain:
 #) an overview of the purpose and intended use;
 #) table of new point classifications (PDRF 6-10); and
 #) table of new attributes to be stored using Extra Bytes VLRs (must contain
-fields for units, data type, name, no data, scale, and description).
+   fields for units, data type, name, no data, scale, and description).
 
 LAS Domain Profile Descriptions reviewed and approved by the LAS Working Group
 will be posted on the ASPRS website. A template Domain Profile Description is
