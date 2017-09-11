@@ -58,7 +58,7 @@ X, Y, and Z
 
 The X, Y, and Z values are stored as long integers. The X, Y, and Z values are
 used in conjunction with the scale values and the offset values to determine
-the coordinate for each point as described in the `Public Header Block`_ section.
+the coordinate for each point as described in the :ref:`headerblock_label` section.
 
 Intensity
 ................................................................................
