@@ -28,5 +28,7 @@ The specification for a particular domain profile. The Description must contain:
 
 LAS Domain Profile Descriptions reviewed and approved by the LAS Working Group
 will be posted on the ASPRS website. A template Domain Profile Description is
-available on the `ASPRS website<https://www.asprs.org/committee-general/laser-
-las-file-format-exchange-activities.html>`_.
+available on the ASPRS website_.
+
+.. _ASPRS website: https://www.asprs.org/committee-general/laser-
+las-file-format-exchange-activities.html
