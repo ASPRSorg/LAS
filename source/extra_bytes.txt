@@ -1,4 +1,4 @@
-Extra Bytes
+Extra Bytes (optional)
 ................................................................................
 
 +---------------------+-----------------------------+
@@ -7,7 +7,7 @@ Extra Bytes
 | Record ID           | 4                           |
 +---------------------+-----------------------------+
 | Record Length after | n records * 192 bytes       |
-| header              |                             |
+| Header              |                             |
 +---------------------+-----------------------------+
 
 The Extra Bytes VLR provides a mechanism whereby additional information can be
@@ -53,20 +53,18 @@ they would be upcast to a long long.
 ::
 
     struct EXTRA_BYTES {
-
-        unsigned char           reserved[2];            // 2 bytes
-        unsigned char           data_type;              // 1 byte
-        unsigned char           options;                // 1 byte
-        char                    name[32];               // 32 bytes
-        unsigned char           unused [4];             // 4 bytes
-        anytype                 no_data[3];             // 24 = 3*8 bytes
-        anytype                 min[3];                 // 24 = 3*8 bytes
-        anytype                 max[3];                 // 24 = 3*8 bytes
-        double                  scale[3];               // 24 = 3*8 bytes
-        double                  offset[3];              // 24 = 3*8 bytes
-        char                    description[32];        // 32 bytes
-                                                        // total of 192 bytes
-    };
+        unsigned char           reserved[2];     // 2 bytes
+        unsigned char           data_type;       // 1 byte
+        unsigned char           options;         // 1 byte
+        char                    name[32];        // 32 bytes
+        unsigned char           unused[4];       // 4 bytes
+        anytype                 no_data[3];      // 24 = 3*8 bytes
+        anytype                 min[3];          // 24 = 3*8 bytes
+        anytype                 max[3];          // 24 = 3*8 bytes
+        double                  scale[3];        // 24 = 3*8 bytes
+        double                  offset[3];       // 24 = 3*8 bytes
+        char                    description[32]; // 32 bytes
+    };                                           // total of 192 bytes
 
 The "reserved" field and the "unused" field must be set to zero. Any unused
 "no_data", "min", "max", "scale", or "offset" fields must be set to zero. Any
@@ -75,13 +73,13 @@ unused characters in the "name" or "description" fields must be set to zero.
 
 .. tabularcolumns:: |p{3.0cm}|p{5.0cm}|p{4.0cm}|
 
-.. table:: Variable Length Record Header
+.. table:: Values for ``data_type`` Field
 
     +-------------------------------+-------------------------------+-------------------+
     | Value                         | Meaning                       | Value             |
     +===============================+===============================+===================+
-    |0                              | undocumented extra bytes      | specify value in  |
-    |                               |                               | options field     |
+    | 0                             | undocumented extra bytes      | specify value in  |
+    |                               |                               | ``options`` field |
     +-------------------------------+-------------------------------+-------------------+
     | 1                             | unsigned char                 | 1 byte            |
     +-------------------------------+-------------------------------+-------------------+
@@ -125,7 +123,7 @@ unused characters in the "name" or "description" fields must be set to zero.
     +-------------------------------+-------------------------------+-------------------+
     | 21                            | unsigned char[3]              | 3 bytes           |
     +-------------------------------+-------------------------------+-------------------+
-    | 22                            | char [3]                      | 3 bytes           |
+    | 22                            | char[3]                       | 3 bytes           |
     +-------------------------------+-------------------------------+-------------------+
     | 23                            | unsigned short[3]             | 6 bytes           |
     +-------------------------------+-------------------------------+-------------------+
@@ -135,9 +133,9 @@ unused characters in the "name" or "description" fields must be set to zero.
     +-------------------------------+-------------------------------+-------------------+
     | 26                            | long[3]                       | 12 bytes          |
     +-------------------------------+-------------------------------+-------------------+
-    | 27                            | unsigned long long [3]        | 24 bytes          |
+    | 27                            | unsigned long long[3]         | 24 bytes          |
     +-------------------------------+-------------------------------+-------------------+
-    | 28                            | long long [3]                 | 24 bytes          |
+    | 28                            | long long[3]                  | 24 bytes          |
     +-------------------------------+-------------------------------+-------------------+
     | 29                            | float[3]                      | 12 bytes          |
     +-------------------------------+-------------------------------+-------------------+
@@ -147,7 +145,7 @@ unused characters in the "name" or "description" fields must be set to zero.
 
 .. tabularcolumns:: |p{2.0cm}|p{6.0cm}|p{8.5cm}|
 
-.. table:: Encoding of "Options" field
+.. table:: Encoding of ``options`` Bit Field
 
     +-------+-------------------------+------------------------------------------+
     | Bits  |  Field Name             | Description                              |

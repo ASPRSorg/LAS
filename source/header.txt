@@ -112,6 +112,8 @@ scheme allows a LIDAR project to contain up to 65,535 unique sources. A source
 can be an original flight line or it can be result of merge and/or extract
 operations.
 
+.. _globalencoding_label:
+
 Global Encoding
 ................................................................................
 

@@ -1,3 +1,7 @@
+.. raw:: latex
+
+    \newpage
+
 Extended Variable Length Records (EVLRs)
 -------------------------------------------------------------------------------
 
@@ -6,20 +10,16 @@ The Point Record Data can be followed by any number of EVLRs.
 The EVLR is, in spirit, identical to a VLR but can carry a larger payload as
 the "Record Length After Header" field is 8 bytes instead of 2 bytes. The
 number of EVLRs is specified in the "Number of Extended Variable Length
-Records" field in the Public Header Block. The start of the first EVLR is at
+Records" field in the :ref:`headerblock_label`. The start of the first EVLR is at
 the file offset indicated by the "Start of first Extended Variable Length
-Record" in the Public Header Block. The Extended Variable Length Records must
+Record" in the :ref:`headerblock_label`. The Extended Variable Length Records must
 be accessed sequentially since the size of each variable length record is
 contained in the Extended Variable Length Record Header. Each Extended Variable
 Length Record Header is 60 bytes in length.
 
-.. note::
-
-    As with the VLR, the Reserved field must be set to zero
-
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
 
-.. table:: Variable Length Record Header
+.. table:: Extended Variable Length Record Header
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
@@ -34,6 +34,10 @@ Length Record Header is 60 bytes in length.
     +----------------------------------+-------------------------+-----------+----------+
     | Description                      | char[32]                | 32 bytes  |          |
     +----------------------------------+-------------------------+-----------+----------+
+
+.. note::
+
+    As with the VLR, the Reserved field must be set to zero.
 
 
 
