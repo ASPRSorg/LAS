@@ -84,7 +84,7 @@ Return Number
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
 of return. The first return will have a Return Number of one, the second a
-Return Number of two, and so on up to five returns
+Return Number of two, and so on up to five returns.
 
 Number of Returns (given pulse)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
