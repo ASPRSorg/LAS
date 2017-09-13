@@ -159,11 +159,11 @@ the classification values in Table 9.
 Reserved Point Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Classification must adhere to the following standard:
+
 .. tabularcolumns:: |p{6.0cm}|p{8.0cm}|
 
 .. table:: ASPRS Standard LIDAR Point Classes (Point Data Record Format 0-5)
-
-Classification must adhere to the following standard:
 
     +-----------------------------------+-----------------------------------------------+
     | Classification Value (bits 0:4)   | Meaning                                       |
