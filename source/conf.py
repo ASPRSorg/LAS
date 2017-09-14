@@ -115,6 +115,10 @@ htmlhelp_basename = 'LASdoc'
 # https://stackoverflow.com/questions/4839105/sphinx-customization-of-latexpdf-output
 # bug: this still doesn't apply to the TOC and title page. not sure what style's there.
 #
+# See this link for list item parent separation/bolding help:
+# https://tex.stackexchange.com/questions/10684/vertical-space-in-lists
+# https://texblog.org/2008/10/16/lists-enumerate-itemize-description-and-how-to-change-them/
+#
 preamble = r'''
 
 \renewcommand\thesection{\arabic{section}}
