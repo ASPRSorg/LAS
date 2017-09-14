@@ -135,11 +135,10 @@ preamble = r'''
 
 '''.replace("VVVV", u'v.' + myversion)
 
-# Assign 'report' to 'manual' documentclass.
-# Override as needed.
-latex_docclass = {
-    'manual': 'report'
-}
+# Assign 'report' to 'manual' documentclass. Override as needed.
+#latex_docclass = {
+#    'manual': 'report'
+#}
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
