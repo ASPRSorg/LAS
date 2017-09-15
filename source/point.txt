@@ -697,7 +697,7 @@ with the point. The bit definitions are:
     These bits are treated as flags and can be set or cleared in any
     combination. For example, a point with bits 0 and 1 both set to one and the
     *Classification* field set to 2 would be a *ground* point that had been
-    *synthetically* collected and marked as a *model key-point*.
+    *synthetically* collected and marked as a model *key-point*.
 
 
 Scanner Channel
