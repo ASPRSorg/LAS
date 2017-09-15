@@ -16,7 +16,6 @@ Welcome to LAS's documentation!
    point
    evlr
    defined_vlrs
-   extra_bytes
    profiles
 
 

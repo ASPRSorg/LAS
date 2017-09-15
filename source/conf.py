@@ -55,8 +55,10 @@ author = u'ASPRS'
 #
 # The short X.Y version.
 #version = u'1.4'
+# Custom non-keyword version tag for header
+myversion = u'1.4 - R13'
 # The full version, including alpha/beta/rc tags.
-release = u'VERSION 1.4 - R13'
+release = u'VERSION ' + myversion
 releasename = release
 version=''
 today='15 July 2013'
@@ -108,12 +110,42 @@ htmlhelp_basename = 'LASdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
+#
+# See this link for more info on fancyhdr overrides to Sphinx styles: 
+# https://stackoverflow.com/questions/4839105/sphinx-customization-of-latexpdf-output
+# bug: this still doesn't apply to the TOC and title page. not sure what style's there.
+#
+# See this link for list item parent separation/bolding help:
+# https://tex.stackexchange.com/questions/10684/vertical-space-in-lists
+# https://texblog.org/2008/10/16/lists-enumerate-itemize-description-and-how-to-change-them/
+#
 preamble = r'''
 
 \renewcommand\thesection{\arabic{section}}
 
-'''
+\usepackage{fancyhdr}
+\makeatletter
+\fancypagestyle{normal}{
+    \fancyhf{}
+    \fancyhead[R]{American Society for Photogrammetry \& Remote Sensing}
+    \fancyhead[L]{LAS Specification VVVV}
+    \fancyfoot[L]{\rightmark}
+    \fancyfoot[R]{Page \thepage}
 
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\footrulewidth}{1pt}
+}
+\makeatother
+
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+'''.replace("VVVV", u'v.' + myversion)
+
+# Assign 'report' to 'manual' documentclass. Override as needed.
+#latex_docclass = {
+#    'manual': 'report'
+#}
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
@@ -124,6 +156,9 @@ latex_elements = {
     #
     'pointsize': '12pt',
 
+    # Other document class options - ensure uniform header/footer
+    'classoptions': ',oneside,openany',
+
     # Additional stuff for the LaTeX preamble.
     #
     'preamble': preamble,
@@ -131,7 +166,9 @@ latex_elements = {
     # Latex figure (float) alignment
     #
     'figure_align': 'htbp',
-    'releasename': ' ',
+    'releasename': ' ',# defined above. blank to prevent duplicate usage in title page
+
+    # Don't use atendofbody. Use fancyhdr calls in preamble instead (above).
 #    'atendofbody': """American Society for Photogrammetry \& Remote Sensing \\ LAS SPECIFICATION \\""" + releasename
 }
 

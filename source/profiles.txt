@@ -1,4 +1,8 @@
-Domain Profiles
+.. raw:: latex
+
+    \newpage
+
+LAS Domain Profiles
 --------------------------------------------------------------------------------
 
 A derivative of the base LAS specification that adds (but does not remove or
@@ -12,13 +16,18 @@ recommended that the development of Domain Profiles be coordinated, so as to
 avoid unnecessary overlap or conflicts (e.g., conflicting class numbers)
 between profiles.
 
-Domain Profile Description
+LAS Domain Profile Description
 ................................................................................
 
-The specification for a particular domain profile. The Description must
-contain: 1) an overview of the purpose and intended use; 2) table of new point
-classifications (PDRF 6-10); and 3) table of new attributes to be stored using
-Extra Bytes VLRs (must contain fields for units, data type, name, no data,
-scale, and description). LAS Domain Profile Descriptions reviewed and approved
-by the LAS Working Group will be posted on the ASPRS website. A template Domain
-Profile Description is available on the ASPRS website.
+The specification for a particular domain profile. The Description must contain:
+
+#) an overview of the purpose and intended use;
+#) table of new point classifications (PDRF 6-10); and
+#) table of new attributes to be stored using Extra Bytes VLRs (must contain
+   fields for units, data type, name, no data, scale, and description).
+
+LAS Domain Profile Descriptions reviewed and approved by the LAS Working Group
+will be posted on the ASPRS website. A template Domain Profile Description is
+available on the ASPRS website_.
+
+.. _website: https://www.asprs.org/committee-general/laser-las-file-format-exchange-activities.html

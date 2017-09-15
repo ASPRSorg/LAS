@@ -11,7 +11,7 @@ integers).
 Point Data Record Format 6-10 have improved several aspects of the core
 information in the point data records, particularly support for 256 classes and
 the definition of a specific "Overlap" bit. While all point record formats
-(0–10) are supported in LAS 1.4, the preferred formats are 6-10.
+(0-10) are supported in LAS 1.4, the preferred formats are 6-10.
 
 
 Point Data Record Format 0
@@ -26,7 +26,7 @@ Data Record Formats 0 to 5.
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -45,7 +45,7 @@ Data Record Formats 0 to 5.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -54,14 +54,14 @@ Data Record Formats 0 to 5.
     +----------------------------------+-------------------------+-----------+----------+
 
 X, Y, and Z
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The X, Y, and Z values are stored as long integers. The X, Y, and Z values are
 used in conjunction with the scale values and the offset values to determine
-the coordinate for each point as described in the Public Header Block section.
+the coordinate for each point as described in the :ref:`headerblock_label` section.
 
 Intensity
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The intensity value is the integer representation of the pulse return
 magnitude. This value is optional and system specific. However, it should
@@ -79,22 +79,22 @@ ensure that data from different sensors can be correctly merged.
     byte.
 
 Return Number
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
 of return. The first return will have a Return Number of one, the second a
-Return Number of two, and so on up to five returns
+Return Number of two, and so on up to five returns.
 
 Number of Returns (given pulse)
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
 number of five returns.
 
 Scan Direction Flag
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
@@ -103,14 +103,14 @@ scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
 Edge of Flight Line
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
 direction.
 
 Classification
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This field represents the "class" attributes of a point. If a point has never
 been classified, this byte must be set to zero. The format for classification
@@ -121,13 +121,13 @@ the classification values in Table 9.
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
-.. table:: Classification Bit Field Encoding for Point Record types 0 to 5
+.. table:: Classification Bit Field Encoding for Point Data Record Format 0-5
 
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
     | 0:4   | Classification          | Standard ASPRS classification from       |
-    |       |                         | 0 -- 31 as defined in the classification |
+    |       |                         | 0 to 31 as defined in the classification |
     |       |                         | table for legacy point formats           |
     |       |                         | (see :ref:`point_classes`)               |
     +-------+-------------------------+------------------------------------------+
@@ -156,8 +156,10 @@ the classification values in Table 9.
 
 .. _point_classes:
 
-Point Classes
+Reserved Point Classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Classification must adhere to the following standard:
 
 .. tabularcolumns:: |p{6.0cm}|p{8.0cm}|
 
@@ -217,7 +219,7 @@ Point Classes
     since these points are not subsequently classified.
 
 Scan Angle Rank
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Scan Angle Rank is a signed one-byte number with a valid range from -90 to
 +90. The Scan Angle Rank is the angle (rounded to the nearest integer in the
@@ -228,12 +230,12 @@ being nadir, and -90 degrees to the left side of the aircraft in the direction
 of flight.
 
 User Data
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This field may be used at the user's discretion.
 
 Point Source ID
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This value indicates the file from which this point originated. Valid values
 for this field are 1 to 65,535 inclusive with zero being used for a special
@@ -257,7 +259,7 @@ addition of GPS Time.
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -276,7 +278,7 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -287,12 +289,12 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
 
 GPS Time
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The GPS Time is the double floating point time tag value at which the point was
 acquired. It is GPS Week Time if the Global Encoding low bit is clear and
-Adjusted Standard GPS Time if the Global Encoding low bit is set (see Global
-Encoding in the Public Header Block description).
+Adjusted Standard GPS Time if the Global Encoding low bit is set (see 
+:ref:`globalencoding_label` in the :ref:`headerblock_label` description).
 
 
 Point Data Record Format 2
@@ -302,21 +304,13 @@ Point Data Record Format 2 is the same as Point Data Record Format 0 with the
 addition of three color channels. These fields are used when "colorizing" a
 LIDAR point using ancillary data, typically from a camera.
 
-.. note::
-
-    The Red, Green, Blue values should always be normalized to 16 bit values.
-    For example, when encoding an 8 bit per channel pixel, multiply each
-    channel value by 256 prior to storage in these fields. This normalization
-    allows color values from different camera bit depths to be accurately
-    merged.
-
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 2
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -335,7 +329,7 @@ LIDAR point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -348,6 +342,18 @@ LIDAR point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+
+Red, Green, and Blue
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The Red, Green, and Blue image channel values associated with this point.
+
+.. note::
+
+    The Red, Green, Blue values should always be normalized to 16 bit values.
+    For example, when encoding an 8 bit per channel pixel, multiply each
+    channel value by 256 prior to storage in these fields. This normalization
+    allows color values from different camera bit depths to be accurately
+    merged.
 
 Point Data Record Format 3
 ................................................................................
@@ -361,7 +367,7 @@ addition of GPS Time.
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -380,20 +386,20 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
     +----------------------------------+-------------------------+-----------+----------+
     | Point Source ID                  | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | GPS Time                         | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
     | Red                              | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Green                            | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | GPS Time                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
 
@@ -408,7 +414,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -427,7 +433,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -452,7 +458,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
 
 Wave Packet Descriptor Index
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This value plus **99** is the Record ID of the Waveform Packet Descriptor and
 indicates the User Defined Record that describes the waveform packet associated
@@ -461,7 +467,7 @@ the waveform packet are supported. A value of zero indicates that there is no
 waveform data associated with this LIDAR point record.
 
 Byte offset to Waveform Packet Data
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The waveform packet data are stored in the LAS file in an Extended Variable
 Length Record or in an auxiliary WPD file. The Byte Offset represents the
@@ -479,7 +485,7 @@ waveform packet relative to the beginning of the file is given by:
     for data stored in an auxiliary file
 
 Waveform packet size in bytes
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The size, in bytes, of the waveform packet associated with this return. Note
 that each waveform can be of a different size (even those with the same
@@ -489,15 +495,15 @@ Data value since there is no requirement that records be stored sequentially.
 
 
 Return Point location
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The offset in picoseconds (:math:`10^{12}`) from the first digitized value to the
+The offset in picoseconds (:math:`10^{-12}`) from the first digitized value to the
 location within the waveform packet that the associated return pulse was
 detected.
 
 
 X(t), Y(t), Z(t)
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 These parameters define a parametric line equation for extrapolating points
 along the associated waveform. The position along the wave is given by:
@@ -513,7 +519,7 @@ along the associated waveform. The position along the wave is given by:
 
 where X, Y and Z are the spatial position of the derived point, :math:`X_0`,
 :math:`Y_0`, :math:`Z_0` are the position of the "anchor" point (the X, Y, Z
-locations from this point’s data record) and t is the time, in picoseconds,
+locations from this point's data record) and :math:`t` is the time, in picoseconds,
 relative to the anchor point (i.e. :math:`t = 0` at the anchor point). The units of
 X, Y and Z are the units of the coordinate systems of the LAS data. If the
 coordinate system is geographic, the horizontal units are decimal degrees and
@@ -523,7 +529,6 @@ the vertical units are meters.
 Point Data Record Format 5
 ................................................................................
 
-
 Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
 
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
@@ -532,7 +537,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -551,7 +556,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 -- +90) --  | unsigned char           | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
     | Left side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
@@ -559,6 +564,12 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     | Point Source ID                  | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | GPS Time                         | double                  | 8 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Red                              | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Green                            | unsigned short          | 2 bytes   | yes      |
+    +----------------------------------+-------------------------+-----------+----------+
+    | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -591,7 +602,7 @@ instead of 8), and the GPS time is mandatory.
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -608,10 +619,9 @@ instead of 8), and the GPS time is mandatory.
     +----------------------------------+-------------------------+-----------+----------+
     | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 6)           | 1 bit     | yes      |
+    | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90)     | 1 bit (bit 7)           | 1 bit     | yes      |
-    | -- Left side                     |                         |           |          |
+    | Edge of Flight Line              | 1 bit (bit 7)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -631,7 +641,7 @@ instead of 8), and the GPS time is mandatory.
     into two bytes.
 
 Return Number
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
@@ -640,23 +650,17 @@ Return Number of two, and so on up to fifteen returns. The Return Number must
 be between 1 and the Number of Returns, inclusive.
 
 Number of Returns (given pulse)
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
 number of up to fifteen returns.
 
 Classification Flags
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Classification flags are used to indicate special characteristics associated
 with the point. The bit definitions are:
-
-.. note::
-    These bits are treated as flags and can be set or cleared in any
-    combination. For example, a point with bits 0 and 1 both set to one and the
-    *Classification* field set to 2 would be a *ground* point that had been
-    *synthetically* collected and marked as a *model* key-point.
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
@@ -689,16 +693,22 @@ with the point. The bit definitions are:
     |       |                         | to be preserved.                         |
     +-------+-------------------------+------------------------------------------+
 
+.. note::
+    These bits are treated as flags and can be set or cleared in any
+    combination. For example, a point with bits 0 and 1 both set to one and the
+    *Classification* field set to 2 would be a *ground* point that had been
+    *synthetically* collected and marked as a model *key-point*.
+
 
 Scanner Channel
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Scanner Channel is used to indicate the channel (scanner head) of a multi-
 channel system. Channel 0 is used for single scanner systems. Up to four
 channels are supported (0-3).
 
 Scan Direction Flag
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
@@ -707,7 +717,7 @@ scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
 Edge of Flight Line
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
@@ -716,7 +726,7 @@ direction or the mirror facet changes. Note that this field has no meaning for
 set.
 
 Classification
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Classification must adhere to the following standard:
 
@@ -744,7 +754,7 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 7                                 | Low Point (noise)                             |
     +-----------------------------------+-----------------------------------------------+
-    | 8                                 | Model Key-point (mass point)                  |
+    | 8                                 | *Reserved*                                    |
     +-----------------------------------+-----------------------------------------------+
     | 9                                 | Water                                         |
     +-----------------------------------+-----------------------------------------------+
@@ -752,7 +762,7 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 11                                | Road Surface                                  |
     +-----------------------------------+-----------------------------------------------+
-    | 12                                | Reserved                                      |
+    | 12                                | *Reserved*                                    |
     +-----------------------------------+-----------------------------------------------+
     | 13                                | Wire -- Guard (Shield)                        |
     +-----------------------------------+-----------------------------------------------+
@@ -766,7 +776,7 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 18                                | High Noise                                    |
     +-----------------------------------+-----------------------------------------------+
-    | 19-63                             | Reserved                                      |
+    | 19-63                             | *Reserved*                                    |
     +-----------------------------------+-----------------------------------------------+
     | 64-255                            | User definable                                |
     +-----------------------------------+-----------------------------------------------+
@@ -782,7 +792,7 @@ Classification must adhere to the following standard:
 
 
 Scan Angle
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Scan Angle is a signed short that represents the rotational position of the
 emitted laser pulse with respect to the vertical of the coordinate system of
@@ -797,7 +807,7 @@ Point Data Record Format 7
 ................................................................................
 
 Point Data Record Format 7 is the same as Point Data Record Format 6 with the
-addition of three RGB color channels. These fields are used when “colorizing” a
+addition of three RGB color channels. These fields are used when "colorizing" a
 LIDAR point using ancillary data, typically from a camera
 
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
@@ -806,7 +816,7 @@ LIDAR point using ancillary data, typically from a camera
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -823,10 +833,9 @@ LIDAR point using ancillary data, typically from a camera
     +----------------------------------+-------------------------+-----------+----------+
     | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 6)           | 1 bit     | yes      |
+    | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90)     | 1 bit (bit 7)           | 1 bit     | yes      |
-    | -- Left side                     |                         |           |          |
+    | Edge of Flight Line              | 1 bit (bit 7)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -851,21 +860,13 @@ Point Data Record Format 8
 Point Data Record Format 8 is the same as Point Data Record Format 7 with the
 addition of a NIR (near infrared) channel.
 
-.. note::
-
-    Note that Red, Green, Blue and NIR values should always be normalized to 16
-    bit values. For example, when encoding an 8 bit per channel pixel, multiply
-    each channel value by 256 prior to storage in these fields. This
-    normalization allows color values from different camera bit depths to be
-    accurately merged.
-
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 8
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -882,10 +883,9 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-----------+----------+
     | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 6)           | 1 bit     | yes      |
+    | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90)     | 1 bit (bit 7)           | 1 bit     | yes      |
-    | -- Left side                     |                         |           |          |
+    | Edge of Flight Line              | 1 bit (bit 7)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -907,9 +907,17 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-----------+----------+
 
 NIR
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The NIR (near infrared) channel value associated with this point.
+
+.. note::
+
+    Note that Red, Green, Blue and NIR values should always be normalized to 16
+    bit values. For example, when encoding an 8 bit per channel pixel, multiply
+    each channel value by 256 prior to storage in these fields. This
+    normalization allows color values from different camera bit depths to be
+    accurately merged.
 
 Point Data Record Format 9
 ................................................................................
@@ -922,7 +930,7 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -937,12 +945,11 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification Flags             | 4 bits (bits 0-3)       | 4 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | yes      |
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 6)           | 1 bit     | yes      |
+    | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90)     | 1 bit (bit 7)           | 1 bit     | yes      |
-    | -- Left side                     |                         |           |          |
+    | Edge of Flight Line              | 1 bit (bit 7)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -980,7 +987,7 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
 
     +----------------------------------+-------------------------+-----------+----------+
     | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
+    +==================================+=========================+===========+==========+
     | X                                | long                    | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Y                                | long                    | 4 bytes   | yes      |
@@ -997,10 +1004,9 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-----------+----------+
     | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 6)           | 1 bit     | yes      |
+    | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90)     | 1 bit (bit 7)           | 1 bit     | yes      |
-    | -- Left side                     |                         |           |          |
+    | Edge of Flight Line              | 1 bit (bit 7)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+

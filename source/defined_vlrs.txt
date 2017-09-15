@@ -1,3 +1,7 @@
+.. raw:: latex
+
+    \newpage
+
 Defined Variable Length Records
 --------------------------------------------------------------------------------
 
@@ -70,6 +74,10 @@ OGC Coordinate System WKT
 | Record ID           | 2112                        |
 +---------------------+-----------------------------+
 
+This record contains the textual data representing a Coordinate System WKT as
+defined in section 7 of the Coordinate Transformation Services Spec, with the
+following notes:
+
 * The OGC Coordinate System WKT VLR data shall be a null-terminated string.
 * The OGC Coordinate System WKT VLR data shall be considered UTF-8.
 * The OGC Coordinate System WKT VLR data shall be considered C locale-based, and
@@ -95,6 +103,9 @@ instead of WKT records. The GeoDoubleParamsTag and GeoASCIIParamsTag records
 may or may not be present, depending on the content of the GeoKeyDirectoryTag
 record.
 
+GeoKeyDirectoryTag Record
+................................................................................
+
 +---------------------+-----------------------------+
 | **User ID**         | **LASF_Projection**         |
 +---------------------+-----------------------------+
@@ -117,8 +128,7 @@ But, programmatically, the data can be seen as something like this:
         unsigned short wMinorRevision;
         unsigned short wNumberOfKeys;
 
-        struct sKeyEntry
-        {
+        struct sKeyEntry {
             unsigned short wKeyID;
             unsigned short wTIFFTagLocation;
             unsigned short wCount;
@@ -131,9 +141,9 @@ Where:
 ::
 
     wKeyDirectoryVersion = 1; // Always
-    wKeyRevision = 1; // Always
-    wMinorRevision = 0; // Always
-    wNumberOfKeys // Number of sets of 4 unsigned shorts to follow
+    wKeyRevision = 1;         // Always
+    wMinorRevision = 0;       // Always
+    wNumberOfKeys        // Number of sets of 4 unsigned shorts to follow
 
 .. tabularcolumns:: |p{4.5cm}|p{12.0cm}|
 
@@ -149,15 +159,13 @@ Where:
     |                                 |                                                          |
     |                                 | * 0 means data is in the ``wValue_Offset`` field as an   |
     |                                 |   unsigned short.                                        |
-    |                                 |                                                          |
     |                                 | * 34736 means the data is located at index               |
     |                                 |   ``wValue_Offset`` of the GeoDoubleParamsTag record.    |
-    |                                 |                                                          |
     |                                 | * 34737 means the data is located at index               |
     |                                 |   ``wValue_Offset`` of the GeoAsciiParamsTag record.     |
     +---------------------------------+----------------------------------------------------------+
     | ``wCount``                      | Number of characters in string for values of             |
-    |                                 | GeoAsciiParamsTag , otherwise is 1                       |
+    |                                 | GeoAsciiParamsTag, otherwise is 1                        |
     +---------------------------------+----------------------------------------------------------+
     | ``wValue_Offset``               | Contents vary depending on value for wTIFFTagLocation    |
     |                                 | above                                                    |
@@ -186,11 +194,14 @@ GeoAsciiParamsTag Record (optional)
 | Record ID           | 34737                       |
 +---------------------+-----------------------------+
 
-This record is simply an array of doubles that contain values referenced by tag
-sets in the GeoKeyDirectoryTag record.
+This record is simply an array of ASCII data. It contains many strings separated
+by null terminator characters which are referenced by position from data in the
+GeoKeyDirectoryTag record.
 
+Other Specification Defined VLRs
+--------------------------------------------------------------------------------
 
-Classification Lookup
+Classification Lookup (optional)
 ................................................................................
 
 +---------------------+-----------------------------+
@@ -199,18 +210,17 @@ Classification Lookup
 | Record ID           | 0                           |
 +---------------------+-----------------------------+
 
-Record Length after Header: 256 recs X 16 byte struct len
+Record Length after Header: 256 recs * 16 byte struct len
 
 ::
 
-    struct CLASSIFICATION
-    {
+    struct CLASSIFICATION {
         unsigned char ClassNumber;
         char Description[15];
     };
 
 
-Text Area Description
+Text Area Description (optional)
 ................................................................................
 
 +---------------------+-----------------------------+
@@ -239,7 +249,6 @@ updating a record such as projection information where a new EVLR is appended
 to the end of the LAS file. The existing VLR which has been superseded must be
 marked with the SUPERSEDED Record ID.
 
-
 Waveform Packet Descriptor
 ................................................................................
 
@@ -251,34 +260,33 @@ Waveform Packet Descriptor
 
 .. warning::
 
-    This VLR is REQUIRED when using Point Formats 4,
-    5, 9 or 10.
+    This VLR is REQUIRED internally or externally when using Point Data Record
+    Formats 4, 5, 9 or 10.
 
 These records contain information that describes the configuration of the
 waveform packets. Since systems may be configured differently at different
 times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
 
 
-
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
 
 .. table:: Waveform Packet Descriptor User Defined Record
 
-    +----------------------------------+-------------------------+-----------+--------------+
-    | **Item**                         | **Format**              | **Size**  | **Required** |
-    +----------------------------------+-------------------------+-----------+--------------+
-    | Bits per sample                  | unsigned char           | 1 byte    | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
-    | Waveform Compression Type        | unsigned char           | 1 byte    | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
-    | Number of samples                | unsigned long           | 4 bytes   | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
-    | Temporal Sample Spacing          | unsigned long           | 4 bytes   | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
-    | Digitizer Gain                   | double                  | 8 bytes   | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
-    | Digitizer Offset                 | double                  | 8 bytes   | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
+    +------------------------------+-------------------------+-----------+--------------+
+    | **Item**                     | **Format**              | **Size**  | **Required** |
+    +==============================+=========================+===========+==============+
+    | Bits per sample              | unsigned char           | 1 byte    | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Waveform Compression Type    | unsigned char           | 1 byte    | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Number of samples            | unsigned long           | 4 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Temporal Sample Spacing      | unsigned long           | 4 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Digitizer Gain               | double                  | 8 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Digitizer Offset             | double                  | 8 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
 
 Bits per sample
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -328,7 +336,7 @@ voltage using the formula:
 
 
 
-Defined Extended Variable Length Records
+Defined Extended Variable Length Records (EVLRs)
 --------------------------------------------------------------------------------
 
 Waveform Data Packets
@@ -336,7 +344,8 @@ Waveform Data Packets
 
 .. warning::
 
-    This EVLR is REQUIRED when using Point Formats 4, 5, 9, or 10.
+    This EVLR is REQUIRED internally or externally when using Point Data Record 
+    Formats 4, 5, 9, or 10.
 
 +---------------------+-----------------------------+
 | **User ID**         | **LASF_Spec**               |
