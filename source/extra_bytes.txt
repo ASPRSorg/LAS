@@ -2,7 +2,7 @@ Extra Bytes (optional)
 ................................................................................
 
 +---------------------+-----------------------------+
-| User ID             | LASF_Spec                   |
+| **User ID**         | **LASF_Spec**               |
 +---------------------+-----------------------------+
 | Record ID           | 4                           |
 +---------------------+-----------------------------+
@@ -76,7 +76,7 @@ unused characters in the "name" or "description" fields must be set to zero.
 .. table:: Values for ``data_type`` Field
 
     +-------------------------------+-------------------------------+-------------------+
-    | Value                         | Meaning                       | Value             |
+    | **Value**                     | **Meaning**                   | **Value**         |
     +===============================+===============================+===================+
     | 0                             | undocumented extra bytes      | specify value in  |
     |                               |                               | ``options`` field |
@@ -147,22 +147,22 @@ unused characters in the "name" or "description" fields must be set to zero.
 
 .. table:: Encoding of ``options`` Bit Field
 
-    +-------+-------------------------+------------------------------------------+
-    | Bits  |  Field Name             | Description                              |
-    +=======+=========================+==========================================+
-    | 0     | no_data_bit             | If set the no_data value is relevant.    |
-    +-------+-------------------------+------------------------------------------+
-    | 1     | min_bit                 | If set the min value is relevant         |
-    +-------+-------------------------+------------------------------------------+
-    | 2     | max_bit                 | If set the max value is relevant         |
-    +-------+-------------------------+------------------------------------------+
-    | 3     | scale_bit               | If set each value should be multiplied   |
-    |       |                         | by the corresponding scale value (before |
-    |       |                         | applying the offset)                     |
-    +-------+-------------------------+------------------------------------------+
-    | 4     | offset_bit              | If set each value should be translated   |
-    |       |                         | by the corresponding offset value (after |
-    |       |                         | applying the scaling).                   |
-    +-------+-------------------------+------------------------------------------+
+    +-----------+-------------------------+------------------------------------------+
+    | **Bits**  |  **Field Name**         | **Description**                          |
+    +===========+=========================+==========================================+
+    | 0         | no_data_bit             | If set the no_data value is relevant.    |
+    +-----------+-------------------------+------------------------------------------+
+    | 1         | min_bit                 | If set the min value is relevant         |
+    +-----------+-------------------------+------------------------------------------+
+    | 2         | max_bit                 | If set the max value is relevant         |
+    +-----------+-------------------------+------------------------------------------+
+    | 3         | scale_bit               | If set each value should be multiplied   |
+    |           |                         | by the corresponding scale value (before |
+    |           |                         | applying the offset)                     |
+    +-----------+-------------------------+------------------------------------------+
+    | 4         | offset_bit              | If set each value should be translated   |
+    |           |                         | by the corresponding offset value (after |
+    |           |                         | applying the scaling).                   |
+    +-----------+-------------------------+------------------------------------------+
 
 
