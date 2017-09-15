@@ -137,6 +137,9 @@ preamble = r'''
 }
 \makeatother
 
+\usepackage{enumitem}
+\setlist{noitemsep}
+
 '''.replace("VVVV", u'v.' + myversion)
 
 # Assign 'report' to 'manual' documentclass. Override as needed.
