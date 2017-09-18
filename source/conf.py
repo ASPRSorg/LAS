@@ -110,18 +110,14 @@ htmlhelp_basename = 'LASdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
-#
-# See this link for more info on fancyhdr overrides to Sphinx styles: 
-# https://stackoverflow.com/questions/4839105/sphinx-customization-of-latexpdf-output
-# bug: this still doesn't apply to the TOC and title page. not sure what style's there.
-#
-# See this link for list item parent separation/bolding help:
-# https://tex.stackexchange.com/questions/10684/vertical-space-in-lists
-# https://texblog.org/2008/10/16/lists-enumerate-itemize-description-and-how-to-change-them/
-#
+
 preamble = r'''
 
 \renewcommand\thesection{\arabic{section}}
+
+% Apply fancyhdr overrides to Sphinx default styles. More info:
+% https://stackoverflow.com/questions/4839105/sphinx-customization-of-latexpdf-output
+% bug: this still doesn't apply to the TOC and title page. not sure what style's there.
 
 \usepackage{fancyhdr}
 \makeatletter
@@ -135,8 +131,16 @@ preamble = r'''
     \renewcommand{\headrulewidth}{1pt}
     \renewcommand{\footrulewidth}{1pt}
 }
+
+% Override Sphinx defaults for table heading (bold instead of sans serif)
+% note: won't work in newer versions of Sphinx 1.7+
+\protected\def\sphinxstylethead{\textbf}
+
 \makeatother
 
+% Override Sphinx defaults for list item spacing and bolding. More info:
+% https://tex.stackexchange.com/questions/10684/vertical-space-in-lists
+% https://texblog.org/2008/10/16/lists-enumerate-itemize-description-and-how-to-change-them/
 \usepackage{enumitem}
 \setlist{noitemsep}
 

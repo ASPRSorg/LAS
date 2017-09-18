@@ -2,7 +2,7 @@ Extra Bytes (optional)
 ................................................................................
 
 +---------------------+-----------------------------+
-| **User ID**         | **LASF_Spec**               |
+| User ID             | LASF_Spec                   |
 +---------------------+-----------------------------+
 | Record ID           | 4                           |
 +---------------------+-----------------------------+
@@ -76,7 +76,7 @@ unused characters in the "name" or "description" fields must be set to zero.
 .. table:: Values for ``data_type`` Field
 
     +-------------------------------+-------------------------------+-------------------+
-    | **Value**                     | **Meaning**                   | **Value**         |
+    | Value                         | Meaning                       | Value             |
     +===============================+===============================+===================+
     | 0                             | undocumented extra bytes      | specify value in  |
     |                               |                               | ``options`` field |
@@ -148,7 +148,7 @@ unused characters in the "name" or "description" fields must be set to zero.
 .. table:: Encoding of ``options`` Bit Field
 
     +-----------+-------------------------+------------------------------------------+
-    | **Bits**  |  **Field Name**         | **Description**                          |
+    | Bits      | Field Name              | Description                              |
     +===========+=========================+==========================================+
     | 0         | no_data_bit             | If set the no_data value is relevant.    |
     +-----------+-------------------------+------------------------------------------+

@@ -50,11 +50,11 @@ transform WKT record (a parameterized math transform definition).
 OGC Math Transform WKT Record
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Projection**         |
-+---------------------+-----------------------------+
-| Record ID           | 2111                        |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 2111                        |
++-----------------+-----------------------------+
 
 This record contains the textual data representing a Math Transform WKT as
 defined in section 7 of the Coordinate Transformation Services Spec, with the
@@ -68,11 +68,11 @@ following notes:
 OGC Coordinate System WKT
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Projection**         |
-+---------------------+-----------------------------+
-| Record ID           | 2112                        |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 2112                        |
++-----------------+-----------------------------+
 
 This record contains the textual data representing a Coordinate System WKT as
 defined in section 7 of the Coordinate Transformation Services Spec, with the
@@ -106,11 +106,11 @@ record.
 GeoKeyDirectoryTag Record
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Projection**         |
-+---------------------+-----------------------------+
-| Record ID           | 34735                       |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 34735                       |
++-----------------+-----------------------------+
 
 This record contains the key values that define the coordinate system. A
 complete description can be found in the GeoTIFF format specification. Here is
@@ -150,7 +150,7 @@ Where:
 .. table:: GeoKey Four Unsigned Shorts
 
     +---------------------------------+----------------------------------------------------------+
-    | **Name**                        | **Definition**                                           |
+    | Name                            | Definition                                               |
     +=================================+==========================================================+
     | ``wKeyID``                      | Defined key ID for each piece of GeoTIFF data. IDs       |
     |                                 | contained in the GeoTIFF specification.                  |
@@ -176,11 +176,11 @@ Where:
 GeoDoubleParamsTag Record (optional)
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Projection**         |
-+---------------------+-----------------------------+
-| Record ID           | 34736                       |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 34736                       |
++-----------------+-----------------------------+
 
 This record is simply an array of doubles that contain values referenced by tag
 sets in the GeoKeyDirectoryTag record.
@@ -188,11 +188,11 @@ sets in the GeoKeyDirectoryTag record.
 GeoAsciiParamsTag Record (optional)
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Projection**         |
-+---------------------+-----------------------------+
-| Record ID           | 34737                       |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 34737                       |
++-----------------+-----------------------------+
 
 This record is simply an array of ASCII data. It contains many strings separated
 by null terminator characters which are referenced by position from data in the
@@ -204,11 +204,11 @@ Other Specification Defined VLRs
 Classification Lookup (optional)
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Spec**               |
-+---------------------+-----------------------------+
-| Record ID           | 0                           |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 0                           |
++-----------------+-----------------------------+
 
 Record Length after Header: 256 recs * 16 byte struct len
 
@@ -223,11 +223,11 @@ Record Length after Header: 256 recs * 16 byte struct len
 Text Area Description (optional)
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Spec**               |
-+---------------------+-----------------------------+
-| Record ID           | 3                           |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 3                           |
++-----------------+-----------------------------+
 
 This VLR/EVLR is used for providing a textual description of the content of the
 LAS file. It is a null terminated, free-form ASCII string.
@@ -237,11 +237,11 @@ LAS file. It is a null terminated, free-form ASCII string.
 Superseded (optional)
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Spec**               |
-+---------------------+-----------------------------+
-| Record ID           | 7                           |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 7                           |
++-----------------+-----------------------------+
 
 This LASF Record ID is used to negate an existing VLR/EVLR when rewriting the
 file (to remove the undesired VLR/EVLR).. It is used, for example, when
@@ -252,11 +252,11 @@ marked with the SUPERSEDED Record ID.
 Waveform Packet Descriptor
 ................................................................................
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Spec**                 |
-+---------------------+-----------------------------+
-| Record ID           | n: where n > 99 and n <355  |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | n: where n > 99 and n <355  |
++-----------------+-----------------------------+
 
 .. warning::
 
@@ -273,7 +273,7 @@ times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
 .. table:: Waveform Packet Descriptor User Defined Record
 
     +------------------------------+-------------------------+-----------+--------------+
-    | **Item**                     | **Format**              | **Size**  | **Required** |
+    | Item                         | Format                  | Size      | Required     |
     +==============================+=========================+===========+==============+
     | Bits per sample              | unsigned char           | 1 byte    | yes          |
     +------------------------------+-------------------------+-----------+--------------+
@@ -347,11 +347,11 @@ Waveform Data Packets
     This EVLR is REQUIRED internally or externally when using Point Data Record 
     Formats 4, 5, 9, or 10.
 
-+---------------------+-----------------------------+
-| **User ID**         | **LASF_Spec**               |
-+---------------------+-----------------------------+
-| Record ID           | 65535                       |
-+---------------------+-----------------------------+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 65535                       |
++-----------------+-----------------------------+
 
 The packet of Raw Waveform Amplitude values for all records immediately follow
 this variable length header. Note that when using a bit resolution that is not
