@@ -1,0 +1,41 @@
+.. raw:: latex
+
+    \newpage
+
+Defined Extra Bytes
+--------------------------------------------------------------------------------
+
+A point has "extra bytes" when the point record size in the LAS header is set to
+a larger value than required by the point type. LAS 1.4 has introduced a new VLR
+with User ID "LASF_Spec" and Record ID "4" that describes the meaning of these
+"extra bytes" using one "EXTRA_BYTES struct" per attribute. This struct contains
+one "reserved" field of two bytes that needed to be set to zero in the past. The
+intended purpose of the "reserved" field was to some day enumerate additional per
+point attribute that are commonly used. Adding "defined extra bytes" to the LAS
+specification makes it easier to write, read, and exploit these optional point
+attributes across different software packages. This addendum specifies the "echo
+width" of the return as the first such "defined extra bytes". The "reserved" field
+in the "EXTRA_BYTES struct" is interpreted as an unsigned short.
+
+Echo Width
+................................................................................
+
+The echo width of a discrete return is defined as full width at half maximum of
+the received echo signal and is measured in nanoseconds (ns). A space efficient
+implementation will use an unsigned char to store a pulse, add an offset of 1.0
+(can there be shorter echo width?) and scale it with 0.1 to for a resolution of
+a tenths of a nanosecond.
+
++-----------------+-----------------+----------------------------------+
+| unsigned short  | reserved        | 1                                |
++-----------------+-----------------+----------------------------------+
+| unsigned char   | data_type       | 1 (or 3)                         |
++-----------------+-----------------+----------------------------------+
+| char            | name[32]        | echo width [ns]                  |
++-----------------+-----------------+----------------------------------+
+| double          | scale[3]        | { 0.1, 0.0, 0.0 }                |
++-----------------+-----------------+----------------------------------+
+| double          | offset[3]       | { 1.0, 0.0, 0.0 }                |
++-----------------+-----------------+----------------------------------+
+| char            | description[32] | full width at half maximum       |
++-----------------+-----------------+----------------------------------+
