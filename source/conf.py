@@ -113,6 +113,7 @@ htmlhelp_basename = 'LASdoc'
 
 preamble = r'''
 
+% Ensures arabic numerals (1, 2, 3) as section numbering style
 \renewcommand\thesection{\arabic{section}}
 
 % Apply fancyhdr overrides to Sphinx default styles. More info:
