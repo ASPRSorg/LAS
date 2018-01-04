@@ -121,7 +121,7 @@ the classification values in Table 9.
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
-.. table:: Classification Bit Field Encoding for Point Data Record Format 0-5
+.. table:: Classification Bit Field Encoding for Point Data Record Formats 0-5
 
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
@@ -163,7 +163,7 @@ Classification must adhere to the following standard:
 
 .. tabularcolumns:: |p{6.0cm}|p{8.0cm}|
 
-.. table:: ASPRS Standard LIDAR Point Classes (Point Data Record Format 0-5)
+.. table:: ASPRS Standard LIDAR Point Classes for Point Data Record Formats 0-5
 
     +-----------------------------------+-----------------------------------------------+
     | Classification Value (bits 0:4)   | Meaning                                       |
@@ -664,7 +664,7 @@ with the point. The bit definitions are:
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
-.. table:: Classification Bit Field Encoding for Point Record types 6 to 10
+.. table:: Classification Bit Field Encoding for Point Data Record Formats 6-10
 
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
@@ -733,7 +733,7 @@ Classification must adhere to the following standard:
 
 .. tabularcolumns:: |p{6.0cm}|p{8.0cm}|
 
-.. table:: ASPRS Standard LIDAR Point Classes (Point Data Record Format 6-10)
+.. table:: ASPRS Standard LIDAR Point Classes for Point Data Record Formats 6-10
 
     +-----------------------------------+-----------------------------------------------+
     | Classification Value (bits 0:4)   | Meaning                                       |
