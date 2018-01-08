@@ -18,11 +18,3 @@ Welcome to LAS's documentation!
    defined_vlrs
    profiles
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
