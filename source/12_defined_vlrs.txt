@@ -232,7 +232,7 @@ Text Area Description (optional)
 This VLR/EVLR is used for providing a textual description of the content of the
 LAS file. It is a null terminated, free-form ASCII string.
 
-.. include:: ./extra_bytes.txt
+.. include:: ./13.3_extra_bytes.txt
 
 Superseded (optional)
 ................................................................................
