@@ -9,7 +9,7 @@ Welcome to LAS's documentation!
    1_intro
    definition
    legacy
-   crs
+   6_crs
    datatypes
    header
    vlr
