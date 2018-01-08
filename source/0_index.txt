@@ -6,7 +6,7 @@ Welcome to LAS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   intro
+   1_intro
    definition
    legacy
    crs
