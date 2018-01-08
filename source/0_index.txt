@@ -15,6 +15,6 @@ Welcome to LAS's documentation!
    vlr
    point
    evlr
-   defined_vlrs
+   12_defined_vlrs
    profiles
 
