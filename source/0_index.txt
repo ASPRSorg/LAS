@@ -6,15 +6,15 @@ Welcome to LAS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   1_intro
-   definition
-   legacy
-   6_crs
-   datatypes
-   header
-   vlr
-   point
-   evlr
+   01_intro
+   04_definition
+   05_legacy
+   06_crs
+   07_datatypes
+   08_header
+   09_vlr
+   10_point
+   11_evlr
    12_defined_vlrs
-   profiles
+   15_profiles
 
