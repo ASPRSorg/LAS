@@ -22,7 +22,7 @@ RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 16126D3A3E
 
 RUN pip install breathe \
     sphinx_bootstrap_theme awscli sphinxcontrib-bibtex \
-    sphinx_rtd_theme
+    sphinx_rtd_theme gitpython
 
 RUN git clone https://github.com/sphinx-doc/sphinx.git && cd sphinx \
     && git checkout stable \
