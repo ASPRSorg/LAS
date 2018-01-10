@@ -62,6 +62,14 @@ release = u'VERSION ' + myversion
 releasename = release
 version=''
 today='15 July 2013'
+releasedate='15 July 2013'
+approvaldate = 'November 2011'
+
+import subprocess
+
+def get_git_revision_short_hash():
+    return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])
+gitsha = get_git_revision_short_hash()
 
 
 
@@ -120,6 +128,7 @@ preamble = r'''
 % https://stackoverflow.com/questions/4839105/sphinx-customization-of-latexpdf-output
 % bug: this still doesn't apply to the TOC and title page. not sure what style's there.
 
+\usepackage{titling}
 \usepackage{fancyhdr}
 \makeatletter
 \fancypagestyle{normal}{
@@ -147,10 +156,76 @@ preamble = r'''
 
 '''.replace("VVVV", u'v.' + myversion)
 
+args = {}
+args['author'] = author
+args['releasedate'] = releasedate
+args['releasename'] = releasename
+args['approvaldate'] = approvaldate
+args['gitsha'] = gitsha
+import datetime
+now = datetime.datetime.now()
+args['thisyear'] = now.year
+now = now.strftime("%d %B %Y")
+args['now'] = now
+
+title = r"""
+\begin{titlingpage}
+
+{\sphinxlogo}
+
+
+\vspace{0.25in}
+
+{\huge
+\thetitle\\
+}
+
+\release{%(releasename)s}
+\author{%(author)s}
+
+{\Large \bf
+\noindent Approved:\\
+%(approvaldate)s\\
+
+Release Information:\\
+}
+Major revision date -- %(releasedate)s\\
+Document build date -- %(now)s
+
+{\Large \bf
+Git version:\\
+}
+%(gitsha)s
+
+\noindent Published by:\\
+The American Society for Photogrammetry \& Remote Sensing\\
+425 Barlow Place, Suite 210\\
+Bethesda, Maryland 20814-2160\\
+Voice: 301-493-0290\\
+Fax: 301-493-0208\\
+Web: \underline{www.asprs.org}\\
+
+
+\noindent All rights reserved.\\
+Copyright \copyright~2002-%(thisyear)d American Society for Photogrammetry and Remote Sensing (ASPRS). All
+rights reserved. {\bf Permission to Use:} The copyright owner hereby consents to unlimited use and
+distribution of this document, or parts thereof, \underline{as a specification} provided such use references
+ASPRS as the publisher. This consent does not extend to other uses such as general distribution
+in any form, including electronic, by any individual or organization whether for advertising or
+promotional purposes, for creating new collective works, or for resale. For these and all other
+purposes, reproduction of this publication or any part thereof (excluding short quotations for use
+in the preparation of reviews and technical and scientific papers) may be made only after
+obtaining the specific approval of the publisher.\\
+Printed in the United States of America.
+
+\end{titlingpage}
+
+""" % args
 # Assign 'report' to 'manual' documentclass. Override as needed.
 #latex_docclass = {
 #    'manual': 'report'
 #}
+
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
@@ -172,6 +247,7 @@ latex_elements = {
     #
     'figure_align': 'htbp',
     'releasename': ' ',# defined above. blank to prevent duplicate usage in title page
+    'maketitle': title,
 
     # Don't use atendofbody. Use fancyhdr calls in preamble instead (above).
 #    'atendofbody': """American Society for Photogrammetry \& Remote Sensing \\ LAS SPECIFICATION \\""" + releasename
