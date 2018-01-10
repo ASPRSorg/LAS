@@ -184,20 +184,20 @@ title = r"""
 \author{%(author)s}
 
 {\Large \bf
-\noindent Approved:\\
-%(approvaldate)s\\
-
+\noindent
 Release Information:\\
 }
+\noindent {\bf Approved -- %(approvaldate)s}\\
 Major revision date -- %(releasedate)s\\
-Document build date -- %(now)s
+Document build date -- %(now)s\\
+Git version: -- %(gitsha)s
+
+
+\vspace{0.25in}
 
 {\Large \bf
-Git version:\\
-}
-%(gitsha)s
-
 \noindent Published by:\\
+}
 The American Society for Photogrammetry \& Remote Sensing\\
 425 Barlow Place, Suite 210\\
 Bethesda, Maryland 20814-2160\\
@@ -206,9 +206,11 @@ Fax: 301-493-0208\\
 Web: \underline{www.asprs.org}\\
 
 
-\noindent All rights reserved.\\
-Copyright \copyright~2002-%(thisyear)d American Society for Photogrammetry and Remote Sensing (ASPRS). All
-rights reserved. {\bf Permission to Use:} The copyright owner hereby consents to unlimited use and
+\noindent
+Copyright \copyright~2002-%(thisyear)d American Society for Photogrammetry and Remote Sensing (ASPRS). All rights reserved.\\
+\\
+\\
+{\bf Permission to Use:} The copyright owner hereby consents to unlimited use and
 distribution of this document, or parts thereof, \underline{as a specification} provided such use references
 ASPRS as the publisher. This consent does not extend to other uses such as general distribution
 in any form, including electronic, by any individual or organization whether for advertising or
@@ -216,6 +218,7 @@ promotional purposes, for creating new collective works, or for resale. For thes
 purposes, reproduction of this publication or any part thereof (excluding short quotations for use
 in the preparation of reviews and technical and scientific papers) may be made only after
 obtaining the specific approval of the publisher.\\
+\\
 Printed in the United States of America.
 
 \end{titlingpage}
@@ -260,7 +263,7 @@ latex_show_urls='footnote'
 #  author, documentclass [howto, manual, or own class]).
 latex_logo = './_static/asprslogo45.png'
 latex_documents = [
-    (master_doc, 'LAS.tex', u'ASPRS LAS SPECIFICATION',
+    (master_doc, 'LAS.tex', u'LAS Specification %s' % myversion,
      u'ASPRS', 'manual'),
 ]
 
