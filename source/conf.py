@@ -188,9 +188,10 @@ title = r"""
 \noindent
 Release Information:\\
 }
-\noindent {\bf Approved -- %(approvaldate)s}\\
-Major revision date -- %(releasedate)s\\
-Document build date -- %(now)s\\
+\noindent {\bf Version Approved -- %(approvaldate)s}\\
+Revision date -- %(releasedate)s\\
+\\
+PDF build date -- %(now)s\\
 GitHub commit -- %(gitsha)s
 
 
