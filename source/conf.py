@@ -192,7 +192,7 @@ Release Information:\\
 Revision date -- %(releasedate)s\\
 \\
 PDF build date -- %(now)s\\
-GitHub commit -- %(gitsha)s
+GitHub commit -- https://github.com/ASPRSorg/LAS/commit/%(gitsha)s
 
 
 \vspace{0.25in}
