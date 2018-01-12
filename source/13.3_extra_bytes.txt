@@ -71,7 +71,7 @@ The "reserved" field and the "unused" field must be set to zero. Any unused
 unused characters in the "name" or "description" fields must be set to zero.
 
 
-.. tabularcolumns:: |p{3.0cm}|p{5.0cm}|p{4.0cm}|
+.. tabularcolumns:: |p{3.0cm}|p{5.0cm}|p{5.0cm}|
 
 .. table:: Values for ``data_type`` Field
 
