@@ -246,6 +246,10 @@ this file. This implies that processing software should set the Point Source ID
 equal to the File Source ID of the file containing this point at some time
 during processing.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 1
 ................................................................................
 
@@ -296,6 +300,9 @@ acquired. It is GPS Week Time if the Global Encoding low bit is clear and
 Adjusted Standard GPS Time if the Global Encoding low bit is set (see 
 :ref:`globalencoding_label` in the :ref:`headerblock_label` description).
 
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 2
 ................................................................................
@@ -355,6 +362,10 @@ The Red, Green, and Blue image channel values associated with this point.
     allows color values from different camera bit depths to be accurately
     merged.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 3
 ................................................................................
 
@@ -402,6 +413,9 @@ addition of GPS Time.
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 4
 ................................................................................
@@ -525,6 +539,9 @@ X, Y and Z are the units of the coordinate systems of the LAS data. If the
 coordinate system is geographic, the horizontal units are decimal degrees and
 the vertical units are meters.
 
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 5
 ................................................................................
@@ -585,6 +602,10 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 6
 ................................................................................
@@ -803,6 +824,10 @@ direction, is positive. The maximum value in the positive sense is 30,000 (180
 degrees which is up in the coordinate system of the data). The maximum value in
 the negative direction is -30.000 which is also directly up.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 7
 ................................................................................
 
@@ -853,6 +878,10 @@ LIDAR point using ancillary data, typically from a camera
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 8
 ................................................................................
@@ -919,6 +948,10 @@ The NIR (near infrared) channel value associated with this point.
     normalization allows color values from different camera bit depths to be
     accurately merged.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 9
 ................................................................................
 
@@ -975,6 +1008,10 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 10
 ................................................................................
