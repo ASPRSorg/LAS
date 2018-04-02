@@ -1,94 +1,92 @@
+.. _headerblock_label:
+
 Public Header Block
 --------------------------------------------------------------------------------
-
-.. raw:: latex
-
-    \newpage
 
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
 
 .. table:: Public Header Block
 
-    +----------------------------------+-------------------------+-----------+----------+
-    | Item                             | Format                  | Size      | Required |
-    +----------------------------------+-------------------------+-----------+----------+
-    | File Signature (“LASF”)          | char[4]                 | 4 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | File Source ID                   | unsigned short          | 2 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Global Encoding                  | unsigned short          | 2 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Project ID - GUID data 1         | unsigned long           | 4 bytes   |          |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Project ID - GUID data 2         | unsigned short          | 2 bytes   |          |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Project ID - GUID data 3         | unsigned short          | 2 bytes   |          |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Project ID - GUID data 4         | unsigned char[8]        | 8 bytes   |          |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Version Major                    | unsigned char           | 1 byte    | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Version Minor                    | unsigned char           | 1 byte    | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | System Identifier                | char[32]                | 32 bytes  | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Generating Software              | char[32]                | 32 bytes  | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | File Creation Day of Year        | unsigned short          | 2 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | File Creation Year               | unsigned short          | 2 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Header Size                      | unsigned short          | 2 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Offset to point data             | unsigned long           | 4 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Number of Variable Length Records| unsigned long           | 4 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Point Data Record Format         | unsigned char           | 1 byte    | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Point Data Record Length         | unsigned short          | 2 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Legacy Number of Point Records   | unsigned long           | 5 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Legacy Number of Point by Return | unsigned long[5]        | 20 bytes  | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | X scale factor                   | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Y scale factor                   | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Z scale factor                   | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | X offset                         | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Y offset                         | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Z offset                         | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Max X                            | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Max Y                            | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Max Z                            | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Min X                            | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Min Y                            | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Min Z                            | double                  | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Start of Waveform Data Packet    | unsigned long long      | 8 bytes   | yes      |
-    | Record                           |                         |           |          |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Start of First Extended Variable | unsigned long long      | 8 bytes   | yes      |
-    | Length Record                    |                         |           |          |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Number of Extended Variable      | unsigned long           | 4 bytes   | yes      |
-    | Length Records                   |                         |           |          |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Number of Point Records          | unsigned long long      | 8 bytes   | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
-    | Number of Points by Return       | unsigned long long [15] | 120 bytes | yes      |
-    +----------------------------------+-------------------------+-----------+----------+
+    +----------------------------------+-------------------------+-----------+--------------+
+    | **Item**                         | **Format**              | **Size**  | **Required** |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | File Signature ("LASF")          | char[4]                 | 4 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | File Source ID                   | unsigned short          | 2 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Global Encoding                  | unsigned short          | 2 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Project ID - GUID data 1         | unsigned long           | 4 bytes   |              |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Project ID - GUID data 2         | unsigned short          | 2 bytes   |              |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Project ID - GUID data 3         | unsigned short          | 2 bytes   |              |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Project ID - GUID data 4         | unsigned char[8]        | 8 bytes   |              |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Version Major                    | unsigned char           | 1 byte    | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Version Minor                    | unsigned char           | 1 byte    | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | System Identifier                | char[32]                | 32 bytes  | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Generating Software              | char[32]                | 32 bytes  | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | File Creation Day of Year        | unsigned short          | 2 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | File Creation Year               | unsigned short          | 2 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Header Size                      | unsigned short          | 2 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Offset to Point Data             | unsigned long           | 4 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Number of Variable Length Records| unsigned long           | 4 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Point Data Record Format         | unsigned char           | 1 byte    | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Point Data Record Length         | unsigned short          | 2 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Legacy Number of Point Records   | unsigned long           | 4 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Legacy Number of Point by Return | unsigned long[5]        | 20 bytes  | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | X Scale Factor                   | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Y Scale Factor                   | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Z Scale Factor                   | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | X Offset                         | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Y Offset                         | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Z Offset                         | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Max X                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Max Y                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Max Z                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Min X                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Min Y                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Min Z                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Start of Waveform Data Packet    | unsigned long long      | 8 bytes   | yes          |
+    | Record                           |                         |           |              |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Start of First Extended Variable | unsigned long long      | 8 bytes   | yes          |
+    | Length Record                    |                         |           |              |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Number of Extended Variable      | unsigned long           | 4 bytes   | yes          |
+    | Length Records                   |                         |           |              |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Number of Point Records          | unsigned long long      | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Number of Points by Return       | unsigned long long [15] | 120 bytes | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
 
 .. note::
 
@@ -99,7 +97,7 @@ Public Header Block
 File Signature
 ................................................................................
 
-The file signature must contain the four characters “LASF”, and it is required
+The file signature must contain the four characters "LASF", and it is required
 by the LAS specification. These four characters can be checked by user software
 as a quick look initial determination of file type.
 
@@ -113,6 +111,8 @@ this case, processing software is free to assign a number. Note that this
 scheme allows a LIDAR project to contain up to 65,535 unique sources. A source
 can be an original flight line or it can be result of merge and/or extract
 operations.
+
+.. _globalencoding_label:
 
 Global Encoding
 ................................................................................
@@ -288,8 +288,8 @@ Point Data Record Length
 The size, in bytes, of the Point Data Record. All Point Data Records within a
 single LAS file must be the same type and hence the same length. If the
 specified size is larger than implied by the point format type (e.g. 32 bytes
-instead of 28 bytes for type 1) the remaining bytes are user-specific “extra
-bytes. The format and meaning of such “extra bytes” can (optionally) be
+instead of 28 bytes for type 1) the remaining bytes are user-specific "extra
+bytes. The format and meaning of such "extra bytes" can (optionally) be
 described with an Extra Bytes VLR (see Table 24 and Table 25).
 
 
@@ -341,6 +341,11 @@ the X scale factor, and then add the X offset.
             Y_{coordinate} &= (Y_{record} * Y_{scale}) + Y_{offset} \\
             Z_{coordinate} &= (Z_{record} * Z_{scale}) + Z_{offset}
         \end {eqnarray}
+
+Max and Min X, Y, and Z
+................................................................................
+The max and min data fields are the actual unscaled extents of the LAS point
+file data, specified in the coordinate system of the LAS data.
 
 Start of Waveform Data Packet Record
 ................................................................................
