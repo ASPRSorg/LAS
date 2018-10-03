@@ -17,5 +17,7 @@ Welcome to LAS's documentation!
    02.06_point
    02.07_evlr
    03_required_vlrs
+   04_optional_vlrs
+   05_defined_evlrs
    06_profiles
 
