@@ -9,13 +9,6 @@ Welcome to LAS's documentation!
 
    01_intro
    02.00_definition
-   02.01_legacy
-   02.02_crs
-   02.03_datatypes
-   02.04_header
-   02.05_vlr
-   02.06_point
-   02.07_evlr
    03_required_vlrs
    04_optional_vlrs
    05_defined_evlrs
