@@ -43,7 +43,7 @@ Length Record Header is 60 bytes in length.
 
 .. _evlr_legacy_label:
 
-Legacy Compatibility
+Legacy Compatibility for EVLRs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A writer who wishes to maintain legacy compatibility must use
 only VLRs (except for internally stored waveform data). A writer who is not
