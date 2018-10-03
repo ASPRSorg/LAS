@@ -1,5 +1,8 @@
-Purpose, Scope, and Applicability
+Introduction
 --------------------------------------------------------------------------------
+
+Purpose, Scope, and Applicability
+................................................................................
 
 The LAS file is intended to contain LIDAR (or other) point cloud data records.
 The data will generally be put into this format from software (e.g. provided by
@@ -12,7 +15,7 @@ This document reflects the fourth revision of the LAS format specification
 since its initial version 1.0 release.
 
 LAS 1.4 Additions
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The additions of LAS 1.4 include:
 
@@ -39,7 +42,7 @@ The additions of LAS 1.4 include:
     Description"
 
 LAS 1.4 Revision History
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Summary of LAS 1.4 revisions:
 
@@ -56,13 +59,13 @@ For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
 
 Conformance
---------------------------------------------------------------------------------
+................................................................................
 
 The data types used in the LAS format definition are conformant to the 1999
 ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
 
 Authority
---------------------------------------------------------------------------------
+................................................................................
 
 The American Society for Photogrammetry & Remote Sensing (ASPRS) is the owner
 of the LAS Specification. The standard is maintained by committees within the

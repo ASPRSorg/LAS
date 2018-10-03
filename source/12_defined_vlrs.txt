@@ -2,22 +2,11 @@
 
     \newpage
 
-Defined Variable Length Records
+Coordinate Reference System VLRs (Required)
 --------------------------------------------------------------------------------
-
-LAS 1.4 defines Variable Length Records (VLR) and Extended Variable Length
-Records (EVLR). A writer who wishes to maintain legacy compatibility must use
-only VLRs (except for internally stored waveform data). A writer who is not
-concerned with a legacy LAS reader having access to a VLR can elect to use an
-EVLR, even for predefined VLRs such as Coordinate Reference System (CRS)
-information. This ability is useful, for example, when a user wishes to update
-information normally contained within a VLR without the need of rewriting the
-point data.
-
-A new LASF_Spec "Superseded" (value 7) has been defined to allow a writer to
-indicate that a VLR should no longer be used. For example, if a user appends a
-new WKT EVLR to a file, the existing WKT VLR should have its LASF Spec number
-changed to Superseded to indicate that it is no longer in use.
+LAS 1.4 defines Variable Length Records (VLRs) and Extended Variable Length
+Records (EVLRs). Coordinate Reference System (CRS) VLRs are defined in this
+section, while other VLRs and EVLRs are defined in the following two sections.
 
 Coordinate Reference System Information
 ................................................................................
@@ -26,7 +15,7 @@ The Coordinate Reference System (CRS) information for the point data is
 required for all data. The CRS information will be placed in Variable Length
 Records or Extended Variable Length Records (note that if the writer wishes to
 maintain legacy compatibility, then GeoTIFF in VLRs must be used). The CRS is
-represented by either GeoTIFF or Well Know Text as indicated by the WKT Global
+represented by either GeoTIFF or Well Known Text as indicated by the WKT Global
 Encoding bit. Point Record Formats 0-5 can use either GeoTIFF or WKT (but not
 both simultaneously). Point Record Formats 6-10 must use WKT.
 
@@ -48,7 +37,7 @@ completeness, and a coordinate system WKT *may* or *may not* require a math
 transform WKT record (a parameterized math transform definition).
 
 OGC Math Transform WKT Record
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -66,7 +55,7 @@ following notes:
   no localization of the numeric strings within the WKT should be performed.
 
 OGC Coordinate System WKT
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -104,7 +93,7 @@ may or may not be present, depending on the content of the GeoKeyDirectoryTag
 record.
 
 GeoKeyDirectoryTag Record
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -174,7 +163,7 @@ Where:
 
 
 GeoDoubleParamsTag Record (optional)
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -186,7 +175,7 @@ This record is simply an array of doubles that contain values referenced by tag
 sets in the GeoKeyDirectoryTag record.
 
 GeoAsciiParamsTag Record (optional)
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -198,10 +187,10 @@ This record is simply an array of ASCII data. It contains many strings separated
 by null terminator characters which are referenced by position from data in the
 GeoKeyDirectoryTag record.
 
-Other Specification Defined VLRs
+Other Specification Defined VLRs (Optional)
 --------------------------------------------------------------------------------
 
-Classification Lookup (optional)
+Classification Lookup
 ................................................................................
 
 +-----------------+-----------------------------+
@@ -220,7 +209,7 @@ Record Length after Header: 256 recs * 16 byte struct len
     };
 
 
-Text Area Description (optional)
+Text Area Description
 ................................................................................
 
 +-----------------+-----------------------------+
@@ -234,7 +223,7 @@ LAS file. It is a null terminated, free-form ASCII string.
 
 .. include:: ./13.3_extra_bytes.txt
 
-Superseded (optional)
+Superseded
 ................................................................................
 
 +-----------------+-----------------------------+
@@ -288,12 +277,12 @@ times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
     | Digitizer Offset             | double                  | 8 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
 
-Bits per sample
+Bits Per Sample
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 2 through 32 bits are supported.
 
-Waveform Compression type
+Waveform Compression Type
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is expected that in the future standard compression types will be adopted by

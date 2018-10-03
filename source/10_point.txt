@@ -1,5 +1,5 @@
 Point Data Records
---------------------------------------------------------------------------------
+................................................................................
 
 LAS file I/O software must use the "Offset to point data" field in the Public
 Header Block to locate the starting position of the first Point Data Record.
@@ -15,7 +15,7 @@ the definition of a specific "Overlap" bit. While all point record formats
 
 
 Point Data Record Format 0
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 0 contains the core 20 bytes that are shared by Point
 Data Record Formats 0 to 5.
@@ -251,7 +251,7 @@ during processing.
     \newpage
 
 Point Data Record Format 1
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 1 is the same as Point Data Record Format 0 with the
 addition of GPS Time.
@@ -305,7 +305,7 @@ Adjusted Standard GPS Time if the Global Encoding low bit is set (see
     \newpage
 
 Point Data Record Format 2
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 2 is the same as Point Data Record Format 0 with the
 addition of three color channels. These fields are used when "colorizing" a
@@ -367,7 +367,7 @@ The Red, Green, and Blue image channel values associated with this point.
     \newpage
 
 Point Data Record Format 3
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 3 is the same as Point Data Record Format 2 with the
 addition of GPS Time.
@@ -418,7 +418,7 @@ addition of GPS Time.
     \newpage
 
 Point Data Record Format 4
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
@@ -544,7 +544,7 @@ the vertical units are meters.
     \newpage
 
 Point Data Record Format 5
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
 
@@ -608,7 +608,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     \newpage
 
 Point Data Record Format 6
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 6 contains the core 30 bytes that are shared by Point
 Data Record Formats 6 to 10. The difference to the core 20 bytes of Point Data
@@ -831,7 +831,7 @@ the negative direction is -30.000 which is also directly up.
     \newpage
 
 Point Data Record Format 7
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 7 is the same as Point Data Record Format 6 with the
 addition of three RGB color channels. These fields are used when "colorizing" a
@@ -886,7 +886,7 @@ LIDAR point using ancillary data, typically from a camera
     \newpage
 
 Point Data Record Format 8
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 8 is the same as Point Data Record Format 7 with the
 addition of a NIR (near infrared) channel.
@@ -955,7 +955,7 @@ The NIR (near infrared) channel value associated with this point.
     \newpage
 
 Point Data Record Format 9
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
 
@@ -1016,7 +1016,7 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     \newpage
 
 Point Data Record Format 10
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB and NIR values.
 
