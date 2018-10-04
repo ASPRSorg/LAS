@@ -258,34 +258,29 @@ times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
     | Digitizer Offset             | double                  | 8 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
 
-Bits Per Sample
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Bits Per Sample**
 
 2 through 32 bits are supported.
 
-Waveform Compression Type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Waveform Compression Type**
 
 It is expected that in the future standard compression types will be adopted by
 the LAS committee. This field will indicate the compression algorithm used for
 the waveform packets associated with this descriptor. A value of 0 indicates no
 compression. Zero is the only value currently supported.
 
-Number of Samples
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Number of Samples**
 
 The number of samples associated with this waveform packet type. This value
 always represents the fully decompressed waveform packet.
 
-Temporal Sample Spacing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Temporal Sample Spacing**
 
 The temporal sample spacing in picoseconds. Example values might be 500, 1000,
 2000 and so on, representing digitizer frequencies of 2 GHz, 1 GHz and 500 MHz
 respectively.
 
-Digitizer Gain
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Digitizer Gain**
 
 The gain and offset are used to convert the raw digitized value to an absolute
 digitizer voltage using the formula:
@@ -294,8 +289,7 @@ digitizer voltage using the formula:
 
     VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
 
-Digitizer Offset
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Digitizer Offset**
 
 The gain and voltage offset are used to convert the raw digitized value to a
 voltage using the formula:
