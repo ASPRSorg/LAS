@@ -67,7 +67,7 @@ The intensity value is the integer representation of the pulse return
 magnitude. This value is optional and system specific. However, it should
 always be included if available. Intensity, when included, is always normalized
 to a 16 bit, unsigned value by multiplying the value by 65,536/(intensity
-bit-depth of the sensor). For example, if the bit-depth of the sensor
+dynamic range of the sensor). For example, if the dynamic range of the sensor
 is 10 bits, the scaling value would be (65,536/1,024). If intensity is not
 included, this value must be set to zero. This normalization is required to
 ensure that data from different sensors can be correctly merged. When the
