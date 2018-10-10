@@ -56,8 +56,8 @@ Summary of LAS 1.4 revisions:
 * R14 - Multiple updates (GitHub Issue numbers):
 
   * Aesthetic changes from migration to GitHub
-  * Addition of Table of Contents with section numbers (#27, #49, #57)
   * Reserved Class 19 as Overhead Structure in PDRFs 6-10 (#26)
+  * Addition of Table of Contents with section numbers (#27, #49, #57)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
