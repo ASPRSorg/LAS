@@ -50,7 +50,10 @@ Summary of LAS 1.4 revisions:
   * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char"
 
 * R13 - Added Domain Profile Section (July 2013)
-* R14 - Aesthetic changes from migration to GitHub
+* R14 - Multiple updates from backlog (includes GitHub Issue numbers as relevant):
+
+  * Aesthetic changes from migration to GitHub
+  * Reserved Class 19 as Overhead Structure in PDRFs 6-10 (#26)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
