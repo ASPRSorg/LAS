@@ -15,7 +15,7 @@ The Coordinate Reference System (CRS) information for the point data is
 required for all data. The CRS information will be placed in Variable Length
 Records or Extended Variable Length Records (note that if the writer wishes to
 maintain legacy compatibility, then GeoTIFF in VLRs must be used). The CRS is
-represented by either GeoTIFF or Well Known Text as indicated by the WKT Global
+represented by either GeoTIFF or Well Know Text as indicated by the WKT Global
 Encoding bit. Point Record Formats 0-5 can use either GeoTIFF or WKT (but not
 both simultaneously). Point Record Formats 6-10 must use WKT.
 
