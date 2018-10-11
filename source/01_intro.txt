@@ -58,6 +58,10 @@ Summary of LAS 1.4 revisions:
   * Aesthetic changes from migration to GitHub
   * Reserved Class 19 as Overhead Structure in PDRFs 6-10 (#26)
   * Addition of Table of Contents with section numbers (#27, #49, #57)
+  * Divided "Defined Variable Length Records" section into Coordinate Reference
+    System VLRs section (3.) and Other Specification Defined VLRs (4.) (#57)
+  * Expanded EVLR discussion in Legacy Compatibility section (2.1) and moved
+    Legacy Compatibility section to EVLR definition (now 2.7.1). (#57)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
