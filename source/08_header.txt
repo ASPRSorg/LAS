@@ -112,6 +112,10 @@ scheme allows a LIDAR project to contain up to 65,535 unique sources. A source
 can be an original flight line or it can be result of merge and/or extract
 operations.
 
+When the aggregate bit is set (see Global Encoding), the File Source ID is set
+to zero (0) since the file is generated from an aggregation of many independent
+sources.
+
 .. _globalencoding_label:
 
 Global Encoding
@@ -172,7 +176,15 @@ a value of 1). This bit field is defined as:
     |       |                       | compatibility (which means the CRS must  |
     |       |                       | be GeoTIFF).                             |
     +-------+-----------------------+------------------------------------------+
-    | 5:15  | Reserved              | Must be set to zero (0).                 |
+    | 5     | Point data derived    | If this bit is set, the point data is    |
+    |       | from aggregate model  | derived from an aggregate model such as  |
+    |       |                       | a coincidence processing algorithm. When |
+    |       |                       | this bit is set, point record fields     |
+    |       |                       | that apply only to direct detection      |
+    |       |                       | systems may be nulled to yield compliant |
+    |       |                       | product.                                 |
+    +-------+-----------------------+------------------------------------------+
+    | 6:15  | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
 
 Project ID (GUID data)
@@ -387,5 +399,3 @@ value will be the total number of records from the first return, the second
 contains the total number for return two, and so on up to fifteen returns. Note
 that these fields must always be correctly populated, regardless of legacy mode
 intent.
-
-

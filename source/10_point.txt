@@ -70,7 +70,9 @@ to a 16 bit, unsigned value by multiplying the value by 65,536/(intensity
 dynamic range of the sensor). For example, if the dynamic range of the sensor
 is 10 bits, the scaling value would be (65,536/1,024). If intensity is not
 included, this value must be set to zero. This normalization is required to
-ensure that data from different sensors can be correctly merged.
+ensure that data from different sensors can be correctly merged. When the
+aggregate bit is set on the header, intensity values represent estimated relative
+reflectivity with values scaled to 16 bit integers by project.
 
 .. note::
 
@@ -84,14 +86,17 @@ Return Number
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
 of return. The first return will have a Return Number of one, the second a
-Return Number of two, and so on up to five returns.
+Return Number of two, and so on up to five returns. When the aggregate bit is
+set on the header, the return number should be set to one unless synthetically
+derived.
 
 Number of Returns (given pulse)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
-number of five returns.
+number of five returns. When the aggregate bit is set on the header, the number
+of returns should be set to one unless synthetically derived.
 
 Scan Direction Flag
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,14 +105,19 @@ The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
 direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
-the right side and negative the opposite).
+the right side and negative the opposite). When the aggregate bit is set on the
+header, the scan direction should be set to zero and ignored since the point may
+receive support from multiple directions.
 
 Edge of Flight Line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
-direction.
+direction or the mirror facet changes. Note that this field has no meaning for
+360° Field of View scanners (such as Mobile LIDAR scanners) or when the
+aggregate bit is set on the header. In these cases, the edge of flight line
+should be set to zero and ignored.
 
 Classification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -227,7 +237,9 @@ absolute value sense) at which the laser point was output from the laser system
 including the roll of the aircraft. The scan angle is within 1 degree of
 accuracy from +90 to -90 degrees. The scan angle is an angle based on 0 degrees
 being nadir, and -90 degrees to the left side of the aircraft in the direction
-of flight.
+of flight. When the aggregate bit is set on the header, the scan angle rank
+should be set to zero and ignored since the point may receive support from
+multiple angles.
 
 User Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -244,7 +256,9 @@ from which this point originated. Zero is reserved as a convenience to system
 implementers. A Point Source ID of zero implies that this point originated in
 this file. This implies that processing software should set the Point Source ID
 equal to the File Source ID of the file containing this point at some time
-during processing.
+during processing. When the aggregate bit is set on the header, the point source
+ID should be set to zero since the point may receive support from multiple
+files.
 
 .. raw:: latex
 
@@ -298,7 +312,10 @@ GPS Time
 The GPS Time is the double floating point time tag value at which the point was
 acquired. It is GPS Week Time if the Global Encoding low bit is clear and
 Adjusted Standard GPS Time if the Global Encoding low bit is set (see 
-:ref:`globalencoding_label` in the :ref:`headerblock_label` description).
+:ref:`globalencoding_label` in the :ref:`headerblock_label` description). When
+the aggregate bit is set on the header, points are tagged with the GPS time for
+the directly observed point. However, points may not be ordered by monotonically
+increasing GPS time.
 
 .. raw:: latex
 
@@ -668,14 +685,17 @@ The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
 of return. The first return will have a Return Number of one, the second a
 Return Number of two, and so on up to fifteen returns. The Return Number must
-be between 1 and the Number of Returns, inclusive.
+be between 1 and the Number of Returns, inclusive. When the aggregate bit is
+set on the header, the return number should be set to one unless synthetically
+derived.
 
 Number of Returns (given pulse)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
-number of up to fifteen returns.
+number of up to fifteen returns. When the aggregate bit is set on the header,
+the number of returns should be set to one unless synthetically derived.
 
 Classification Flags
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -735,7 +755,9 @@ The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
 direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
-the right side and negative the opposite).
+the right side and negative the opposite). When the aggregate bit is set on the
+header, the scan direction should be set to zero and ignored since the point may
+receive support from multiple directions.
 
 Edge of Flight Line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -743,8 +765,9 @@ Edge of Flight Line
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
 direction or the mirror facet changes. Note that this field has no meaning for
-360° Field of View scanners (such as Mobile LIDAR scanners) and should not be
-set.
+360° Field of View scanners (such as Mobile LIDAR scanners) or when the
+aggregate bit is set on the header. In these cases, the edge of flight line
+should be set to zero and ignored.
 
 Classification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -824,7 +847,9 @@ increment represents 0.006 degrees. Counter- Clockwise rotation, as viewed from
 the rear of the sensor, facing in the along-track (positive trajectory)
 direction, is positive. The maximum value in the positive sense is 30,000 (180
 degrees which is up in the coordinate system of the data). The maximum value in
-the negative direction is -30.000 which is also directly up.
+the negative direction is -30.000 which is also directly up. When the aggregate
+bit is set on the header, the scan angle should be set to zero and ignored
+since the point may receive support from multiple angles.
 
 .. raw:: latex
 
