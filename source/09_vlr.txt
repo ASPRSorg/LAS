@@ -68,3 +68,8 @@ Description
 
 Optional, null terminated text description of the data. Any remaining
 characters not used must be null.
+
+.. raw:: latex
+
+    \newpage
+

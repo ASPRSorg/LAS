@@ -20,7 +20,7 @@ Point Data Record Format 0
 Point Data Record Format 0 contains the core 20 bytes that are shared by Point
 Data Record Formats 0 to 5.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 0
 
@@ -131,7 +131,7 @@ the classification values in Table 9.
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
-.. table:: Classification Bit Field Encoding for Point Data Record Format 0-5
+.. table:: Classification Bit Field Encoding for Point Record types 0 to 5
 
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
@@ -260,6 +260,10 @@ during processing. When the aggregate bit is set on the header, the point source
 ID should be set to zero since the point may receive support from multiple
 files.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 1
 ................................................................................
 
@@ -267,7 +271,7 @@ Point Data Record Format 1 is the same as Point Data Record Format 0 with the
 addition of GPS Time.
 
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 1
 
@@ -313,6 +317,9 @@ the aggregate bit is set on the header, points are tagged with the GPS time for
 the directly observed point. However, points may not be ordered by monotonically
 increasing GPS time.
 
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 2
 ................................................................................
@@ -321,7 +328,7 @@ Point Data Record Format 2 is the same as Point Data Record Format 0 with the
 addition of three color channels. These fields are used when "colorizing" a
 LIDAR point using ancillary data, typically from a camera.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 2
 
@@ -372,13 +379,17 @@ The Red, Green, and Blue image channel values associated with this point.
     allows color values from different camera bit depths to be accurately
     merged.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 3
 ................................................................................
 
 Point Data Record Format 3 is the same as Point Data Record Format 2 with the
 addition of GPS Time.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 3
 
@@ -419,13 +430,16 @@ addition of GPS Time.
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 4
 ................................................................................
 
 Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 4
 
@@ -542,13 +556,16 @@ X, Y and Z are the units of the coordinate systems of the LAS data. If the
 coordinate system is geographic, the horizontal units are decimal degrees and
 the vertical units are meters.
 
+.. raw:: latex
+
+    \newpage
 
 Point Data Record Format 5
 ................................................................................
 
 Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.0cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 5
 
@@ -603,6 +620,10 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 6
 ................................................................................
 
@@ -613,7 +634,7 @@ to support up to 15 returns, there are more bits for point classifications to
 support up to 256 classes, there is a higher precision scan angle (16 bits
 instead of 8), and the GPS time is mandatory.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 6
 
@@ -684,7 +705,7 @@ with the point. The bit definitions are:
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
-.. table:: Classification Bit Field Encoding for Point Record types 6 to 10
+.. table:: Classification Bit Field Encoding for Point Data types 6 to 10
 
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
@@ -756,7 +777,7 @@ Classification must adhere to the following standard:
 
 .. tabularcolumns:: |p{6.0cm}|p{8.0cm}|
 
-.. table:: ASPRS Standard LIDAR Point Classes (Point Data Record Format 6-10)
+.. table:: ASPRS Standard LIDAR Point Classes (Point Data Record Formats 6-10)
 
     +-----------------------------------+-----------------------------------------------+
     | Classification Value (bits 0:4)   | Meaning                                       |
@@ -799,7 +820,9 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 18                                | High Noise                                    |
     +-----------------------------------+-----------------------------------------------+
-    | 19-63                             | *Reserved*                                    |
+    | 19                                | Overhead Structure                            |
+    +-----------------------------------+-----------------------------------------------+
+    | 20-63                             | *Reserved*                                    |
     +-----------------------------------+-----------------------------------------------+
     | 64-255                            | User definable                                |
     +-----------------------------------+-----------------------------------------------+
@@ -828,6 +851,10 @@ the negative direction is -30.000 which is also directly up. When the aggregate
 bit is set on the header, the scan angle should be set to zero and ignored
 since the point may receive support from multiple angles.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 7
 ................................................................................
 
@@ -835,7 +862,7 @@ Point Data Record Format 7 is the same as Point Data Record Format 6 with the
 addition of three RGB color channels. These fields are used when "colorizing" a
 LIDAR point using ancillary data, typically from a camera
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 7
 
@@ -879,13 +906,17 @@ LIDAR point using ancillary data, typically from a camera
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 8
 ................................................................................
 
 Point Data Record Format 8 is the same as Point Data Record Format 7 with the
 addition of a NIR (near infrared) channel.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 8
 
@@ -944,12 +975,16 @@ The NIR (near infrared) channel value associated with this point.
     normalization allows color values from different camera bit depths to be
     accurately merged.
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 9
 ................................................................................
 
 Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 9
 
@@ -1001,12 +1036,16 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
+.. raw:: latex
+
+    \newpage
+
 Point Data Record Format 10
 ................................................................................
 
 Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB and NIR values.
 
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+.. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
 .. table:: Point Data Record Format 10
 
