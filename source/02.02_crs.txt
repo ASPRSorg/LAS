@@ -1,5 +1,5 @@
 Coordinate Reference System (CRS) Representation
---------------------------------------------------------------------------------
+................................................................................
 
 GeoTIFF is being replaced by Well Known Text (WKT) as the required Coordinate
 Reference System (CRS) representation for the new point types (6-10) introduced

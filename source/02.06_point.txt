@@ -1,5 +1,5 @@
 Point Data Records
---------------------------------------------------------------------------------
+................................................................................
 
 LAS file I/O software must use the "Offset to point data" field in the Public
 Header Block to locate the starting position of the first Point Data Record.
@@ -15,7 +15,7 @@ the definition of a specific "Overlap" bit. While all point record formats
 
 
 Point Data Record Format 0
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 0 contains the core 20 bytes that are shared by Point
 Data Record Formats 0 to 5.
@@ -53,15 +53,13 @@ Data Record Formats 0 to 5.
     | Point Source ID                  | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
-X, Y, and Z
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**X, Y, and Z**
 
 The X, Y, and Z values are stored as long integers. The X, Y, and Z values are
 used in conjunction with the scale values and the offset values to determine
 the coordinate for each point as described in the :ref:`headerblock_label` section.
 
-Intensity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Intensity**
 
 The intensity value is the integer representation of the pulse return
 magnitude. This value is optional and system specific. However, it should
@@ -78,23 +76,20 @@ ensure that data from different sensors can be correctly merged.
     Scan Direction Flag and Edge of Flight Line) are bit fields within a single
     byte.
 
-Return Number
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Return Number**
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
 of return. The first return will have a Return Number of one, the second a
 Return Number of two, and so on up to five returns.
 
-Number of Returns (given pulse)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Number of Returns (given pulse)**
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
 number of five returns.
 
-Scan Direction Flag
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Direction Flag**
 
 The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
@@ -102,15 +97,13 @@ direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
-Edge of Flight Line
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Edge of Flight Line**
 
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
 direction.
 
-Classification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Classification**
 
 This field represents the "class" attributes of a point. If a point has never
 been classified, this byte must be set to zero. The format for classification
@@ -156,8 +149,7 @@ the classification values in Table 9.
 
 .. _point_classes:
 
-Reserved Point Classes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Reserved Point Classes**
 
 Classification must adhere to the following standard:
 
@@ -218,8 +210,7 @@ Classification must adhere to the following standard:
     merging of overlapping flight lines. In general, the *Withheld* bit should be set
     since these points are not subsequently classified.
 
-Scan Angle Rank
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Angle Rank**
 
 The Scan Angle Rank is a signed one-byte number with a valid range from -90 to
 +90. The Scan Angle Rank is the angle (rounded to the nearest integer in the
@@ -229,13 +220,11 @@ accuracy from +90 to -90 degrees. The scan angle is an angle based on 0 degrees
 being nadir, and -90 degrees to the left side of the aircraft in the direction
 of flight.
 
-User Data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**User Data**
 
 This field may be used at the user's discretion.
 
-Point Source ID
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Point Source ID**
 
 This value indicates the file from which this point originated. Valid values
 for this field are 1 to 65,535 inclusive with zero being used for a special
@@ -251,7 +240,7 @@ during processing.
     \newpage
 
 Point Data Record Format 1
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 1 is the same as Point Data Record Format 0 with the
 addition of GPS Time.
@@ -292,8 +281,7 @@ addition of GPS Time.
     | GPS Time                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
-GPS Time
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**GPS Time**
 
 The GPS Time is the double floating point time tag value at which the point was
 acquired. It is GPS Week Time if the Global Encoding low bit is clear and
@@ -305,7 +293,7 @@ Adjusted Standard GPS Time if the Global Encoding low bit is set (see
     \newpage
 
 Point Data Record Format 2
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 2 is the same as Point Data Record Format 0 with the
 addition of three color channels. These fields are used when "colorizing" a
@@ -350,8 +338,7 @@ LIDAR point using ancillary data, typically from a camera.
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
-Red, Green, and Blue
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Red, Green, and Blue**
 The Red, Green, and Blue image channel values associated with this point.
 
 .. note::
@@ -367,7 +354,7 @@ The Red, Green, and Blue image channel values associated with this point.
     \newpage
 
 Point Data Record Format 3
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 3 is the same as Point Data Record Format 2 with the
 addition of GPS Time.
@@ -418,7 +405,7 @@ addition of GPS Time.
     \newpage
 
 Point Data Record Format 4
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
@@ -471,8 +458,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
-Wave Packet Descriptor Index
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Wave Packet Descriptor Index**
 
 This value plus **99** is the Record ID of the Waveform Packet Descriptor and
 indicates the User Defined Record that describes the waveform packet associated
@@ -480,8 +466,7 @@ with this LIDAR point. Up to 255 different User Defined Records which describe
 the waveform packet are supported. A value of zero indicates that there is no
 waveform data associated with this LIDAR point record.
 
-Byte offset to Waveform Packet Data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Byte offset to Waveform Packet Data**
 
 The waveform packet data are stored in the LAS file in an Extended Variable
 Length Record or in an auxiliary WPD file. The Byte Offset represents the
@@ -498,8 +483,7 @@ waveform packet relative to the beginning of the file is given by:
 
     for data stored in an auxiliary file
 
-Waveform packet size in bytes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Waveform packet size in bytes**
 
 The size, in bytes, of the waveform packet associated with this return. Note
 that each waveform can be of a different size (even those with the same
@@ -508,16 +492,14 @@ waveform packets can be located only via the Byte offset to Waveform Packet
 Data value since there is no requirement that records be stored sequentially.
 
 
-Return Point location
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Return Point location**
 
 The offset in picoseconds (:math:`10^{-12}`) from the first digitized value to the
 location within the waveform packet that the associated return pulse was
 detected.
 
 
-X(t), Y(t), Z(t)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**X(t), Y(t), Z(t)**
 
 These parameters define a parametric line equation for extrapolating points
 along the associated waveform. The position along the wave is given by:
@@ -544,7 +526,7 @@ the vertical units are meters.
     \newpage
 
 Point Data Record Format 5
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
 
@@ -608,7 +590,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     \newpage
 
 Point Data Record Format 6
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 6 contains the core 30 bytes that are shared by Point
 Data Record Formats 6 to 10. The difference to the core 20 bytes of Point Data
@@ -661,8 +643,7 @@ instead of 8), and the GPS time is mandatory.
     Flags, Scan Direction Flag and Edge of Flight Line) are bit fields, encoded
     into two bytes.
 
-Return Number
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Return Number**
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
@@ -670,15 +651,13 @@ of return. The first return will have a Return Number of one, the second a
 Return Number of two, and so on up to fifteen returns. The Return Number must
 be between 1 and the Number of Returns, inclusive.
 
-Number of Returns (given pulse)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Number of Returns (given pulse)**
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
 number of up to fifteen returns.
 
-Classification Flags
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Classification Flags**
 
 Classification flags are used to indicate special characteristics associated
 with the point. The bit definitions are:
@@ -721,15 +700,13 @@ with the point. The bit definitions are:
     *synthetically* collected and marked as a model *key-point*.
 
 
-Scanner Channel
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scanner Channel**
 
 Scanner Channel is used to indicate the channel (scanner head) of a multi-
 channel system. Channel 0 is used for single scanner systems. Up to four
 channels are supported (0-3).
 
-Scan Direction Flag
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Direction Flag**
 
 The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
@@ -737,8 +714,7 @@ direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
-Edge of Flight Line
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Edge of Flight Line**
 
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
@@ -746,8 +722,7 @@ direction or the mirror facet changes. Note that this field has no meaning for
 360° Field of View scanners (such as Mobile LIDAR scanners) and should not be
 set.
 
-Classification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Classification**
 
 Classification must adhere to the following standard:
 
@@ -814,8 +789,7 @@ Classification must adhere to the following standard:
     structures could be remapped from class 0 to class 1.
 
 
-Scan Angle
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Angle**
 
 The Scan Angle is a signed short that represents the rotational position of the
 emitted laser pulse with respect to the vertical of the coordinate system of
@@ -831,7 +805,7 @@ the negative direction is -30.000 which is also directly up.
     \newpage
 
 Point Data Record Format 7
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 7 is the same as Point Data Record Format 6 with the
 addition of three RGB color channels. These fields are used when "colorizing" a
@@ -886,7 +860,7 @@ LIDAR point using ancillary data, typically from a camera
     \newpage
 
 Point Data Record Format 8
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 8 is the same as Point Data Record Format 7 with the
 addition of a NIR (near infrared) channel.
@@ -937,8 +911,7 @@ addition of a NIR (near infrared) channel.
     | NIR                              | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
 
-NIR
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**NIR**
 
 The NIR (near infrared) channel value associated with this point.
 
@@ -955,7 +928,7 @@ The NIR (near infrared) channel value associated with this point.
     \newpage
 
 Point Data Record Format 9
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
 
@@ -1016,7 +989,7 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     \newpage
 
 Point Data Record Format 10
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB and NIR values.
 

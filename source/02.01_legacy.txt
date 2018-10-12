@@ -1,5 +1,5 @@
-Legacy Compatibility (LAS 1.1 – LAS 1.3)
---------------------------------------------------------------------------------
+Legacy Compatibility (LAS 1.1 - LAS 1.3)
+................................................................................
 
 LAS 1.4 moves the file specification from a 32 bit file structure (maximum
 value of :math:`2^{32}-1 \equiv 4,294,967,295 \equiv \mbox{UINT32\_MAX}`) to a
@@ -23,4 +23,8 @@ LAS 1.4 field, the LAS 1.4 reader should use the legacy value to maintain the
 same behavior as a LAS 1.1 through LAS 1.3 reader. Best practice is to also
 throw an informative error so that the file can be repaired.
 
+LAS 1.4 introduced the option to define Variable Length Records (VLRs) as
+Extended Variable Length Records (EVLRs) instead. A LAS 1.4 file writer wishing
+to maintain backward compatibility must use only VLRs. See the
+:ref:`evlr_legacy_label` section for more information.
 
