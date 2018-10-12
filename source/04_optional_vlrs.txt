@@ -63,9 +63,9 @@ meaning of these "extra bytes" so they can be accessed in a consistent manner
 across applications. The 4 "extra bytes" could, for example, be of data_type 9
 - a floating point value - that specifies an "echo width" for each return. In
 this case there would be one EXTRA_BYTES struct in the payload of this VLR. An
-example with two EXTRA_BYTES struct in the payload are 14 "extra bytes" that
-have data type 29 - a floating point vector of length 3 - followed by data type
-3 - an unsigned short - that specify the "laser pulse direction" and a
+example with two EXTRA_BYTES struct in the payload are 6 "extra bytes" that
+have data type 9 - a floating point number - specifying an "echo width" followed
+by data type 3 - an unsigned short - that specify an "echo width" and a
 "normalized reflectivity".
 
 The "extra bytes" are made accessible via a unique name. The "name" field
@@ -96,112 +96,85 @@ they would be upcast to a long long.
         unsigned char           options;         // 1 byte
         char                    name[32];        // 32 bytes
         unsigned char           unused[4];       // 4 bytes
-        anytype                 no_data[3];      // 24 = 3*8 bytes
-        anytype                 min[3];          // 24 = 3*8 bytes
-        anytype                 max[3];          // 24 = 3*8 bytes
-        double                  scale[3];        // 24 = 3*8 bytes
-        double                  offset[3];       // 24 = 3*8 bytes
+        anytype                 no_data;         // 8 bytes
+        unsigned char           deprecated1[16]; // 16 bytes
+        anytype                 min;             // 8 bytes
+        unsigned char           deprecated2[16]; // 16 bytes
+        anytype                 max;             // 8 bytes
+        unsigned char           deprecated3[16]; // 16 bytes
+        double                  scale;           // 8 bytes
+        unsigned char           deprecated4[16]; // 16 bytes
+        double                  offset;          // 8 bytes
+        unsigned char           deprecated5[16]; // 16 bytes
         char                    description[32]; // 32 bytes
     };                                           // total of 192 bytes
 
-The "reserved" field and the "unused" field must be set to zero. Any unused
-"no_data", "min", "max", "scale", or "offset" fields must be set to zero. Any
-unused characters in the "name" or "description" fields must be set to zero.
+The "reserved" field, the "unused" field, and the "deprecated" fields must be
+set to zero. Any unused "no_data", "min", "max", "scale", or "offset" fields
+must be set to zero. Any unused characters in the "name" or "description" fields
+must be set to zero.
+
+The "deprecated" fields resulted from the "tuple" and "triple" data types (11-30)
+being `deprecated in R14 of the specification <https://github.com/ASPRSorg/LAS/issues/1>`_.
 
 
-.. tabularcolumns:: |p{3.0cm}|p{5.0cm}|p{5.0cm}|
+.. tabularcolumns:: |p{2.0cm}|p{5.0cm}|p{6.0cm}|
 
 .. table:: Values for ``data_type`` Field
 
-    +-------------------------------+-------------------------------+-------------------+
-    | Value                         | Meaning                       | Value             |
-    +===============================+===============================+===================+
-    | 0                             | undocumented extra bytes      | specify value in  |
-    |                               |                               | ``options`` field |
-    +-------------------------------+-------------------------------+-------------------+
-    | 1                             | unsigned char                 | 1 byte            |
-    +-------------------------------+-------------------------------+-------------------+
-    | 2                             | char                          | 1 byte            |
-    +-------------------------------+-------------------------------+-------------------+
-    | 3                             | unsigned short                | 2 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 4                             | short                         | 2 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 5                             | unsigned long                 | 4 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 6                             | long                          | 4 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 7                             | unsigned long long            | 8 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 8                             | long long                     | 8 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 9                             | float                         | 4 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 10                            | double                        | 8 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 11                            | unsigned char[2]              | 2 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 12                            | char[2]                       | 2 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 13                            | unsigned short[2]             | 4 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 14                            | short[2]                      | 4 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 15                            | unsigned long[2]              | 8 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 16                            | long[2]                       | 8 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 17                            | unsigned long long[2]         | 16 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 18                            | long long[2]                  | 16 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 19                            | float[2]                      | 8 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 20                            | double[2]                     | 16 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 21                            | unsigned char[3]              | 3 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 22                            | char[3]                       | 3 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 23                            | unsigned short[3]             | 6 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 24                            | short[3]                      | 6 bytes           |
-    +-------------------------------+-------------------------------+-------------------+
-    | 25                            | unsigned long[3]              | 12 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 26                            | long[3]                       | 12 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 27                            | unsigned long long[3]         | 24 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 28                            | long long[3]                  | 24 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 29                            | float[3]                      | 12 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
-    | 30                            | double[3]                     | 24 bytes          |
-    +-------------------------------+-------------------------------+-------------------+
+    +------------+-------------------------------+-------------------+
+    | Value      | Meaning                       | Size on Disk      |
+    +============+===============================+===================+
+    | 0          | undocumented extra bytes      | specify value in  |
+    |            |                               | ``options`` field |
+    +------------+-------------------------------+-------------------+
+    | 1          | unsigned char                 | 1 byte            |
+    +------------+-------------------------------+-------------------+
+    | 2          | char                          | 1 byte            |
+    +------------+-------------------------------+-------------------+
+    | 3          | unsigned short                | 2 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 4          | short                         | 2 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 5          | unsigned long                 | 4 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 6          | long                          | 4 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 7          | unsigned long long            | 8 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 8          | long long                     | 8 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 9          | float                         | 4 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 10         | double                        | 8 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 11-30      | (deprecated)                  |                   |
+    +------------+-------------------------------+-------------------+
+    | 31-255     | (reserved)                    |                   |
+    +------------+-------------------------------+-------------------+
 
 
-.. tabularcolumns:: |p{2.0cm}|p{6.0cm}|p{8.5cm}|
+.. tabularcolumns:: |p{2.0cm}|p{4.0cm}|p{8.5cm}|
 
 .. table:: Encoding of ``options`` Bit Field
 
-    +-----------+-------------------------+------------------------------------------+
-    | Bits      | Field Name              | Description                              |
-    +===========+=========================+==========================================+
-    | 0         | no_data_bit             | If set the no_data value is relevant.    |
-    +-----------+-------------------------+------------------------------------------+
-    | 1         | min_bit                 | If set the min value is relevant         |
-    +-----------+-------------------------+------------------------------------------+
-    | 2         | max_bit                 | If set the max value is relevant         |
-    +-----------+-------------------------+------------------------------------------+
-    | 3         | scale_bit               | If set each value should be multiplied   |
-    |           |                         | by the corresponding scale value (before |
-    |           |                         | applying the offset)                     |
-    +-----------+-------------------------+------------------------------------------+
-    | 4         | offset_bit              | If set each value should be translated   |
-    |           |                         | by the corresponding offset value (after |
-    |           |                         | applying the scaling).                   |
-    +-----------+-------------------------+------------------------------------------+
+    +-----------+------------------+-------------------------------------------+
+    | Bits      | Field Name       | Description                               |
+    +===========+==================+===========================================+
+    | 0         | no_data_bit      | If set the ``no_data`` value is relevant. |
+    +-----------+------------------+-------------------------------------------+
+    | 1         | min_bit          | If set the ``min`` value is relevant      |
+    +-----------+------------------+-------------------------------------------+
+    | 2         | max_bit          | If set the ``max`` value is relevant      |
+    +-----------+------------------+-------------------------------------------+
+    | 3         | scale_bit        | If set each value should be multiplied    |
+    |           |                  | by the corresponding scale value (before  |
+    |           |                  | applying the offset)                      |
+    +-----------+------------------+-------------------------------------------+
+    | 4         | offset_bit       | If set each value should be translated    |
+    |           |                  | by the corresponding offset value (after  |
+    |           |                  | applying the scaling).                    |
+    +-----------+------------------+-------------------------------------------+
 
 
 Superseded
