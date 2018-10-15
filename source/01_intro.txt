@@ -46,7 +46,7 @@ Summary of LAS 1.4 revisions:
     * Swapped order of LAS 1.4 Revision History (now s1.1.1) and
       LAS 1.4 Additions (now s1.1.2).
   * Deprecated "tuple" and "triple" extra byte data types.
-    (`I-1 <https://github.com/ASPRSorg/LAS/issues/27>`_)
+    (`I-1 <https://github.com/ASPRSorg/LAS/issues/1>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
