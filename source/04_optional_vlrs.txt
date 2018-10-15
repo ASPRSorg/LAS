@@ -116,6 +116,10 @@ must be set to zero.
 
 The "deprecated" fields resulted from the "tuple" and "triple" data types (11-30)
 being `deprecated in R14 of the specification <https://github.com/ASPRSorg/LAS/issues/1>`_.
+Users wishing to implement arrays are encouraged to use zero-indexed array
+addresses in the "name" field - for example, by creating three EXTRA_BYTES
+structs named "sigmaxyz[0]", "sigmaxyz[1], and "sigmaxyz[2]" to define a
+three-dimensional array named "sigmaxyz".
 
 
 .. tabularcolumns:: |p{2.0cm}|p{5.0cm}|p{6.0cm}|
