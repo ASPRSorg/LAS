@@ -54,7 +54,7 @@ to formalize a process that has been used in prior versions of LAS. It is
 envisioned that software that is not cognizant of the meaning of the extra
 bytes will simply copy these bytes when manipulating files.
 
-This record is only needed for LAS files where points contain user-defined
+This VLR is only required for LAS files where points contain user-defined
 "extra bytes". This happens when the point record size is set to a larger value
 than required by the point type. For example, when a LAS file that contains
 point type 1 has a point record size of 32 instead of 28 there are 4 "extra
@@ -63,30 +63,25 @@ meaning of these "extra bytes" so they can be accessed in a consistent manner
 across applications. The 4 "extra bytes" could, for example, be of data_type 9
 - a 4-byte floating point value - that specifies an "echo width" for each
 return. In this case there would be one EXTRA_BYTES struct in the payload of
-this VLR. An example with two EXTRA_BYTES structs in the payload are 6 "extra
-bytes" composed of one 4-byte floating point value - data_type 9 - specifying an
-"echo width" followed by one 2-byte unsigned short - data type 3 - specifying a
-"normalized reflectivity".
+this VLR. Here is another example with four EXTRA_BYTES structs in the VLR
+payload that describe 14 "extra bytes" in each point record:
 
-The "extra bytes" are made accessible via a unique name. The "name" field
-distinguishes the additional point attributes that a LIDAR software may add to
-the points in a LAS file so they can be accessed later in a consistent manner
-by another software. Descriptive names such as "normalized reflectivity", "echo
-width", or "shading normal" are encouraged. The use of generic names such as
-"variable1" or "temp1" is discouraged.
++--------------+------------+---------+-----------------------------+
+| EXTRA_BYTE   | data_type  | size    | description                 |
+| struct #     |            |         |                             |
++==============+============+=========+=============================+
+| 1            | 9 - float  | 4 bytes | "laser pulse direction [0]" |
++--------------+------------+---------+-----------------------------+
+| 2            | 9 - float  | 4 bytes | "laser pulse direction [1]" |
++--------------+------------+---------+-----------------------------+
+| 3            | 9 - float  | 4 bytes | "laser pulse direction [2]" |
++--------------+------------+---------+-----------------------------+
+| 4            | 3 - ushort | 2 bytes | "pulse width"               |
++--------------+------------+---------+-----------------------------+
 
-The bit mask in the options field specifies whether the min and max range of
-the value have been set (i.e. are meaningful), whether the scale and/or offset
-values are set with which the "extra bytes" are to be multiplied and translated
-to compute their actual value, and whether there is a special value that should
-be interpreted as NO_DATA. By default all bits are zero which means that the
-values in the corresponding fields are to be disregarded.
-
-If the selected data_type is less than 8 bytes, the no_data, min, and max field
-should be upcast into 8-byte storage. For any float these 8 bytes would be
-upcast to a double, for any unsigned char, unsigned short, or unsigned long
-they would be upcast to an unsigned long long and for any char, short, or long,
-they would be upcast to a long long.
+In this example, an array of three individual floats collectively specify a
+"laser pulse direction" for that point and one unsigned short integer specifies
+a "pulse width" for that point.
 
 ::
 
@@ -109,17 +104,39 @@ they would be upcast to a long long.
         char                    description[32]; // 32 bytes
     };                                           // total of 192 bytes
 
+The "extra bytes" are made accessible via a unique name. The "name" field
+distinguishes the additional point attributes that a LIDAR software may add to
+the points in a LAS file so they can be accessed later in a consistent manner
+by another software. Descriptive names such as "normalized reflectivity", "echo
+width", or "shading normal" are encouraged. The use of generic names such as
+"variable1" or "temp1" is discouraged.
+
+Multiple sequential "extra byte" records can compose an array of associated
+values. It is recommended that each member's name be consistent with other
+members, only varying by an index number wrapped in square brackets, as in
+the above example. Zero-indexed arrays are encouraged. Previous revisions
+of the LAS 1.4 specification utilized data_types 11-30 to define standard
+two- and three-member arrays, but this feature was never widely implemented
+and was `deprecated in R14 <https://github.com/ASPRSorg/LAS/issues/1>`_ to
+simplify implementation.
+
+The bit mask in the options field specifies whether the min and max range of
+the value have been set (i.e. are meaningful), whether the scale and/or offset
+values are set with which the "extra bytes" are to be multiplied and translated
+to compute their actual value, and whether there is a special value that should
+be interpreted as NO_DATA. By default all bits are zero which means that the
+values in the corresponding fields are to be disregarded.
+
+If the selected data_type is less than 8 bytes, the no_data, min, and max field
+should be upcast into 8-byte storage. For any float these 8 bytes would be
+upcast to a double, for any unsigned char, unsigned short, or unsigned long
+they would be upcast to an unsigned long long and for any char, short, or long,
+they would be upcast to a long long.
+
 The "reserved" field, the "unused" field, and the "deprecated" fields must be
 set to zero. Any unused "no_data", "min", "max", "scale", or "offset" fields
 must be set to zero. Any unused characters in the "name" or "description" fields
 must be set to zero.
-
-The "deprecated" fields resulted from the "tuple" and "triple" data types (11-30)
-being `deprecated in R14 of the specification <https://github.com/ASPRSorg/LAS/issues/1>`_.
-Users wishing to implement arrays are encouraged to use zero-indexed array
-addresses in the "name" field - for example, by creating three EXTRA_BYTES
-structs named "sigmaxyz[0]", "sigmaxyz[1], and "sigmaxyz[2]" to define a
-three-dimensional array named "sigmaxyz".
 
 
 .. tabularcolumns:: |p{2.0cm}|p{5.0cm}|p{6.0cm}|
@@ -152,9 +169,9 @@ three-dimensional array named "sigmaxyz".
     +------------+-------------------------------+-------------------+
     | 10         | double                        | 8 bytes           |
     +------------+-------------------------------+-------------------+
-    | 11-30      | (deprecated)                  |                   |
+    | 11-30      | deprecated                    | deprecated        |
     +------------+-------------------------------+-------------------+
-    | 31-255     | (reserved)                    |                   |
+    | 31-255     | reserved                      | not assigned      |
     +------------+-------------------------------+-------------------+
 
 
@@ -165,7 +182,7 @@ three-dimensional array named "sigmaxyz".
     +-----------+------------------+-------------------------------------------+
     | Bits      | Field Name       | Description                               |
     +===========+==================+===========================================+
-    | 0         | no_data_bit      | If set the ``no_data`` value is relevant. |
+    | 0         | no_data_bit      | If set the ``no_data`` value is relevant  |
     +-----------+------------------+-------------------------------------------+
     | 1         | min_bit          | If set the ``min`` value is relevant      |
     +-----------+------------------+-------------------------------------------+
@@ -179,6 +196,18 @@ three-dimensional array named "sigmaxyz".
     |           |                  | by the corresponding offset value (after  |
     |           |                  | applying the scaling).                    |
     +-----------+------------------+-------------------------------------------+
+
+A LAS file contains "undocumented extra bytes" when there are "extra bytes"
+but when there is no Extra Bytes VLR that describes them or when there are
+more "extra bytes" than described in an existing Extra Bytes VLR.
+
+When adding an "Extra Bytes" VLR to a LAS file that contains "undocumented
+extra bytes" they must be designated as data_type == 0 with the options bit
+field storing the number of undocumented bytes.
+
+A LAS file has an "extra bytes mismatch" if the Extra Bytes VLR describes more
+"extra bytes" than each LAS point actually has. The occurrence of an "extra
+bytes mismatch" renders the Extra Bytes VLR invalid.
 
 
 Superseded
