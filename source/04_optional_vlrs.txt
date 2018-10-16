@@ -153,13 +153,6 @@ Any unused characters in the "name" or "description" fields must be set to zero.
     +------------+-------------------------------+-------------------+
 
 
-The bit mask in the "options" field specifies whether the min and max range of
-the value have been set (i.e. are meaningful), whether the scale and/or offset
-values are set with which the "extra bytes" are to be multiplied and translated
-to compute their actual value, and whether there is a special value that should
-be interpreted as NO_DATA. By default all bits are zero which means that the
-values in the corresponding fields are to be disregarded.
-
 .. tabularcolumns:: |p{2.0cm}|p{4.0cm}|p{8.5cm}|
 
 .. table:: Encoding of ``options`` Bit Field
@@ -182,6 +175,13 @@ values in the corresponding fields are to be disregarded.
     |           |                  | applying the scaling).                    |
     +-----------+------------------+-------------------------------------------+
 
+
+The bit mask in the "options" field specifies whether the min and max range of
+the value have been set (i.e. are meaningful), whether the scale and/or offset
+values are set with which the "extra bytes" are to be multiplied and translated
+to compute their actual value, and whether there is a special value that should
+be interpreted as NO_DATA. By default all bits are zero which means that the
+values in the corresponding fields are to be disregarded.
 
 If the selected data_type is less than 8 bytes, the no_data, min, and max field
 should be upcast into 8-byte storage. For any float these 8 bytes would be
