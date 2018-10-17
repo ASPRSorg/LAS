@@ -73,9 +73,9 @@ across applications. The extra bytes descriptor is defined as follows:
         unsigned char           unused[4];       // 4 bytes
         anytype                 no_data;         // 8 bytes
         unsigned char           deprecated1[16]; // 16 bytes
-        anytype                 min;             // 8 bytes
+        double                  min;             // 8 bytes
         unsigned char           deprecated2[16]; // 16 bytes
-        anytype                 max;             // 8 bytes
+        double                  max;             // 8 bytes
         unsigned char           deprecated3[16]; // 16 bytes
         double                  scale;           // 8 bytes
         unsigned char           deprecated4[16]; // 16 bytes
@@ -96,7 +96,7 @@ each point record:
 #) "pulse width" - data_type = 3 (ushort)
 
 In this example, an array of three individual floats collectively specify a
-"laser pulse direction" for that point and one unsigned short integer specifies
+"laser pulse direction" for that point, and one unsigned short integer specifies
 a "pulse width" for that point.
 
 The "extra bytes" are made accessible via a unique name. The "name" field
@@ -181,17 +181,21 @@ the value have been set (i.e. are meaningful), whether the scale and/or offset
 values are set with which the "extra bytes" are to be multiplied and translated
 to compute their actual value, and whether there is a special value that should
 be interpreted as NO_DATA. By default all bits are zero which means that the
-values in the corresponding fields are to be disregarded.
+values in the corresponding fields are to be disregarded. Any unused
+"no_data", "min", "max", "scale", or "offset" fields must be set to zero.
 
-If the selected data_type is less than 8 bytes, the no_data, min, and max field
+If the selected data_type is less than 8 bytes, the no_data field
 should be upcast into 8-byte storage. For any float these 8 bytes would be
 upcast to a double, for any unsigned char, unsigned short, or unsigned long
 they would be upcast to an unsigned long long and for any char, short, or long,
 they would be upcast to a long long.
 
+If used, the min and max fields reflect the actual minimum and maximum values
+of the attribute in the LAS file, fully transformed with any applicable scale
+or offset values.
+
 The "reserved" field, the "unused" field, and the "deprecated" fields must be
-set to zero and may be used in a future revision. Any unused "no_data", "min",
-"max", "scale", or "offset" fields must be set to zero.
+set to zero and may be used in a future revision.
 
 A LAS file contains "undocumented extra bytes" when there are "extra bytes"
 but when there is no Extra Bytes VLR that describes them or when there are

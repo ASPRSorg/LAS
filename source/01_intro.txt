@@ -52,6 +52,11 @@ Summary of LAS 1.4 revisions:
 
     * Added explanation and example of implicit arrays from descriptor names.
 
+  * Changed type of ExtraByte min/max from ``anytype`` to ``double``.
+    (`I-4 <https://github.com/ASPRSorg/LAS/issues/4>`_)
+
+    * Clarified ExtraByte min/max should be a transformed value.
+
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
 
