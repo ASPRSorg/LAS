@@ -280,17 +280,20 @@ described with an Extra Bytes VLR (see Table 24 and Table 25).
 **Legacy Number of point records**
 
 This field contains the total number of point records within the file if the
-file is maintaining legacy compatibility and the number of points is no greater
-than UINT32_MAX. It must be zero otherwise.
+file is maintaining legacy compatibility, the number of points is no greater
+than UINT32_MAX, and the Point Data Record Format is less than 6. It must be
+set to zero otherwise.
 
 **Legacy Number of points by return**
 
 These fields contain an array of the total point records per return if the file
-is maintaining legacy compatibility and the number of points is no greater than
-UINT32_MAX. The first value will be the total number of records from the first
+is maintaining legacy compatibility, the number of points is no greater than
+UINT32_MAX, and the Point Data Record Format is less than 6. Otherwise, each
+member of the array must be set to zero.
+
+The first value will be the total number of records from the first
 return, the second contains the total number for return two, and so on up to
-five returns. If the file is not maintaining legacy compatibility, each member
-of the array must be set to zero.
+five returns.
 
 **X, Y, and Z scale factors**
 
