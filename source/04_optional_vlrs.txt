@@ -80,13 +80,18 @@ the value have been set (i.e. are meaningful), whether the scale and/or offset
 values are set with which the "extra bytes" are to be multiplied and translated
 to compute their actual value, and whether there is a special value that should
 be interpreted as NO_DATA. By default all bits are zero which means that the
-values in the corresponding fields are to be disregarded.
+values in the corresponding fields are to be disregarded. Any unused
+"no_data", "min", "max", "scale", or "offset" fields must be set to zero.
 
-If the selected data_type is less than 8 bytes, the no_data, min, and max field
+If the selected data_type is less than 8 bytes, the no_data field
 should be upcast into 8-byte storage. For any float these 8 bytes would be
 upcast to a double, for any unsigned char, unsigned short, or unsigned long
 they would be upcast to an unsigned long long and for any char, short, or long,
 they would be upcast to a long long.
+
+If used, the min and max fields reflect the actual minimum and maximum values
+of the attribute in the LAS file, fully transformed with any applicable scale
+or offset values.
 
 ::
 
@@ -97,15 +102,14 @@ they would be upcast to a long long.
         char                    name[32];        // 32 bytes
         unsigned char           unused[4];       // 4 bytes
         anytype                 no_data[3];      // 24 = 3*8 bytes
-        anytype                 min[3];          // 24 = 3*8 bytes
-        anytype                 max[3];          // 24 = 3*8 bytes
+        double                  min[3];          // 24 = 3*8 bytes
+        double                  max[3];          // 24 = 3*8 bytes
         double                  scale[3];        // 24 = 3*8 bytes
         double                  offset[3];       // 24 = 3*8 bytes
         char                    description[32]; // 32 bytes
     };                                           // total of 192 bytes
 
-The "reserved" field and the "unused" field must be set to zero. Any unused
-"no_data", "min", "max", "scale", or "offset" fields must be set to zero. Any
+The "reserved" field and the "unused" field must be set to zero. Any
 unused characters in the "name" or "description" fields must be set to zero.
 
 
