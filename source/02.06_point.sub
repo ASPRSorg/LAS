@@ -126,9 +126,9 @@ the classification values in Table 9.
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
     | 0:4   | Classification          | Standard ASPRS classification from       |
-    |       |                         | 0 to 31 as defined in the classification |
-    |       |                         | table for legacy point formats           |
-    |       |                         | (see :ref:`point_classes`)               |
+    |       |                         | 0 to 31 as defined in the                |
+    |       |                         | :ref:`classification table for legacy    |
+    |       |                         | point formats <legacy_pt_class_link>`    |
     +-------+-------------------------+------------------------------------------+
     | 5     | Synthetic               | If set then this point was created by a  |
     |       |                         | technique other than LIDAR collection    |
@@ -153,7 +153,7 @@ the classification values in Table 9.
     the lower five bits set to 2 would be a *ground* point that had been
     *Synthetically* collected and marked as a model *key-point*.
 
-.. _point_classes:
+.. _legacy_pt_class_link:
 
 **Reserved Point Classes**
 
@@ -292,9 +292,8 @@ addition of GPS Time.
 **GPS Time**
 
 The GPS Time is the double floating point time tag value at which the point was
-acquired. It is GPS Week Time if the Global Encoding low bit is clear and
-Adjusted Standard GPS Time if the Global Encoding low bit is set (see 
-:ref:`globalencoding_label` in the :ref:`headerblock_label` description).
+acquired. It is GPS Week Time if the :ref:`Global Encoding <globalencoding_link>`
+low bit is clear and Adjusted Standard GPS Time if the bit is set.
 
 .. raw:: latex
 
