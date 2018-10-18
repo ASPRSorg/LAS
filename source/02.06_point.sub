@@ -534,6 +534,11 @@ X, Y and Z are the units of the coordinate systems of the LAS data. If the
 coordinate system is geographic, the horizontal units are decimal degrees and
 the vertical units are meters.
 
+.. note::
+
+    Users seeking further clarity regarding LAS waveform encoding are encouraged
+    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki/Waveform-Data-Packet-Descriptors-Explained
+
 .. raw:: latex
 
     \newpage
