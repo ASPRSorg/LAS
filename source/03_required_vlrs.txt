@@ -2,22 +2,11 @@
 
     \newpage
 
-Defined Variable Length Records
+Coordinate Reference System VLRs (Required)
 --------------------------------------------------------------------------------
-
-LAS 1.4 defines Variable Length Records (VLR) and Extended Variable Length
-Records (EVLR). A writer who wishes to maintain legacy compatibility must use
-only VLRs (except for internally stored waveform data). A writer who is not
-concerned with a legacy LAS reader having access to a VLR can elect to use an
-EVLR, even for predefined VLRs such as Coordinate Reference System (CRS)
-information. This ability is useful, for example, when a user wishes to update
-information normally contained within a VLR without the need of rewriting the
-point data.
-
-A new LASF_Spec "Superseded" (value 7) has been defined to allow a writer to
-indicate that a VLR should no longer be used. For example, if a user appends a
-new WKT EVLR to a file, the existing WKT VLR should have its LASF Spec number
-changed to Superseded to indicate that it is no longer in use.
+LAS 1.4 defines Variable Length Records (VLRs) and Extended Variable Length
+Records (EVLRs). Coordinate Reference System (CRS) VLRs are defined in this
+section, while other VLRs and EVLRs are defined in the following two sections.
 
 Coordinate Reference System Information
 ................................................................................
@@ -48,7 +37,7 @@ completeness, and a coordinate system WKT *may* or *may not* require a math
 transform WKT record (a parameterized math transform definition).
 
 OGC Math Transform WKT Record
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -66,7 +55,7 @@ following notes:
   no localization of the numeric strings within the WKT should be performed.
 
 OGC Coordinate System WKT
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -104,7 +93,7 @@ may or may not be present, depending on the content of the GeoKeyDirectoryTag
 record.
 
 GeoKeyDirectoryTag Record
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -174,7 +163,7 @@ Where:
 
 
 GeoDoubleParamsTag Record (optional)
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -186,7 +175,7 @@ This record is simply an array of doubles that contain values referenced by tag
 sets in the GeoKeyDirectoryTag record.
 
 GeoAsciiParamsTag Record (optional)
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
@@ -198,163 +187,4 @@ This record is simply an array of ASCII data. It contains many strings separated
 by null terminator characters which are referenced by position from data in the
 GeoKeyDirectoryTag record.
 
-Other Specification Defined VLRs
---------------------------------------------------------------------------------
-
-Classification Lookup (optional)
-................................................................................
-
-+-----------------+-----------------------------+
-| User ID         | LASF_Spec                   |
-+-----------------+-----------------------------+
-| Record ID       | 0                           |
-+-----------------+-----------------------------+
-
-Record Length after Header: 256 recs * 16 byte struct len
-
-::
-
-    struct CLASSIFICATION {
-        unsigned char ClassNumber;
-        char Description[15];
-    };
-
-
-Text Area Description (optional)
-................................................................................
-
-+-----------------+-----------------------------+
-| User ID         | LASF_Spec                   |
-+-----------------+-----------------------------+
-| Record ID       | 3                           |
-+-----------------+-----------------------------+
-
-This VLR/EVLR is used for providing a textual description of the content of the
-LAS file. It is a null terminated, free-form ASCII string.
-
-.. include:: ./13.3_extra_bytes.txt
-
-Superseded (optional)
-................................................................................
-
-+-----------------+-----------------------------+
-| User ID         | LASF_Spec                   |
-+-----------------+-----------------------------+
-| Record ID       | 7                           |
-+-----------------+-----------------------------+
-
-This LASF Record ID is used to negate an existing VLR/EVLR when rewriting the
-file (to remove the undesired VLR/EVLR).. It is used, for example, when
-updating a record such as projection information where a new EVLR is appended
-to the end of the LAS file. The existing VLR which has been superseded must be
-marked with the SUPERSEDED Record ID.
-
-Waveform Packet Descriptor
-................................................................................
-
-+-----------------+-----------------------------+
-| User ID         | LASF_Spec                   |
-+-----------------+-----------------------------+
-| Record ID       | n: where n > 99 and n <355  |
-+-----------------+-----------------------------+
-
-.. warning::
-
-    This VLR is REQUIRED internally or externally when using Point Data Record
-    Formats 4, 5, 9 or 10.
-
-These records contain information that describes the configuration of the
-waveform packets. Since systems may be configured differently at different
-times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
-
-
-.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
-
-.. table:: Waveform Packet Descriptor User Defined Record
-
-    +------------------------------+-------------------------+-----------+--------------+
-    | Item                         | Format                  | Size      | Required     |
-    +==============================+=========================+===========+==============+
-    | Bits per sample              | unsigned char           | 1 byte    | yes          |
-    +------------------------------+-------------------------+-----------+--------------+
-    | Waveform Compression Type    | unsigned char           | 1 byte    | yes          |
-    +------------------------------+-------------------------+-----------+--------------+
-    | Number of samples            | unsigned long           | 4 bytes   | yes          |
-    +------------------------------+-------------------------+-----------+--------------+
-    | Temporal Sample Spacing      | unsigned long           | 4 bytes   | yes          |
-    +------------------------------+-------------------------+-----------+--------------+
-    | Digitizer Gain               | double                  | 8 bytes   | yes          |
-    +------------------------------+-------------------------+-----------+--------------+
-    | Digitizer Offset             | double                  | 8 bytes   | yes          |
-    +------------------------------+-------------------------+-----------+--------------+
-
-Bits per sample
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-2 through 32 bits are supported.
-
-Waveform Compression type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-It is expected that in the future standard compression types will be adopted by
-the LAS committee. This field will indicate the compression algorithm used for
-the waveform packets associated with this descriptor. A value of 0 indicates no
-compression. Zero is the only value currently supported.
-
-Number of Samples
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The number of samples associated with this waveform packet type. This value
-always represents the fully decompressed waveform packet.
-
-Temporal Sample Spacing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The temporal sample spacing in picoseconds. Example values might be 500, 1000,
-2000 and so on, representing digitizer frequencies of 2 GHz, 1 GHz and 500 MHz
-respectively.
-
-Digitizer Gain
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The gain and offset are used to convert the raw digitized value to an absolute
-digitizer voltage using the formula:
-
-.. math::
-
-    VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
-
-Digitizer Offset
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The gain and voltage offset are used to convert the raw digitized value to a
-voltage using the formula:
-
-.. math::
-
-    VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
-
-
-
-Defined Extended Variable Length Records (EVLRs)
---------------------------------------------------------------------------------
-
-Waveform Data Packets
-...............................................................................
-
-.. warning::
-
-    This EVLR is REQUIRED internally or externally when using Point Data Record 
-    Formats 4, 5, 9, or 10.
-
-+-----------------+-----------------------------+
-| User ID         | LASF_Spec                   |
-+-----------------+-----------------------------+
-| Record ID       | 65535                       |
-+-----------------+-----------------------------+
-
-The packet of Raw Waveform Amplitude values for all records immediately follow
-this variable length header. Note that when using a bit resolution that is not
-an even increment of 8, the last byte of each waveform packet must be padded
-such that the next waveform record will start on an even byte boundary.
 

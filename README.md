@@ -50,14 +50,14 @@ What merits a new issue? Here are a few examples:
 
 ### Level 3 Involvement - Join
 
-We need you! You can join the [ASPRSorg organization](https://github.com/ASPRSorg)
-on GitHub and participate in any of our other projects.
+We need you! You can [request to join the ASPRSorg organization](https://goo.gl/forms/ltoX0XjiQJyy0YxK2)
+and participate in any of our projects.
 
 Get a stronger voice and help edit the specification itself by joining the ASPRS
 LAS Working Group team! This group has the authority to review edits, modify the
 specification, and vote on revisions.
 
-Request to join on the [LWG team page](https://github.com/orgs/ASPRSorg/teams/lwg)
-or by contacting any of the ASPRSorg Owners.
+[Request to join the LWG team](https://goo.gl/forms/ltoX0XjiQJyy0YxK2)
+while you sign up for ASPRSorg, or by contacting any of the ASPRSorg Owners.
 
 [![Build Status](https://api.travis-ci.org/ASPRSorg/LAS.svg?branch=master)](https://travis-ci.org/ASPRSorg/LAS)

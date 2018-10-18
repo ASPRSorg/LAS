@@ -42,7 +42,7 @@ templates_path = ['_templates']
 source_suffix = '.txt'
 
 # The master toctree document.
-master_doc = '0_index'
+master_doc = '00_index'
 
 # General information about the project.
 project = u'LAS'
@@ -56,7 +56,7 @@ author = u'ASPRS'
 # The short X.Y version.
 #version = u'1.4'
 # Custom non-keyword version tag for header
-myversion = u'1.4 - R13'
+myversion = u'1.4 - R14'
 # The full version, including alpha/beta/rc tags.
 release = u'VERSION ' + myversion
 releasename = release

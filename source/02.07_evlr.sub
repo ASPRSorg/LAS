@@ -2,8 +2,10 @@
 
     \newpage
 
+.. _evlr_label:
+
 Extended Variable Length Records (EVLRs)
--------------------------------------------------------------------------------
+................................................................................
 
 The Point Record Data can be followed by any number of EVLRs.
 
@@ -39,5 +41,21 @@ Length Record Header is 60 bytes in length.
 
     As with the VLR, the Reserved field must be set to zero.
 
+.. _evlr_legacy_label:
+
+Legacy Compatibility for EVLRs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A writer who wishes to maintain legacy compatibility must use
+only VLRs (except for internally stored waveform data). A writer who is not
+concerned with a legacy LAS reader having access to a VLR can elect to use an
+EVLR, even for predefined VLRs such as Coordinate Reference System (CRS)
+information. This ability is useful, for example, when a user wishes to update
+information normally contained within a VLR without the need of rewriting the
+point data.
+
+A new LASF_Spec "Superseded" (value 7) has been defined to allow a writer to
+indicate that a VLR should no longer be used. For example, if a user appends a
+new WKT EVLR to a file, the existing WKT VLR should have its LASF Spec number
+changed to Superseded to indicate that it is no longer in use.
 
 
