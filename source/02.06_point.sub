@@ -475,15 +475,15 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
 This value plus **99** is the Record ID of the Waveform Packet Descriptor and
 indicates the User Defined Record that describes the waveform packet associated
-with this LIDAR point. Up to 255 different User Defined Records which describe
+with this Point Record. Up to 255 different User Defined Records which describe
 the waveform packet are supported. A value of zero indicates that there is no
-waveform data associated with this LIDAR point record.
+waveform data associated with this Point Record.
 
 **Byte Offset to Waveform Packet Data**
 
 The waveform packet data are stored in the LAS file in an Extended Variable
 Length Record or in an auxiliary WPD file. The Byte Offset represents the
-location of the start of this LIDAR points’ waveform packet within the waveform
+location of the start of this Point Record’s waveform packet within the waveform
 data variable length record (or external file) relative to the beginning of the
 Waveform Packet Data header. The absolute location of the beginning of this
 waveform packet relative to the beginning of the file is given by:
@@ -525,7 +525,7 @@ along the associated waveform. The position along the wave is given by:
         Z &= Z_0 + t * dz
     \end {eqnarray}
 
-where X, Y and Z are the spatial position of a derived point,
+where :math:`(X, Y, Z)` is the spatial position of a derived point,
 :math:`(X_0, Y_0, Z_0)` is the position of the "anchor" point, and :math:`t` is
 the time, in picoseconds, relative to the anchor point.
 
