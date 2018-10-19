@@ -974,7 +974,7 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification Flags             | 4 bits (bits 0-3)       | 4 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | no       |
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+

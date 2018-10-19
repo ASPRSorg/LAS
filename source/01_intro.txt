@@ -55,6 +55,8 @@ Summary of LAS 1.4 revisions:
     (`I-4 <https://github.com/ASPRSorg/LAS/issues/4>`_)
   * Clarified that Legacy Point Counts should be set to zero if using non-legacy
     PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
+  * PDRF9 now correctly requires Scanner Channel like other PDRFs.
+    (`I-29 <https://github.com/ASPRSorg/LAS/issues/29>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
