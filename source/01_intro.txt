@@ -57,6 +57,7 @@ Summary of LAS 1.4 revisions:
     PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
   * Clarified Full Waveform descriptions and added wiki link.
     (`I-9 <https://github.com/ASPRSorg/LAS/issues/9>`_)
+  * Renamed X(t), Y(t), and Z(t) from waveform packets to Parametric dx/dy/dz.
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
