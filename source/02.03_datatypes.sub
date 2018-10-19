@@ -15,6 +15,17 @@ data types are conformant to the 1999 ANSI C Language Specification
 * unsigned long long (8 bytes)
 * float (4 byte IEEE floating point format)
 * double (8 byte IEEE floating point format)
-* string (a variable series of 1 byte characters, ASCII encoded, null terminated)
+* string (a variable series of 1 byte characters, ASCII encoded, null-terminated)
 
+.. warning::
+
+    Fixed-length ``char`` arrays will not be null-terminated if all bytes are
+    utilized. Examples include the System Identifier and Generating Software in
+    the LAS Header, the User ID or Description in the Variable Length Record,
+    and the Name of an Extra Byte Descriptor.
+
+
+.. raw:: latex
+
+    \newpage
 
