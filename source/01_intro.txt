@@ -30,8 +30,12 @@ Summary of LAS 1.4 revisions:
 * R14 - Multiple updates (GitHub Issue numbers):
 
   * Aesthetic changes from migration to GitHub
+  * Updated ASPRS contact info.
+    (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
   * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
     (`I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
+  * Added minimum PDRF sizes to attribute tables.
+    (`I-47 <https://github.com/ASPRSorg/LAS/issues/47>`_)
   * Section reorganization:
     (`I-57 <https://github.com/ASPRSorg/LAS/issues/57>`_)
 
@@ -52,10 +56,11 @@ Summary of LAS 1.4 revisions:
 
     * Added explanation and example of implicit arrays from descriptor names.
 
-  * Changed type of ExtraByte min/max from ``anytype`` to ``double``.
+  * Changed type of ExtraByte min/max from ``anytype`` to ``double`` and
+    clarified that min/max should be a transformed value.
     (`I-4 <https://github.com/ASPRSorg/LAS/issues/4>`_)
-
-    * Clarified ExtraByte min/max should be a transformed value.
+  * Clarified that Legacy Point Counts should be set to zero if using non-legacy
+    PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
@@ -102,9 +107,12 @@ Authority
 The American Society for Photogrammetry & Remote Sensing (ASPRS) is the owner
 of the LAS Specification. The standard is maintained by committees within the
 organization as directed by the ASPRS Board of Directors. Questions related to
-this standard can be directed to ASPRS at 301-493-0290, by email at
-asprs@asprs.org, or by mail at 5410 Grosvenor Lane, Suite 210, Bethesda,
-Maryland 20814-2160.
+this standard can be directed to ASPRS:
+
+* Online at https://github.com/ASPRSorg/LAS
+* By phone at 301-493-0290
+* By email at las@asprs.org
+* By mail at 425 Barlow Place, Suite 210, Bethesda, Maryland 20814-2160.
 
 .. raw:: latex
 

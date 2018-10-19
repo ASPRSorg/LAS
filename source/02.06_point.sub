@@ -52,6 +52,12 @@ Data Record Formats 0 to 5.
     +----------------------------------+-------------------------+-----------+----------+
     | Point Source ID                  | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size* [1]_                                   | *20 bytes*           |
+    +------------------------------------------------------------+----------------------+
+
+.. [1] Recall that the Point Data Record Size can be greater than the minimum
+    required for a PDRF. These "extra bytes" follow the standard Point Record
+    fields and are described in the Extra Bytes VLR section.
 
 **X, Y, and Z**
 
@@ -120,9 +126,9 @@ the classification values in Table 9.
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
     | 0:4   | Classification          | Standard ASPRS classification from       |
-    |       |                         | 0 to 31 as defined in the classification |
-    |       |                         | table for legacy point formats           |
-    |       |                         | (see :ref:`point_classes`)               |
+    |       |                         | 0 to 31 as defined in the                |
+    |       |                         | :ref:`classification table for legacy    |
+    |       |                         | point formats <legacy_pt_class_link>`    |
     +-------+-------------------------+------------------------------------------+
     | 5     | Synthetic               | If set then this point was created by a  |
     |       |                         | technique other than LIDAR collection    |
@@ -147,7 +153,7 @@ the classification values in Table 9.
     the lower five bits set to 2 would be a *ground* point that had been
     *Synthetically* collected and marked as a model *key-point*.
 
-.. _point_classes:
+.. _legacy_pt_class_link:
 
 **Reserved Point Classes**
 
@@ -162,7 +168,7 @@ Classification must adhere to the following standard:
     +===================================+===============================================+
     | 0                                 | Created, never classified                     |
     +-----------------------------------+-----------------------------------------------+
-    | 1                                 | Unclassified [1]_                             |
+    | 1                                 | Unclassified [2]_                             |
     +-----------------------------------+-----------------------------------------------+
     | 2                                 | Ground                                        |
     +-----------------------------------+-----------------------------------------------+
@@ -184,7 +190,7 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 11                                | *Reserved for ASPRS Definition*               |
     +-----------------------------------+-----------------------------------------------+
-    | 12                                | Overlap Points [2]_                           |
+    | 12                                | Overlap Points [3]_                           |
     +-----------------------------------+-----------------------------------------------+
     | 13-31                             | *Reserved for ASPRS Definition*               |
     +-----------------------------------+-----------------------------------------------+
@@ -198,7 +204,7 @@ Classification must adhere to the following standard:
     1 set to 1 equals 2, bit 2 set to 1 equals 4 and so forth.
 
 
-.. [1] We are using both 0 and 1 as *Unclassified* to maintain compatibility with
+.. [2] We are using both 0 and 1 as *Unclassified* to maintain compatibility with
     current popular classification software such as TerraScan. We extend the idea
     of classification value 1 to include cases in which data have been subjected to
     a classification algorithm but emerged in an undefined state. For example, data
@@ -206,7 +212,7 @@ Classification must adhere to the following standard:
     points that emerge without having been assigned as belonging to structures
     could be remapped from class 0 to class 1.
 
-.. [2] Overlap Points are those points that were immediately culled during the
+.. [3] Overlap Points are those points that were immediately culled during the
     merging of overlapping flight lines. In general, the *Withheld* bit should be set
     since these points are not subsequently classified.
 
@@ -280,13 +286,14 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | GPS Time                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *28 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 **GPS Time**
 
 The GPS Time is the double floating point time tag value at which the point was
-acquired. It is GPS Week Time if the Global Encoding low bit is clear and
-Adjusted Standard GPS Time if the Global Encoding low bit is set (see 
-:ref:`globalencoding_label` in the :ref:`headerblock_label` description).
+acquired. It is GPS Week Time if the :ref:`Global Encoding <globalencoding_link>`
+low bit is clear and Adjusted Standard GPS Time if the bit is set.
 
 .. raw:: latex
 
@@ -337,6 +344,8 @@ LIDAR point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *26 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 **Red, Green, and Blue**
 The Red, Green, and Blue image channel values associated with this point.
@@ -399,6 +408,8 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *34 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
@@ -457,6 +468,8 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *57 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 **Wave Packet Descriptor Index**
 
@@ -584,6 +597,8 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *63 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
@@ -636,6 +651,8 @@ instead of 8), and the GPS time is mandatory.
     +----------------------------------+-------------------------+-----------+----------+
     | GPS Time                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *30 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. note::
 
@@ -736,7 +753,7 @@ Classification must adhere to the following standard:
     +===================================+===============================================+
     | 0                                 | Created, never classified                     |
     +-----------------------------------+-----------------------------------------------+
-    | 1                                 | Unclassified [3]_                             |
+    | 1                                 | Unclassified [4]_                             |
     +-----------------------------------+-----------------------------------------------+
     | 2                                 | Ground                                        |
     +-----------------------------------+-----------------------------------------------+
@@ -780,7 +797,7 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
 
 
-.. [3] We are using both 0 and 1 as Unclassified to maintain compatibility
+.. [4] We are using both 0 and 1 as Unclassified to maintain compatibility
     with current popular classification software such as TerraScan. We extend the
     idea of classification value 1 to include cases in which data have been
     subjected to a classification algorithm but emerged in an undefined state. For
@@ -854,6 +871,8 @@ LIDAR point using ancillary data, typically from a camera
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *36 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
@@ -910,6 +929,8 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-----------+----------+
     | NIR                              | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *38 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 **NIR**
 
@@ -983,6 +1004,8 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *59 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
@@ -1052,3 +1075,5 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *67 bytes*           |
+    +------------------------------------------------------------+----------------------+
