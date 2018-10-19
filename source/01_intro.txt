@@ -57,6 +57,8 @@ Summary of LAS 1.4 revisions:
     PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
   * PDRF9 now correctly requires Scanner Channel like other PDRFs.
     (`I-29 <https://github.com/ASPRSorg/LAS/issues/29>`_)
+  * Clarified origin date/time for Adjusted Standard GPS Time.
+    (`I-40 <https://github.com/ASPRSorg/LAS/issues/40>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS

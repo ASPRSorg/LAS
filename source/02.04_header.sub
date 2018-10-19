@@ -137,7 +137,9 @@ a value of 1). This bit field is defined as:
     |       |                       | 1 x :math:`10^9` (Adjusted Standard GPS  |
     |       |                       | Time). The offset moves the time back to |
     |       |                       | near zero to improve floating point      |
-    |       |                       | resolution.                              |
+    |       |                       | resolution. The origin of standard GPS   |
+    |       |                       | Time is defined as midnight of the       |
+    |       |                       | morning of January 6, 1980.              |
     +-------+-----------------------+------------------------------------------+
     | 1     | Waveform Data Packets | If this bit is set, the waveform data    |
     |       | Internal              | packets are located within this file     |
