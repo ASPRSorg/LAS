@@ -2,7 +2,7 @@
 
     \newpage
 
-.. _evlr_label:
+.. _evlrdef_label:
 
 Extended Variable Length Records (EVLRs)
 ................................................................................
@@ -13,7 +13,7 @@ The EVLR is, in spirit, identical to a VLR but can carry a larger payload as
 the "Record Length After Header" field is 8 bytes instead of 2 bytes. The
 number of EVLRs is specified in the "Number of Extended Variable Length
 Records" field in the :ref:`headerblock_label`. The start of the first EVLR is at
-the file offset indicated by the "Start of first Extended Variable Length
+the file offset indicated by the "Start of First Extended Variable Length
 Record" in the :ref:`headerblock_label`. The Extended Variable Length Records must
 be accessed sequentially since the size of each variable length record is
 contained in the Extended Variable Length Record Header. Each Extended Variable

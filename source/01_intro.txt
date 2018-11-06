@@ -5,8 +5,8 @@ Purpose, Scope, and Applicability
 ................................................................................
 
 The LAS file is intended to contain LIDAR (or other) point cloud data records.
-The data will generally be put into this format from software (e.g. provided by
-LIDAR hardware vendors) which combines GPS, IMU, and laser pulse range data to
+The data will generally be put into this format from software (e.g., provided by
+LIDAR hardware vendors), which combines GPS, IMU, and laser pulse range data to
 produce X, Y, and Z point data. The intention of the data format is to provide
 an open format that allows different LIDAR hardware and software tools to
 output data in a common format.
