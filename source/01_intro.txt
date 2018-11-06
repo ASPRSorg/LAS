@@ -59,6 +59,8 @@ Summary of LAS 1.4 revisions:
     (`I-29 <https://github.com/ASPRSorg/LAS/issues/29>`_)
   * Clarified origin date/time for Adjusted Standard GPS Time.
     (`I-40 <https://github.com/ASPRSorg/LAS/issues/40>`_)
+  * Clarified relationship between FileSourceID and PointSourceID.
+    (`I-59 <https://github.com/ASPRSorg/LAS/issues/59>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
