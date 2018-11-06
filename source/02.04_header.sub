@@ -266,7 +266,7 @@ VLRs changes.
 
 **Point Data Record Format**
 
-The point data record indicates the type of point data records contains in the
+The point data record indicates the type of point data records contained in the
 file. LAS 1.4 defines types 0 through 10. These types are defined in the Point
 Data Record Format section of this specification.
 
@@ -283,8 +283,8 @@ described with an Extra Bytes VLR (see Table 24 and Table 25).
 
 This field contains the total number of point records within the file if the
 file is maintaining legacy compatibility, the number of points is no greater
-than UINT32_MAX, and the Point Data Record Format is less than 6. It must be
-set to zero otherwise.
+than UINT32_MAX, and the Point Data Record Format is less than 6. Otherwise,
+it must be set to zero.
 
 **Legacy Number of Points by Return**
 

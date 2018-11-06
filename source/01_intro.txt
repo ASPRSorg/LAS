@@ -4,11 +4,11 @@ Introduction
 Purpose, Scope, and Applicability
 ................................................................................
 
-The LAS file is intended to contain LIDAR (or other) point cloud data records.
+The LAS file is intended to contain lidar (or other) point cloud data records.
 The data will generally be put into this format from software (e.g., provided by
-LIDAR hardware vendors), which combines GPS, IMU, and laser pulse range data to
+hardware vendors), which combines GPS, IMU, and laser pulse range data to
 produce X, Y, and Z point data. The intention of the data format is to provide
-an open format that allows different LIDAR hardware and software tools to
+an open format that allows different hardware and software tools to
 output data in a common format.
 
 This document reflects the fourth revision of the LAS format specification
@@ -20,16 +20,17 @@ LAS 1.4 Revision History
 
 Summary of LAS 1.4 revisions:
 
-* R11 - Approved Version (Nov 2011)
+* R11 - Approved Version (Nov 2011).
 * R12 - Errata (June 2012) - Typographical corrections:
 
-  * Corrected Public Header size in descriptive paragraph to 375 bytes
-  * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char"
+  * Corrected Public Header size in descriptive paragraph to 375 bytes.
+  * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char".
 
-* R13 - Added Domain Profile Section (July 2013)
+* R13 - Added Domain Profile Section (July 2013).
 * R14 - Multiple updates (GitHub Issue numbers):
 
   * Aesthetic changes from migration to GitHub
+  * Multiple capitalization & typo corrections.
   * Updated ASPRS contact info.
     (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
   * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
@@ -61,7 +62,7 @@ Summary of LAS 1.4 revisions:
     (`I-40 <https://github.com/ASPRSorg/LAS/issues/40>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
-inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
+inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
 
 
 Comparison of LAS 1.4 to Previous Versions
@@ -71,7 +72,7 @@ The additions of LAS 1.4 include:
 
 * Backward compatibility with LAS 1.1 – LAS 1.3 when payloads consist of only
   legacy content
-* LAS 1.4 mode which supports
+* LAS 1.4 mode which supports:
 
   * Extension of offsets and field sizes to support full 64 bit
   * Support for up to 15 returns per outgoing pulse
@@ -86,7 +87,7 @@ The additions of LAS 1.4 include:
   * Addition of an (optional) Extra Byte Variable Length Record to describe
     "extra bytes" stored with each point
 
-* Other minor changes
+* Other minor changes:
 
   * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
     Description"

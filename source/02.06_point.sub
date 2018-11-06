@@ -133,7 +133,7 @@ the classification values in Table 9.
     |       |                         | :ref:`legacy_pt_class_label`).           |
     +-------+-------------------------+------------------------------------------+
     | 5     | Synthetic               | If set then this point was created by a  |
-    |       |                         | technique other than LIDAR collection    |
+    |       |                         | technique other than lidar collection    |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
     |       |                         | waveform.                                |
@@ -306,7 +306,7 @@ Point Data Record Format 2
 
 Point Data Record Format 2 is the same as Point Data Record Format 0 with the
 addition of three color channels. These fields are used when "colorizing" a
-LIDAR point using ancillary data, typically from a camera.
+point using ancillary data, typically from a camera.
 
 .. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
@@ -477,15 +477,15 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
 This value plus **99** is the Record ID of the Waveform Packet Descriptor and
 indicates the User Defined Record that describes the waveform packet associated
-with this LIDAR point. Up to 255 different User Defined Records which describe
+with this lidar point. Up to 255 different User Defined Records which describe
 the waveform packet are supported. A value of zero indicates that there is no
-waveform data associated with this LIDAR point record.
+waveform data associated with this lidar point record.
 
 **Byte Offset to Waveform Packet Data**
 
 The waveform packet data are stored in the LAS file in an Extended Variable
 Length Record or in an auxiliary WPD file. The Byte Offset represents the
-location of the start of this LIDAR point's waveform packet within the waveform
+location of the start of this lidar point's waveform packet within the waveform
 data variable length record (or external file) relative to the beginning of the
 Waveform Packet Data header. The absolute location of the beginning of this
 waveform packet relative to the beginning of the file is given by:
@@ -689,7 +689,7 @@ with the point. The bit definitions are:
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
     | 0     | Synthetic               | If set then this point was created by a  |
-    |       |                         | technique other than LIDAR collection    |
+    |       |                         | technique other than lidar collection    |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
     |       |                         | waveform.                                |
@@ -738,7 +738,7 @@ the right side and negative the opposite).
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
 direction or the mirror facet changes. Note that this field has no meaning for
-360° Field of View scanners (such as Mobile LIDAR scanners) and should not be
+360° Field of View scanners (such as Mobile lidar scanners) and should not be
 set.
 
 **Classification**
@@ -817,7 +817,7 @@ increment represents 0.006 degrees. Counter- Clockwise rotation, as viewed from
 the rear of the sensor, facing in the along-track (positive trajectory)
 direction, is positive. The maximum value in the positive sense is 30,000 (180
 degrees which is up in the coordinate system of the data). The maximum value in
-the negative direction is -30.000 which is also directly up.
+the negative direction is -30,000 which is also directly up.
 
 .. raw:: latex
 
@@ -828,7 +828,7 @@ Point Data Record Format 7
 
 Point Data Record Format 7 is the same as Point Data Record Format 6 with the
 addition of three RGB color channels. These fields are used when "colorizing" a
-LIDAR point using ancillary data, typically from a camera
+point using ancillary data, typically from a camera
 
 .. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 

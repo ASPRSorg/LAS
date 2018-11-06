@@ -69,7 +69,7 @@ have data type 29 - a floating point vector of length 3 - followed by data type
 "normalized reflectivity".
 
 The "extra bytes" are made accessible via a unique name. The "name" field
-distinguishes the additional point attributes that a LIDAR software may add to
+distinguishes the additional point attributes that software may add to
 the points in a LAS file so they can be accessed later in a consistent manner
 by another software. Descriptive names such as "normalized reflectivity", "echo
 width", or "shading normal" are encouraged. The use of generic names such as

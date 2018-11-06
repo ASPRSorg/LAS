@@ -14,7 +14,7 @@ application data. They are limited to a data payload of 65,535 bytes.
 
 The Extended Variable Length Records (EVLRs) allow a higher payload than VLRs
 and have the advantage that they can be appended to the end of a LAS file. This
-allows adding, for example, projection information to a LAS file without having
+allows, for example, adding projection information to a LAS file without having
 to rewrite the entire file.
 
 
