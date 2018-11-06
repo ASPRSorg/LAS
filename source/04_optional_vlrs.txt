@@ -168,7 +168,7 @@ Any unused characters in the "name" or "description" fields must be set to zero.
     +-----------+------------------+-------------------------------------------+
     | 3         | scale_bit        | If set each value should be multiplied    |
     |           |                  | by the corresponding scale value (before  |
-    |           |                  | applying the offset)                      |
+    |           |                  | applying the offset).                     |
     +-----------+------------------+-------------------------------------------+
     | 4         | offset_bit       | If set each value should be translated    |
     |           |                  | by the corresponding offset value (after  |
