@@ -64,12 +64,36 @@ ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
 Authority
 --------------------------------------------------------------------------------
 
+ASPRS
+................................................................................
+
 The American Society for Photogrammetry & Remote Sensing (ASPRS) is the owner
 of the LAS Specification. The standard is maintained by committees within the
 organization as directed by the ASPRS Board of Directors. Questions related to
 this standard can be directed to ASPRS at 301-493-0290, by email at
-asprs@asprs.org, or by mail at 5410 Grosvenor Lane, Suite 210, Bethesda,
-Maryland 20814-2160.
+asprs@asprs.org or las@asprs.org, or by mail at 5410 Grosvenor Lane, Suite 210,
+Bethesda, Maryland 20814-2160.
+
+OGC
+................................................................................
+
+LAS has been recognized by `OGC`_ in 2018 as an OGC Community Standard. The OGC
+version of the document with forward material about standards that LAS
+references and its status within the standard body can be found at
+https://portal.opengeospatial.org/files/17-030r1 Future recognition and
+activity on OGC referencing activities of LAS can be followed at
+http://www.opengeospatial.org/standards/community
+
+.. note::
+
+    The USGS `LiDAR Base Specification`_ heavily refers to and uses the
+    ASPRS LAS specification to describe LiDAR acquisition in the United
+    States. It is a rich resource of LAS usage scenarios, especially
+    for some its more advanced features.
+
+.. `LiDAR Base Specification`: https://pubs.er.usgs.gov/publication/tm11B4
+
+.. _`OGC`: http://www.opengeospatial.org
 
 .. raw:: latex
 
