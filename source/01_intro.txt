@@ -91,7 +91,7 @@ http://www.opengeospatial.org/standards/community
     States. It is a rich resource of LAS usage scenarios, especially
     for some its more advanced features.
 
-.. `LiDAR Base Specification`: https://pubs.er.usgs.gov/publication/tm11B4
+.. _`LiDAR Base Specification`: https://pubs.er.usgs.gov/publication/tm11B4
 
 .. _`OGC`: http://www.opengeospatial.org
 
