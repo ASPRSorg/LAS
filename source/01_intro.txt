@@ -119,19 +119,20 @@ this standard can be directed to ASPRS:
 OGC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-LAS has been recognized by `OGC`_ in 2018 as an OGC Community Standard. The OGC
-version of the document with forward material about standards that LAS
-references and its status within the standard body can be found at
-https://portal.opengeospatial.org/files/17-030r1 Future recognition and
-activity on OGC referencing activities of LAS can be followed at
-http://www.opengeospatial.org/standards/community
+LAS has been recognized by the Open Geospatial Consortium (`OGC`_) in 2018 as an
+OGC Community Standard. The OGC version of the document with forward material
+about standards that LAS references and its status within the standard body can
+be found at https://portal.opengeospatial.org/files/17-030r1.
+
+Future recognition and activity on OGC referencing activities of LAS can be
+followed at http://www.opengeospatial.org/standards/community.
 
 .. note::
 
     The USGS `LiDAR Base Specification`_ heavily refers to and uses the
     ASPRS LAS specification to describe LiDAR acquisition in the United
     States. It is a rich resource of LAS usage scenarios, especially
-    for some its more advanced features.
+    for some of its more advanced features.
 
 .. _`LiDAR Base Specification`: https://pubs.er.usgs.gov/publication/tm11B4
 
