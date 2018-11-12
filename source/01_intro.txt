@@ -33,7 +33,7 @@ Summary of LAS 1.4 revisions:
   * Multiple capitalization & typo corrections.
   * Updated ASPRS contact info.
     (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
-  * Added OGC endorsement and USGS LBS reference.
+  * Added OGC endorsement.
     (`I-31 <https://github.com/ASPRSorg/LAS/issues/31>`_)
   * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
     (`I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
@@ -128,15 +128,6 @@ be found at https://portal.opengeospatial.org/files/17-030r1.
 
 Future recognition and activity on OGC referencing activities of LAS can be
 followed at http://www.opengeospatial.org/standards/community.
-
-.. note::
-
-    The USGS `LiDAR Base Specification`_ heavily refers to and uses the
-    ASPRS LAS specification to describe LiDAR acquisition in the United
-    States. It is a rich resource of LAS usage scenarios, especially
-    for some of its more advanced features.
-
-.. _`LiDAR Base Specification`: https://pubs.er.usgs.gov/publication/tm11B4
 
 .. _`OGC`: http://www.opengeospatial.org
 
