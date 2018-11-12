@@ -1,5 +1,7 @@
+.. _vlrdef_label:
+
 Variable Length Records (VLRs)
---------------------------------------------------------------------------------
+................................................................................
 
 The Public Header Block can be followed by any number of Variable Length
 Records (VLRs) so long as the total size does not make the start of the Point
@@ -29,42 +31,37 @@ Record Header is 54 bytes in length.
     | Description                      | char[32]                | 32 bytes  |          |
     +----------------------------------+-------------------------+-----------+----------+
 
-Reserved
-................................................................................
+**Reserved**
 
 This value must be set to zero.
 
-User ID
-................................................................................
+**User ID**
 
-The User ID field is ASCII character data that identifies the user which
+The User ID field is ASCII character data that identifies the user that
 created the variable length record. It is possible to have many Variable Length
 Records from different sources with different User IDs. If the character data
 is less than 16 characters, the remaining data must be null. The User ID must
 be registered with the LAS specification managing body. The management of these
 User IDs ensures that no two individuals accidentally use the same User ID.
 
-Record ID
-................................................................................
+**Record ID**
 
 The Record ID is dependent upon the User ID. There can be 0 to 65,535 Record
 IDs for every User ID. The LAS specification manages its own Record IDs (User
-IDs owned by the specification), otherwise Record IDs will be managed by the
+IDs owned by the specification); otherwise Record IDs will be managed by the
 owner of the given User ID. Thus each User ID is allowed to assign 0 to 65,535
 Record IDs in any manner they desire. Publicizing the meaning of a given Record
 ID is left to the owner of the given User ID. Unknown User ID/Record ID
 combinations should be ignored.
 
-Record Length After Header
-................................................................................
+**Record Length After Header**
 
 The record length is the number of bytes for the record after the end of the
 standard part of the header. Thus the entire record length is 54 bytes (the
 header size of the VLR) plus the number of bytes in the variable length portion
 of the record.
 
-Description
-................................................................................
+**Description**
 
 Optional, null terminated text description of the data. Any remaining
 characters not used must be null.

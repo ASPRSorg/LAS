@@ -3,18 +3,14 @@ Welcome to LAS's documentation!
 ===============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
    :caption: Contents:
+   :numbered:
 
    01_intro
-   04_definition
-   05_legacy
-   06_crs
-   07_datatypes
-   08_header
-   09_vlr
-   10_point
-   11_evlr
-   12_defined_vlrs
-   15_profiles
+   02.00_definition
+   03_required_vlrs
+   04_optional_vlrs
+   05_defined_evlrs
+   06_profiles
 

@@ -1,24 +1,78 @@
-Purpose, Scope, and Applicability
+Introduction
 --------------------------------------------------------------------------------
 
-The LAS file is intended to contain LIDAR (or other) point cloud data records.
-The data will generally be put into this format from software (e.g. provided by
-LIDAR hardware vendors) which combines GPS, IMU, and laser pulse range data to
+Purpose, Scope, and Applicability
+................................................................................
+
+The LAS file is intended to contain lidar (or other) point cloud data records.
+The data will generally be put into this format from software (e.g., provided by
+hardware vendors), which combines GPS, IMU, and laser pulse range data to
 produce X, Y, and Z point data. The intention of the data format is to provide
-an open format that allows different LIDAR hardware and software tools to
+an open format that allows different hardware and software tools to
 output data in a common format.
 
 This document reflects the fourth revision of the LAS format specification
 since its initial version 1.0 release.
 
-LAS 1.4 Additions
-................................................................................
+
+LAS 1.4 Revision History
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Summary of LAS 1.4 revisions:
+
+* R11 - Approved Version (Nov 2011).
+* R12 - Errata (June 2012) - Typographical corrections:
+
+  * Corrected Public Header size in descriptive paragraph to 375 bytes.
+  * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char".
+
+* R13 - Added Domain Profile Section (July 2013).
+* R14 - Multiple updates (GitHub Issue numbers):
+
+  * Aesthetic changes from migration to GitHub
+  * Multiple capitalization & typo corrections.
+  * Updated ASPRS contact info.
+    (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
+  * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
+    (`I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
+  * Added minimum PDRF sizes to attribute tables.
+    (`I-47 <https://github.com/ASPRSorg/LAS/issues/47>`_)
+  * Section reorganization:
+    (`I-57 <https://github.com/ASPRSorg/LAS/issues/57>`_)
+
+    * Addition of Table of Contents with section numbers. (c.f. 
+      `I-27 <https://github.com/ASPRSorg/LAS/issues/27>`_,
+      `I-49 <https://github.com/ASPRSorg/LAS/issues/49>`_)
+    * Divided "Defined Variable Length Records" section into Coordinate
+      Reference System VLRs section (s3) and Other Specification Defined
+      VLRs (s4).
+    * Expanded EVLR discussion in Legacy Compatibility section (s2.1) and moved
+      Legacy Compatibility section to EVLR definition (now s2.7.1).
+    * Swapped order of LAS 1.4 Revision History (now s1.1.1) and
+      LAS 1.4 Additions (now s1.1.2).
+
+  * Changed type of ExtraByte min/max from ``anytype`` to ``double`` and
+    clarified that min/max should be a transformed value.
+    (`I-4 <https://github.com/ASPRSorg/LAS/issues/4>`_)
+  * Clarified that Legacy Point Counts should be set to zero if using non-legacy
+    PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
+  * PDRF9 now correctly requires Scanner Channel like other PDRFs.
+    (`I-29 <https://github.com/ASPRSorg/LAS/issues/29>`_)
+  * Clarified origin date/time for Adjusted Standard GPS Time.
+    (`I-40 <https://github.com/ASPRSorg/LAS/issues/40>`_)
+
+For detailed information on changes in revisions R14 and newer, review the
+inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
+
+
+Comparison of LAS 1.4 to Previous Versions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The additions of LAS 1.4 include:
 
 * Backward compatibility with LAS 1.1 – LAS 1.3 when payloads consist of only
   legacy content
-* LAS 1.4 Mode which supports
+* LAS 1.4 mode which supports:
 
   * Extension of offsets and field sizes to support full 64 bit
   * Support for up to 15 returns per outgoing pulse
@@ -33,49 +87,37 @@ The additions of LAS 1.4 include:
   * Addition of an (optional) Extra Byte Variable Length Record to describe
     "extra bytes" stored with each point
 
-* Other minor changes
+* Other minor changes:
 
   * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
     Description"
 
-LAS 1.4 Revision History
-................................................................................
-
-Summary of LAS 1.4 revisions:
-
-* R11 - Approved Version (Nov 2011)
-* R12 - Errata (June 2012) - Typographical corrections:
-
-  * Corrected Public Header size in descriptive paragraph to 375 bytes
-  * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char"
-
-* R13 - Added Domain Profile Section (July 2013)
-* R14 - Aesthetic changes from migration to GitHub
-
-For detailed information on changes in revisions R14 and newer, review the
-inline differencing provided on the GitHub page: https://github.com/ASPRSorg/LAS
 
 Conformance
---------------------------------------------------------------------------------
+................................................................................
 
 The data types used in the LAS format definition are conformant to the 1999
 ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
 
+
 Authority
---------------------------------------------------------------------------------
+................................................................................
 
 ASPRS
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The American Society for Photogrammetry & Remote Sensing (ASPRS) is the owner
 of the LAS Specification. The standard is maintained by committees within the
 organization as directed by the ASPRS Board of Directors. Questions related to
-this standard can be directed to ASPRS at 301-493-0290, by email at
-asprs@asprs.org or las@asprs.org, or by mail at 5410 Grosvenor Lane, Suite 210,
-Bethesda, Maryland 20814-2160.
+this standard can be directed to ASPRS:
+
+* Online at https://github.com/ASPRSorg/LAS
+* By phone at 301-493-0290
+* By email at las@asprs.org or asprs@asprs.org
+* By mail at 425 Barlow Place, Suite 210, Bethesda, Maryland 20814-2160.
 
 OGC
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LAS has been recognized by `OGC`_ in 2018 as an OGC Community Standard. The OGC
 version of the document with forward material about standards that LAS

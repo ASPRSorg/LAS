@@ -12,22 +12,22 @@ The Variable Length Records (VLRs) contain variable types of data including
 projection information, metadata, waveform packet information, and user
 application data. They are limited to a data payload of 65,535 bytes.
 
-The Extended Variable Length Records (EVRLs) allow a higher payload than VLRs
+The Extended Variable Length Records (EVLRs) allow a higher payload than VLRs
 and have the advantage that they can be appended to the end of a LAS file. This
-allows adding, for example, projection information to a LAS file without having
+allows, for example, adding projection information to a LAS file without having
 to rewrite the entire file.
 
 
 .. table:: LAS 1.4 Format Definition
 
     +--------------------------------------------+
-    | PUBLIC HEADER BLOCK                        |
+    | :ref:`headerblock_label`                   |
     +--------------------------------------------+
-    | VARIABLE LENGTH RECORDS (VLR)              |
+    | :ref:`vlrdef_label`                        |
     +--------------------------------------------+
-    | POINT DATA RECORDS                         |
+    | :ref:`ptrecords_label`                     |
     +--------------------------------------------+
-    | EXTENDED VARIABLE LENGTH RECORDS (EVLR)    |
+    | :ref:`evlrdef_label`                       |
     +--------------------------------------------+
 
 
@@ -37,5 +37,13 @@ Extended Variable Length Record (EVLR). Unlike other EVLRs, the Waveform Data
 Packets (if stored internally to the file) have the offset to the storage
 header contained within the Public Header Block ("Start of Waveform Data Packet
 Record").
+
+.. include:: ./02.01_legacy.sub
+.. include:: ./02.02_crs.sub
+.. include:: ./02.03_datatypes.sub
+.. include:: ./02.04_header.sub
+.. include:: ./02.05_vlr.sub
+.. include:: ./02.06_point.sub
+.. include:: ./02.07_evlr.sub
 
 

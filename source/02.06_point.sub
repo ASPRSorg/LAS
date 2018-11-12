@@ -1,21 +1,23 @@
-Point Data Records
---------------------------------------------------------------------------------
+.. _ptrecords_label
 
-LAS file I/O software must use the "Offset to point data" field in the Public
+Point Data Records
+................................................................................
+
+LAS file I/O software must use the "Offset to Point Data" field in the Public
 Header Block to locate the starting position of the first Point Data Record.
-Note that all Point Data Records must be the same type (i.e. Point Data Record
-Format). Point data items that are not 'Required' must be set to the equivalent
-of zero for the data type (e.g. 0.0 for floating types, null for ASCII, 0 for
+Note that all Point Data Records must be the same type (i.e., Point Data Record
+Format). Point data items that are not "Required" must be set to the equivalent
+of zero for the data type (e.g., 0.0 for floating types, null for ASCII, 0 for
 integers).
 
-Point Data Record Format 6-10 have improved several aspects of the core
+Point Data Record Formats (PDRFs) 6-10 have improved several aspects of the core
 information in the point data records, particularly support for 256 classes and
 the definition of a specific "Overlap" bit. While all point record formats
 (0-10) are supported in LAS 1.4, the preferred formats are 6-10.
 
 
 Point Data Record Format 0
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 0 contains the core 20 bytes that are shared by Point
 Data Record Formats 0 to 5.
@@ -37,7 +39,7 @@ Data Record Formats 0 to 5.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 3 bits (bits 0-2)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -46,22 +48,26 @@ Data Record Formats 0 to 5.
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
-    | Left side                        |                         |           |          |
+    | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
     +----------------------------------+-------------------------+-----------+----------+
     | Point Source ID                  | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size* [1]_                                   | *20 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
-X, Y, and Z
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. [1] Recall that the Point Data Record Size can be greater than the minimum
+    required for a PDRF. These "extra bytes" follow the standard Point Record
+    fields and are described in the Extra Bytes VLR section.
+
+**X, Y, and Z**
 
 The X, Y, and Z values are stored as long integers. The X, Y, and Z values are
 used in conjunction with the scale values and the offset values to determine
 the coordinate for each point as described in the :ref:`headerblock_label` section.
 
-Intensity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Intensity**
 
 The intensity value is the integer representation of the pulse return
 magnitude. This value is optional and system specific. However, it should
@@ -78,23 +84,20 @@ ensure that data from different sensors can be correctly merged.
     Scan Direction Flag and Edge of Flight Line) are bit fields within a single
     byte.
 
-Return Number
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Return Number**
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
 of return. The first return will have a Return Number of one, the second a
 Return Number of two, and so on up to five returns.
 
-Number of Returns (given pulse)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Number of Returns (Given Pulse)**
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
 number of five returns.
 
-Scan Direction Flag
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Direction Flag**
 
 The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
@@ -102,15 +105,13 @@ direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
-Edge of Flight Line
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Edge of Flight Line**
 
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
 direction.
 
-Classification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Classification**
 
 This field represents the "class" attributes of a point. If a point has never
 been classified, this byte must be set to zero. The format for classification
@@ -121,23 +122,23 @@ the classification values in Table 9.
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
-.. table:: Classification Bit Field Encoding for Point Record types 0 to 5
+.. table:: Classification Bit Field Encoding (Point Data Record Formats 0-5)
 
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
     | 0:4   | Classification          | Standard ASPRS classification from       |
     |       |                         | 0 to 31 as defined in the classification |
-    |       |                         | table for legacy point formats           |
-    |       |                         | (see :ref:`point_classes`)               |
+    |       |                         | table for legacy point formats (see      |
+    |       |                         | :ref:`legacy_pt_class_label`).           |
     +-------+-------------------------+------------------------------------------+
     | 5     | Synthetic               | If set then this point was created by a  |
-    |       |                         | technique other than LIDAR collection    |
+    |       |                         | technique other than lidar collection    |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
     |       |                         | waveform.                                |
     +-------+-------------------------+------------------------------------------+
-    | 6     | Key-point               | If set, this point is considered to be a |
+    | 6     | Key-Point               | If set, this point is considered to be a |
     |       |                         | model key-point and thus generally       |
     |       |                         | should not be withheld in a thinning     |
     |       |                         | algorithm.                               |
@@ -151,26 +152,25 @@ the classification values in Table 9.
 
     Note that bits 5, 6 and 7 are treated as flags and can be set or clear in
     any combination. For example, a point with bits 5 and 6 both set to one and
-    the lower five bits set to 2 would be a *ground* point that had been
-    *Synthetically* collected and marked as a model *key-point*.
+    the lower five bits set to 2 would be a *Ground* point that had been
+    *Synthetically* collected and marked as a model *Key-Point*.
 
-.. _point_classes:
+.. _legacy_pt_class_label:
 
-Reserved Point Classes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Reserved Point Classes**
 
 Classification must adhere to the following standard:
 
 .. tabularcolumns:: |p{6.0cm}|p{8.0cm}|
 
-.. table:: ASPRS Standard LIDAR Point Classes (Point Data Record Format 0-5)
+.. table:: ASPRS Standard Point Classes (Point Data Record Formats 0-5)
 
     +-----------------------------------+-----------------------------------------------+
-    | Classification Value (bits 0:4)   | Meaning                                       |
+    | Classification Value (Bits 0:4)   | Meaning                                       |
     +===================================+===============================================+
-    | 0                                 | Created, never classified                     |
+    | 0                                 | Created, Never Classified                     |
     +-----------------------------------+-----------------------------------------------+
-    | 1                                 | Unclassified [1]_                             |
+    | 1                                 | Unclassified [2]_                             |
     +-----------------------------------+-----------------------------------------------+
     | 2                                 | Ground                                        |
     +-----------------------------------+-----------------------------------------------+
@@ -182,9 +182,9 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 6                                 | Building                                      |
     +-----------------------------------+-----------------------------------------------+
-    | 7                                 | Low Point (noise)                             |
+    | 7                                 | Low Point (Noise)                             |
     +-----------------------------------+-----------------------------------------------+
-    | 8                                 | Model Key-point (mass point)                  |
+    | 8                                 | Model Key-Point (Mass Point)                  |
     +-----------------------------------+-----------------------------------------------+
     | 9                                 | Water                                         |
     +-----------------------------------+-----------------------------------------------+
@@ -192,7 +192,7 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 11                                | *Reserved for ASPRS Definition*               |
     +-----------------------------------+-----------------------------------------------+
-    | 12                                | Overlap Points [2]_                           |
+    | 12                                | Overlap Points [3]_                           |
     +-----------------------------------+-----------------------------------------------+
     | 13-31                             | *Reserved for ASPRS Definition*               |
     +-----------------------------------+-----------------------------------------------+
@@ -206,7 +206,7 @@ Classification must adhere to the following standard:
     1 set to 1 equals 2, bit 2 set to 1 equals 4 and so forth.
 
 
-.. [1] We are using both 0 and 1 as *Unclassified* to maintain compatibility with
+.. [2] We are using both 0 and 1 as *Unclassified* to maintain compatibility with
     current popular classification software such as TerraScan. We extend the idea
     of classification value 1 to include cases in which data have been subjected to
     a classification algorithm but emerged in an undefined state. For example, data
@@ -214,14 +214,13 @@ Classification must adhere to the following standard:
     points that emerge without having been assigned as belonging to structures
     could be remapped from class 0 to class 1.
 
-.. [2] Overlap Points are those points that were immediately culled during the
+.. [3] Overlap Points are those points that were immediately culled during the
     merging of overlapping flight lines. In general, the *Withheld* bit should be set
     since these points are not subsequently classified.
 
-Scan Angle Rank
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Angle Rank**
 
-The Scan Angle Rank is a signed one-byte number with a valid range from -90 to
+The Scan Angle Rank is a signed one-byte integer with a valid range from -90 to
 +90. The Scan Angle Rank is the angle (rounded to the nearest integer in the
 absolute value sense) at which the laser point was output from the laser system
 including the roll of the aircraft. The scan angle is within 1 degree of
@@ -229,13 +228,11 @@ accuracy from +90 to -90 degrees. The scan angle is an angle based on 0 degrees
 being nadir, and -90 degrees to the left side of the aircraft in the direction
 of flight.
 
-User Data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**User Data**
 
 This field may be used at the user's discretion.
 
-Point Source ID
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Point Source ID**
 
 This value indicates the file from which this point originated. Valid values
 for this field are 1 to 65,535 inclusive with zero being used for a special
@@ -251,7 +248,7 @@ during processing.
     \newpage
 
 Point Data Record Format 1
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 1 is the same as Point Data Record Format 0 with the
 addition of GPS Time.
@@ -274,7 +271,7 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 3 bits (bits 0-2)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -283,7 +280,7 @@ addition of GPS Time.
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
-    | Left side                        |                         |           |          |
+    | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -291,25 +288,25 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | GPS Time                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *28 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
-GPS Time
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**GPS Time**
 
 The GPS Time is the double floating point time tag value at which the point was
-acquired. It is GPS Week Time if the Global Encoding low bit is clear and
-Adjusted Standard GPS Time if the Global Encoding low bit is set (see 
-:ref:`globalencoding_label` in the :ref:`headerblock_label` description).
+acquired. It is GPS Week Time if the :ref:`Global Encoding <globalencoding_link>`
+low bit is clear and Adjusted Standard GPS Time if the bit is set.
 
 .. raw:: latex
 
     \newpage
 
 Point Data Record Format 2
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 2 is the same as Point Data Record Format 0 with the
 addition of three color channels. These fields are used when "colorizing" a
-LIDAR point using ancillary data, typically from a camera.
+point using ancillary data, typically from a camera.
 
 .. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
@@ -328,7 +325,7 @@ LIDAR point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 3 bits (bits 0-2)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -337,7 +334,7 @@ LIDAR point using ancillary data, typically from a camera.
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
-    | Left side                        |                         |           |          |
+    | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -349,14 +346,15 @@ LIDAR point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *26 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
-Red, Green, and Blue
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Red, Green, and Blue**
 The Red, Green, and Blue image channel values associated with this point.
 
 .. note::
 
-    The Red, Green, Blue values should always be normalized to 16 bit values.
+    The Red, Green, and Blue values should always be normalized to 16 bit values.
     For example, when encoding an 8 bit per channel pixel, multiply each
     channel value by 256 prior to storage in these fields. This normalization
     allows color values from different camera bit depths to be accurately
@@ -367,7 +365,7 @@ The Red, Green, and Blue image channel values associated with this point.
     \newpage
 
 Point Data Record Format 3
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 3 is the same as Point Data Record Format 2 with the
 addition of GPS Time.
@@ -389,7 +387,7 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 3 bits (bits 0-2)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -398,7 +396,7 @@ addition of GPS Time.
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
-    | Left side                        |                         |           |          |
+    | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -412,13 +410,15 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *34 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
     \newpage
 
 Point Data Record Format 4
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
@@ -439,7 +439,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 3 bits (bits 0-2)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -448,7 +448,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
-    | Left side                        |                         |           |          |
+    | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -458,9 +458,9 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte offset to waveform data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Waveform packet size in bytes    | unsigned long           | 4 bytes   | yes      |
+    | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -470,54 +470,51 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *57 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
-Wave Packet Descriptor Index
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Wave Packet Descriptor Index**
 
 This value plus **99** is the Record ID of the Waveform Packet Descriptor and
 indicates the User Defined Record that describes the waveform packet associated
-with this LIDAR point. Up to 255 different User Defined Records which describe
+with this lidar point. Up to 255 different User Defined Records which describe
 the waveform packet are supported. A value of zero indicates that there is no
-waveform data associated with this LIDAR point record.
+waveform data associated with this lidar point record.
 
-Byte offset to Waveform Packet Data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Byte Offset to Waveform Packet Data**
 
 The waveform packet data are stored in the LAS file in an Extended Variable
 Length Record or in an auxiliary WPD file. The Byte Offset represents the
-location of the start of this LIDAR points’ waveform packet within the waveform
+location of the start of this lidar point's waveform packet within the waveform
 data variable length record (or external file) relative to the beginning of the
 Waveform Packet Data header. The absolute location of the beginning of this
 waveform packet relative to the beginning of the file is given by:
 
-    **Start of Waveform Data Packet Record** + **Byte offset to Waveform Packet Data**
+    **Start of Waveform Data Packet Record** + **Byte Offset to Waveform Packet Data**
 
     for waveform packets stored within the LAS file and
 
-    **Byte offset to Waveform Packet Data**
+    **Byte Offset to Waveform Packet Data**
 
-    for data stored in an auxiliary file
+    for data stored in an auxiliary file.
 
-Waveform packet size in bytes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Waveform Packet Size in Bytes**
 
 The size, in bytes, of the waveform packet associated with this return. Note
 that each waveform can be of a different size (even those with the same
 Waveform Packet Descriptor index) due to packet compression. Also note that
-waveform packets can be located only via the Byte offset to Waveform Packet
+waveform packets can be located only via the Byte Offset to Waveform Packet
 Data value since there is no requirement that records be stored sequentially.
 
 
-Return Point location
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Return Point Location**
 
 The offset in picoseconds (:math:`10^{-12}`) from the first digitized value to the
 location within the waveform packet that the associated return pulse was
 detected.
 
 
-X(t), Y(t), Z(t)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**X(t), Y(t), Z(t)**
 
 These parameters define a parametric line equation for extrapolating points
 along the associated waveform. The position along the wave is given by:
@@ -534,7 +531,7 @@ along the associated waveform. The position along the wave is given by:
 where X, Y and Z are the spatial position of the derived point, :math:`X_0`,
 :math:`Y_0`, :math:`Z_0` are the position of the "anchor" point (the X, Y, Z
 locations from this point's data record) and :math:`t` is the time, in picoseconds,
-relative to the anchor point (i.e. :math:`t = 0` at the anchor point). The units of
+relative to the anchor point (i.e., :math:`t = 0` at the anchor point). The units of
 X, Y and Z are the units of the coordinate systems of the LAS data. If the
 coordinate system is geographic, the horizontal units are decimal degrees and
 the vertical units are meters.
@@ -544,7 +541,7 @@ the vertical units are meters.
     \newpage
 
 Point Data Record Format 5
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
 
@@ -565,7 +562,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 3 bits (bits 0-2)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 3 bits (bits 3-5)       | 3 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -574,7 +571,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     | Classification                   | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
-    | Left side                        |                         |           |          |
+    | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | unsigned char           | 1 byte    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -590,9 +587,9 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte offset to waveform data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Waveform packet size in bytes    | unsigned long           | 4 bytes   | yes      |
+    | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -602,13 +599,15 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *63 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
     \newpage
 
 Point Data Record Format 6
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 6 contains the core 30 bytes that are shared by Point
 Data Record Formats 6 to 10. The difference to the core 20 bytes of Point Data
@@ -634,7 +633,7 @@ instead of 8), and the GPS time is mandatory.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 4 bits (bits 0-3)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification Flags             | 4 bits (bits 0-3)       | 4 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -654,6 +653,8 @@ instead of 8), and the GPS time is mandatory.
     +----------------------------------+-------------------------+-----------+----------+
     | GPS Time                         | double                  | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *30 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. note::
 
@@ -661,8 +662,7 @@ instead of 8), and the GPS time is mandatory.
     Flags, Scan Direction Flag and Edge of Flight Line) are bit fields, encoded
     into two bytes.
 
-Return Number
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Return Number**
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
@@ -670,28 +670,26 @@ of return. The first return will have a Return Number of one, the second a
 Return Number of two, and so on up to fifteen returns. The Return Number must
 be between 1 and the Number of Returns, inclusive.
 
-Number of Returns (given pulse)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Number of Returns (Given Pulse)**
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
 number of up to fifteen returns.
 
-Classification Flags
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Classification Flags**
 
 Classification flags are used to indicate special characteristics associated
 with the point. The bit definitions are:
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
 
-.. table:: Classification Bit Field Encoding for Point Data types 6 to 10
+.. table:: Classification Bit Field Encoding (Point Data Record Formats 6-10)
 
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
     | 0     | Synthetic               | If set then this point was created by a  |
-    |       |                         | technique other than LIDAR collection    |
+    |       |                         | technique other than lidar collection    |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
     |       |                         | waveform.                                |
@@ -717,19 +715,17 @@ with the point. The bit definitions are:
 .. note::
     These bits are treated as flags and can be set or cleared in any
     combination. For example, a point with bits 0 and 1 both set to one and the
-    *Classification* field set to 2 would be a *ground* point that had been
-    *synthetically* collected and marked as a model *key-point*.
+    *Classification* field set to 2 would be a *Ground* point that had been
+    *Synthetically* collected and marked as a model *Key-Point*.
 
 
-Scanner Channel
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scanner Channel**
 
 Scanner Channel is used to indicate the channel (scanner head) of a multi-
 channel system. Channel 0 is used for single scanner systems. Up to four
 channels are supported (0-3).
 
-Scan Direction Flag
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Direction Flag**
 
 The Scan Direction Flag denotes the direction at which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
@@ -737,31 +733,29 @@ direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
-Edge of Flight Line
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Edge of Flight Line**
 
 The Edge of Flight Line data bit has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
 direction or the mirror facet changes. Note that this field has no meaning for
-360° Field of View scanners (such as Mobile LIDAR scanners) and should not be
+360° Field of View scanners (such as Mobile lidar scanners) and should not be
 set.
 
-Classification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Classification**
 
 Classification must adhere to the following standard:
 
 
 .. tabularcolumns:: |p{6.0cm}|p{8.0cm}|
 
-.. table:: ASPRS Standard LIDAR Point Classes (Point Data Record Formats 6-10)
+.. table:: ASPRS Standard Point Classes (Point Data Record Formats 6-10)
 
     +-----------------------------------+-----------------------------------------------+
     | Classification Value (bits 0:4)   | Meaning                                       |
     +===================================+===============================================+
-    | 0                                 | Created, never classified                     |
+    | 0                                 | Created, Never Classified                     |
     +-----------------------------------+-----------------------------------------------+
-    | 1                                 | Unclassified [3]_                             |
+    | 1                                 | Unclassified [4]_                             |
     +-----------------------------------+-----------------------------------------------+
     | 2                                 | Ground                                        |
     +-----------------------------------+-----------------------------------------------+
@@ -773,7 +767,7 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 6                                 | Building                                      |
     +-----------------------------------+-----------------------------------------------+
-    | 7                                 | Low Point (noise)                             |
+    | 7                                 | Low Point (Noise)                             |
     +-----------------------------------+-----------------------------------------------+
     | 8                                 | *Reserved*                                    |
     +-----------------------------------+-----------------------------------------------+
@@ -791,19 +785,21 @@ Classification must adhere to the following standard:
     +-----------------------------------+-----------------------------------------------+
     | 15                                | Transmission Tower                            |
     +-----------------------------------+-----------------------------------------------+
-    | 16                                | Wire-structure Connector (e.g Insulator)      |
+    | 16                                | Wire-Structure Connector (e.g Insulator)      |
     +-----------------------------------+-----------------------------------------------+
     | 17                                | Bridge Deck                                   |
     +-----------------------------------+-----------------------------------------------+
     | 18                                | High Noise                                    |
     +-----------------------------------+-----------------------------------------------+
-    | 19-63                             | *Reserved*                                    |
+    | 19                                | Overhead Structure                            |
     +-----------------------------------+-----------------------------------------------+
-    | 64-255                            | User definable                                |
+    | 20-63                             | *Reserved*                                    |
+    +-----------------------------------+-----------------------------------------------+
+    | 64-255                            | User Definable                                |
     +-----------------------------------+-----------------------------------------------+
 
 
-.. [3] We are using both 0 and 1 as Unclassified to maintain compatibility
+.. [4] We are using both 0 and 1 as Unclassified to maintain compatibility
     with current popular classification software such as TerraScan. We extend the
     idea of classification value 1 to include cases in which data have been
     subjected to a classification algorithm but emerged in an undefined state. For
@@ -812,8 +808,7 @@ Classification must adhere to the following standard:
     structures could be remapped from class 0 to class 1.
 
 
-Scan Angle
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Scan Angle**
 
 The Scan Angle is a signed short that represents the rotational position of the
 emitted laser pulse with respect to the vertical of the coordinate system of
@@ -822,18 +817,18 @@ increment represents 0.006 degrees. Counter- Clockwise rotation, as viewed from
 the rear of the sensor, facing in the along-track (positive trajectory)
 direction, is positive. The maximum value in the positive sense is 30,000 (180
 degrees which is up in the coordinate system of the data). The maximum value in
-the negative direction is -30.000 which is also directly up.
+the negative direction is -30,000 which is also directly up.
 
 .. raw:: latex
 
     \newpage
 
 Point Data Record Format 7
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 7 is the same as Point Data Record Format 6 with the
 addition of three RGB color channels. These fields are used when "colorizing" a
-LIDAR point using ancillary data, typically from a camera
+point using ancillary data, typically from a camera
 
 .. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 
@@ -852,7 +847,7 @@ LIDAR point using ancillary data, typically from a camera
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 4 bits (bits 0-3)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification Flags             | 4 bits (bits 0-3)       | 4 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -878,13 +873,15 @@ LIDAR point using ancillary data, typically from a camera
     +----------------------------------+-------------------------+-----------+----------+
     | Blue                             | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *36 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
     \newpage
 
 Point Data Record Format 8
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 8 is the same as Point Data Record Format 7 with the
 addition of a NIR (near infrared) channel.
@@ -906,7 +903,7 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 4 bits (bits 0-3)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification Flags             | 4 bits (bits 0-3)       | 4 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -934,15 +931,16 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-----------+----------+
     | NIR                              | unsigned short          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *38 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
-NIR
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**NIR**
 
 The NIR (near infrared) channel value associated with this point.
 
 .. note::
 
-    Note that Red, Green, Blue and NIR values should always be normalized to 16
+    Note that Red, Green, Blue, and NIR values should always be normalized to 16
     bit values. For example, when encoding an 8 bit per channel pixel, multiply
     each channel value by 256 prior to storage in these fields. This
     normalization allows color values from different camera bit depths to be
@@ -953,7 +951,7 @@ The NIR (near infrared) channel value associated with this point.
     \newpage
 
 Point Data Record Format 9
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
 
@@ -974,11 +972,11 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 4 bits (bits 0-3)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification Flags             | 4 bits (bits 0-3)       | 4 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | no       |
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 2 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Scan Direction Flag              | 1 bit (bit 6)           | 1 bit     | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -996,9 +994,9 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte offset to waveform data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Waveform packet size in bytes    | unsigned long           | 4 bytes   | yes      |
+    | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -1008,13 +1006,15 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *59 bytes*           |
+    +------------------------------------------------------------+----------------------+
 
 .. raw:: latex
 
     \newpage
 
 Point Data Record Format 10
-................................................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB and NIR values.
 
@@ -1035,7 +1035,7 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-----------+----------+
     | Return Number                    | 4 bits (bits 0-3)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Number of Returns (given pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 4 bits    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Classification Flags             | 4 bits (bits 0-3)       | 4 bits    | no       |
     +----------------------------------+-------------------------+-----------+----------+
@@ -1065,9 +1065,9 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte offset to waveform data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Waveform packet size in bytes    | unsigned long           | 4 bytes   | yes      |
+    | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -1077,3 +1077,5 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-----------+----------+
     | Z(t)                             | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
+    | *Minimum PDRF Size*                                        | *67 bytes*           |
+    +------------------------------------------------------------+----------------------+
