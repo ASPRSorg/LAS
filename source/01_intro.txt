@@ -33,6 +33,8 @@ Summary of LAS 1.4 revisions:
   * Multiple capitalization & typo corrections.
   * Updated ASPRS contact info.
     (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
+  * Added OGC endorsement.
+    (`I-31 <https://github.com/ASPRSorg/LAS/issues/31>`_)
   * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
     (`I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
   * Added minimum PDRF sizes to attribute tables.
@@ -103,6 +105,9 @@ ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
 Authority
 ................................................................................
 
+ASPRS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The American Society for Photogrammetry & Remote Sensing (ASPRS) is the owner
 of the LAS Specification. The standard is maintained by committees within the
 organization as directed by the ASPRS Board of Directors. Questions related to
@@ -110,8 +115,21 @@ this standard can be directed to ASPRS:
 
 * Online at https://github.com/ASPRSorg/LAS
 * By phone at 301-493-0290
-* By email at las@asprs.org
+* By email at las@asprs.org or asprs@asprs.org
 * By mail at 425 Barlow Place, Suite 210, Bethesda, Maryland 20814-2160.
+
+OGC
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+LAS has been recognized by the Open Geospatial Consortium (`OGC`_) in 2018 as an
+OGC Community Standard. The OGC version of the document with forward material
+about standards that LAS references and its status within the standard body can
+be found at https://portal.opengeospatial.org/files/17-030r1.
+
+Future recognition and activity on OGC referencing activities of LAS can be
+followed at http://www.opengeospatial.org/standards/community.
+
+.. _`OGC`: http://www.opengeospatial.org
 
 .. raw:: latex
 
