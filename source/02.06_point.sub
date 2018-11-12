@@ -1,4 +1,4 @@
-.. _ptrecords_label
+.. _ptrecords_label:
 
 Point Data Records
 ................................................................................
@@ -130,7 +130,8 @@ the classification values in Table 9.
     | 0:4   | Classification          | Standard ASPRS classification from       |
     |       |                         | 0 to 31 as defined in the classification |
     |       |                         | table for legacy point formats (see      |
-    |       |                         | :ref:`legacy_pt_class_label`).           |
+    |       |                         | :ref:`Reserved Point Classes             |
+    |       |                         | <legacy_pt_class_link>`).                |
     +-------+-------------------------+------------------------------------------+
     | 5     | Synthetic               | If set then this point was created by a  |
     |       |                         | technique other than lidar collection    |
@@ -155,7 +156,7 @@ the classification values in Table 9.
     the lower five bits set to 2 would be a *Ground* point that had been
     *Synthetically* collected and marked as a model *Key-Point*.
 
-.. _legacy_pt_class_label:
+.. _legacy_pt_class_link:
 
 **Reserved Point Classes**
 
