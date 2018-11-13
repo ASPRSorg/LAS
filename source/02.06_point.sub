@@ -235,14 +235,17 @@ This field may be used at the user's discretion.
 
 **Point Source ID**
 
-This value indicates the file from which this point originated. Valid values
-for this field are 1 to 65,535 inclusive with zero being used for a special
-case discussed below. The numerical value corresponds to the File Source ID
-from which this point originated. Zero is reserved as a convenience to system
-implementers. A Point Source ID of zero implies that this point originated in
-this file. This implies that processing software should set the Point Source ID
-equal to the File Source ID of the file containing this point at some time
-during processing.
+This value indicates the source from which this point originated, such as a
+swath number for conventional airborne systems, a route number for mobile
+systems, or a setup identifier for static systems. For a LAS file created during
+a merge operation, the Point Source ID could equal the File Source ID of the
+origin LAS file.
+
+Valid values for this field are 1 to 65,535 inclusive. Zero is reserved as a
+convenience to system implementers. A Point Source ID of zero implies that this
+point originated in this file, such as for a Synthetic point, or is derived from
+multiple sources.
+
 
 .. raw:: latex
 

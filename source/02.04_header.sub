@@ -102,13 +102,15 @@ as a quick look initial determination of file type.
 
 **File Source ID**
 
-This field should be set to a value ranging from 1 to 65,535. If this file was
-derived from an original flight line, this is often the flight line number. A
-value of zero (0) is interpreted to mean that an ID has not been assigned. In
-this case, processing software is free to assign a number. Note that this
-scheme allows a LIDAR project to contain up to 65,535 unique sources. A source
-can be an original flight line or it can be result of merge and/or extract
-operations.
+This field should be set to a value from 0 to 65,535. A value of zero is
+interpreted to mean that an ID has not been assigned, which is the norm for a
+LAS file resulting from a merge operation such as a tile.
+
+Note that this scheme allows a project to contain up to 65,535 unique sources.
+Example sources can include a data repository ID or an original collection such
+as a flight line for direct measurement airborne systems, a route number for
+mobile systems, or a setup identifier for static systems.
+
 
 .. _globalencoding_link:
 
