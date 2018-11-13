@@ -34,7 +34,7 @@ Text Area Description
 +-----------------+-----------------------------+
 
 This VLR/EVLR is used for providing a textual description of the content of the
-LAS file. It is a null terminated, free-form ASCII string.
+LAS file. It is a null-terminated, free-form ASCII string.
 
 .. _extrabytes_vlr_label:
 
