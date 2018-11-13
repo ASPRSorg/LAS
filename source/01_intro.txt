@@ -32,8 +32,15 @@ Summary of LAS 1.4 revisions:
   * Aesthetic changes from migration to GitHub
   * Updated ASPRS contact info.
     (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
-  * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
-    (`I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
+  * Additional standard classifications 19-22 for PDRFs 6-10:
+
+    * Class 19 -- Overhead Structure in PDRFs 6-10.
+      (`I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
+    * Class 20 -- Ignored Ground.
+      (`I-11 <https://github.com/ASPRSorg/LAS/issues/11>`_)
+    * Class 21 -- Snow. (I-11)
+    * Class 22 -- Temporal Exclusion (I-11)
+
   * Added minimum PDRF sizes to attribute tables.
     (`I-47 <https://github.com/ASPRSorg/LAS/issues/47>`_)
   * Section reorganization:
