@@ -23,7 +23,7 @@ Summary of LAS 1.4 revisions:
 * R11 - Approved Version (Nov 2011).
 * R12 - Errata (June 2012) - Typographical corrections:
 
-  * Corrected Public Header size in descriptive paragraph to 375 bytes.
+  * Corrected Public Header Size in descriptive paragraph to 375 bytes.
   * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char".
 
 * R13 - Added Domain Profile Section (July 2013).
@@ -33,6 +33,15 @@ Summary of LAS 1.4 revisions:
   * Multiple capitalization & typo corrections.
   * Updated ASPRS contact info.
     (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
+  * Additional standard classifications 19-22 for PDRFs 6-10:
+    (`I-11 <https://github.com/ASPRSorg/LAS/issues/11>`_,
+    `I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
+
+    * Class 19 -- Overhead Structure in PDRFs 6-10.
+    * Class 20 -- Ignored Ground.
+    * Class 21 -- Snow.
+    * Class 22 -- Temporal Exclusion.
+
   * Added OGC endorsement.
     (`I-31 <https://github.com/ASPRSorg/LAS/issues/31>`_)
   * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
