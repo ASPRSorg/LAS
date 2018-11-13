@@ -81,7 +81,7 @@ ensure that data from different sensors can be correctly merged.
 .. note::
 
     Please note that the following four fields (Return Number, Number of Returns,
-    Scan Direction Flag and Edge of Flight Line) are bit fields within a single
+    Scan Direction Flag, and Edge of Flight Line) are bit fields within a single
     byte.
 
 **Return Number**
