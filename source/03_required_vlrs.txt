@@ -1,0 +1,189 @@
+.. raw:: latex
+
+    \newpage
+
+Coordinate Reference System VLRs (Required)
+--------------------------------------------------------------------------------
+LAS 1.4 defines Variable Length Records (VLRs) and Extended Variable Length
+Records (EVLRs). Coordinate Reference System (CRS) VLRs are defined in this
+section, while other VLRs and EVLRs are defined in the following two sections.
+
+Coordinate Reference System Information
+................................................................................
+
+The Coordinate Reference System (CRS) information for the point data is
+required for all data. The CRS information will be placed in Variable Length
+Records or Extended Variable Length Records (note that if the writer wishes to
+maintain legacy compatibility, then GeoTIFF in VLRs must be used). The CRS is
+represented by either GeoTIFF or Well Known Text (WKT) as indicated by the WKT Global
+Encoding bit. Point Record Formats 0-5 can use either GeoTIFF or WKT, but not
+both simultaneously. Point Data Record Formats 6-10 must use WKT.
+
+Georeferencing Information Using WKT
+................................................................................
+
+For definition of WKT, we refer to Open Geospatial Consortium (OGC)
+specification "OpenGIS coordinate transformation service implementation
+specification" revision 1.00 released 12 January 2001, section 7 (`"Coordinate
+Transformation Service Spec" <https://www.opengeospatial.org/standards/ct>`_).
+As there are a few dialects of WKT, please note that LAS is not using the "ESRI
+WKT" dialect, which does not include TOWGS84 and Authority nodes.
+
+WKT georeferencing information can be specified in two optional variable length
+records, the OGC math transform WKT record and the OGC coordinate system WKT
+record, as follows. Note that the math transform WKT record is added for
+completeness, and a coordinate system WKT *may* or *may not* require a math
+transform WKT record (a parameterized math transform definition).
+
+OGC Math Transform WKT Record
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 2111                        |
++-----------------+-----------------------------+
+
+This record contains the textual data representing a Math Transform WKT as
+defined in section 7 of the Coordinate Transformation Service Spec, with the
+following notes:
+
+* The OGC Math Transform WKT VLR data shall be a null-terminated string.
+* The OGC Math Transform WKT VLR data shall be considered UTF-8.
+* The OGC Math Transform WKT VLR data shall be considered C locale-based, and
+  no localization of the numeric strings within the WKT should be performed.
+
+OGC Coordinate System WKT Record
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 2112                        |
++-----------------+-----------------------------+
+
+This record contains the textual data representing a Coordinate System WKT as
+defined in section 7 of the Coordinate Transformation Service Spec, with the
+following notes:
+
+* The OGC Coordinate System WKT VLR data shall be a null-terminated string.
+* The OGC Coordinate System WKT VLR data shall be considered UTF-8.
+* The OGC Coordinate System WKT VLR data shall be considered C locale-based, and
+  no localization of the numeric strings within the WKT should be performed.
+
+Georeferencing Information Using GeoTIFF
+................................................................................
+
+The GeoTIFF specification is defined by http://geotiff.osgeo.org/.
+
+GeoTIFF georeferencing for the LAS formats uses the same mechanism that was
+developed for the GeoTIFF standard. The variable length header records section
+may contain the same data that would be contained in the GeoTIFF key tags of a
+TIFF file. Since LAS is not a raster format and each point contains its own
+absolute location information, only 3 of the 6 GeoTIFF tags are necessary when
+using GeoTIFF records instead of WKT records. The ModelTiePointTag (33922),
+ModelPixelScaleTag (33550), and ModelTransformationTag (34264) records can be
+excluded. The GeoKeyDirectoryTag (34735), GeoDoubleParamsTag (34736), and
+GeoAsciiParamsTag (34737) records are used.
+
+Only the GeoKeyDirectoryTag record is required when using GEOTIFF records
+instead of WKT records. The GeoDoubleParamsTag and GeoAsciiParamsTag records
+may or may not be present, depending on the content of the GeoKeyDirectoryTag
+record.
+
+GeoKeyDirectoryTag Record
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 34735                       |
++-----------------+-----------------------------+
+
+This record contains the key values that define the coordinate system. A
+complete description can be found in the GeoTIFF format specification. Here is
+a summary from a programmatic point of view for someone interested in
+implementation.
+
+The GeoKeyDirectoryTag is defined as just an array of unsigned short values.
+But, programmatically, the data can be seen as something like this:
+
+::
+
+    struct sGeoKeys {
+        unsigned short wKeyDirectoryVersion;
+        unsigned short wKeyRevision;
+        unsigned short wMinorRevision;
+        unsigned short wNumberOfKeys;
+
+        struct sKeyEntry {
+            unsigned short wKeyID;
+            unsigned short wTIFFTagLocation;
+            unsigned short wCount;
+            unsigned short wValue_Offset;
+        } pKey[1];
+    };
+
+Where:
+
+::
+
+    wKeyDirectoryVersion = 1; // Always
+    wKeyRevision = 1;         // Always
+    wMinorRevision = 0;       // Always
+    wNumberOfKeys        // Number of sets of 4 unsigned shorts to follow
+
+.. tabularcolumns:: |p{4.5cm}|p{12.0cm}|
+
+.. table:: GeoKey Four Unsigned Shorts
+
+    +---------------------------------+----------------------------------------------------------+
+    | Name                            | Definition                                               |
+    +=================================+==========================================================+
+    | ``wKeyID``                      | Defined key ID for each piece of GeoTIFF data. IDs       |
+    |                                 | contained in the GeoTIFF specification.                  |
+    +---------------------------------+----------------------------------------------------------+
+    | ``wTIFFTagLocation``            | Indicates where the data for this key is located:        |
+    |                                 |                                                          |
+    |                                 | * 0 means data is in the ``wValue_Offset`` field as an   |
+    |                                 |   unsigned short.                                        |
+    |                                 | * 34736 means the data is located at index               |
+    |                                 |   ``wValue_Offset`` of the GeoDoubleParamsTag record.    |
+    |                                 | * 34737 means the data is located at index               |
+    |                                 |   ``wValue_Offset`` of the GeoAsciiParamsTag record.     |
+    +---------------------------------+----------------------------------------------------------+
+    | ``wCount``                      | Number of characters in string for values of             |
+    |                                 | GeoAsciiParamsTag, otherwise is 1                        |
+    +---------------------------------+----------------------------------------------------------+
+    | ``wValue_Offset``               | Contents vary depending on value for wTIFFTagLocation    |
+    |                                 | above                                                    |
+    +---------------------------------+----------------------------------------------------------+
+
+
+
+GeoDoubleParamsTag Record (Optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 34736                       |
++-----------------+-----------------------------+
+
+This record is simply an array of doubles that contain values referenced by tag
+sets in the GeoKeyDirectoryTag record.
+
+GeoAsciiParamsTag Record (Optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 34737                       |
++-----------------+-----------------------------+
+
+This record is simply an array of ASCII data. It contains many strings separated
+by null terminator characters, which are referenced by position from data in the
+GeoKeyDirectoryTag record.
+
+
