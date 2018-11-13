@@ -74,7 +74,7 @@ following notes:
 Georeferencing Information Using GeoTIFF
 ................................................................................
 
-The GeoTIFF specification is defined by http://www.remotesensing.org/geotiff/geotiff.html.
+The GeoTIFF specification is defined by http://geotiff.osgeo.org/.
 
 GeoTIFF georeferencing for the LAS formats uses the same mechanism that was
 developed for the GeoTIFF standard. The variable length header records section
