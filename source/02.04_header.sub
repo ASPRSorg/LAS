@@ -16,13 +16,13 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Global Encoding                  | unsigned short          | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Project ID - GUID data 1         | unsigned long           | 4 bytes   |              |
+    | Project ID - GUID Data 1         | unsigned long           | 4 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Project ID - GUID data 2         | unsigned short          | 2 bytes   |              |
+    | Project ID - GUID Data 2         | unsigned short          | 2 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Project ID - GUID data 3         | unsigned short          | 2 bytes   |              |
+    | Project ID - GUID Data 3         | unsigned short          | 2 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Project ID - GUID data 4         | unsigned char[8]        | 8 bytes   |              |
+    | Project ID - GUID Data 4         | unsigned char[8]        | 8 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
     | Version Major                    | unsigned char           | 1 byte    | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
@@ -102,13 +102,15 @@ as a quick look initial determination of file type.
 
 **File Source ID**
 
-This field should be set to a value ranging from 1 to 65,535. If this file was
-derived from an original flight line, this is often the flight line number. A
-value of zero (0) is interpreted to mean that an ID has not been assigned. In
-this case, processing software is free to assign a number. Note that this
-scheme allows a LIDAR project to contain up to 65,535 unique sources. A source
-can be an original flight line or it can be result of merge and/or extract
-operations.
+This field should be set to a value from 0 to 65,535. A value of zero is
+interpreted to mean that an ID has not been assigned, which is the norm for a
+LAS file resulting from a merge operation such as a tile.
+
+Note that this scheme allows a project to contain up to 65,535 unique sources.
+Example sources can include a data repository ID or an original collection such
+as a flight line for direct measurement airborne systems, a route number for
+mobile systems, or a setup identifier for static systems.
+
 
 .. _globalencoding_link:
 
@@ -137,7 +139,9 @@ a value of 1). This bit field is defined as:
     |       |                       | 1 x :math:`10^9` (Adjusted Standard GPS  |
     |       |                       | Time). The offset moves the time back to |
     |       |                       | near zero to improve floating point      |
-    |       |                       | resolution.                              |
+    |       |                       | resolution. The origin of standard GPS   |
+    |       |                       | Time is defined as midnight of the       |
+    |       |                       | morning of January 6, 1980.              |
     +-------+-----------------------+------------------------------------------+
     | 1     | Waveform Data Packets | If this bit is set, the waveform data    |
     |       | Internal              | packets are located within this file     |
@@ -152,9 +156,9 @@ a value of 1). This bit field is defined as:
     |       |                       | (note that this bit is mutually          |
     |       |                       | exclusive with bit 1)                    |
     +-------+-----------------------+------------------------------------------+
-    | 3     | Return numbers have   | If this bit is set, the point return     |
-    |       | been synthetically    | numbers in the point data records have   |
-    |       | generated             | been synthetically generated. This could |
+    | 3     | Return Numbers Have   | If this bit is set, the point return     |
+    |       | Been Synthetically    | numbers in the point data records have   |
+    |       | Generated             | been synthetically generated. This could |
     |       |                       | be the case, for example, when a         |
     |       |                       | composite file is created by combining a |
     |       |                       | First Return File and a Last Return      |
@@ -172,7 +176,7 @@ a value of 1). This bit field is defined as:
     | 5:15  | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
 
-**Project ID (GUID data)**
+**Project ID (GUID Data)**
 
 The four fields that comprise a complete Globally Unique Identifier (GUID) are
 now reserved for use as a Project Identifier (Project ID). The field remains
@@ -195,7 +199,7 @@ minor version number.
 
 The version 1.0 specification assumed that LAS files are exclusively generated
 as a result of collection by a hardware sensor. Subsequent versions recognize
-that files often result from extraction, merging or modifying existing data
+that files often result from extraction, merging, or modifying existing data
 files. Thus System ID becomes:
 
 .. tabularcolumns:: |p{6.5cm}|p{9.5cm}|
@@ -205,8 +209,8 @@ files. Thus System ID becomes:
     +-----------------------------+---------------------------------------------+
     | Generating Agent            | System ID                                   |
     +=============================+=============================================+
-    | Hardware system             | String identifying hardware (e.g. "ALTM     |
-    |                             | 1210", "ALS50", "LMS-Q680i" etc.            |
+    | Hardware system             | String identifying hardware (e.g., "ALTM    |
+    |                             | 1210", "ALS50", "LMS-Q680i", etc.           |
     +-----------------------------+---------------------------------------------+
     | Merge of one or more files  | "MERGE"                                     |
     +-----------------------------+---------------------------------------------+
@@ -229,8 +233,8 @@ files. Thus System ID becomes:
 
 This information is ASCII data describing the generating software itself. This
 field provides a mechanism for specifying which generating software package and
-version was used during LAS file creation (e.g.  "TerraScan V-10.8", "REALM
-V-4.2" etc.). If the character data is less than 32 characters, the remaining
+version was used during LAS file creation (e.g., "TerraScan V-10.8", "REALM
+V-4.2", etc.). If the character data is less than 32 characters, the remaining
 data must be null.
 
 **File Creation Day of Year**
@@ -250,7 +254,7 @@ LAS specification through the addition of data at the end of the header, the
 Header Size field will be updated with the new header size. The Public Header
 Block may not be extended by users.
 
-**Offset to point data**
+**Offset to Point Data**
 
 The actual number of bytes from the beginning of the file to the first field of
 the first point record data field. This data offset must be updated if any
@@ -264,7 +268,7 @@ VLRs changes.
 
 **Point Data Record Format**
 
-The point data record indicates the type of point data records contains in the
+The point data record indicates the type of point data records contained in the
 file. LAS 1.4 defines types 0 through 10. These types are defined in the Point
 Data Record Format section of this specification.
 
@@ -272,19 +276,19 @@ Data Record Format section of this specification.
 
 The size, in bytes, of the Point Data Record. All Point Data Records within a
 single LAS file must be the same type and hence the same length. If the
-specified size is larger than implied by the point format type (e.g. 32 bytes
+specified size is larger than implied by the point format type (e.g., 32 bytes
 instead of 28 bytes for type 1) the remaining bytes are user-specific "extra
-bytes. The format and meaning of such "extra bytes" can (optionally) be
-described with an Extra Bytes VLR (see Table 24 and Table 25).
+bytes". The format and meaning of such "extra bytes" can (optionally) be
+described with an :ref:`extrabytes_vlr_label` VLR.
 
-**Legacy Number of point records**
+**Legacy Number of Point Records**
 
 This field contains the total number of point records within the file if the
 file is maintaining legacy compatibility, the number of points is no greater
-than UINT32_MAX, and the Point Data Record Format is less than 6. It must be
-set to zero otherwise.
+than UINT32_MAX, and the Point Data Record Format is less than 6. Otherwise,
+it must be set to zero.
 
-**Legacy Number of points by return**
+**Legacy Number of Points by Return**
 
 These fields contain an array of the total point records per return if the file
 is maintaining legacy compatibility, the number of points is no greater than
@@ -295,7 +299,7 @@ The first value will be the total number of records from the first
 return, the second contains the total number for return two, and so on up to
 five returns.
 
-**X, Y, and Z scale factors**
+**X, Y, and Z Scale Factors**
 
 The scale factor fields contain a double floating point value that is used to
 scale the corresponding X, Y, and Z long values within the point records. The
@@ -304,7 +308,7 @@ point record value to get the actual X, Y, or Z coordinate. For example, if the
 X, Y, and Z coordinates are intended to have two decimal digits, then each
 scale factor will contain the number 0.01.
 
-**X, Y, and Z offset**
+**X, Y, and Z Offset**
 
 The offset fields should be used to set the overall offset for the point
 records. In general these numbers will be zero, but for certain cases the
@@ -333,7 +337,7 @@ This value provides the offset, in bytes, from the beginning of the LAS file to
 the first byte of the Waveform Data Package Record. Note that this will be the
 first byte of the Waveform Data Packet header. If no waveform records are
 contained within the file, this value must be zero. It should be noted that LAS
-1.4 allows multiple Extended Variable Length Records (EVLR) and that the
+1.4 allows multiple Extended Variable Length Records (EVLRs) and that the
 Waveform Data Packet Record is not necessarily the first EVLR in the file.
 
 **Start of First Extended Variable Length Record**
@@ -348,13 +352,13 @@ Waveform Data Packet Record) that are stored in the file after the Point Data
 Records. This number must be updated if the number of EVLRs changes. If there
 are no EVLRs this value is zero.
 
-**Number of point records**
+**Number of Point Records**
 
 This field contains the total number of point records in the file. Note that
 this field must always be correctly populated, regardless of legacy mode
 intent.
 
-**Number of points by return**
+**Number of Points by Return**
 
 These fields contain an array of the total point records per return. The first
 value will be the total number of records from the first return, the second
