@@ -61,6 +61,12 @@ Summary of LAS 1.4 revisions:
       Legacy Compatibility section to EVLR definition (now s2.7.1).
     * Swapped order of LAS 1.4 Revision History (now s1.1.1) and
       LAS 1.4 Additions (now s1.1.2).
+    * Rearranged paragraphs in Extra Bytes VLR description.
+
+  * Deprecated "tuple" and "triple" extra byte data types.
+    (`I-1 <https://github.com/ASPRSorg/LAS/issues/1>`_)
+
+    * Added explanation and example of implicit arrays from descriptor names.
 
   * Changed type of ExtraByte min/max from ``anytype`` to ``double`` and
     clarified that min/max should be a transformed value.
