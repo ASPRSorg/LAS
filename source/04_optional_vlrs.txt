@@ -8,20 +8,20 @@ Other Specification Defined VLRs (Optional)
 Classification Lookup
 ................................................................................
 
-+-----------------+-----------------------------+
-| User ID         | LASF_Spec                   |
-+-----------------+-----------------------------+
-| Record ID       | 0                           |
-+-----------------+-----------------------------+
-
-Record Length after Header: 256 recs * 16 byte struct len
++----------------------------+-----------------------------------+
+| User ID                    | LASF_Spec                         |
++----------------------------+-----------------------------------+
+| Record ID                  | 0                                 |
++----------------------------+-----------------------------------+
+| Record Length after Header | 256 records * 16 bytes per struct |
++----------------------------+-----------------------------------+
 
 ::
 
     struct CLASSIFICATION {
         unsigned char ClassNumber;
         char Description[15];
-    };
+    }; //total of 16 bytes
 
 
 Text Area Description
@@ -69,14 +69,14 @@ have data type 29 - a floating point vector of length 3 - followed by data type
 "normalized reflectivity".
 
 The "extra bytes" are made accessible via a unique name. The "name" field
-distinguishes the additional point attributes that a LIDAR software may add to
+distinguishes the additional point attributes that software may add to
 the points in a LAS file so they can be accessed later in a consistent manner
 by another software. Descriptive names such as "normalized reflectivity", "echo
 width", or "shading normal" are encouraged. The use of generic names such as
 "variable1" or "temp1" is discouraged.
 
 The bit mask in the options field specifies whether the min and max range of
-the value have been set (i.e. are meaningful), whether the scale and/or offset
+the value have been set (i.e., are meaningful), whether the scale and/or offset
 values are set with which the "extra bytes" are to be multiplied and translated
 to compute their actual value, and whether there is a special value that should
 be interpreted as NO_DATA. By default all bits are zero which means that the
@@ -218,7 +218,7 @@ Superseded
 +-----------------+-----------------------------+
 
 This LASF Record ID is used to negate an existing VLR/EVLR when rewriting the
-file (to remove the undesired VLR/EVLR).. It is used, for example, when
+file (to remove the undesired VLR/EVLR). It is used, for example, when
 updating a record such as projection information where a new EVLR is appended
 to the end of the LAS file. The existing VLR which has been superseded must be
 marked with the SUPERSEDED Record ID.
@@ -229,7 +229,7 @@ Waveform Packet Descriptor
 +-----------------+-----------------------------+
 | User ID         | LASF_Spec                   |
 +-----------------+-----------------------------+
-| Record ID       | n: where n > 99 and n <355  |
+| Record ID       | n: where n > 99 and n < 355 |
 +-----------------+-----------------------------+
 
 .. warning::
@@ -249,11 +249,11 @@ times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
     +------------------------------+-------------------------+-----------+--------------+
     | Item                         | Format                  | Size      | Required     |
     +==============================+=========================+===========+==============+
-    | Bits per sample              | unsigned char           | 1 byte    | yes          |
+    | Bits per Sample              | unsigned char           | 1 byte    | yes          |
     +------------------------------+-------------------------+-----------+--------------+
     | Waveform Compression Type    | unsigned char           | 1 byte    | yes          |
     +------------------------------+-------------------------+-----------+--------------+
-    | Number of samples            | unsigned long           | 4 bytes   | yes          |
+    | Number of Samples            | unsigned long           | 4 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
     | Temporal Sample Spacing      | unsigned long           | 4 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
@@ -262,7 +262,7 @@ times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
     | Digitizer Offset             | double                  | 8 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
 
-**Bits Per Sample**
+**Bits per Sample**
 
 2 through 32 bits are supported.
 
@@ -281,22 +281,13 @@ always represents the fully decompressed waveform packet.
 **Temporal Sample Spacing**
 
 The temporal sample spacing in picoseconds. Example values might be 500, 1000,
-2000 and so on, representing digitizer frequencies of 2 GHz, 1 GHz and 500 MHz
+2000, and so on, representing digitizer frequencies of 2 GHz, 1 GHz, and 500 MHz
 respectively.
 
-**Digitizer Gain**
+**Digitizer Gain and Offset**
 
-The gain and offset are used to convert the raw digitized value to an absolute
-digitizer voltage using the formula:
-
-.. math::
-
-    VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
-
-**Digitizer Offset**
-
-The gain and voltage offset are used to convert the raw digitized value to a
-voltage using the formula:
+The digitizer gain and offset are used to convert the raw digitized value to an
+absolute digitizer voltage using the formula:
 
 .. math::
 
