@@ -104,15 +104,14 @@ as a quick look initial determination of file type.
 
 This field should be set to a value from 0 to 65,535. A value of zero is
 interpreted to mean that an ID has not been assigned, which is the norm for a
-LAS file resulting from a merge operation such as a tile.
-
-When the Aggregate bit is set (see Global Encoding), the File Source ID is set
-to zero (0) since the file is generated from an aggregation of many independent
-sources.
+LAS file resulting from a merge operation (e.g., a tile) or for a LAS file with
+the Aggregate :ref:`Global Encoding <globalencoding_link>` bit set,
+since the file is generated from an aggregation of multiple independent sources.
 
 Note that this scheme allows a project to contain up to 65,535 unique sources.
 Example sources can include a data repository ID or an original collection such
-as a flight line for direct measurement airborne systems, a route number for
+as a flight line for direct measurement airborne systems, a sortie number for
+aggregation model airborne systems, a route number for
 mobile systems, or a setup identifier for static systems.
 
 .. _globalencoding_link:
@@ -176,13 +175,13 @@ a value of 1). This bit field is defined as:
     |       |                       | compatibility (which means the CRS must  |
     |       |                       | be GeoTIFF).                             |
     +-------+-----------------------+------------------------------------------+
-    | 5     | Point data derived    | If this bit is set, the point data is    |
-    |       | from aggregate model  | derived from an aggregate model such as  |
-    |       |                       | a coincidence processing algorithm. When |
-    |       |                       | this bit is set, point record fields     |
-    |       |                       | that apply only to direct detection      |
-    |       |                       | systems may be nulled to yield compliant |
-    |       |                       | product.                                 |
+    | 5     | Aggregate Model       | If set, the point data is derived from   |
+    |       |                       | multiple observations in an aggregate    |
+    |       |                       | model rather than from a direct          |
+    |       |                       | measurement system. As a result, some    |
+    |       |                       | required point attributes may be null or |
+    |       |                       | intepreted differently as noted in the   |
+    |       |                       | specification.                           |
     +-------+-----------------------+------------------------------------------+
     | 6:15  | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
