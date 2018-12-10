@@ -88,7 +88,7 @@ Summary of LAS 1.4 revisions:
     * Clarified and renamed Synthetic Return Numbers Global Encoding bit.
     * Clarified Synthetic point classification flag.
     * Clarified validity of zero-value PointSourceID.
-    * Synchonized Return Number and Number of Returns descriptions between
+    * Unified Return Number and Number of Returns descriptions between
       legacy and non-legacy PDRFs.
     * Clarified Scan Direction and Edge of Flight Line Flags for non-rotational systems.
 
