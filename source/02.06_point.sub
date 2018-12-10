@@ -12,8 +12,9 @@ integers).
 
 Point Data Record Formats (PDRFs) 6-10 have improved several aspects of the core
 information in the point data records, particularly support for 256 classes and
-the definition of a specific "Overlap" bit. While all point record formats
-(0-10) are supported in LAS 1.4, the preferred formats are 6-10.
+the definition of a specific "Overlap" bit. While all PDRFs (0-10) are supported
+in LAS 1.4, the preferred formats are 6-10. PDRFs 0-5 are therefore designated
+as the "legacy" point formats.
 
 
 Point Data Record Format 0
@@ -71,16 +72,18 @@ the coordinate for each point as described in the :ref:`headerblock_label` secti
 
 The Intensity value is the integer representation of the pulse return
 magnitude. This value is optional and system specific. However, it should
-always be included if available. Intensity, when included, is always normalized
+always be included if available.
+
+When the Aggregate Global Encoding bit is set, Intensity values may represent
+estimated relative reflectivity, rather than a direct measurement of pulse
+return magnitude, and may be derived from multiple sources.
+
+Intensity, when included, is always normalized
 to a 16 bit, unsigned value by multiplying the value by 65,536/(intensity
 dynamic range of the sensor). For example, if the dynamic range of the sensor
-is 10 bits, the scaling value would be (65,536/1,024). If Intensity is not
-included, this value must be set to zero. This normalization is required to
-ensure that data from different sensors can be correctly merged.
-
-When the Aggregate Global Encoding bit is set, Intensity values represent
-estimated relative reflectivity with values scaled to 16 bit integers, rather
-than a direct measurement of pulse return magnitude.
+is 10 bits, the scaling value would be (65,536/1,024). This normalization is required to
+ensure that data from different sensors can be correctly merged. If Intensity is not
+included, this value must be set to zero.
 
 .. note::
 
@@ -93,19 +96,22 @@ than a direct measurement of pulse return magnitude.
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
 of return. The first return will have a Return Number of one, the second a
-Return Number of two, and so on up to five returns.
+Return Number of two, and so on up to five returns. The Return Number must
+be between 1 and the Number of Returns, inclusive.
 
-When the Aggregate Global Encoding bit is set, the Return Number should be set
-to one unless synthetically derived.
+When the Aggregate Global Encoding bit is set or for technologies unable to
+record multiple returns, the Return Number should be set to one unless
+synthetically derived and the Synthetic Return Number Global Encoding bit is set.
 
 **Number of Returns (Given Pulse)**
 
 The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
-number of five returns.
+number of up to five returns.
 
-When the Aggregate Global Encoding bit is set, the Number of Returns should be
-set to one unless synthetically derived.
+When the Aggregate Global Encoding bit is set or for technologies unable to
+record multiple returns, the Number of Returns should be set to one unless
+synthetically derived and the Synthetic Return Number Global Encoding bit is set.
 
 **Scan Direction Flag**
 
@@ -115,15 +121,16 @@ direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
-When the Aggregate Global Encoding bit is set, the Scan Direction Flag should be
-set to zero and ignored since the point may receive support from multiple
-directions.
+When the Aggregate Global Encoding bit is set or the measurement system does not
+include a rotational component, the Scan Direction Flag should be set to zero.
 
 **Edge of Flight Line Flag**
 
 The Edge of Flight Line Flag has a value of 1 only when the point is at the
 end of a scan. It is the last point on a given scan line before it changes
-direction or the mirror facet changes. Note that this field has no meaning for
+direction or the mirror facet changes.
+
+Note that this field has no meaning for
 360° Field of View scanners (such as mobile lidar scanners) or when the
 Aggregate Global Encoding bit is set. In these cases, the Edge of Flight Line
 Flag should be set to zero.
@@ -151,10 +158,13 @@ the classification values in Table 9.
     |       |                         | <legacy_pt_class_link>`).                |
     +-------+-------------------------+------------------------------------------+
     | 5     | Synthetic               | If set then this point was created by a  |
-    |       |                         | technique other than lidar collection    |
+    |       |                         | technique other than direct observation  |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
-    |       |                         | waveform.                                |
+    |       |                         | waveform. Point attribute interpretation |
+    |       |                         | might differ from non-Synthetic points.  |
+    |       |                         | Unused attributes must be set to the     |
+    |       |                         | appropriate default value.               |
     +-------+-------------------------+------------------------------------------+
     | 6     | Key-Point               | If set, this point is considered to be a |
     |       |                         | model key-point and thus generally       |
@@ -247,8 +257,8 @@ being nadir, and -90 degrees to the left side of the aircraft in the direction
 of flight.
 
 When the Aggregate Global Encoding bit is set, the Scan Angle Rank should be
-set to zero and ignored since the point may receive support from multiple
-angles.
+set to zero unless assigned from a component measurement as described in the
+:ref:`Global Encoding <globalencoding_link>` section.
 
 **User Data**
 
@@ -256,20 +266,16 @@ This field may be used at the user's discretion.
 
 **Point Source ID**
 
-This value indicates the source from which this point originated, such as a
-swath number for conventional airborne systems, a sortie number for
-aggregation model airborne systems, a route number for mobile
-systems, or a setup identifier for static systems. For a LAS file created during
-a merge operation, the Point Source ID could equal the File Source ID of the
-origin LAS file.
+This value indicates the source from which this point originated. A source is
+typically defined as a grouping of temporally consistent data, such as a
+flight line or sortie number for airborne systems, a route number for mobile
+systems, or a setup identifier for static systems. Valid values for this field
+are 1 to 65,535 inclusive. Zero is reserved as a convenience to system
+implementers.
 
-Valid values for this field are 1 to 65,535 inclusive. Zero is reserved as a
-convenience to system implementers. A Point Source ID of zero implies that this
-point originated in this file (e.g., for a Synthetic point).
-
-When the Aggregate Global Encoding bit is set, the Point Source ID should equal
-the sortie or flight line number of the most recent component observation.
-
+When the Aggregate Global Encoding bit is set, the Point Source ID should be
+set to zero unless assigned from a component measurement as described in the
+:ref:`Global Encoding <globalencoding_link>` section.
 
 .. raw:: latex
 
@@ -322,11 +328,12 @@ addition of GPS Time.
 **GPS Time**
 
 The GPS Time is the double floating point time tag value at which the point was
-acquired. It is GPS Week Time if the :ref:`Global Encoding <globalencoding_link>`
+observed. It is GPS Week Time if the :ref:`Global Encoding <globalencoding_link>`
 low bit is clear and Adjusted Standard GPS Time if the bit is set.
 
-When the Aggregate Global Encoding bit is set, points are tagged with the GPS
-Time corresponding to the most recent component observation.
+When the Aggregate Global Encoding bit is set, the GPS Time should be set to
+zero unless assigned from a component measurement as described in the
+:ref:`Global Encoding <globalencoding_link>` section.
 
 
 .. raw:: latex
@@ -702,8 +709,9 @@ of return. The first return will have a Return Number of one, the second a
 Return Number of two, and so on up to fifteen returns. The Return Number must
 be between 1 and the Number of Returns, inclusive.
 
-When the Aggregate Global Encoding bit is set, the Return Number should be set
-to one unless synthetically derived.
+When the Aggregate Global Encoding bit is set or for technologies unable to
+record multiple returns, the Return Number should be set to one unless
+synthetically derived and the Synthetic Return Number Global Encoding bit is set.
 
 **Number of Returns (Given Pulse)**
 
@@ -711,8 +719,9 @@ The Number of Returns is the total number of returns for a given pulse. For
 example, a laser data point may be return two (Return Number) within a total
 number of up to fifteen returns.
 
-When the Aggregate Global Encoding bit is set, the Number of Returns should be
-set to one unless synthetically derived.
+When the Aggregate Global Encoding bit is set or for technologies unable to
+record multiple returns, the Number of Returns should be set to one unless
+synthetically derived and the Synthetic Return Number Global Encoding bit is set.
 
 **Classification Flags**
 
@@ -726,11 +735,14 @@ with the point. The bit definitions are:
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
-    | 0     | Synthetic               | If set then this point was created by a  |
-    |       |                         | technique other than lidar collection    |
+    | 5     | Synthetic               | If set then this point was created by a  |
+    |       |                         | technique other than direct observation  |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
-    |       |                         | waveform.                                |
+    |       |                         | waveform. Point attribute interpretation |
+    |       |                         | might differ from non-Synthetic points.  |
+    |       |                         | Unused attributes must be set to the     |
+    |       |                         | appropriate default value.               |
     +-------+-------------------------+------------------------------------------+
     | 1     | Key-point               | If set, this point is considered to be a |
     |       |                         | model key-point and thus generally       |
@@ -763,6 +775,10 @@ Scanner Channel is used to indicate the channel (scanner head) of a multi-
 channel system. Channel 0 is used for single scanner systems. Up to four
 channels are supported (0-3).
 
+When the Aggregate Global Encoding bit is set, the Channel should be set to
+zero unless assigned from a component measurement as described in the
+:ref:`Global Encoding <globalencoding_link>` section.
+
 **Scan Direction Flag**
 
 The Scan Direction Flag denotes the direction at which the scanner mirror was
@@ -771,9 +787,8 @@ direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
 the right side and negative the opposite).
 
-When the Aggregate Global Encoding bit is set, the Scan Direction Flag should be
-set to zero and ignored since the point may receive support from multiple
-directions.
+When the Aggregate Global Encoding bit is set or the measurement system does not
+include a rotational component, the Scan Direction Flag should be set to zero.
 
 **Edge of Flight Line Flag**
 
@@ -873,7 +888,8 @@ degrees which is up in the coordinate system of the data). The maximum value in
 the negative direction is -30,000 which is also directly up.
 
 When the Aggregate Global Encoding bit is set, the Scan Angle should be set to
-zero since the point may receive support from multiple angles.
+zero unless assigned from a component measurement as described in the
+:ref:`Global Encoding <globalencoding_link>` section.
 
 
 .. raw:: latex
