@@ -124,7 +124,7 @@ is defined (this is the bit, that if set, would have the unsigned integer yield
 a value of 1). This bit field is defined as:
 
 
-.. tabularcolumns:: |p{2.0cm}|p{6.0cm}|p{8.5cm}|
+.. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{11.0cm}|
 
 .. table:: Global Encoding -- Bit Field Encoding
 
@@ -190,7 +190,7 @@ a value of 1). This bit field is defined as:
     multiple observations, some required point attributes may be null or
     interpreted differently as noted in the specification. Nevertheless, these
     attributes should be assigned valid values whenever feasible. For example,
-    in the case of a photogrametrically derived point cloud, the Point Source
+    in the case of a photogrammetrically derived point cloud, the Point Source
     ID, GPS Time, and Scan Angle could be assigned to a point based on the value
     associated with the most recent photograph from which the point was derived.
 
