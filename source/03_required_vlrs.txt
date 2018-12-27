@@ -15,20 +15,19 @@ The Coordinate Reference System (CRS) information for the point data is
 required for all data. The CRS information will be placed in Variable Length
 Records or Extended Variable Length Records (note that if the writer wishes to
 maintain legacy compatibility, then GeoTIFF in VLRs must be used). The CRS is
-represented by either GeoTIFF or Well Know Text as indicated by the WKT Global
-Encoding bit. Point Record Formats 0-5 can use either GeoTIFF or WKT (but not
-both simultaneously). Point Record Formats 6-10 must use WKT.
+represented by either GeoTIFF or Well Known Text (WKT) as indicated by the WKT Global
+Encoding bit. Point Record Formats 0-5 can use either GeoTIFF or WKT, but not
+both simultaneously. Point Data Record Formats 6-10 must use WKT.
 
-Georeferencing Information using WKT
+Georeferencing Information Using WKT
 ................................................................................
 
 For definition of WKT, we refer to Open Geospatial Consortium (OGC)
 specification "OpenGIS coordinate transformation service implementation
-specification" revision 1.00 released 12 January 2001, section 7 (coordinate
-transformation services spec). This specification may be found at
-www.opengeospatial.org/standards/ct. As there are a few dialects of WKT, please
-note that LAS is not using the "ESRI WKT" dialect, which does not include
-TOWGS84 and authority nodes.
+specification" revision 1.00 released 12 January 2001, section 7 (`"Coordinate
+Transformation Service Spec" <https://www.opengeospatial.org/standards/ct>`_).
+As there are a few dialects of WKT, please note that LAS is not using the "ESRI
+WKT" dialect, which does not include TOWGS84 and Authority nodes.
 
 WKT georeferencing information can be specified in two optional variable length
 records, the OGC math transform WKT record and the OGC coordinate system WKT
@@ -46,7 +45,7 @@ OGC Math Transform WKT Record
 +-----------------+-----------------------------+
 
 This record contains the textual data representing a Math Transform WKT as
-defined in section 7 of the Coordinate Transformation Services Spec, with the
+defined in section 7 of the Coordinate Transformation Service Spec, with the
 following notes:
 
 * The OGC Math Transform WKT VLR data shall be a null-terminated string.
@@ -54,7 +53,7 @@ following notes:
 * The OGC Math Transform WKT VLR data shall be considered C locale-based, and
   no localization of the numeric strings within the WKT should be performed.
 
-OGC Coordinate System WKT
+OGC Coordinate System WKT Record
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
@@ -64,7 +63,7 @@ OGC Coordinate System WKT
 +-----------------+-----------------------------+
 
 This record contains the textual data representing a Coordinate System WKT as
-defined in section 7 of the Coordinate Transformation Services Spec, with the
+defined in section 7 of the Coordinate Transformation Service Spec, with the
 following notes:
 
 * The OGC Coordinate System WKT VLR data shall be a null-terminated string.
@@ -72,10 +71,10 @@ following notes:
 * The OGC Coordinate System WKT VLR data shall be considered C locale-based, and
   no localization of the numeric strings within the WKT should be performed.
 
-Georeferencing Information using GeoTIFF
+Georeferencing Information Using GeoTIFF
 ................................................................................
 
-The GeoTIFF specification is defined by http://www.remotesensing.org/geotiff/geotiff.html.
+The GeoTIFF specification is defined by http://geotiff.osgeo.org/.
 
 GeoTIFF georeferencing for the LAS formats uses the same mechanism that was
 developed for the GeoTIFF standard. The variable length header records section
@@ -85,10 +84,10 @@ absolute location information, only 3 of the 6 GeoTIFF tags are necessary when
 using GeoTIFF records instead of WKT records. The ModelTiePointTag (33922),
 ModelPixelScaleTag (33550), and ModelTransformationTag (34264) records can be
 excluded. The GeoKeyDirectoryTag (34735), GeoDoubleParamsTag (34736), and
-GeoASCIIParamsTag (34737) records are used.
+GeoAsciiParamsTag (34737) records are used.
 
 Only the GeoKeyDirectoryTag record is required when using GEOTIFF records
-instead of WKT records. The GeoDoubleParamsTag and GeoASCIIParamsTag records
+instead of WKT records. The GeoDoubleParamsTag and GeoAsciiParamsTag records
 may or may not be present, depending on the content of the GeoKeyDirectoryTag
 record.
 
@@ -162,7 +161,7 @@ Where:
 
 
 
-GeoDoubleParamsTag Record (optional)
+GeoDoubleParamsTag Record (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
@@ -174,7 +173,7 @@ GeoDoubleParamsTag Record (optional)
 This record is simply an array of doubles that contain values referenced by tag
 sets in the GeoKeyDirectoryTag record.
 
-GeoAsciiParamsTag Record (optional)
+GeoAsciiParamsTag Record (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
@@ -184,7 +183,7 @@ GeoAsciiParamsTag Record (optional)
 +-----------------+-----------------------------+
 
 This record is simply an array of ASCII data. It contains many strings separated
-by null terminator characters which are referenced by position from data in the
+by null terminator characters, which are referenced by position from data in the
 GeoKeyDirectoryTag record.
 
 
