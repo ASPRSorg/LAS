@@ -104,9 +104,8 @@ as a quick look initial determination of file type.
 
 This field should be set to a value from 0 to 65,535. A value of zero is
 interpreted to mean that an ID has not been assigned, which is the norm for a
-LAS file resulting from a merge operation (e.g., a tile) or for a LAS file with
-the Aggregate :ref:`Global Encoding <globalencoding_link>` bit set,
-since the file is generated from an aggregation of multiple independent sources.
+LAS file resulting from an aggregation of multiple independent sources (e.g., a
+tile merged from multiple swaths).
 
 Note that this scheme allows a project to contain up to 65,535 unique sources.
 Example sources can include a data repository ID or an original collection of
@@ -165,9 +164,8 @@ a value of 1). This bit field is defined as:
     |       |                       | composite file is created by combining a |
     |       |                       | First Return File and a Last Return      |
     |       |                       | File, or when simulating return numbers  |
-    |       |                       | during post-processing of a LAS file     |
-    |       |                       | with the Aggregate Global Encoding bit   |
-    |       |                       | set.                                     |
+    |       |                       | for a system not directly supporting     |
+    |       |                       | multiple returns.                        |
     +-------+-----------------------+------------------------------------------+
     | 4     | WKT                   | If set, the Coordinate Reference System  |
     |       |                       | (CRS) is WKT. If not set, the CRS is     |
@@ -176,23 +174,9 @@ a value of 1). This bit field is defined as:
     |       |                       | compatibility (which means the CRS must  |
     |       |                       | be GeoTIFF).                             |
     +-------+-----------------------+------------------------------------------+
-    | 5     | Aggregate Model       | If set, the point data is derived from   |
-    |       |                       | multiple observations in an aggregate    |
-    |       |                       | model rather than from a direct          |
-    |       |                       | measurement system. [1]_                 |
-    +-------+-----------------------+------------------------------------------+
-    | 6:15  | Reserved              | Must be set to zero (0).                 |
+    | 5:15  | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
 
-.. [1] Example technologies for setting the Aggregate Global Encoding bit include
-    Geiger-mode lidar processed with a consensus model and photogrammetrically
-    derived point clouds. Because each point in such a LAS file is derived from
-    multiple observations, some required point attributes may be null or
-    interpreted differently as noted in the specification. Nevertheless, these
-    attributes should be assigned valid values whenever feasible. For example,
-    in the case of a photogrammetrically derived point cloud, the Point Source
-    ID, GPS Time, and Scan Angle could be assigned to a point based on the value
-    associated with the most recent photograph from which the point was derived.
 
 **Project ID (GUID Data)**
 
