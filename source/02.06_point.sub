@@ -354,6 +354,7 @@ point using ancillary data, typically from a camera.
     +------------------------------------------------------------+----------------------+
 
 **Red, Green, and Blue**
+
 The Red, Green, and Blue image channel values associated with this point.
 
 .. note::
