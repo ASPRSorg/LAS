@@ -205,7 +205,7 @@ The American Society for Photogrammetry \& Remote Sensing\\
 425 Barlow Place, Suite 210\\
 Bethesda, Maryland 20814-2160\\
 Voice: 301-493-0290\\
-Fax: 301-493-0208\\
+Fax: 225-408-4422\\
 Web: \underline{www.asprs.org}\\
 
 
