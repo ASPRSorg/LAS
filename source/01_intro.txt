@@ -73,6 +73,9 @@ Summary of LAS 1.4 revisions:
     (`I-4 <https://github.com/ASPRSorg/LAS/issues/4>`_)
   * Clarified that Legacy Point Counts should be set to zero if using non-legacy
     PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
+  * Clarified Full Waveform descriptions and added wiki link.
+    (`I-9 <https://github.com/ASPRSorg/LAS/issues/9>`_)
+  * Renamed X(t), Y(t), and Z(t) from waveform packets to Parametric dx/dy/dz.
   * PDRF9 now correctly requires Scanner Channel like other PDRFs.
     (`I-29 <https://github.com/ASPRSorg/LAS/issues/29>`_)
   * Clarified origin date/time for Adjusted Standard GPS Time.
@@ -121,6 +124,7 @@ The additions of LAS 1.4 include:
 
   * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
     Description"
+  * Added links to official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
 
 
 Conformance

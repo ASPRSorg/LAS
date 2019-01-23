@@ -525,11 +525,11 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | X(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dx                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Y(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dy                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Z(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dz                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *57 bytes*           |
     +------------------------------------------------------------+----------------------+
@@ -538,15 +538,15 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
 This value plus **99** is the Record ID of the Waveform Packet Descriptor and
 indicates the User Defined Record that describes the waveform packet associated
-with this lidar point. Up to 255 different User Defined Records which describe
+with this Point Record. Up to 255 different User Defined Records which describe
 the waveform packet are supported. A value of zero indicates that there is no
-waveform data associated with this lidar point record.
+waveform data associated with this Point Record.
 
 **Byte Offset to Waveform Packet Data**
 
 The waveform packet data are stored in the LAS file in an Extended Variable
 Length Record or in an auxiliary WPD file. The Byte Offset represents the
-location of the start of this lidar point's waveform packet within the waveform
+location of the start of this Point Record’s waveform packet within the waveform
 data variable length record (or external file) relative to the beginning of the
 Waveform Packet Data header. The absolute location of the beginning of this
 waveform packet relative to the beginning of the file is given by:
@@ -568,14 +568,13 @@ waveform packets can be located only via the Byte Offset to Waveform Packet
 Data value since there is no requirement that records be stored sequentially.
 
 
-**Return Point Location**
+**Return Point Waveform Location**
 
-The offset in picoseconds (:math:`10^{-12}`) from the first digitized value to the
-location within the waveform packet that the associated return pulse was
-detected.
+The temporal offset in picoseconds (:math:`10^{-12}`) from the arbitrary "anchor
+point" to the location within the waveform packet for this Point Record.
 
 
-**X(t), Y(t), Z(t)**
+**Parametric dx, dy, dz**
 
 These parameters define a parametric line equation for extrapolating points
 along the associated waveform. The position along the wave is given by:
@@ -584,18 +583,40 @@ along the associated waveform. The position along the wave is given by:
     :nowrap:
 
     \begin {eqnarray}
-        X &= X_0 + X(t) \\
-        Y &= Y_0 + Y(t) \\
-        Z &= Z_0 + Z(t)
+        X &= X_0 + t * dx \\
+        Y &= Y_0 + t * dy \\
+        Z &= Z_0 + t * dz
     \end {eqnarray}
 
-where X, Y and Z are the spatial position of the derived point, :math:`X_0`,
-:math:`Y_0`, :math:`Z_0` are the position of the "anchor" point (the X, Y, Z
-locations from this point's data record) and :math:`t` is the time, in picoseconds,
-relative to the anchor point (i.e., :math:`t = 0` at the anchor point). The units of
-X, Y and Z are the units of the coordinate systems of the LAS data. If the
-coordinate system is geographic, the horizontal units are decimal degrees and
-the vertical units are meters.
+where :math:`(X, Y, Z)` is the spatial position of a derived point,
+:math:`(X_0, Y_0, Z_0)` is the position of the "anchor" point, and :math:`t` is
+the time, in picoseconds, relative to the anchor point.
+
+The anchor point is an arbitrary location at the origin of the associated
+waveform -- i.e. :math:`t = 0` at the anchor point -- with coordinates defined
+by:
+
+.. math::
+    :nowrap:
+
+    \begin {eqnarray}
+        X_0 &= X_P + L * dx \\
+        Y_0 &= Y_P + L * dy \\
+        Z_0 &= Z_P + L * dz
+    \end {eqnarray}
+
+where :math:`(X_P, Y_P, Z_P)` is this Point Record's transformed position (as a 
+double) and :math:`L` is this Point Record's Return Point Waveform Location.
+
+The units of X, Y and Z are the units of the coordinate systems of the LAS data.
+If the coordinate system is geographic, the horizontal units are decimal degrees
+and the vertical units are meters.
+
+.. note::
+
+    Users seeking further clarity regarding LAS waveform encoding are encouraged
+    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki/Waveform-Data-Packet-Descriptors-Explained
+
 
 .. raw:: latex
 
@@ -654,11 +675,11 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | X(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dx                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Y(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dy                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Z(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dz                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *63 bytes*           |
     +------------------------------------------------------------+----------------------+
@@ -1095,11 +1116,11 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | X(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dx                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Y(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dy                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Z(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dz                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *59 bytes*           |
     +------------------------------------------------------------+----------------------+
@@ -1166,11 +1187,16 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-----------+----------+
     | Return Point Waveform Location   | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | X(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dx                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Y(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dy                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Z(t)                             | float                   | 4 bytes   | yes      |
+    | Parametric dz                    | float                   | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *67 bytes*           |
     +------------------------------------------------------------+----------------------+
+
+.. raw:: latex
+
+    \newpage
+

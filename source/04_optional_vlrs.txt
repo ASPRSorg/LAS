@@ -236,8 +236,7 @@ Waveform Packet Descriptor
 
 .. warning::
 
-    This VLR is REQUIRED internally or externally when using Point Data Record
-    Formats 4, 5, 9 or 10.
+    This VLR is REQUIRED when using Point Data Record Formats 4, 5, 9 or 10.
 
 These records contain information that describes the configuration of the
 waveform packets. Since systems may be configured differently at different
@@ -294,5 +293,10 @@ absolute digitizer voltage using the formula:
 .. math::
 
     VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
+
+.. note::
+
+    Users seeking further clarity regarding LAS waveform encoding are encouraged
+    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki/Waveform-Data-Packet-Descriptors-Explained
 
 

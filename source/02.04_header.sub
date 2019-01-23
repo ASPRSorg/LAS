@@ -338,7 +338,7 @@ file data, specified in the coordinate system of the LAS data.
 This value provides the offset, in bytes, from the beginning of the LAS file to
 the first byte of the Waveform Data Package Record. Note that this will be the
 first byte of the Waveform Data Packet header. If no waveform records are
-contained within the file, this value must be zero. It should be noted that LAS
+contained within the file or they are stored externally, this value must be zero. It should be noted that LAS
 1.4 allows multiple Extended Variable Length Records (EVLRs) and that the
 Waveform Data Packet Record is not necessarily the first EVLR in the file.
 
