@@ -81,6 +81,15 @@ Summary of LAS 1.4 revisions:
     Description. (`I-46 <https://github.com/ASPRSorg/LAS/issues/46>`_)
   * Clarified relationship between FileSourceID and PointSourceID.
     (`I-59 <https://github.com/ASPRSorg/LAS/issues/59>`_)
+  * Added language to support technologies other than conventional linear-mode
+    lidar scanners. (`I-35 <https://github.com/ASPRSorg/LAS/issues/35>`_)
+
+    * Clarified and renamed Synthetic Return Numbers Global Encoding bit.
+    * Clarified Synthetic point classification flag.
+    * Clarified validity of zero-value PointSourceID.
+    * Unified Return Number and Number of Returns descriptions between
+      legacy and non-legacy PDRFs.
+    * Clarified Scan Direction and Edge of Flight Line Flags for non-rotational systems.
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.

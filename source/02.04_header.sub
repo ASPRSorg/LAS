@@ -104,13 +104,14 @@ as a quick look initial determination of file type.
 
 This field should be set to a value from 0 to 65,535. A value of zero is
 interpreted to mean that an ID has not been assigned, which is the norm for a
-LAS file resulting from a merge operation such as a tile.
+LAS file resulting from an aggregation of multiple independent sources (e.g., a
+tile merged from multiple swaths).
 
 Note that this scheme allows a project to contain up to 65,535 unique sources.
-Example sources can include a data repository ID or an original collection such
-as a flight line for direct measurement airborne systems, a route number for
-mobile systems, or a setup identifier for static systems.
-
+Example sources can include a data repository ID or an original collection of
+temporally consistent data such as a flight line or sortie number for airborne
+systems, a route number for mobile systems, or a setup identifier for static
+systems.
 
 .. _globalencoding_link:
 
@@ -122,7 +123,7 @@ is defined (this is the bit, that if set, would have the unsigned integer yield
 a value of 1). This bit field is defined as:
 
 
-.. tabularcolumns:: |p{2.0cm}|p{6.0cm}|p{8.5cm}|
+.. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{11.0cm}|
 
 .. table:: Global Encoding -- Bit Field Encoding
 
@@ -156,15 +157,15 @@ a value of 1). This bit field is defined as:
     |       |                       | (note that this bit is mutually          |
     |       |                       | exclusive with bit 1)                    |
     +-------+-----------------------+------------------------------------------+
-    | 3     | Return Numbers Have   | If this bit is set, the point return     |
-    |       | Been Synthetically    | numbers in the point data records have   |
-    |       | Generated             | been synthetically generated. This could |
+    | 3     | Synthetic Return      | If this bit is set, the point return     |
+    |       | Numbers               | numbers in the point data records have   |
+    |       |                       | been synthetically generated. This could |
     |       |                       | be the case, for example, when a         |
     |       |                       | composite file is created by combining a |
     |       |                       | First Return File and a Last Return      |
-    |       |                       | File. In this case, first return data    |
-    |       |                       | will be labeled "1 of 2" and second      |
-    |       |                       | return data will be labeled "2 of 2".    |
+    |       |                       | File, or when simulating return numbers  |
+    |       |                       | for a system not directly supporting     |
+    |       |                       | multiple returns.                        |
     +-------+-----------------------+------------------------------------------+
     | 4     | WKT                   | If set, the Coordinate Reference System  |
     |       |                       | (CRS) is WKT. If not set, the CRS is     |
@@ -175,6 +176,7 @@ a value of 1). This bit field is defined as:
     +-------+-----------------------+------------------------------------------+
     | 5:15  | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
+
 
 **Project ID (GUID Data)**
 
