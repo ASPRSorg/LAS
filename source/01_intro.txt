@@ -94,6 +94,9 @@ Summary of LAS 1.4 revisions:
       legacy and non-legacy PDRFs.
     * Clarified Scan Direction and Edge of Flight Line Flags for non-rotational systems.
 
+  * Added wiki link for Project ID examples.
+    (`I-38 <https://github.com/ASPRSorg/LAS/issues/38>`_)
+
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
 

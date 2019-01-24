@@ -188,6 +188,11 @@ associated with a unique project. By assigning a Project ID and using a File
 Source ID (defined above) every file within a project and every point within a
 file can be uniquely identified, globally.
 
+.. note::
+
+    Example implementations of representing the Project ID fields as a GUID can
+    be found on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+
 **Version Number**
 
 The version number consists of a major and minor field. The major and minor
