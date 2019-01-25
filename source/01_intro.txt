@@ -44,8 +44,6 @@ Summary of LAS 1.4 revisions:
 
   * Added OGC endorsement.
     (`I-31 <https://github.com/ASPRSorg/LAS/issues/31>`_)
-  * Reserved Class 19 as Overhead Structure in PDRFs 6-10.
-    (`I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
   * Added minimum PDRF sizes to attribute tables.
     (`I-47 <https://github.com/ASPRSorg/LAS/issues/47>`_)
   * Section reorganization:
