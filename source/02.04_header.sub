@@ -85,7 +85,7 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Number of Point Records          | unsigned long long      | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Number of Points by Return       | unsigned long long [15] | 120 bytes | yes          |
+    | Number of Points by Return       | unsigned long long[15]  | 120 bytes | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
 
 .. note::
@@ -276,8 +276,8 @@ VLRs changes.
 **Point Data Record Format**
 
 The point data record indicates the type of point data records contained in the
-file. LAS 1.4 defines types 0 through 10. These types are defined in the Point
-Data Record Format section of this specification.
+file. LAS 1.4 defines types 0 through 10. These types are defined in the
+:ref:`ptrecords_label` section of this specification.
 
 **Point Data Record Length**
 
@@ -315,7 +315,7 @@ point record value to get the actual X, Y, or Z coordinate. For example, if the
 X, Y, and Z coordinates are intended to have two decimal digits, then each
 scale factor will contain the number 0.01.
 
-**X, Y, and Z Offset**
+**X, Y, and Z Offsets**
 
 The offset fields should be used to set the overall offset for the point
 records. In general these numbers will be zero, but for certain cases the

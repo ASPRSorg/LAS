@@ -84,7 +84,7 @@ Data Record Formats 0 to 5.
 
 .. [1] Recall that the Point Data Record Size can be greater than the minimum
     required for a PDRF. These "extra bytes" follow the standard Point Record
-    fields and are described in the Extra Bytes VLR section.
+    fields and are described in the :ref:`extrabytes_vlr_label` VLR section.
 
 **X, Y, and Z**
 
@@ -139,7 +139,7 @@ Global Encoding bit is set.
 
 **Scan Direction Flag**
 
-The Scan Direction Flag denotes the direction at which the scanner mirror was
+The Scan Direction Flag denotes the direction in which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
 direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
@@ -536,28 +536,28 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
 
 **Wave Packet Descriptor Index**
 
-This value plus **99** is the Record ID of the Waveform Packet Descriptor and
+This value plus **99** is the Record ID of the :ref:`fwf_descriptor_label` and
 indicates the User Defined Record that describes the waveform packet associated
 with this Point Record. Up to 255 different User Defined Records which describe
 the waveform packet are supported. A value of zero indicates that there is no
 waveform data associated with this Point Record.
 
-**Byte Offset to Waveform Packet Data**
+**Byte Offset to Waveform Data**
 
 The waveform packet data are stored in the LAS file in an Extended Variable
-Length Record or in an auxiliary WPD file. The Byte Offset represents the
+Length Record or in an auxiliary *.wdp file. The Byte Offset represents the
 location of the start of this Point Record’s waveform packet within the waveform
 data variable length record (or external file) relative to the beginning of the
-Waveform Packet Data header. The absolute location of the beginning of this
+:ref:`fwf_packets_label` header. The absolute location of the beginning of this
 waveform packet relative to the beginning of the file is given by:
 
-    **Start of Waveform Data Packet Record** + **Byte Offset to Waveform Packet Data**
+    **Start of Waveform Data Packet Record** + **Byte Offset to Waveform Data**
 
     for waveform packets stored within the LAS file and
 
-    **Byte Offset to Waveform Packet Data**
+    **Byte Offset to Waveform Data**
 
-    for data stored in an auxiliary file.
+    for data stored in an auxiliary *.wdp file.
 
 **Waveform Packet Size in Bytes**
 
@@ -741,7 +741,7 @@ instead of 8), and the GPS time is mandatory.
 .. note::
 
     The following five fields (Return Number, Number of Returns, Classification
-    Flags, Scan Direction Flag and Edge of Flight Line) are bit fields, encoded
+    Flags, Scan Direction Flag, and Edge of Flight Line) are bit fields, encoded
     into two bytes.
 
 **Return Number**
@@ -823,7 +823,7 @@ to zero unless assigned from a component measurement.
 
 **Scan Direction Flag**
 
-The Scan Direction Flag denotes the direction at which the scanner mirror was
+The Scan Direction Flag denotes the direction in which the scanner mirror was
 traveling at the time of the output pulse. A bit value of 1 is a positive scan
 direction, and a bit value of 0 is a negative scan direction (where positive
 scan direction is a scan moving from the left side of the in-track direction to
@@ -944,7 +944,7 @@ Point Data Record Format 7
 
 Point Data Record Format 7 is the same as Point Data Record Format 6 with the
 addition of three RGB color channels. These fields are used when "colorizing" a
-point using ancillary data, typically from a camera
+point using ancillary data, typically from a camera.
 
 .. tabularcolumns:: |p{7.5cm}|p{3.5cm}|p{1.5cm}|p{1.5cm}|
 

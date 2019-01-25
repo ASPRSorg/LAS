@@ -53,7 +53,7 @@ information. This ability is useful, for example, when a user wishes to update
 information normally contained within a VLR without the need of rewriting the
 point data.
 
-A new LASF_Spec "Superseded" (value 7) has been defined to allow a writer to
+A new LASF_Spec ":ref:`superseded_vlr_label`" VLR (value 7) has been defined to allow a writer to
 indicate that a VLR should no longer be used. For example, if a user appends a
 new WKT EVLR to a file, the existing WKT VLR should have its LASF Spec number
 changed to Superseded to indicate that it is no longer in use.

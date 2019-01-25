@@ -15,9 +15,10 @@ The Coordinate Reference System (CRS) information for the point data is
 required for all data. The CRS information will be placed in Variable Length
 Records or Extended Variable Length Records (note that if the writer wishes to
 maintain legacy compatibility, then GeoTIFF in VLRs must be used). The CRS is
-represented by either GeoTIFF or Well Known Text (WKT) as indicated by the WKT Global
-Encoding bit. Point Record Formats 0-5 can use either GeoTIFF or WKT, but not
-both simultaneously. Point Data Record Formats 6-10 must use WKT.
+represented by either GeoTIFF or Well Known Text (WKT) as indicated by the WKT
+:ref:`Global Encoding <globalencoding_link>` bit. Point Record Formats 0-5 can
+use either GeoTIFF or WKT, but not both simultaneously. Point Data Record
+Formats 6-10 must use WKT.
 
 Georeferencing Information Using WKT
 ................................................................................
@@ -86,7 +87,7 @@ ModelPixelScaleTag (33550), and ModelTransformationTag (34264) records can be
 excluded. The GeoKeyDirectoryTag (34735), GeoDoubleParamsTag (34736), and
 GeoAsciiParamsTag (34737) records are used.
 
-Only the GeoKeyDirectoryTag record is required when using GEOTIFF records
+Only the GeoKeyDirectoryTag record is required when using GeoTIFF records
 instead of WKT records. The GeoDoubleParamsTag and GeoAsciiParamsTag records
 may or may not be present, depending on the content of the GeoKeyDirectoryTag
 record.
@@ -153,10 +154,10 @@ Where:
     |                                 |   ``wValue_Offset`` of the GeoAsciiParamsTag record.     |
     +---------------------------------+----------------------------------------------------------+
     | ``wCount``                      | Number of characters in string for values of             |
-    |                                 | GeoAsciiParamsTag, otherwise is 1                        |
+    |                                 | GeoAsciiParamsTag, otherwise is 1.                       |
     +---------------------------------+----------------------------------------------------------+
     | ``wValue_Offset``               | Contents vary depending on value for wTIFFTagLocation    |
-    |                                 | above                                                    |
+    |                                 | above.                                                   |
     +---------------------------------+----------------------------------------------------------+
 
 

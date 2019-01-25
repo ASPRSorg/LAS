@@ -54,7 +54,7 @@ Summary of LAS 1.4 revisions:
     * Addition of Table of Contents with section numbers. (c.f. 
       `I-27 <https://github.com/ASPRSorg/LAS/issues/27>`_,
       `I-49 <https://github.com/ASPRSorg/LAS/issues/49>`_)
-    * Divided "Defined Variable Length Records" section into Coordinate
+    * Divided Defined Variable Length Records section into Coordinate
       Reference System VLRs section (s3) and Other Specification Defined
       VLRs (s4).
     * Expanded EVLR discussion in Legacy Compatibility section (s2.1) and moved

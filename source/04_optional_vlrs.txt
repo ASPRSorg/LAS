@@ -209,6 +209,7 @@ A LAS file has an "extra bytes mismatch" if the Extra Bytes VLR describes more
 "extra bytes" than each LAS point actually has. The occurrence of an "extra
 bytes mismatch" renders the Extra Bytes VLR invalid.
 
+.. _superseded_vlr_label:
 
 Superseded
 ................................................................................
@@ -225,6 +226,8 @@ updating a record such as projection information where a new EVLR is appended
 to the end of the LAS file. The existing VLR which has been superseded must be
 marked with the SUPERSEDED Record ID.
 
+.. _fwf_descriptor_label:
+
 Waveform Packet Descriptor
 ................................................................................
 
@@ -236,7 +239,7 @@ Waveform Packet Descriptor
 
 .. warning::
 
-    This VLR is REQUIRED when using Point Data Record Formats 4, 5, 9 or 10.
+    This VLR is REQUIRED when using Point Data Record Formats 4, 5, 9, or 10.
 
 These records contain information that describes the configuration of the
 waveform packets. Since systems may be configured differently at different
