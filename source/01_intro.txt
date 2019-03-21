@@ -66,8 +66,7 @@ Summary of LAS 1.4 revisions:
 
     * Added explanation and example of implicit arrays from descriptor names.
 
-  * Changed type of ExtraByte min/max from ``anytype`` to ``double`` and
-    clarified that min/max should be a transformed value.
+  * Clarified that ExtraByte min/max should be an untransformed value.
     (`I-4 <https://github.com/ASPRSorg/LAS/issues/4>`_)
   * Clarified that Legacy Point Counts should be set to zero if using non-legacy
     PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
