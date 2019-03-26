@@ -56,7 +56,7 @@ author = u'ASPRS'
 # The short X.Y version.
 #version = u'1.4'
 # Custom non-keyword version tag for header
-myversion = u'1.4 - R14'
+myversion = u'1.4 - R14 DRAFT'
 # The full version, including alpha/beta/rc tags.
 release = u'VERSION ' + myversion
 releasename = release
@@ -205,7 +205,7 @@ The American Society for Photogrammetry \& Remote Sensing\\
 425 Barlow Place, Suite 210\\
 Bethesda, Maryland 20814-2160\\
 Voice: 301-493-0290\\
-Fax: 301-493-0208\\
+Fax: 225-408-4422\\
 Web: \underline{www.asprs.org}\\
 
 

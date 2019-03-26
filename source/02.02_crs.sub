@@ -1,5 +1,5 @@
 Coordinate Reference System (CRS) Representation
---------------------------------------------------------------------------------
+................................................................................
 
 GeoTIFF is being replaced by Well Known Text (WKT) as the required Coordinate
 Reference System (CRS) representation for the new point types (6-10) introduced
@@ -15,7 +15,7 @@ A file writer who desires to maintain backward compatibility with legacy LAS
 for point types 0-5 must add a GeoTIFF VLR to represent the CRS for the file
 and ensure that the WKT bit is false.
 
-The CRS representation is summarized in Table 2
+The CRS representation is summarized below:
 
 .. table:: Coordinate Reference System Representation
 
@@ -30,9 +30,8 @@ The CRS representation is summarized in Table 2
 It is considered a file error to have more than one GeoTIFF (E)VLR or more than
 one WKT (E)VLR in the file. A writer can append a new CRS EVLR to a file by
 "superseding" the existing CRS (E)VLR. Superseding is performed by changing the
-LAS_Spec ID of the record to "Superseded", a new LASF_Spec defined in this
+LAS_Spec ID of the record to ":ref:`superseded_vlr_label`", a new LASF_Spec defined in this
 release.
-
 
 
 .. raw:: latex

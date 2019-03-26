@@ -1,0 +1,305 @@
+.. raw:: latex
+
+    \newpage
+
+Other Specification Defined VLRs (Optional)
+--------------------------------------------------------------------------------
+
+Classification Lookup
+................................................................................
+
++----------------------------+-----------------------------------+
+| User ID                    | LASF_Spec                         |
++----------------------------+-----------------------------------+
+| Record ID                  | 0                                 |
++----------------------------+-----------------------------------+
+| Record Length after Header | 256 records * 16 bytes per struct |
++----------------------------+-----------------------------------+
+
+::
+
+    struct CLASSIFICATION {
+        unsigned char ClassNumber;
+        char Description[15];
+    }; //total of 16 bytes
+
+
+Text Area Description
+................................................................................
+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 3                           |
++-----------------+-----------------------------+
+
+This VLR/EVLR is used for providing a textual description of the content of the
+LAS file. It is a null-terminated, free-form ASCII string.
+
+.. _extrabytes_vlr_label:
+
+Extra Bytes
+................................................................................
+
++----------------------------+-----------------------------+
+| User ID                    | LASF_Spec                   |
++----------------------------+-----------------------------+
+| Record ID                  | 4                           |
++----------------------------+-----------------------------+
+| Record Length after Header | n descriptors * 192 bytes   |
++----------------------------+-----------------------------+
+
+The Extra Bytes VLR provides a mechanism whereby additional information can be
+added to the end of a standard Point Record. This VLR has been added to LAS 1.4
+to formalize a process that has been used in prior versions of LAS. It is
+envisioned that software that is not cognizant of the meaning of the extra
+bytes will simply copy these bytes when manipulating files.
+
+This VLR is only required for LAS files where points contain user-defined
+"extra bytes". This happens when the point record size is set to a larger value
+than required by the point type. For example, if a LAS file that contains
+point type 1 has a point record size of 32 instead of 28, there are 4 "extra
+bytes". The Extra Bytes VLR contains a simple description of the type and the
+meaning of these "extra bytes" so they can be accessed in a consistent manner
+across applications. The extra bytes descriptor is defined as follows:
+
+::
+
+    struct EXTRA_BYTES {
+        unsigned char           reserved[2];     // 2 bytes
+        unsigned char           data_type;       // 1 byte
+        unsigned char           options;         // 1 byte
+        char                    name[32];        // 32 bytes
+        unsigned char           unused[4];       // 4 bytes
+        anytype                 no_data;         // 8 bytes
+        unsigned char           deprecated1[16]; // 16 bytes
+        anytype                 min;             // 8 bytes
+        unsigned char           deprecated2[16]; // 16 bytes
+        anytype                 max;             // 8 bytes
+        unsigned char           deprecated3[16]; // 16 bytes
+        double                  scale;           // 8 bytes
+        unsigned char           deprecated4[16]; // 16 bytes
+        double                  offset;          // 8 bytes
+        unsigned char           deprecated5[16]; // 16 bytes
+        char                    description[32]; // 32 bytes
+    };                                           // total of 192 bytes
+
+The 4 "extra bytes" could, for example, be of data_type 9 - a 4-byte floating
+point value - that specifies an "echo width" for each return. In this case there
+would be one EXTRA_BYTES struct in the payload of this VLR. In another example,
+four EXTRA_BYTES structs in the VLR payload could describe 14 "extra bytes" in
+each point record:
+
+#) "laser pulse direction [0]" - data_type = 9 (float)
+#) "laser pulse direction [1]" - data_type = 9 (float)
+#) "laser pulse direction [2]" - data_type = 9 (float)
+#) "pulse width" - data_type = 3 (ushort)
+
+In this example, an array of three individual floats collectively specify a
+"laser pulse direction" for that point, and one unsigned short integer specifies
+a "pulse width" for that point.
+
+The "extra bytes" are made accessible via a unique name. The "name" field
+distinguishes the additional point attributes that software may add to
+the points in a LAS file so they can be accessed later in a consistent manner
+by another software. Descriptive names such as "normalized reflectivity", "echo
+width", or "shading normal" are encouraged. The use of generic names such as
+"variable1" or "temp1" is discouraged.
+
+Multiple sequential "extra byte" records can compose an array of associated
+values. It is recommended that each member's name be consistent with other
+members, only varying by an index number wrapped in square brackets, as in
+the above example. Zero-indexed arrays are encouraged. Previous revisions
+of the LAS 1.4 specification utilized data_types 11-30 to define standard
+two- and three-member arrays, but this feature was never widely implemented
+and was `deprecated in R14 <https://github.com/ASPRSorg/LAS/issues/1>`_ to
+simplify implementation.
+
+Any unused characters in the "name" or "description" fields must be set to zero.
+
+.. tabularcolumns:: |p{2.0cm}|p{5.0cm}|p{6.0cm}|
+
+.. table:: Values for ``data_type`` Field
+
+    +------------+-------------------------------+-------------------+
+    | Value      | Meaning                       | Size on Disk      |
+    +============+===============================+===================+
+    | 0          | undocumented extra bytes      | specify value in  |
+    |            |                               | ``options`` field |
+    +------------+-------------------------------+-------------------+
+    | 1          | unsigned char                 | 1 byte            |
+    +------------+-------------------------------+-------------------+
+    | 2          | char                          | 1 byte            |
+    +------------+-------------------------------+-------------------+
+    | 3          | unsigned short                | 2 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 4          | short                         | 2 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 5          | unsigned long                 | 4 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 6          | long                          | 4 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 7          | unsigned long long            | 8 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 8          | long long                     | 8 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 9          | float                         | 4 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 10         | double                        | 8 bytes           |
+    +------------+-------------------------------+-------------------+
+    | 11-30      | *Deprecated*                  | deprecated        |
+    +------------+-------------------------------+-------------------+
+    | 31-255     | *Reserved*                    | not assigned      |
+    +------------+-------------------------------+-------------------+
+
+
+.. tabularcolumns:: |p{2.0cm}|p{4.0cm}|p{8.5cm}|
+
+.. table:: Encoding of ``options`` Bit Field
+
+    +-----------+------------------+-------------------------------------------+
+    | Bits      | Field Name       | Description                               |
+    +===========+==================+===========================================+
+    | 0         | no_data_bit      | If set the ``no_data`` value is relevant  |
+    +-----------+------------------+-------------------------------------------+
+    | 1         | min_bit          | If set the ``min`` value is relevant      |
+    +-----------+------------------+-------------------------------------------+
+    | 2         | max_bit          | If set the ``max`` value is relevant      |
+    +-----------+------------------+-------------------------------------------+
+    | 3         | scale_bit        | If set each value should be multiplied    |
+    |           |                  | by the corresponding scale value (before  |
+    |           |                  | applying the offset).                     |
+    +-----------+------------------+-------------------------------------------+
+    | 4         | offset_bit       | If set each value should be translated    |
+    |           |                  | by the corresponding offset value (after  |
+    |           |                  | applying the scaling).                    |
+    +-----------+------------------+-------------------------------------------+
+
+
+The bit mask in the "options" field specifies whether the min and max range of
+the value has been set (i.e., is meaningful), whether the scale and/or offset
+values are set with which the "extra bytes" are to be multiplied and translated
+to compute their actual value, and whether there is a special value that should
+be interpreted as NO_DATA. By default all bits are zero which means that the
+values in the corresponding fields are to be disregarded. Any unused
+"no_data", "min", "max", "scale", or "offset" fields must be set to zero.
+
+If the selected data_type is less than 8 bytes, the no_data, min, and max fields
+should be upcast into 8-byte storage. For any float these 8 bytes would be
+upcast to a double, for any unsigned char, unsigned short, or unsigned long
+they would be upcast to an unsigned long long and for any char, short, or long,
+they would be upcast to a long long.
+
+If used, the min and max fields reflect the actual minimum and maximum values
+of the attribute in the LAS file, in its raw form, without any scale
+or offset values applied.
+
+The "reserved" field, the "unused" field, and the "deprecated" fields must be
+set to zero and may be used in a future revision.
+
+A LAS file contains "undocumented extra bytes" when there are "extra bytes"
+but when there is no Extra Bytes VLR that describes them or when there are
+more "extra bytes" than described in an existing Extra Bytes VLR.
+
+When adding an "Extra Bytes" VLR to a LAS file that contains "undocumented
+extra bytes" they must be designated as data_type == 0 with the options bit
+field storing the number of undocumented bytes.
+
+A LAS file has an "extra bytes mismatch" if the Extra Bytes VLR describes more
+"extra bytes" than each LAS point actually has. The occurrence of an "extra
+bytes mismatch" renders the Extra Bytes VLR invalid.
+
+.. _superseded_vlr_label:
+
+Superseded
+................................................................................
+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 7                           |
++-----------------+-----------------------------+
+
+This LASF Record ID is used to negate an existing VLR/EVLR when rewriting the
+file (to remove the undesired VLR/EVLR). It is used, for example, when
+updating a record such as projection information where a new EVLR is appended
+to the end of the LAS file. The existing VLR which has been superseded must be
+marked with the SUPERSEDED Record ID.
+
+.. _fwf_descriptor_label:
+
+Waveform Packet Descriptor
+................................................................................
+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | n: where n > 99 and n < 355 |
++-----------------+-----------------------------+
+
+.. warning::
+
+    This VLR is REQUIRED when using Point Data Record Formats 4, 5, 9, or 10.
+
+These records contain information that describes the configuration of the
+waveform packets. Since systems may be configured differently at different
+times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
+
+
+.. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|
+
+.. table:: Waveform Packet Descriptor User Defined Record
+
+    +------------------------------+-------------------------+-----------+--------------+
+    | Item                         | Format                  | Size      | Required     |
+    +==============================+=========================+===========+==============+
+    | Bits per Sample              | unsigned char           | 1 byte    | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Waveform Compression Type    | unsigned char           | 1 byte    | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Number of Samples            | unsigned long           | 4 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Temporal Sample Spacing      | unsigned long           | 4 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Digitizer Gain               | double                  | 8 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+    | Digitizer Offset             | double                  | 8 bytes   | yes          |
+    +------------------------------+-------------------------+-----------+--------------+
+
+**Bits per Sample**
+
+2 through 32 bits are supported.
+
+**Waveform Compression Type**
+
+It is expected that in the future standard compression types will be adopted by
+the LAS committee. This field will indicate the compression algorithm used for
+the waveform packets associated with this descriptor. A value of 0 indicates no
+compression. Zero is the only value currently supported.
+
+**Number of Samples**
+
+The number of samples associated with this waveform packet type. This value
+always represents the fully decompressed waveform packet.
+
+**Temporal Sample Spacing**
+
+The temporal sample spacing in picoseconds. Example values might be 500, 1000,
+2000, and so on, representing digitizer frequencies of 2 GHz, 1 GHz, and 500 MHz
+respectively.
+
+**Digitizer Gain and Offset**
+
+The digitizer gain and offset are used to convert the raw digitized value to an
+absolute digitizer voltage using the formula:
+
+.. math::
+
+    VOLTS = OFFSET + GAIN * Raw\_Waveform\_Amplitude
+
+.. note::
+
+    Users seeking further clarity regarding LAS waveform encoding are encouraged
+    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+
+

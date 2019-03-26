@@ -1,0 +1,29 @@
+.. raw:: latex
+
+    \newpage
+
+Defined Extended Variable Length Records (EVLRs)
+--------------------------------------------------------------------------------
+
+.. _fwf_packets_label:
+
+Waveform Data Packets
+...............................................................................
+
+.. warning::
+
+    This EVLR is REQUIRED internally or externally when using Point Data Record 
+    Formats 4, 5, 9, or 10.
+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 65535                       |
++-----------------+-----------------------------+
+
+The packet of Raw Waveform Amplitude values for all records immediately follow
+this VLR header. Note that when using a bit resolution that is not
+an even increment of 8, the last byte of each waveform packet must be padded
+such that the next waveform record will start on an even byte boundary.
+
+
