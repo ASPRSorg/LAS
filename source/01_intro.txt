@@ -18,7 +18,7 @@ since its initial version 1.0 release.
 LAS 1.4 Revision History
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Summary of LAS 1.4 revisions:
+Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
 
 * R11 - Approved Version (Nov 2011).
 * R12 - Errata (June 2012) - Typographical corrections:
@@ -27,7 +27,7 @@ Summary of LAS 1.4 revisions:
   * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char".
 
 * R13 - Added Domain Profile Section (July 2013).
-* R14 - Multiple updates (GitHub Issue numbers):
+* R14 - Multiple updates (March 2019):
 
   * Aesthetic changes from migration to GitHub
   * Multiple capitalization & typo corrections.

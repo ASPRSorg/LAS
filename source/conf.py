@@ -46,7 +46,7 @@ master_doc = '00_index'
 
 # General information about the project.
 project = u'LAS'
-copyright = u'2017, ASPRS'
+copyright = u'2019, ASPRS'
 author = u'ASPRS'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -56,15 +56,15 @@ author = u'ASPRS'
 # The short X.Y version.
 #version = u'1.4'
 # Custom non-keyword version tag for header
-myversion = u'1.4 - R14 DRAFT'
+myversion = u'1.4 - R14'
 # The full version, including alpha/beta/rc tags.
 release = u'VERSION ' + myversion
 releasename = release
 version=''
 
 # Publication info (approval date, release date, and GitHub SHA)
-today='15 July 2013'
-releasedate='15 July 2013'
+today='26 March 2019'
+releasedate='26 March 2019'
 approvaldate = 'November 2011'
 
 import subprocess
