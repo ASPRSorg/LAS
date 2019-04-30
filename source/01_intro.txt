@@ -94,6 +94,11 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
   * Added wiki link for Project ID examples.
     (`I-38 <https://github.com/ASPRSorg/LAS/issues/38>`_)
 
+* R15 - Mostly errata for R14 (April 2019):
+
+  * Fixed unintended reordering of Min/Max XYZ in R14 LAS header.
+    (`I-79 <https://github.com/ASPRSorg/LAS/issues/79>`_)
+
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
 
