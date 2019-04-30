@@ -191,7 +191,7 @@ the classification values in Table 9.
     |       |                         | appropriate default value.               |
     +-------+-------------------------+------------------------------------------+
     | 6     | Key-Point               | If set, this point is considered to be a |
-    |       |                         | model key-point and thus generally       |
+    |       |                         | model key-point and therefore generally  |
     |       |                         | should not be withheld in a thinning     |
     |       |                         | algorithm.                               |
     +-------+-------------------------+------------------------------------------+
@@ -788,7 +788,7 @@ with the point. The bit definitions are:
     |       |                         | appropriate default value.               |
     +-------+-------------------------+------------------------------------------+
     | 1     | Key-Point               | If set, this point is considered to be a |
-    |       |                         | model key-point and thus generally       |
+    |       |                         | model key-point and therefore generally  |
     |       |                         | should not be withheld in a thinning     |
     |       |                         | algorithm.                               |
     +-------+-------------------------+------------------------------------------+

@@ -207,7 +207,7 @@ minor version number.
 The version 1.0 specification assumed that LAS files are exclusively generated
 as a result of collection by a hardware sensor. Subsequent versions recognize
 that files often result from extraction, merging, or modifying existing data
-files. Thus System ID becomes:
+files. Thus, System ID becomes:
 
 .. tabularcolumns:: |p{6.5cm}|p{9.5cm}|
 
