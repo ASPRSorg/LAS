@@ -181,7 +181,7 @@ the classification values in Table 9.
     |       |                         | :ref:`Reserved Point Classes             |
     |       |                         | <legacy_pt_class_link>`).                |
     +-------+-------------------------+------------------------------------------+
-    | 5     | Synthetic               | If set then this point was created by a  |
+    | 5     | Synthetic               | If set, this point was created by a      |
     |       |                         | technique other than direct observation  |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
@@ -778,7 +778,7 @@ with the point. The bit definitions are:
     +-------+-------------------------+------------------------------------------+
     | Bit   |  Field Name             | Description                              |
     +=======+=========================+==========================================+
-    | 0     | Synthetic               | If set then this point was created by a  |
+    | 0     | Synthetic               | If set, this point was created by a      |
     |       |                         | technique other than direct observation  |
     |       |                         | such as digitized from a photogrammetric |
     |       |                         | stereo model or by traversing a          |
