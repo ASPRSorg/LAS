@@ -94,12 +94,14 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
   * Added wiki link for Project ID examples.
     (`I-38 <https://github.com/ASPRSorg/LAS/issues/38>`_)
 
-* R15 - Mostly errata for R14 (April 2019):
+* R15 - Errata and typo corrections for R14 (May 2019):
 
   * Minor editorial punctuation corrections.
     (`I-78 <https://github.com/ASPRSorg/LAS/issues/78>`_)
   * Fixed unintended reordering of Min/Max XYZ in R14 LAS header.
     (`I-79 <https://github.com/ASPRSorg/LAS/issues/79>`_)
+  * Added missing Scanner Channel field in note about PDRF6-10 bit field.
+    (`I-80 <https://github.com/ASPRSorg/LAS/issues/80>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.

@@ -740,8 +740,8 @@ instead of 8), and the GPS time is mandatory.
 
 .. note::
 
-    The following five fields (Return Number, Number of Returns, Classification
-    Flags, Scan Direction Flag, and Edge of Flight Line) are bit fields, encoded
+    The following six fields (Return Number, Number of Returns, Classification
+    Flags, Scanner Channel, Scan Direction Flag, and Edge of Flight Line) are bit fields, encoded
     into two bytes.
 
 **Return Number**
