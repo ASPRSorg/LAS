@@ -96,6 +96,8 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
 
 * R15 - Mostly errata for R14 (April 2019):
 
+  * Minor editorial punctuation corrections.
+    (`I-78 <https://github.com/ASPRSorg/LAS/issues/78>`_)
   * Fixed unintended reordering of Min/Max XYZ in R14 LAS header.
     (`I-79 <https://github.com/ASPRSorg/LAS/issues/79>`_)
 

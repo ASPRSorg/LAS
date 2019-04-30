@@ -3,7 +3,7 @@
 Point Data Records
 ................................................................................
 
-LAS file I/O software must use the "Offset to Point Data" field in the Public
+Software must use the "Offset to Point Data" field in the Public
 Header Block to locate the starting position of the first Point Data Record.
 Note that all Point Data Records must be the same type (i.e., Point Data Record
 Format).

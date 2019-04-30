@@ -264,14 +264,14 @@ Block may not be extended by users.
 **Offset to Point Data**
 
 The actual number of bytes from the beginning of the file to the first field of
-the first point record data field. This data offset must be updated if any
-software adds/removes data to/from the Variable Length Records.
+the first point record. If any software adds/removes data to/from the
+Variable Length Records, then this offset value must be updated.
 
 **Number of Variable Length Records**
 
 This field contains the current number of VLRs that are stored in the file
-preceding the Point Data Records. This number must be updated if the number of
-VLRs changes.
+preceding the Point Data Records. If the number of VLRs changes, then this number
+must be updated.
 
 **Point Data Record Format**
 
@@ -350,13 +350,14 @@ Waveform Data Packet Record is not necessarily the first EVLR in the file.
 **Start of First Extended Variable Length Record**
 
 This value provides the offset, in bytes, from the beginning of the LAS file to
-the first byte of the first EVLR.
+the first byte of the first EVLR. If any software adds/removes data to/from the
+Variable Length Records or Point Records, then this offset value must be updated.
 
 **Number of Extended Variable Length Records**
 
 This field contains the current number of EVLRs (including, if present, the
 Waveform Data Packet Record) that are stored in the file after the Point Data
-Records. This number must be updated if the number of EVLRs changes. If there
+Records. If the number of EVLRs changes, then this number must be updated. If there
 are no EVLRs this value is zero.
 
 **Number of Point Records**
