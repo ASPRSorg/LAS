@@ -94,7 +94,7 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
   * Added wiki link for Project ID examples.
     (`I-38 <https://github.com/ASPRSorg/LAS/issues/38>`_)
 
-* R15 - Errata and typo corrections for R14 (May 2019):
+* R15 - Errata and typo corrections for R14 (July 2019):
 
   * Minor editorial punctuation corrections.
     (`I-78 <https://github.com/ASPRSorg/LAS/issues/78>`_)
