@@ -353,6 +353,11 @@ The GPS Time is the double floating point time tag value at which the point was
 observed. It is GPS Week Time if the :ref:`Global Encoding <globalencoding_link>`
 low bit is clear and Adjusted Standard GPS Time if the bit is set.
 
+It is intended that each return of a given pulse would have an identical GPS
+Time. In the example of pulsed LiDAR systems, the GPS Time would be the time at
+which the originating pulse was emitted, not the time at which each return was
+recorded.
+
 For :ref:`Aggregate Model Systems <aggregate_link>`, the GPS Time should be set
 to zero unless assigned from a component measurement.
 
