@@ -242,8 +242,8 @@ Waveform Packet Descriptor
     This VLR is REQUIRED when using Point Data Record Formats 4, 5, 9, or 10.
 
 These records contain information that describes the configuration of the
-waveform packets. Since systems may be configured differently at different
-times throughout a job, the LAS file supports 255 Waveform Packet Descriptors.
+waveform packets. Since system configuration may vary throughout a
+dataset, the LAS file supports up to 255 Waveform Packet Descriptors.
 
 
 .. tabularcolumns:: |p{6.5cm}|p{4.0cm}|p{2.0cm}|p{1.5cm}|

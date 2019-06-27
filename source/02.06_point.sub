@@ -202,7 +202,7 @@ the classification values in Table 9.
 
 .. note::
 
-    Note that bits 5, 6 and 7 are treated as flags and can be set or clear in
+    Note that bits 5, 6, and 7 are treated as flags and can be set or clear in
     any combination. For example, a point with bits 5 and 6 both set to one and
     the lower five bits set to 2 would be a *Ground* point that had been
     *Synthetically* collected and marked as a model *Key-Point*.
@@ -799,8 +799,8 @@ with the point. The bit definitions are:
     | 3     | Overlap                 | If set, this point is within the         |
     |       |                         | overlap region of two or more swaths or  |
     |       |                         | takes. Setting this bit is not mandatory |
-    |       |                         | (unless, of course, it is mandated by a  |
-    |       |                         | particular delivery specification) but   |
+    |       |                         | (unless required by a specification      |
+    |       |                         | other than this document) but            |
     |       |                         | allows Classification of overlap points  |
     |       |                         | to be preserved.                         |
     +-------+-------------------------+------------------------------------------+
@@ -923,7 +923,7 @@ Classification must adhere to the following standard:
 **Scan Angle**
 
 The Scan Angle is a signed short that represents the rotational position of the
-emitted laser pulse with respect to the vertical of the coordinate system of
+emitted laser pulse with respect to the vertical dimension of the coordinate system of
 the data. Down in the data coordinate system is the 0.0 position. Each
 increment represents 0.006 degrees. Counter-clockwise rotation, as viewed from
 the rear of the sensor, facing in the along-track (positive trajectory)

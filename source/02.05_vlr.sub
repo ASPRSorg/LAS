@@ -64,7 +64,7 @@ of the record.
 **Description**
 
 Optional text description of the data. Any remaining
-characters not used must be null.
+unused characters must be null.
 
 .. raw:: latex
 

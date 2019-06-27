@@ -106,8 +106,8 @@ complete description can be found in the GeoTIFF format specification. Here is
 a summary from a programmatic point of view for someone interested in
 implementation.
 
-The GeoKeyDirectoryTag is defined as just an array of unsigned short values.
-But, programmatically, the data can be seen as something like this:
+The GeoKeyDirectoryTag is defined as an array of unsigned short values.
+Programmatically, the data can be structured as follows:
 
 ::
 
@@ -125,7 +125,7 @@ But, programmatically, the data can be seen as something like this:
         } pKey[1];
     };
 
-Where:
+...where...
 
 ::
 
