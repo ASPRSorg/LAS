@@ -49,7 +49,7 @@ User IDs ensures that no two individuals accidentally use the same User ID.
 The Record ID is dependent upon the User ID. There can be 0 to 65,535 Record
 IDs for every User ID. The LAS specification manages its own Record IDs (User
 IDs owned by the specification); otherwise Record IDs will be managed by the
-owner of the given User ID. Thus each User ID is allowed to assign 0 to 65,535
+owner of the given User ID. Thus, each User ID is allowed to assign 0 to 65,535
 Record IDs in any manner they desire. Publicizing the meaning of a given Record
 ID is left to the owner of the given User ID. Unknown User ID/Record ID
 combinations should be ignored.
@@ -57,14 +57,14 @@ combinations should be ignored.
 **Record Length After Header**
 
 The record length is the number of bytes for the record after the end of the
-standard part of the header. Thus the entire record length is 54 bytes (the
+standard part of the header. Thus, the entire record length is 54 bytes (the
 header size of the VLR) plus the number of bytes in the variable length portion
 of the record.
 
 **Description**
 
 Optional text description of the data. Any remaining
-characters not used must be null.
+unused characters must be null.
 
 .. raw:: latex
 

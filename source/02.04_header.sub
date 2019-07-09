@@ -64,13 +64,13 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Max X                            | double                  | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Max Y                            | double                  | 8 bytes   | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
-    | Max Z                            | double                  | 8 bytes   | yes          |
-    +----------------------------------+-------------------------+-----------+--------------+
     | Min X                            | double                  | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
+    | Max Y                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
     | Min Y                            | double                  | 8 bytes   | yes          |
+    +----------------------------------+-------------------------+-----------+--------------+
+    | Max Z                            | double                  | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | Min Z                            | double                  | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
@@ -139,7 +139,7 @@ a value of 1). This bit field is defined as:
     |       |                       | Time (satellite GPS Time) minus          |
     |       |                       | 1 x :math:`10^9` (Adjusted Standard GPS  |
     |       |                       | Time). The offset moves the time back to |
-    |       |                       | near zero to improve floating point      |
+    |       |                       | near zero to improve floating-point      |
     |       |                       | resolution. The origin of standard GPS   |
     |       |                       | Time is defined as midnight of the       |
     |       |                       | morning of January 6, 1980.              |
@@ -207,7 +207,7 @@ minor version number.
 The version 1.0 specification assumed that LAS files are exclusively generated
 as a result of collection by a hardware sensor. Subsequent versions recognize
 that files often result from extraction, merging, or modifying existing data
-files. Thus System ID becomes:
+files. Thus, System ID becomes:
 
 .. tabularcolumns:: |p{6.5cm}|p{9.5cm}|
 
@@ -264,14 +264,14 @@ Block may not be extended by users.
 **Offset to Point Data**
 
 The actual number of bytes from the beginning of the file to the first field of
-the first point record data field. This data offset must be updated if any
-software adds/removes data to/from the Variable Length Records.
+the first point record. If any software adds/removes data to/from the
+Variable Length Records, then this offset value must be updated.
 
 **Number of Variable Length Records**
 
 This field contains the current number of VLRs that are stored in the file
-preceding the Point Data Records. This number must be updated if the number of
-VLRs changes.
+preceding the Point Data Records. If the number of VLRs changes, then this number
+must be updated.
 
 **Point Data Record Format**
 
@@ -308,7 +308,7 @@ five returns.
 
 **X, Y, and Z Scale Factors**
 
-The scale factor fields contain a double floating point value that is used to
+The scale factor fields contain a double floating-point value that is used to
 scale the corresponding X, Y, and Z long values within the point records. The
 corresponding X, Y, and Z scale factor must be multiplied by the X, Y, or Z
 point record value to get the actual X, Y, or Z coordinate. For example, if the
@@ -320,9 +320,10 @@ scale factor will contain the number 0.01.
 The offset fields should be used to set the overall offset for the point
 records. In general these numbers will be zero, but for certain cases the
 resolution of the point data may not be large enough for a given projection
-system. However, it should always be assumed that these numbers are used. So to
-scale a given X from the point record, take the point record X multiplied by
-the X scale factor, and then add the X offset.
+system. However, it should always be assumed that these numbers are used.
+
+For example, to compute a given X coordinate from the point record, the point
+record X is multiplied by the X scale factor and then added to the X offset.
 
  .. math::
     :nowrap:
@@ -350,13 +351,14 @@ Waveform Data Packet Record is not necessarily the first EVLR in the file.
 **Start of First Extended Variable Length Record**
 
 This value provides the offset, in bytes, from the beginning of the LAS file to
-the first byte of the first EVLR.
+the first byte of the first EVLR. If any software adds/removes data to/from the
+Variable Length Records or Point Records, then this offset value must be updated.
 
 **Number of Extended Variable Length Records**
 
 This field contains the current number of EVLRs (including, if present, the
 Waveform Data Packet Record) that are stored in the file after the Point Data
-Records. This number must be updated if the number of EVLRs changes. If there
+Records. If the number of EVLRs changes, then this number must be updated. If there
 are no EVLRs this value is zero.
 
 **Number of Point Records**

@@ -56,7 +56,7 @@ author = u'ASPRS'
 # The short X.Y version.
 #version = u'1.4'
 # Custom non-keyword version tag for header
-myversion = u'1.4 - R14'
+myversion = u'1.4 - R15 DRAFT'
 # The full version, including alpha/beta/rc tags.
 release = u'VERSION ' + myversion
 releasename = release
