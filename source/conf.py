@@ -56,15 +56,15 @@ author = u'ASPRS'
 # The short X.Y version.
 #version = u'1.4'
 # Custom non-keyword version tag for header
-myversion = u'1.4 - R14'
+myversion = u'1.4 - R15'
 # The full version, including alpha/beta/rc tags.
 release = u'VERSION ' + myversion
 releasename = release
 version=''
 
 # Publication info (approval date, release date, and GitHub SHA)
-today='26 March 2019'
-releasedate='26 March 2019'
+today='09 July 2019'
+releasedate='09 July 2019'
 approvaldate = 'November 2011'
 
 import subprocess
