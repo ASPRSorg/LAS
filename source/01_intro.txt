@@ -108,6 +108,8 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
 
   * Clarified uniformity of GPS Time for all returns of a pulse.
     (`I-81 <https://github.com/ASPRSorg/LAS/issues/81>`_)
+  * Added example usage of Overlap bit.
+    (`I-5 <https://github.com/ASPRSorg/LAS/issues/5>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.

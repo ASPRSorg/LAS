@@ -807,7 +807,10 @@ with the point. The bit definitions are:
     |       |                         | (unless required by a specification      |
     |       |                         | other than this document) but            |
     |       |                         | allows Classification of overlap points  |
-    |       |                         | to be preserved.                         |
+    |       |                         | to be preserved. For example, this may   |
+    |       |                         | be useful for designating Ground points  |
+    |       |                         | that are valid but are not needed to     |
+    |       |                         | meet coverage or density requirements.   |
     +-------+-------------------------+------------------------------------------+
 
 .. note::
