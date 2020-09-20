@@ -70,6 +70,7 @@ approvaldate = 'November 2011'
 import subprocess
 
 def get_git_revision_short_hash():
+    import os
     return os.environ['GITHUB_SHA']
 gitsha = get_git_revision_short_hash()
 
