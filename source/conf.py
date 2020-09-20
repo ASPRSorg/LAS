@@ -144,7 +144,7 @@ preamble = r'''
 
 % Override Sphinx defaults for table heading (bold instead of sans serif)
 % note: won't work in newer versions of Sphinx 1.7+
-\protected\def\sphinxstylethead{\textbf}
+\protected\def\sphinxstyletheadfamily{\textbf}
 
 \makeatother
 
@@ -162,7 +162,7 @@ args['author'] = author
 args['releasedate'] = releasedate
 args['releasename'] = releasename
 args['approvaldate'] = approvaldate
-args['gitsha'] = gitsha
+args['gitsha'] = gitsha.decode('utf-8')
 import datetime
 now = datetime.datetime.now()
 args['thisyear'] = now.year
