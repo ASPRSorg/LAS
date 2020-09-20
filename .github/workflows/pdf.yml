@@ -34,10 +34,6 @@ jobs:
         path: build/latex/LAS.pdf
     - uses: actions/upload-artifact@v2
       with:
-        name: HTML
-        path: build/html/*
-    - uses: actions/upload-artifact@v2
-      with:
         name: Misspelled
         path: build/spelling/output.txt
 
