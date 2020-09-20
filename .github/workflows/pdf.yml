@@ -27,7 +27,7 @@ jobs:
         make latexpdf
     - name: Spelling
       run: |
-        make spell
+        make spelling
     - uses: actions/upload-artifact@v2
       with:
         name: PDF

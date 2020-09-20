@@ -1,4 +1,0 @@
-LAS
-LiDAR
-lidar
-

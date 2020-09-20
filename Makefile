@@ -19,6 +19,4 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-spell:
-	$(SPHINXBUILD) -b spelling $(ALLSPHINXOPTS) -d $(BUILDDIR)/doctrees build/spelling
 
