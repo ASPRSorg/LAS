@@ -163,7 +163,7 @@ args['author'] = author
 args['releasedate'] = releasedate
 args['releasename'] = releasename
 args['approvaldate'] = approvaldate
-args['gitsha'] = gitsha.decode('utf-8')
+args['gitsha'] = gitsha
 import datetime
 now = datetime.datetime.now()
 args['thisyear'] = now.year
