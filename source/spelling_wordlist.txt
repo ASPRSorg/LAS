@@ -36,6 +36,5 @@ implementers
 reflectivity
 photogrammetrically
 Geospatial
-
-
-
+TerraScan
+OpenGIS
