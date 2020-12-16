@@ -181,8 +181,8 @@ The time of assignment of the Project ID is at the discretion of
 processing software. The Project ID should be the same for all files that are
 associated with a unique project. By assigning a Project ID and using a File
 Source ID (defined above) every file within a project and every point within a
-file can be uniquely identified, globally. Software should set all bytes of this
-field to 0 (a NULL GUID) if not otherwise generating a valid GUID.
+file can be uniquely identified, globally. All bytes of this
+field must be set to 0 (a NULL GUID) if the field would not otherwise contain a valid GUID.
 
 .. note::
 
@@ -197,7 +197,7 @@ Must be set to the value 1.
 **Version Minor**
 
 The minor version number of the specification to which the LAS file conforms.
-Must be set to one of the values 0-4.
+Must be set to a value in the range [0, 4].
 
 **System Identifier**
 
@@ -295,9 +295,9 @@ described with an :ref:`extrabytes_vlr_label` VLR.
 
 **Legacy Number of Point Records**
 
-The total number of point records within the file if the the value is less than
-or equal to UINT32_MAX (4294967295) and the Point Data Record Format is in the range [0,5].
-Otherwise, the value must be set to zero.
+The total number of point records within the file if that value is less than
+or equal to UINT32_MAX (4294967295) and the Point Data Record Format is in the
+range [0, 5].  Otherwise, the value must be set to zero.
 
 **Legacy Number of Points by Return**
 
