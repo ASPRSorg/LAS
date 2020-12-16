@@ -275,7 +275,7 @@ the first point record.
 
 **Number of Variable Length Records**
 
-Th number of VLRs that are stored in the file preceding the Point Data Records. This field
+The number of VLRs that are stored in the file preceding the Point Data Records. This field
 is unrelated to the number of extended variable length records that may follow point data.
 
 **Point Data Record Format**
