@@ -88,11 +88,6 @@ Public Header Block
     | Number of Points by Return       | unsigned long long[15]  | 120 bytes | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
 
-.. note::
-
-    Any field in the Public Header Block that is not required and is not used
-    must be zero filled.
-
 
 **File Signature**
 
@@ -181,28 +176,34 @@ a value of 1). This bit field is defined as:
 **Project ID (GUID Data)**
 
 The four fields that comprise a complete Globally Unique Identifier (GUID) are
-now reserved for use as a Project Identifier (Project ID). The field remains
-optional. The time of assignment of the Project ID is at the discretion of
+now reserved for use as a Project Identifier (Project ID).
+The time of assignment of the Project ID is at the discretion of
 processing software. The Project ID should be the same for all files that are
 associated with a unique project. By assigning a Project ID and using a File
 Source ID (defined above) every file within a project and every point within a
-file can be uniquely identified, globally.
+file can be uniquely identified, globally. Software should set all bytes of this
+field to 0 (a NULL GUID) if not otherwise generating a valid GUID.
 
 .. note::
 
     Example implementations of representing the Project ID fields as a GUID can
     be found on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
 
-**Version Number**
+**Version Major**
 
-The version number consists of a major and minor field. The major and minor
-fields combine to form the number that indicates the format number of the
-current specification itself. For example, specification number 1.4 would
-contain 1 in the major field and 4 in the minor field. It should be noted that
-the LAS Working Group does not associate any particular meaning to major or
-minor version number.
+The major version number of the specification to which the LAS file confroms.
+Must be set to the value 1.
+
+**Version Minor**
+
+The minor version number of the specification to which the LAS file conforms.
+Must be set to one of the values 0-4.
 
 **System Identifier**
+
+An ASCII string specifying the system identifier described below. All bytes must be set to 0
+if there is no system identifier. If the system identifier is shorter than
+32 bytes, remaining bytes must be filled with the value 0.
 
 The version 1.0 specification assumed that LAS files are exclusively generated
 as a result of collection by a hardware sensor. Subsequent versions recognize
@@ -238,20 +239,26 @@ files. Thus, System ID becomes:
 
 **Generating Software**
 
+An ASCII string describing the generating software. If the string is fewer than
+32 bytes, remaining bytes must be 0.
+
 This information is ASCII data describing the generating software itself. This
 field provides a mechanism for specifying which generating software package and
 version was used during LAS file creation (e.g., "TerraScan V-10.8", "REALM
-V-4.2", etc.). If the character data is less than 32 characters, the remaining
-data must be null.
+V-4.2", etc.).
 
 **File Creation Day of Year**
 
-Day, expressed as an unsigned short, on which this file was created. Day is
+Must be a value in the range [1, 365].  If the File Creation Year indicates a year
+with fewer than 365 days, the valid values for this field are restricted accordingly.
+
+The field expresses the day of the year on which this file was created. Day is
 computed as the Greenwich Mean Time (GMT) day. January 1 is considered day 1.
 
 **File Creation Year**
 
-The year, expressed as a four digit number, in which the file was created.
+The year, expressed as a four digit number, in which the file was created.  Must be in
+the range [2005, current year].
 
 **Header Size**
 
@@ -263,20 +270,18 @@ Block may not be extended by users.
 
 **Offset to Point Data**
 
-The actual number of bytes from the beginning of the file to the first field of
-the first point record. If any software adds/removes data to/from the
-Variable Length Records, then this offset value must be updated.
+The number of bytes from the beginning of the file to the first field of
+the first point record.
 
 **Number of Variable Length Records**
 
-This field contains the current number of VLRs that are stored in the file
-preceding the Point Data Records. If the number of VLRs changes, then this number
-must be updated.
+Th number of VLRs that are stored in the file preceding the Point Data Records. This field
+is unrelated to the number of extended variable length records that may follow point data.
 
 **Point Data Record Format**
 
 The point data record indicates the type of point data records contained in the
-file. LAS 1.4 defines types 0 through 10. These types are defined in the
+file. Must be in the range [0, 10]. These types are defined in the
 :ref:`ptrecords_label` section of this specification.
 
 **Point Data Record Length**
@@ -290,21 +295,16 @@ described with an :ref:`extrabytes_vlr_label` VLR.
 
 **Legacy Number of Point Records**
 
-This field contains the total number of point records within the file if the
-file is maintaining legacy compatibility, the number of points is no greater
-than UINT32_MAX, and the Point Data Record Format is less than 6. Otherwise,
-it must be set to zero.
+The total number of point records within the file if the the value is less than
+or equal to UINT32_MAX (4294967295) and the Point Data Record Format is in the range [0,5].
+Otherwise, the value must be set to zero.
 
 **Legacy Number of Points by Return**
 
-These fields contain an array of the total point records per return if the file
-is maintaining legacy compatibility, the number of points is no greater than
-UINT32_MAX, and the Point Data Record Format is less than 6. Otherwise, each
-member of the array must be set to zero.
+If Legacy Number of Point Records is 0, all bytes in this field must be set to 0.
 
-The first value will be the total number of records from the first
-return, the second contains the total number for return two, and so on up to
-five returns.
+Otherwise, this array specifies the number of point records with the Number of Returns value
+of 1 - 5, respectively.
 
 **X, Y, and Z Scale Factors**
 
@@ -337,29 +337,29 @@ record X is multiplied by the X scale factor and then added to the X offset.
 **Max and Min X, Y, and Z**
 
 The max and min data fields are the actual unscaled extents of the LAS point
-file data, specified in the coordinate system of the LAS data.
+file data, specified in the coordinate system of the LAS data.  If there are no
+point records in the file, these values must be set to 0.
 
 **Start of Waveform Data Packet Record**
 
 This value provides the offset, in bytes, from the beginning of the LAS file to
 the first byte of the Waveform Data Package Record. Note that this will be the
 first byte of the Waveform Data Packet header. If no waveform records are
-contained within the file or they are stored externally, this value must be zero. It should be noted that LAS
+contained within the file or they are stored externally, this value must be zero.
+It should be noted that LAS
 1.4 allows multiple Extended Variable Length Records (EVLRs) and that the
 Waveform Data Packet Record is not necessarily the first EVLR in the file.
 
 **Start of First Extended Variable Length Record**
 
-This value provides the offset, in bytes, from the beginning of the LAS file to
-the first byte of the first EVLR. If any software adds/removes data to/from the
-Variable Length Records or Point Records, then this offset value must be updated.
+The offset, in bytes, from the beginning of the LAS file to
+the first byte of the first EVLR.  If there are no EVLRs, this value must be zero.
 
 **Number of Extended Variable Length Records**
 
 This field contains the current number of EVLRs (including, if present, the
 Waveform Data Packet Record) that are stored in the file after the Point Data
-Records. If the number of EVLRs changes, then this number must be updated. If there
-are no EVLRs this value is zero.
+Records. If there are no EVLRs this value must be zero.
 
 **Number of Point Records**
 
