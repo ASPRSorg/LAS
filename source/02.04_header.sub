@@ -99,7 +99,7 @@ as a quick look initial determination of file type.
 
 This field should be set to a value from 0 to 65,535. A value of zero is
 interpreted to mean that an ID has not been assigned, which is the norm for a
-LAS file resulting from an aggregation of multiple independent sources (e.g., a
+file resulting from an aggregation of multiple independent sources (e.g., a
 tile merged from multiple swaths).
 
 Note that this scheme allows a project to contain up to 65,535 unique sources.
@@ -191,12 +191,12 @@ field must be set to 0 (a NULL GUID) if the field would not otherwise contain a 
 
 **Version Major**
 
-The major version number of the specification to which the LAS file confroms.
+The major version number of the specification to which the file confroms.
 Must be set to the value 1.
 
 **Version Minor**
 
-The minor version number of the specification to which the LAS file conforms.
+The minor version number of the specification to which the file conforms.
 Must be set to a value in the range [0, 4].
 
 **System Identifier**
@@ -205,7 +205,7 @@ An ASCII string specifying the system identifier described below. All bytes must
 if there is no system identifier. If the system identifier is shorter than
 32 bytes, remaining bytes must be filled with the value 0.
 
-The version 1.0 specification assumed that LAS files are exclusively generated
+The version 1.0 specification assumed that files are exclusively generated
 as a result of collection by a hardware sensor. Subsequent versions recognize
 that files often result from extraction, merging, or modifying existing data
 files. Thus, System ID becomes:
@@ -244,7 +244,7 @@ An ASCII string describing the generating software. If the string is fewer than
 
 This information is ASCII data describing the generating software itself. This
 field provides a mechanism for specifying which generating software package and
-version was used during LAS file creation (e.g., "TerraScan V-10.8", "REALM
+version was used during file creation (e.g., "TerraScan V-10.8", "REALM
 V-4.2", etc.).
 
 **File Creation Day of Year**
@@ -287,7 +287,7 @@ file. Must be in the range [0, 10]. These types are defined in the
 **Point Data Record Length**
 
 The size, in bytes, of the Point Data Record. All Point Data Records within a
-single LAS file must be the same type and hence the same length. If the
+single file must be the same type and hence the same length. If the
 specified size is larger than implied by the point format type (e.g., 32 bytes
 instead of 28 bytes for type 1) the remaining bytes are user-specific "extra
 bytes". The format and meaning of such "extra bytes" can (optionally) be
@@ -342,7 +342,7 @@ point records in the file, these values must be set to 0.
 
 **Start of Waveform Data Packet Record**
 
-This value provides the offset, in bytes, from the beginning of the LAS file to
+This value provides the offset, in bytes, from the beginning of the file to
 the first byte of the Waveform Data Package Record. Note that this will be the
 first byte of the Waveform Data Packet header. If no waveform records are
 contained within the file or they are stored externally, this value must be zero.
@@ -352,7 +352,7 @@ Waveform Data Packet Record is not necessarily the first EVLR in the file.
 
 **Start of First Extended Variable Length Record**
 
-The offset, in bytes, from the beginning of the LAS file to
+The offset, in bytes, from the beginning of the file to
 the first byte of the first EVLR.  If there are no EVLRs, this value must be zero.
 
 **Number of Extended Variable Length Records**
