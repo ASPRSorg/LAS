@@ -861,7 +861,7 @@ Classification must adhere to the following standard:
 .. table:: ASPRS Standard Point Classes (Point Data Record Formats 6-10)
 
     +------------------+-----------------------------+--------------------------------+
-    | Value (Bits 0:4) | Meaning                     | Notes                          |
+    | Value            | Meaning                     | Notes                          |
     +==================+=============================+================================+
     | 0                | Created, Never Classified   | See note [4]_                  |
     +------------------+-----------------------------+                                +
