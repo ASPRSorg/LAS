@@ -161,11 +161,11 @@ these cases, the Edge of Flight Line Flag should be set to zero.
 
 **Classification**
 
-This field represents the "class" attributes of a point. If a point has never
-been classified, this byte must be set to zero. The format for classification
+This field represents the "class" attributes of a point. The format for classification
 is a bit encoded field with the lower five bits used for the class and the
 three high bits used for flags. The bit definitions are listed in Table 8 and
-the classification values in Table 9.
+the classification values in Table 9. If a point has never
+been classified, the lowest five bits must be set to zero. 
 
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{8.5cm}|
