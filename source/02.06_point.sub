@@ -550,7 +550,7 @@ waveform data associated with this Point Record.
 **Byte Offset to Waveform Data**
 
 The waveform packet data are stored in the LAS file in an Extended Variable
-Length Record or in an auxiliary *.wdp file. The Byte Offset represents the
+Length Record or in an auxiliary \*.wdp file. The Byte Offset represents the
 location of the start of this Point Record’s waveform packet within the waveform
 data variable length record (or external file) relative to the beginning of the
 :ref:`fwf_packets_label` header. The absolute location of the beginning of this
@@ -562,7 +562,7 @@ waveform packet relative to the beginning of the file is given by:
 
     **Byte Offset to Waveform Data**
 
-    for data stored in an auxiliary *.wdp file.
+    for data stored in an auxiliary \*.wdp file.
 
 **Waveform Packet Size in Bytes**
 
