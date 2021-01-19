@@ -144,9 +144,10 @@ preamble = r'''
 }
 
 % Override Sphinx defaults for table heading (bold instead of sans serif)
-% note: won't work in newer versions of Sphinx 1.7+
-\protected\def\sphinxstyletheadfamily{\textbf}
+% https://stackoverflow.com/a/42988749/1666676
+\protected\def\sphinxstyletheadfamily{\bfseries}
 
+% leave this here... https://tex.stackexchange.com/a/8353/143333
 \makeatother
 
 % Override Sphinx defaults for list item spacing and bolding. More info:
