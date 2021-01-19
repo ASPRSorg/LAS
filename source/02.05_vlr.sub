@@ -13,7 +13,7 @@ record is contained in the Variable Length Record Header. Each Variable Length
 Record Header is 54 bytes in length.
 
 
-.. tabularcolumns:: |p{5.0cm}|p{3.0cm}|p{2.0cm}|p{1.6cm}|p{1.5cm}|
+.. tabularcolumns:: |p{5.0cm}|p{3.0cm}|p{2.2cm}|p{1.6cm}|p{1.5cm}|
 
 .. table:: Variable Length Record Header
 
