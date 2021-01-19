@@ -112,6 +112,8 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
     (`I-5 <https://github.com/ASPRSorg/LAS/issues/5>`_)
   * Reworded mandatory zero Classification for Synthetic PDRF0-5.
     (`I-86 <https://github.com/ASPRSorg/LAS/issues/86>`_)
+  * Added Byte Offset columns to Header, VLR, EVLR, and PDRF tables.
+    (`I-55 <https://github.com/ASPRSorg/LAS/issues/55>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
