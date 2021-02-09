@@ -271,7 +271,7 @@ Block may not be extended by users.
 **Offset to Point Data**
 
 The number of bytes from the beginning of the file to the first field of
-the first point record.
+the first point record.  If there are no points in the file, this must be 0.
 
 **Number of Variable Length Records**
 
