@@ -48,7 +48,7 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Legacy Number of Point Records   | unsigned long           | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Legacy Number of Point by Return | unsigned long[5]        | 20 bytes  | yes          |
+    | Legacy Number of Points by Return| unsigned long[5]        | 20 bytes  | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | X Scale Factor                   | double                  | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
