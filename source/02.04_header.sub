@@ -234,6 +234,8 @@ files. Thus, System ID becomes:
     |                             | identifying the operation                   |
     +-----------------------------+---------------------------------------------+
 
+If the character data is less than 32 characters, the remaining
+data must be null.
 
 
 **Generating Software**
@@ -272,6 +274,8 @@ Variable Length Records, then this offset value must be updated.
 This field contains the current number of VLRs that are stored in the file
 preceding the Point Data Records. If the number of VLRs changes, then this number
 must be updated.
+
+This field is unrelated to the number of EVLRs appended to the file.
 
 **Point Data Record Format**
 
@@ -337,7 +341,8 @@ record X is multiplied by the X scale factor and then added to the X offset.
 **Max and Min X, Y, and Z**
 
 The max and min data fields are the actual unscaled extents of the LAS point
-file data, specified in the coordinate system of the LAS data.
+file data, specified in the coordinate system of the LAS data. If there are no
+point records in the file, these values must be set to zero.
 
 **Start of Waveform Data Packet Record**
 
@@ -354,12 +359,16 @@ This value provides the offset, in bytes, from the beginning of the LAS file to
 the first byte of the first EVLR. If any software adds/removes data to/from the
 Variable Length Records or Point Records, then this offset value must be updated.
 
+If there are no EVLRs, this value must be zero.
+
 **Number of Extended Variable Length Records**
 
 This field contains the current number of EVLRs (including, if present, the
 Waveform Data Packet Record) that are stored in the file after the Point Data
 Records. If the number of EVLRs changes, then this number must be updated. If there
 are no EVLRs this value is zero.
+
+If there are no EVLRs, this value must be zero.
 
 **Number of Point Records**
 
