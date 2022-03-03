@@ -186,6 +186,16 @@ followed at http://www.opengeospatial.org/standards/community.
 
 .. _`OGC`: http://www.opengeospatial.org
 
+
+Official LAS Wiki
+................................................................................
+
+The official LAS wiki hosts supplemental guidance pages, links to external
+resources, and public registries.
+The wiki can be found at https://github.com/ASPRSorg/LAS/wiki.
+
+Links to specific sections of the wiki can be found throughout this specification.
+
 .. raw:: latex
 
     \newpage
