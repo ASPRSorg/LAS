@@ -16,7 +16,8 @@ data types are conformant to the 1999 ANSI C Language Specification
 * uint64_t (8 bytes)
 * float (4 byte IEEE floating point format)
 * double (8 byte IEEE floating point format)
-* string (a variable series of 1 byte characters, ASCII encoded, null-terminated)
+* string (a variable-length array of 1-byte characters, ASCII-encoded,
+  null-terminated, contained in a fixed-length ``char`` array)
 
 .. warning::
 
