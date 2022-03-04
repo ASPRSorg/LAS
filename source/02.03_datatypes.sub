@@ -7,7 +7,7 @@ data types are conformant to the 1999 ANSI C Language Specification
 ``<stdint.h>``.
 
 * char (1 byte)
-* unsigned char (1 byte)
+* uint8_t (1 byte)
 * int16_t (2 bytes)
 * uint16_t (2 bytes)
 * int32_t (4 bytes)
