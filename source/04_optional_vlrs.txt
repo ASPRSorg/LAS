@@ -66,22 +66,22 @@ across applications. The extra bytes descriptor is defined as follows:
 ::
 
     struct EXTRA_BYTES {
-        uint8_t                 reserved[2];     // 2 bytes
-        uint8_t                 data_type;       // 1 byte
-        uint8_t                 options;         // 1 byte
-        char                    name[32];        // 32 bytes
-        uint8_t                 unused[4];       // 4 bytes
-        anytype                 no_data;         // 8 bytes
-        uint8_t                 deprecated1[16]; // 16 bytes
-        anytype                 min;             // 8 bytes
-        uint8_t                 deprecated2[16]; // 16 bytes
-        anytype                 max;             // 8 bytes
-        uint8_t                 deprecated3[16]; // 16 bytes
-        double                  scale;           // 8 bytes
-        uint8_t                 deprecated4[16]; // 16 bytes
-        double                  offset;          // 8 bytes
-        uint8_t                 deprecated5[16]; // 16 bytes
-        char                    description[32]; // 32 bytes
+        uint8_t reserved[2];     // 2 bytes
+        uint8_t data_type;       // 1 byte
+        uint8_t options;         // 1 byte
+        char    name[32];        // 32 bytes
+        uint8_t unused[4];       // 4 bytes
+        anytype no_data;         // 8 bytes
+        uint8_t deprecated1[16]; // 16 bytes
+        anytype min;             // 8 bytes
+        uint8_t deprecated2[16]; // 16 bytes
+        anytype max;             // 8 bytes
+        uint8_t deprecated3[16]; // 16 bytes
+        double  scale;           // 8 bytes
+        uint8_t deprecated4[16]; // 16 bytes
+        double  offset;          // 8 bytes
+        uint8_t deprecated5[16]; // 16 bytes
+        char    description[32]; // 32 bytes
     };                                           // total of 192 bytes
 
 The 4 "extra bytes" could, for example, be of data_type 9 - a 4-byte floating
