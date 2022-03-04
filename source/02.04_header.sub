@@ -341,8 +341,9 @@ record X is multiplied by the X scale factor and then added to the X offset.
 **Max and Min X, Y, and Z**
 
 The max and min data fields are the spatial extents of the LAS point
-file data, specified in the coordinate system of the LAS data, for the
-X\ :sub:`coordinate`\ , Y\ :sub:`coordinate`\ , and Z\ :sub:`coordinate` values.
+file data, specified in the coordinate system of the LAS data.
+It should be noted that the max and min should be computed based on the true 
+X, Y, and Z coordinates and not based on the integer values stored in the point records.
 If there are no point records in the file, these values must be set to zero.
 
 **Start of Waveform Data Packet Record**
