@@ -3,12 +3,13 @@ Data Types
 
 The following data types are used in the LAS format definition. Note that these
 data types are conformant to the 1999 ANSI C Language Specification
-(ANSI/ISO/IEC 9899:1999 ("C99")).
+(ANSI/ISO/IEC 9899:1999 ("C99")), as defined in the standard header
+``<stdint.h>``.
 
 * char (1 byte)
 * unsigned char (1 byte)
-* short (2 bytes)
-* unsigned short (2 bytes)
+* int16_t (2 bytes)
+* uint16_t (2 bytes)
 * long (4 bytes)
 * unsigned long (4 bytes)
 * long long (8 bytes)

@@ -106,22 +106,22 @@ complete description can be found in the GeoTIFF format specification. Here is
 a summary from a programmatic point of view for someone interested in
 implementation.
 
-The GeoKeyDirectoryTag is defined as an array of unsigned short values.
+The GeoKeyDirectoryTag is defined as an array of uint16_t values.
 Programmatically, the data can be structured as follows:
 
 ::
 
     struct sGeoKeys {
-        unsigned short wKeyDirectoryVersion;
-        unsigned short wKeyRevision;
-        unsigned short wMinorRevision;
-        unsigned short wNumberOfKeys;
+        uint16_t wKeyDirectoryVersion;
+        uint16_t wKeyRevision;
+        uint16_t wMinorRevision;
+        uint16_t wNumberOfKeys;
 
         struct sKeyEntry {
-            unsigned short wKeyID;
-            unsigned short wTIFFTagLocation;
-            unsigned short wCount;
-            unsigned short wValue_Offset;
+            uint16_t wKeyID;
+            uint16_t wTIFFTagLocation;
+            uint16_t wCount;
+            uint16_t wValue_Offset;
         } pKey[1];
     };
 
@@ -132,11 +132,11 @@ Programmatically, the data can be structured as follows:
     wKeyDirectoryVersion = 1; // Always
     wKeyRevision = 1;         // Always
     wMinorRevision = 0;       // Always
-    wNumberOfKeys        // Number of sets of 4 unsigned shorts to follow
+    wNumberOfKeys        // Number of sets of 4 uint16_ts to follow
 
 .. tabularcolumns:: |p{4.5cm}|p{12.0cm}|
 
-.. table:: GeoKey Four Unsigned Shorts
+.. table:: GeoKey Four uint16_ts
 
     +---------------------------------+----------------------------------------------------------+
     | Name                            | Definition                                               |
@@ -147,7 +147,7 @@ Programmatically, the data can be structured as follows:
     | ``wTIFFTagLocation``            | Indicates where the data for this key is located:        |
     |                                 |                                                          |
     |                                 | * 0 means data is in the ``wValue_Offset`` field as an   |
-    |                                 |   unsigned short.                                        |
+    |                                 |   uint16_t.                                        |
     |                                 | * 34736 means the data is located at index               |
     |                                 |   ``wValue_Offset`` of the GeoDoubleParamsTag record.    |
     |                                 | * 34737 means the data is located at index               |

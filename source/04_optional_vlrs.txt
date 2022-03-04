@@ -96,7 +96,7 @@ each point record:
 #) "pulse width" - data_type = 3 (ushort)
 
 In this example, an array of three individual floats collectively specify a
-"laser pulse direction" for that point, and one unsigned short integer specifies
+"laser pulse direction" for that point, and one uint16_t integer specifies
 a "pulse width" for that point.
 
 The "extra bytes" are made accessible via a unique name. The "name" field
@@ -131,9 +131,9 @@ Any unused characters in the "name" or "description" fields must be set to zero.
     +------------+-------------------------------+-------------------+
     | 2          | char                          | 1 byte            |
     +------------+-------------------------------+-------------------+
-    | 3          | unsigned short                | 2 bytes           |
+    | 3          | uint16_t                      | 2 bytes           |
     +------------+-------------------------------+-------------------+
-    | 4          | short                         | 2 bytes           |
+    | 4          | int16_t                       | 2 bytes           |
     +------------+-------------------------------+-------------------+
     | 5          | unsigned long                 | 4 bytes           |
     +------------+-------------------------------+-------------------+
@@ -186,8 +186,8 @@ values in the corresponding fields are to be disregarded. Any unused
 
 If the selected data_type is less than 8 bytes, the no_data, min, and max fields
 should be upcast into 8-byte storage. For any float these 8 bytes would be
-upcast to a double, for any unsigned char, unsigned short, or unsigned long
-they would be upcast to an unsigned long long and for any char, short, or long,
+upcast to a double, for any unsigned char, uint16_t, or unsigned long
+they would be upcast to an unsigned long long and for any char, int16_t, or long,
 they would be upcast to a long long.
 
 If used, the min and max fields reflect the actual minimum and maximum values

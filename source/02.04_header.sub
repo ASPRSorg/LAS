@@ -12,15 +12,15 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | File Signature ("LASF")          | char[4]                 | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | File Source ID                   | unsigned short          | 2 bytes   | yes          |
+    | File Source ID                   | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Global Encoding                  | unsigned short          | 2 bytes   | yes          |
+    | Global Encoding                  | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | Project ID - GUID Data 1         | unsigned long           | 4 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Project ID - GUID Data 2         | unsigned short          | 2 bytes   |              |
+    | Project ID - GUID Data 2         | uint16_t                | 2 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Project ID - GUID Data 3         | unsigned short          | 2 bytes   |              |
+    | Project ID - GUID Data 3         | uint16_t                | 2 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
     | Project ID - GUID Data 4         | unsigned char[8]        | 8 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
@@ -32,11 +32,11 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Generating Software              | char[32]                | 32 bytes  | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | File Creation Day of Year        | unsigned short          | 2 bytes   | yes          |
+    | File Creation Day of Year        | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | File Creation Year               | unsigned short          | 2 bytes   | yes          |
+    | File Creation Year               | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Header Size                      | unsigned short          | 2 bytes   | yes          |
+    | Header Size                      | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | Offset to Point Data             | unsigned long           | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
@@ -44,7 +44,7 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Point Data Record Format         | unsigned char           | 1 byte    | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Point Data Record Length         | unsigned short          | 2 bytes   | yes          |
+    | Point Data Record Length         | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | Legacy Number of Point Records   | unsigned long           | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
@@ -246,7 +246,7 @@ data must be null.
 
 **File Creation Day of Year**
 
-Day, expressed as an unsigned short, on which this file was created. Day is
+Day, expressed as an uint16_t, on which this file was created. Day is
 computed as the Greenwich Mean Time (GMT) day. January 1 is considered day 1.
 
 **File Creation Year**
