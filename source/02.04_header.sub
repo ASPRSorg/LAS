@@ -246,7 +246,7 @@ data must be null.
 
 **File Creation Day of Year**
 
-Day, expressed as an uint16_t, on which this file was created. Day is
+Day, expressed as a uint16_t, on which this file was created. Day is
 computed as the Greenwich Mean Time (GMT) day. January 1 is considered day 1.
 
 **File Creation Year**
