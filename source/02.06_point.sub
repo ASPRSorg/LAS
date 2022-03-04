@@ -519,7 +519,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | uint64_t                | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -669,7 +669,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | uint64_t                | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -1110,7 +1110,7 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | uint64_t                | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
@@ -1181,7 +1181,7 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-----------+----------+
     | Wave Packet Descriptor Index     | unsigned char           | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Byte Offset to Waveform Data     | unsigned long long      | 8 bytes   | yes      |
+    | Byte Offset to Waveform Data     | uint64_t                | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+
     | Waveform Packet Size in Bytes    | unsigned long           | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-----------+----------+

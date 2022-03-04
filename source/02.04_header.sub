@@ -74,18 +74,18 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Min Z                            | double                  | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Start of Waveform Data Packet    | unsigned long long      | 8 bytes   | yes          |
+    | Start of Waveform Data Packet    | uint64_t                | 8 bytes   | yes          |
     | Record                           |                         |           |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Start of First Extended Variable | unsigned long long      | 8 bytes   | yes          |
+    | Start of First Extended Variable | uint64_t                | 8 bytes   | yes          |
     | Length Record                    |                         |           |              |
     +----------------------------------+-------------------------+-----------+--------------+
     | Number of Extended Variable      | unsigned long           | 4 bytes   | yes          |
     | Length Records                   |                         |           |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Number of Point Records          | unsigned long long      | 8 bytes   | yes          |
+    | Number of Point Records          | uint64_t                | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Number of Points by Return       | unsigned long long[15]  | 120 bytes | yes          |
+    | Number of Points by Return       | uint64_t[15]            | 120 bytes | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
 
 .. note::

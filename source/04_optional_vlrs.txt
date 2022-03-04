@@ -139,9 +139,9 @@ Any unused characters in the "name" or "description" fields must be set to zero.
     +------------+-------------------------------+-------------------+
     | 6          | long                          | 4 bytes           |
     +------------+-------------------------------+-------------------+
-    | 7          | unsigned long long            | 8 bytes           |
+    | 7          | uint64_t                      | 8 bytes           |
     +------------+-------------------------------+-------------------+
-    | 8          | long long                     | 8 bytes           |
+    | 8          | int64_t                       | 8 bytes           |
     +------------+-------------------------------+-------------------+
     | 9          | float                         | 4 bytes           |
     +------------+-------------------------------+-------------------+
@@ -187,8 +187,8 @@ values in the corresponding fields are to be disregarded. Any unused
 If the selected data_type is less than 8 bytes, the no_data, min, and max fields
 should be upcast into 8-byte storage. For any float these 8 bytes would be
 upcast to a double, for any unsigned char, uint16_t, or unsigned long
-they would be upcast to an unsigned long long and for any char, int16_t, or long,
-they would be upcast to a long long.
+they would be upcast to an uint64_t and for any char, int16_t, or long,
+they would be upcast to a int64_t.
 
 If used, the min and max fields reflect the actual minimum and maximum values
 of the attribute in the LAS file, in its raw form, without any scale
