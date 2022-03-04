@@ -16,7 +16,7 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Global Encoding                  | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Project ID - GUID Data 1         | unsigned long           | 4 bytes   |              |
+    | Project ID - GUID Data 1         | uint32_t                | 4 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
     | Project ID - GUID Data 2         | uint16_t                | 2 bytes   |              |
     +----------------------------------+-------------------------+-----------+--------------+
@@ -38,17 +38,17 @@ Public Header Block
     +----------------------------------+-------------------------+-----------+--------------+
     | Header Size                      | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Offset to Point Data             | unsigned long           | 4 bytes   | yes          |
+    | Offset to Point Data             | uint32_t                | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Number of Variable Length Records| unsigned long           | 4 bytes   | yes          |
+    | Number of Variable Length Records| uint32_t                | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | Point Data Record Format         | unsigned char           | 1 byte    | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | Point Data Record Length         | uint16_t                | 2 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Legacy Number of Point Records   | unsigned long           | 4 bytes   | yes          |
+    | Legacy Number of Point Records   | uint32_t                | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Legacy Number of Point by Return | unsigned long[5]        | 20 bytes  | yes          |
+    | Legacy Number of Point by Return | uint32_t[5]             | 20 bytes  | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
     | X Scale Factor                   | double                  | 8 bytes   | yes          |
     +----------------------------------+-------------------------+-----------+--------------+
@@ -80,7 +80,7 @@ Public Header Block
     | Start of First Extended Variable | uint64_t                | 8 bytes   | yes          |
     | Length Record                    |                         |           |              |
     +----------------------------------+-------------------------+-----------+--------------+
-    | Number of Extended Variable      | unsigned long           | 4 bytes   | yes          |
+    | Number of Extended Variable      | uint32_t                | 4 bytes   | yes          |
     | Length Records                   |                         |           |              |
     +----------------------------------+-------------------------+-----------+--------------+
     | Number of Point Records          | uint64_t                | 8 bytes   | yes          |
@@ -309,7 +309,7 @@ five returns.
 **X, Y, and Z Scale Factors**
 
 The scale factor fields contain a double floating-point value that is used to
-scale the corresponding X, Y, and Z long values within the point records. The
+scale the corresponding X, Y, and Z int32_t values within the point records. The
 corresponding X, Y, and Z scale factor must be multiplied by the X, Y, or Z
 point record value to get the actual X, Y, or Z coordinate. For example, if the
 X, Y, and Z coordinates are intended to have two decimal digits, then each

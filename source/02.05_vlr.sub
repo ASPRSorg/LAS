@@ -5,7 +5,7 @@ Variable Length Records (VLRs)
 
 The Public Header Block can be followed by any number of Variable Length
 Records (VLRs) so long as the total size does not make the start of the Point
-Record data inaccessible by an unsigned long ("Offset to Point Data" in the
+Record data inaccessible by an uint32_t ("Offset to Point Data" in the
 Public Header Block). The number of VLRs is specified in the "Number of
 Variable Length Records" field in the Public Header Block. The Variable Length
 Records must be accessed sequentially since the size of each variable length

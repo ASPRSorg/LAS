@@ -135,9 +135,9 @@ Any unused characters in the "name" or "description" fields must be set to zero.
     +------------+-------------------------------+-------------------+
     | 4          | int16_t                       | 2 bytes           |
     +------------+-------------------------------+-------------------+
-    | 5          | unsigned long                 | 4 bytes           |
+    | 5          | uint32_t                      | 4 bytes           |
     +------------+-------------------------------+-------------------+
-    | 6          | long                          | 4 bytes           |
+    | 6          | int32_t                       | 4 bytes           |
     +------------+-------------------------------+-------------------+
     | 7          | uint64_t                      | 8 bytes           |
     +------------+-------------------------------+-------------------+
@@ -186,8 +186,8 @@ values in the corresponding fields are to be disregarded. Any unused
 
 If the selected data_type is less than 8 bytes, the no_data, min, and max fields
 should be upcast into 8-byte storage. For any float these 8 bytes would be
-upcast to a double, for any unsigned char, uint16_t, or unsigned long
-they would be upcast to an uint64_t and for any char, int16_t, or long,
+upcast to a double, for any unsigned char, uint16_t, or uint32_t
+they would be upcast to an uint64_t and for any char, int16_t, or int32_t,
 they would be upcast to a int64_t.
 
 If used, the min and max fields reflect the actual minimum and maximum values
@@ -257,9 +257,9 @@ dataset, the LAS file supports up to 255 Waveform Packet Descriptors.
     +------------------------------+-------------------------+-----------+--------------+
     | Waveform Compression Type    | unsigned char           | 1 byte    | yes          |
     +------------------------------+-------------------------+-----------+--------------+
-    | Number of Samples            | unsigned long           | 4 bytes   | yes          |
+    | Number of Samples            | uint32_t                | 4 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
-    | Temporal Sample Spacing      | unsigned long           | 4 bytes   | yes          |
+    | Temporal Sample Spacing      | uint32_t                | 4 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
     | Digitizer Gain               | double                  | 8 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
