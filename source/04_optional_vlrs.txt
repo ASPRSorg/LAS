@@ -190,9 +190,9 @@ upcast to a double, for any unsigned char, unsigned short, or unsigned long
 they would be upcast to an unsigned long long and for any char, short, or long,
 they would be upcast to a long long.
 
-If used, the min and max fields reflect the actual minimum and maximum values
-of the attribute in the LAS file, in its raw form, without any scale
-or offset values applied.
+If used, the min and max fields reflect the minimum and maximum values
+of the attribute in the LAS file as computed from the raw value stored in the LAS
+point record, without any scale or offset values applied.
 
 The "reserved" field, the "unused" field, and the "deprecated" fields must be
 set to zero and may be used in a future revision.
