@@ -129,7 +129,7 @@ Any unused characters in the "name" or "description" fields must be set to zero.
     +------------+-------------------------------+-------------------+
     | 1          | uint8_t                       | 1 byte            |
     +------------+-------------------------------+-------------------+
-    | 2          | char                          | 1 byte            |
+    | 2          | int8_t                        | 1 byte            |
     +------------+-------------------------------+-------------------+
     | 3          | uint16_t                      | 2 bytes           |
     +------------+-------------------------------+-------------------+
@@ -187,7 +187,7 @@ values in the corresponding fields are to be disregarded. Any unused
 If the selected data_type is less than 8 bytes, the no_data, min, and max fields
 should be upcast into 8-byte storage. For any float these 8 bytes would be
 upcast to a double, for any uint8_t, uint16_t, or uint32_t
-they would be upcast to an uint64_t and for any char, int16_t, or int32_t,
+they would be upcast to an uint64_t and for any int8_t, int16_t, or int32_t,
 they would be upcast to a int64_t.
 
 If used, the min and max fields reflect the actual minimum and maximum values

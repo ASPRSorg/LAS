@@ -72,7 +72,7 @@ Data Record Formats 0 to 5.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | uint8_t                 | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | int8_t                  | 1 byte    | yes      |
     | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | uint8_t                 | 1 byte    | no       |
@@ -335,7 +335,7 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | uint8_t                 | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | int8_t                  | 1 byte    | yes      |
     | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | uint8_t                 | 1 byte    | no       |
@@ -393,7 +393,7 @@ point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | uint8_t                 | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | int8_t                  | 1 byte    | yes      |
     | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | uint8_t                 | 1 byte    | no       |
@@ -456,7 +456,7 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | uint8_t                 | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | int8_t                  | 1 byte    | yes      |
     | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | uint8_t                 | 1 byte    | no       |
@@ -508,7 +508,7 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | uint8_t                 | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | int8_t                  | 1 byte    | yes      |
     | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | uint8_t                 | 1 byte    | no       |
@@ -652,7 +652,7 @@ Point Data Record Format 5 adds Wave Packets to Point Data Record Format 3.
     +----------------------------------+-------------------------+-----------+----------+
     | Classification                   | uint8_t                 | 1 byte    | yes      |
     +----------------------------------+-------------------------+-----------+----------+
-    | Scan Angle Rank (-90 to +90) --  | signed char             | 1 byte    | yes      |
+    | Scan Angle Rank (-90 to +90) --  | int8_t                  | 1 byte    | yes      |
     | Left Side                        |                         |           |          |
     +----------------------------------+-------------------------+-----------+----------+
     | User Data                        | uint8_t                 | 1 byte    | no       |
