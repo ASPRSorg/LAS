@@ -132,11 +132,11 @@ Programmatically, the data can be structured as follows:
     wKeyDirectoryVersion = 1; // Always
     wKeyRevision = 1;         // Always
     wMinorRevision = 0;       // Always
-    wNumberOfKeys        // Number of sets of 4 uint16_ts to follow
+    wNumberOfKeys        // Number of sets of 4 uint16_t integers to follow
 
 .. tabularcolumns:: |p{4.5cm}|p{12.0cm}|
 
-.. table:: GeoKey Four uint16_ts
+.. table:: GeoKey Four uint16_t Integers
 
     +---------------------------------+----------------------------------------------------------+
     | Name                            | Definition                                               |
