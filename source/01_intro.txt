@@ -156,7 +156,7 @@ Conformance
 ................................................................................
 
 The data types used in the LAS format definition are conformant to the 1999
-ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
+ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99")).
 
 
 Authority
