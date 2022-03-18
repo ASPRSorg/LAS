@@ -93,7 +93,7 @@ each point record:
 #) "laser pulse direction [0]" - data_type = 9 (float)
 #) "laser pulse direction [1]" - data_type = 9 (float)
 #) "laser pulse direction [2]" - data_type = 9 (float)
-#) "pulse width" - data_type = 3 (ushort)
+#) "pulse width" - data_type = 3 (uint16_t)
 
 In this example, an array of three individual floats collectively specify a
 "laser pulse direction" for that point, and one uint16_t integer specifies
