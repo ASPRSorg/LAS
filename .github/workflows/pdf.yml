@@ -1,0 +1,41 @@
+name: Docs
+
+on:
+  push:
+    branches: '*'
+
+jobs:
+  docs:
+    name: Docs
+
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: true
+    container: osgeo/proj-docs
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Print versions
+      run: |
+          python3 --version
+          sphinx-build --version
+    - name: Lint .rst files
+      run: |
+        if find . -name '*.rst' | xargs grep -P '\t'; then echo 'Tabs are bad, please use four spaces in .rst files.'; false; fi
+    - name: PDF
+      run: |
+        make latexpdf
+    - name: Spelling
+      run: |
+        make spelling
+    - uses: actions/upload-artifact@v2
+      with:
+        name: PDF
+        path: build/latex/LAS.pdf
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Misspelled
+        path: build/spelling/output.txt
+
+
+
