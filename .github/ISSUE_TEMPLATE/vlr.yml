@@ -1,0 +1,50 @@
+name: Variable Length Record Community Description
+description: Describe a VLR in use in the community
+title: "[VLR Description]: "
+labels: ["vlr"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please enter a description of a community LAS VLR
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: Who knows about this VLR and could answer questions about it?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: user_id
+    attributes:
+      label: LAS User ID
+      description: The LAS User ID in use for this VLR
+    validations:
+      required: true
+  - type: checkboxes
+    id: is_registered
+    attributes:
+      label: User ID registration
+      description: Is the LAS User ID registered with the [ASPRS VLR Key List](https://www.asprs.org/misc/las-key-list.html).
+      options:
+        - label: Registered?
+  - type: textarea
+    id: record_id
+    attributes:
+      label: LAS Record ID
+      description: The LAS Record ID in use for this VLR
+    validations:
+      required: true
+  - type: textarea
+    id: application
+    attributes:
+      label: What application(s) is the VLR used with?
+  - type: textarea
+    id: usage
+    attributes:
+      label: Please describe what the VLR is used for
+  - type: textarea
+    id: definition
+    attributes:
+      label: Please provide a definition of the VLR's contents
