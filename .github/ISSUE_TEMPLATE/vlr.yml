@@ -15,7 +15,7 @@ body:
       placeholder: ex. email@example.com
     validations:
       required: false
-  - type: textarea
+  - type: input
     id: user_id
     attributes:
       label: LAS User ID
@@ -29,7 +29,7 @@ body:
       description: Is the LAS User ID registered with the [ASPRS VLR Key List](https://www.asprs.org/misc/las-key-list.html).
       options:
         - label: Registered?
-  - type: textarea
+  - type: input
     id: record_id
     attributes:
       label: LAS Record ID
