@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+- name: How to contribute
+  url: https://github.com/ASPRSorg/LAS/wiki/Get-Involved
+  about: Learn how to participate in the ASPRS LAS Committee
+- name: ASPRS LiDAR Division
+  url: https://www.asprs.org/divisions-committees/lidar-division
+  about: Visit the LiDAR Division homepage
+
