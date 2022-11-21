@@ -10,6 +10,7 @@ body:
         - Software implementation
         - Inquiry about the specification
         - Committee efforts
+        - Other
   - type: textarea
     id: buginfo
     attributes:
