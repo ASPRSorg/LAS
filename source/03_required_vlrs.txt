@@ -147,7 +147,7 @@ Programmatically, the data can be structured as follows:
     | ``wTIFFTagLocation``            | Indicates where the data for this key is located:        |
     |                                 |                                                          |
     |                                 | * 0 means data is in the ``wValue_Offset`` field as an   |
-    |                                 |   uint16_t.                                        |
+    |                                 |   uint16_t.                                              |
     |                                 | * 34736 means the data is located at index               |
     |                                 |   ``wValue_Offset`` of the GeoDoubleParamsTag record.    |
     |                                 | * 34737 means the data is located at index               |
