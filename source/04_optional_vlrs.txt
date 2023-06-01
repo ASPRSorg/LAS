@@ -190,9 +190,9 @@ upcast to a double, for any uint8_t, uint16_t, or uint32_t
 they would be upcast to a uint64_t and for any int8_t, int16_t, or int32_t,
 they would be upcast to a int64_t.
 
-If used, the min and max fields reflect the actual minimum and maximum values
-of the attribute in the LAS file, in its raw form, without any scale
-or offset values applied.
+If used, the min and max fields reflect the minimum and maximum values
+of the attribute in the LAS file as computed from the raw value stored in the LAS
+point record, without any scale or offset values applied.
 
 The "reserved" field, the "unused" field, and the "deprecated" fields must be
 set to zero and may be used in a future revision.
