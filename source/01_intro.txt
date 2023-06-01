@@ -118,6 +118,8 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
     (`I-101 <https://github.com/ASPRSorg/LAS/issues/101>`_)
   * Clarified source of min/max XYZ and ExtraByte values.
     (`I-89 <https://github.com/ASPRSorg/LAS/issues/89>`_)
+  * More closely aligned data types with C99 definitions.
+    (`I-115 <https://github.com/ASPRSorg/LAS/issues/115>`_)
 
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
@@ -156,7 +158,7 @@ Conformance
 ................................................................................
 
 The data types used in the LAS format definition are conformant to the 1999
-ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
+ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99")).
 
 
 Authority
