@@ -1,0 +1,11 @@
+name: asprsorglas
+channels:
+  - conda-forge
+dependencies:
+  - pip
+  - pip:
+    - breathe
+    - pybtex
+    - sphinx-rtd-theme
+    - sphinxcontrib-bibtex
+    - sphinxcontrib-spelling
