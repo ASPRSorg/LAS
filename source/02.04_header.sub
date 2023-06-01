@@ -350,8 +350,6 @@ The max and min data fields are the actual unscaled extents of the LAS point
 file data, specified in the coordinate system of the LAS data. If there are no
 point records in the file, these values must be set to zero.
 
-Any changes to the point records must be re
-
 **Start of Waveform Data Packet Record**
 
 This value provides the offset, in bytes, from the beginning of the LAS file to
