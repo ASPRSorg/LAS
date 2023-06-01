@@ -385,9 +385,7 @@ intent.
 .. note::
 
     Any changes to the number of points or their attributes must also be reflected
-	in the Public Header Block.
-
-
+    in the Public Header Block.
 
 **Number of Points by Return**
 
