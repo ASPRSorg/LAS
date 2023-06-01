@@ -19,7 +19,7 @@ formats:
   - epub
 
 conda:
-  environment: docs/environment.yml
+  environment: environment.yml
 
 sphinx:
   configuration: source/conf.py
