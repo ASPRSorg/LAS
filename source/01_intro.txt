@@ -16,6 +16,25 @@ This document reflects the fourth revision of the LAS format specification
 since its initial version 1.0 release.
 
 
+LAS 1.5 Revision History
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Summary of LAS 1.5 revisions (GitHub Issue numbers included when applicable):
+
+* R00 - Approved Version (XXXXXXX).
+
+
+Comparison of LAS 1.5 to Previous Versions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The additions of LAS 1.5 include:
+
+* Backward compatibility with LAS 1.1 – LAS 1.4.
+* LAS 1.5 mode which supports:
+
+  * Added Max/Min GPS Time fields to header block.
+    (`I-118 <https://github.com/ASPRSorg/LAS/issues/118>`_)
+
 LAS 1.4 Revision History
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
