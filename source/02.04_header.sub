@@ -402,7 +402,7 @@ generally) GPS Time values stored with the point records in this LAS file. The
 GPS Time in this field will be in the same encoding described in the file's
 :ref:`Global Encoding <globalencoding_link>` field.
 
-If there are no points records in the file, these values must be set to zero.
-
-For :ref:`Aggregate Model Systems <aggregate_link>` or LAS files not utilizing
-GPS Time, these values must be set to zero.
+These values must be set to zero if there are no point records in the file,
+if the file utilizes a point record format not supporting GPS Time, or if
+all point records within the file have GPS Time values set to zero,
+such as for certain :ref:`Aggregate Model Systems <aggregate_link>`.
