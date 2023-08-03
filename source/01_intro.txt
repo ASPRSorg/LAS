@@ -34,6 +34,8 @@ The additions of LAS 1.5 include:
 
   * Added Max/Min GPS Time fields to header block.
     (`I-118 <https://github.com/ASPRSorg/LAS/issues/118>`_)
+  * Added Offset GPS Time definition.
+    (`I-6 <https://github.com/ASPRSorg/LAS/issues/6>`_)
 
 LAS 1.4 Revision History
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
