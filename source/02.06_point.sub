@@ -86,79 +86,6 @@ Data Record Formats 0 to 5.
     required for a PDRF. These "extra bytes" follow the standard Point Record
     fields and are described in the :ref:`extrabytes_vlr_label` VLR section.
 
-**X, Y, and Z**
-
-The X, Y, and Z values are stored as int32_t integers. The X, Y, and Z values are
-used in conjunction with the scale values and the offset values to determine
-the coordinate for each point as described in the :ref:`headerblock_label` section.
-
-**Intensity**
-
-The Intensity value is the integer representation of the pulse return
-magnitude. This value is optional and system specific. However, it should
-always be included if available. If Intensity is not included, this value must
-be set to zero.
-
-Intensity, when included, is always normalized
-to a 16 bit, unsigned value by multiplying the value by 65,536/(intensity
-dynamic range of the sensor). For example, if the dynamic range of the sensor
-is 10 bits, the scaling value would be (65,536/1,024). This normalization is required to
-ensure that data from different sensors can be correctly merged.
-
-For systems based on technology other than pulsed lasers, Intensity values may
-represent estimated relative reflectivity, rather than a direct measurement of
-pulse return magnitude, and may be derived from multiple sources.
-
-.. note::
-
-    Please note that the following four fields (Return Number, Number of Returns,
-    Scan Direction Flag, and Edge of Flight Line) are bit fields within a single
-    byte.
-
-**Return Number**
-
-The Return Number is the pulse return number for a given output pulse. A given
-output laser pulse can have many returns, and they must be marked in sequence
-of return. The first return will have a Return Number of one, the second a
-Return Number of two, and so on up to five returns. The Return Number must
-be between 1 and the Number of Returns, inclusive.
-
-For systems unable to record multiple returns, the Return Number should be
-set to one, unless it is synthetically derived and the Synthetic Return Number
-Global Encoding bit is set.
-
-**Number of Returns (Given Pulse)**
-
-The Number of Returns is the total number of returns for a given pulse. For
-example, a laser data point may be return two (Return Number) within a total
-number of up to five returns.
-
-For systems unable to record multiple returns, the Number of Returns should be
-set to one, unless it is synthetically derived and the Synthetic Return Number
-Global Encoding bit is set.
-
-**Scan Direction Flag**
-
-The Scan Direction Flag denotes the direction in which the scanner mirror was
-traveling at the time of the output pulse. A bit value of 1 is a positive scan
-direction, and a bit value of 0 is a negative scan direction (where positive
-scan direction is a scan moving from the left side of the in-track direction to
-the right side and negative the opposite).
-
-For :ref:`Aggregate Model Systems <aggregate_link>` or if the measurement system
-does not include a rotational component, the Scan Direction Flag should be set
-to zero.
-
-**Edge of Flight Line Flag**
-
-The Edge of Flight Line Flag has a value of 1 only when the point is at the
-end of a scan. It is the last point on a given scan line before it changes
-direction or the mirror facet changes.
-
-Note that this field has no meaning for :ref:`Aggregate Model Systems <aggregate_link>`
-or 360 degree Field of View scanners (e.g., terrestrial lidar scanners). In
-these cases, the Edge of Flight Line Flag should be set to zero.
-
 **Classification**
 
 This field represents the "class" attributes of a point. The format for classification
@@ -283,22 +210,6 @@ of flight.
 For :ref:`Aggregate Model Systems <aggregate_link>`, the Scan Angle Rank should
 be set to zero unless assigned from a component measurement.
 
-**User Data**
-
-This field may be used at the user's discretion.
-
-**Point Source ID**
-
-This value indicates the source from which this point originated. A source is
-typically defined as a grouping of temporally consistent data, such as a
-flight line or sortie number for airborne systems, a route number for mobile
-systems, or a setup identifier for static systems. Valid values for this field
-are 1 to 65,535 inclusive. Zero is reserved as a convenience to system
-implementers.
-
-For :ref:`Aggregate Model Systems <aggregate_link>`, the Point Source ID should
-be set to one (1) unless assigned from a component measurement.
-
 .. raw:: latex
 
     \newpage
@@ -346,36 +257,6 @@ addition of GPS Time.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *28 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
-
-**GPS Time**
-
-The GPS Time is the double floating point time tag value at which the point was
-observed. GPS Time encoding is specified by the :ref:`Global Encoding <globalencoding_link>`
-bit field. The time value encoding is defined as GPS Week Time if the GPS Time Type bit is unset, 
-Adjusted Standard GPS Time if the GPS Time Type bit is set,
-and Offset GPS Time if the Time Offset Flag bit is set.
-
-.. table:: GPS Time Encoding
-
-    +---------------------+------------------------+------------------------------+
-    | GPS Time Type bit   | Time Offset Flag bit   | Timestamp Encoding           |
-    +=====================+========================+==============================+
-    | Unset               | Unset                  | GPS Week Time                |
-    +---------------------+------------------------+------------------------------+
-    | Set                 | Unset                  | Adjusted Standard GPS Time   |
-    +---------------------+------------------------+------------------------------+
-    | Unset               | Set                    | *INVALID*                    |
-    +---------------------+------------------------+------------------------------+
-    | Set                 | Set                    | Offset GPS Time              |
-    +---------------------+------------------------+------------------------------+
-
-It is intended that each return of a given pulse would have an identical GPS
-Time. In the example of pulsed LiDAR systems, the GPS Time would be the time at
-which the originating pulse was emitted, not the time at which each return was
-recorded.
-
-For :ref:`Aggregate Model Systems <aggregate_link>`, the GPS Time should be set
-to zero unless assigned from a component measurement.
 
 
 .. raw:: latex
@@ -430,17 +311,6 @@ point using ancillary data, typically from a camera.
     | *Minimum PDRF Size*                                        | *26 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
-**Red, Green, and Blue**
-
-The Red, Green, and Blue image channel values associated with this point.
-
-.. note::
-
-    The Red, Green, and Blue values should always be normalized to 16 bit values.
-    For example, when encoding an 8 bit per channel pixel, multiply each
-    channel value by 256 prior to storage in these fields. This normalization
-    allows color values from different camera bit depths to be accurately
-    merged.
 
 .. raw:: latex
 
@@ -554,89 +424,6 @@ Point Data Record Format 4 adds Wave Packets to Point Data Record Format 1.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *57 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
-
-**Wave Packet Descriptor Index**
-
-This value plus **99** is the Record ID of the :ref:`fwf_descriptor_label` and
-indicates the User Defined Record that describes the waveform packet associated
-with this Point Record. Up to 255 different User Defined Records which describe
-the waveform packet are supported. A value of zero indicates that there is no
-waveform data associated with this Point Record.
-
-**Byte Offset to Waveform Data**
-
-The waveform packet data are stored in the LAS file in an Extended Variable
-Length Record or in an auxiliary \*.wdp file. The Byte Offset represents the
-location of the start of this Point Record’s waveform packet within the waveform
-data variable length record (or external file) relative to the beginning of the
-:ref:`fwf_packets_label` header. The absolute location of the beginning of this
-waveform packet relative to the beginning of the file is given by:
-
-    **Start of Waveform Data Packet Record** + **Byte Offset to Waveform Data**
-
-    for waveform packets stored within the LAS file and
-
-    **Byte Offset to Waveform Data**
-
-    for data stored in an auxiliary \*.wdp file.
-
-**Waveform Packet Size in Bytes**
-
-The size, in bytes, of the waveform packet associated with this return. Note
-that each waveform can be of a different size (even those with the same
-Waveform Packet Descriptor index) due to packet compression. Also note that
-waveform packets can be located only via the Byte Offset to Waveform Packet
-Data value since there is no requirement that records be stored sequentially.
-
-
-**Return Point Waveform Location**
-
-The temporal offset in picoseconds (:math:`10^{-12}`) from the arbitrary "anchor
-point" to the location within the waveform packet for this Point Record.
-
-
-**Parametric dx, dy, dz**
-
-These parameters define a parametric line equation for extrapolating points
-along the associated waveform. The position along the wave is given by:
-
-.. math::
-    :nowrap:
-
-    \begin {eqnarray}
-        X &= X_0 + t * dx \\
-        Y &= Y_0 + t * dy \\
-        Z &= Z_0 + t * dz
-    \end {eqnarray}
-
-where :math:`(X, Y, Z)` is the spatial position of a derived point,
-:math:`(X_0, Y_0, Z_0)` is the position of the "anchor" point, and :math:`t` is
-the time, in picoseconds, relative to the anchor point.
-
-The anchor point is an arbitrary location at the origin of the associated
-waveform -- i.e. :math:`t = 0` at the anchor point -- with coordinates defined
-by:
-
-.. math::
-    :nowrap:
-
-    \begin {eqnarray}
-        X_0 &= X_P + L * dx \\
-        Y_0 &= Y_P + L * dy \\
-        Z_0 &= Z_P + L * dz
-    \end {eqnarray}
-
-where :math:`(X_P, Y_P, Z_P)` is this Point Record's transformed position (as a 
-double) and :math:`L` is this Point Record's Return Point Waveform Location.
-
-The units of X, Y and Z are the units of the coordinate systems of the LAS data.
-If the coordinate system is geographic, the horizontal units are decimal degrees
-and the vertical units are meters.
-
-.. note::
-
-    Users seeking further clarity regarding LAS waveform encoding are encouraged
-    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
 
 
 .. raw:: latex
@@ -759,11 +546,33 @@ instead of 8), and the GPS time is mandatory.
     | *Minimum PDRF Size*                                        | *30 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
+**X, Y, and Z**
+
+The X, Y, and Z values are stored as int32_t integers. The X, Y, and Z values are
+used in conjunction with the scale values and the offset values to determine
+the coordinate for each point as described in the :ref:`headerblock_label` section.
+
+**Intensity**
+
+The Intensity value is the integer representation of the pulse return
+magnitude. This value is optional and system specific. However, it should
+always be included if available. If Intensity is not included, this value must
+be set to zero.
+
+Intensity, when included, is always normalized
+to a 16 bit, unsigned value by multiplying the value by 65,536/(intensity
+dynamic range of the sensor). For example, if the dynamic range of the sensor
+is 10 bits, the scaling value would be (65,536/1,024). This normalization is required to
+ensure that data from different sensors can be correctly merged.
+
+For systems based on technology other than pulsed lasers, Intensity values may
+represent estimated relative reflectivity, rather than a direct measurement of
+pulse return magnitude, and may be derived from multiple sources.
+
 .. note::
 
-    The following six fields (Return Number, Number of Returns, Classification
-    Flags, Scanner Channel, Scan Direction Flag, and Edge of Flight Line) are bit fields, encoded
-    into two bytes.
+    The following two fields (Return Number and Number of Returns) are bit fields, encoded
+    into one byte.
 
 **Return Number**
 
@@ -786,6 +595,12 @@ number of up to fifteen returns.
 For systems unable to record multiple returns, the Number of Returns should be
 set to one, unless it is synthetically derived and the Synthetic Return Number
 Global Encoding bit is set.
+
+.. note::
+
+    The following four fields (Classification Flags, Scanner Channel, Scan Direction Flag,
+    and Edge of Flight Line) are bit fields, encoded
+    into one byte.
 
 **Classification Flags**
 
@@ -944,6 +759,10 @@ Classification must adhere to the following standard:
     structures could be remapped from class 0 to class 1.
 
 
+**User Data**
+
+This field may be used at the user's discretion.
+
 **Scan Angle**
 
 The Scan Angle is an int16_t that represents the rotational position of the
@@ -957,6 +776,48 @@ the negative direction is -30,000 which is also directly up.
 
 For :ref:`Aggregate Model Systems <aggregate_link>`, the Scan Angle should be
 set to zero unless assigned from a component measurement.
+
+**Point Source ID**
+
+This value indicates the source from which this point originated. A source is
+typically defined as a grouping of temporally consistent data, such as a
+flight line or sortie number for airborne systems, a route number for mobile
+systems, or a setup identifier for static systems. Valid values for this field
+are 1 to 65,535 inclusive. Zero is reserved as a convenience to system
+implementers.
+
+For :ref:`Aggregate Model Systems <aggregate_link>`, the Point Source ID should
+be set to one (1) unless assigned from a component measurement.
+
+**GPS Time**
+
+The GPS Time is the double floating point time tag value at which the point was
+observed. GPS Time encoding is specified by the :ref:`Global Encoding <globalencoding_link>`
+bit field. The time value encoding is defined as GPS Week Time if the GPS Time Type bit is unset, 
+Adjusted Standard GPS Time if the GPS Time Type bit is set,
+and Offset GPS Time if the Time Offset Flag bit is set.
+
+.. table:: GPS Time Encoding
+
+    +---------------------+------------------------+------------------------------+
+    | GPS Time Type bit   | Time Offset Flag bit   | Timestamp Encoding           |
+    +=====================+========================+==============================+
+    | Unset               | Unset                  | GPS Week Time                |
+    +---------------------+------------------------+------------------------------+
+    | Set                 | Unset                  | Adjusted Standard GPS Time   |
+    +---------------------+------------------------+------------------------------+
+    | Unset               | Set                    | *INVALID*                    |
+    +---------------------+------------------------+------------------------------+
+    | Set                 | Set                    | Offset GPS Time              |
+    +---------------------+------------------------+------------------------------+
+
+It is intended that each return of a given pulse would have an identical GPS
+Time. In the example of pulsed LiDAR systems, the GPS Time would be the time at
+which the originating pulse was emitted, not the time at which each return was
+recorded.
+
+For :ref:`Aggregate Model Systems <aggregate_link>`, the GPS Time should be set
+to zero unless assigned from a component measurement.
 
 
 .. raw:: latex
@@ -1015,6 +876,18 @@ point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *36 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
+
+**Red, Green, and Blue**
+
+The Red, Green, and Blue image channel values associated with this point.
+
+.. note::
+
+    The Red, Green, and Blue values should always be normalized to 16 bit values.
+    For example, when encoding an 8 bit per channel pixel, multiply each
+    channel value by 256 prior to storage in these fields. This normalization
+    allows color values from different camera bit depths to be accurately
+    merged.
 
 .. raw:: latex
 
@@ -1148,6 +1021,90 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | *Minimum PDRF Size*                                        | *59 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
+
+**Wave Packet Descriptor Index**
+
+This value plus **99** is the Record ID of the :ref:`fwf_descriptor_label` and
+indicates the User Defined Record that describes the waveform packet associated
+with this Point Record. Up to 255 different User Defined Records which describe
+the waveform packet are supported. A value of zero indicates that there is no
+waveform data associated with this Point Record.
+
+**Byte Offset to Waveform Data**
+
+The waveform packet data are stored in the LAS file in an Extended Variable
+Length Record or in an auxiliary \*.wdp file. The Byte Offset represents the
+location of the start of this Point Record’s waveform packet within the waveform
+data variable length record (or external file) relative to the beginning of the
+:ref:`fwf_packets_label` header. The absolute location of the beginning of this
+waveform packet relative to the beginning of the file is given by:
+
+    **Start of Waveform Data Packet Record** + **Byte Offset to Waveform Data**
+
+    for waveform packets stored within the LAS file and
+
+    **Byte Offset to Waveform Data**
+
+    for data stored in an auxiliary \*.wdp file.
+
+**Waveform Packet Size in Bytes**
+
+The size, in bytes, of the waveform packet associated with this return. Note
+that each waveform can be of a different size (even those with the same
+Waveform Packet Descriptor index) due to packet compression. Also note that
+waveform packets can be located only via the Byte Offset to Waveform Packet
+Data value since there is no requirement that records be stored sequentially.
+
+
+**Return Point Waveform Location**
+
+The temporal offset in picoseconds (:math:`10^{-12}`) from the arbitrary "anchor
+point" to the location within the waveform packet for this Point Record.
+
+
+**Parametric dx, dy, dz**
+
+These parameters define a parametric line equation for extrapolating points
+along the associated waveform. The position along the wave is given by:
+
+.. math::
+    :nowrap:
+
+    \begin {eqnarray}
+        X &= X_0 + t * dx \\
+        Y &= Y_0 + t * dy \\
+        Z &= Z_0 + t * dz
+    \end {eqnarray}
+
+where :math:`(X, Y, Z)` is the spatial position of a derived point,
+:math:`(X_0, Y_0, Z_0)` is the position of the "anchor" point, and :math:`t` is
+the time, in picoseconds, relative to the anchor point.
+
+The anchor point is an arbitrary location at the origin of the associated
+waveform -- i.e. :math:`t = 0` at the anchor point -- with coordinates defined
+by:
+
+.. math::
+    :nowrap:
+
+    \begin {eqnarray}
+        X_0 &= X_P + L * dx \\
+        Y_0 &= Y_P + L * dy \\
+        Z_0 &= Z_P + L * dz
+    \end {eqnarray}
+
+where :math:`(X_P, Y_P, Z_P)` is this Point Record's transformed position (as a 
+double) and :math:`L` is this Point Record's Return Point Waveform Location.
+
+The units of X, Y and Z are the units of the coordinate systems of the LAS data.
+If the coordinate system is geographic, the horizontal units are decimal degrees
+and the vertical units are meters.
+
+.. note::
+
+    Users seeking further clarity regarding LAS waveform encoding are encouraged
+    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+
 
 .. raw:: latex
 
