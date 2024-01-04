@@ -789,6 +789,8 @@ implementers.
 For :ref:`Aggregate Model Systems <aggregate_link>`, the Point Source ID should
 be set to one (1) unless assigned from a component measurement.
 
+.. _gpstime_link:
+
 **GPS Time**
 
 The GPS Time is the double floating point time tag value at which the point was
