@@ -176,15 +176,12 @@ a value of 1). This bit field is defined as:
     |       |                       | multiple returns.                        |
     +-------+-----------------------+------------------------------------------+
     | 4     | WKT                   | If set, the Coordinate Reference System  |
-    |       |                       | (CRS) is WKT. If not set, the CRS is     |
-    |       |                       | GeoTIFF. It should not be set if the     |
-    |       |                       | file writer wishes to ensure legacy      |
-    |       |                       | compatibility (which means the CRS must  |
-    |       |                       | be GeoTIFF).                             |
+    |       |                       | (CRS) is WKT. This bit must be set.      |
+    |       |                       | GeoTIFF CRS definitions are not          |
+    |       |                       | supported for legacy                     |
+    |       |                       | compatibility beginning with LAS 1.5.    |
     +-------+-----------------------+------------------------------------------+
-    | 5     | Reserved              | Must be set to zero (0).                 |
-    +-------+-----------------------+------------------------------------------+
-    | 6     | Time Offset Flag      | If set, GPS Time is defined as Offset    |
+    | 5     | Time Offset Flag      | If set, GPS Time is defined as Offset    |
     |       |                       | GPS Time. The Offset GPS Time is         |
     |       |                       | standard GPS Time (satellite GPS Time)   |
     |       |                       | minus 1 x :math:`10^6` x Time Offset.    |
@@ -199,7 +196,7 @@ a value of 1). This bit field is defined as:
     |       |                       | The GPS Time Type flag must be set if    |
     |       |                       | the Time Offset Flag is set.             |
     +-------+-----------------------+------------------------------------------+
-    | 7:15  | Reserved              | Must be set to zero (0).                 |
+    | 6:15  | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
 
 
