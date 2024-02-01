@@ -11,11 +11,11 @@ section, while other VLRs and EVLRs are defined in the following two sections.
 Coordinate Reference System Information
 ................................................................................
 
-The Coordinate Reference System (CRS) information for the point data is required
-for all data. The CRS information will be placed in Variable Length Records or
-Extended Variable Length Records. The CRS is represented always `OGC Well Known
-Text <https://www.ogc.org/standard/wkt-crs/>`__ (WKT) without regard to the
-:ref:`Global Encoding <globalencoding_link>` bit.
+The Coordinate Reference System (CRS) information for the point data is 
+required for all data. The CRS information will be placed in Variable Length 
+Records or Extended Variable Length Records. The CRS is always represented 
+as `OGC Well Known Text <https://www.ogc.org/standard/wkt-crs/>`__ (WKT) 
+without regard to the :ref:`Global Encoding <globalencoding_link>` bit.
 
 .. note::
 
@@ -27,13 +27,13 @@ Text <https://www.ogc.org/standard/wkt-crs/>`__ (WKT) without regard to the
 Georeferencing Information Using WKT
 ................................................................................
 
-LAS 1.5 defers its CRS definition to The Open Geospatial Consortium (OGC)
+LAS 1.5 defers its CRS definition to the Open Geospatial Consortium (OGC)
 specification "Well-known text representation of coordinate reference systems",
 located at https://www.ogc.org/standard/wkt-crs/, which provides a comprehensive
 industry standard for describing coordinate systems.
 
-*Any published version* of OGC WKT is a valid definition for LAS 1.5. Multiple
-*versions OGC has published multiple versions of WKT, including `18-010
+*Any published version* of OGC WKT is a valid definition for LAS 1.5. 
+OGC has published multiple versions of WKT, including `18-010
 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ (commonly called "WKT2" or
 "WKTv2") and `12-063r5 <https://docs.ogc.org/is/12-063r5/12-063r5.html>`__
 (commonly called "WKT1" and the formally ratified variant of WKT that was used
