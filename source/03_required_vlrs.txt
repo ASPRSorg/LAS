@@ -32,7 +32,7 @@ specification "Well-known text representation of coordinate reference systems",
 located at https://www.ogc.org/standard/wkt-crs/, which provides a comprehensive
 industry standard for describing coordinate systems.
 
-*Any published version* of OGC WKT is a valid definition for LAS 1.5. 
+Any published version of OGC WKT is a valid definition for LAS 1.5. 
 OGC has published multiple versions of WKT, including `18-010
 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ (commonly called "WKT2" or
 "WKTv2") and `12-063r5 <https://docs.ogc.org/is/12-063r5/12-063r5.html>`__
@@ -40,14 +40,21 @@ OGC has published multiple versions of WKT, including `18-010
 for LAS 1.4). If OGC were to publish a new WKT specification, it would
 also be a valid definition for LAS 1.5.
 
-WKT georeferencing information must be specified in the
-OGC CRS WKT record, as follows. Two optional VLRs define supporting
-information for CRS defintions – the Math Transform Record and the Epoch Record.
-A CRS WKT definition *may* or *may not* require a math transform WKT record (a
-parameterized math transform definition). A CRS WKT definition *may* require an
+WKT georeferencing information must be specified in the VLRs described in the
+subsections below, using the required OGC CRS WKT Record VLR at a minimum. 
+Two optional VLRs define supporting
+information for CRS definitions – the Math Transform Record and the Epoch Record.
+A CRS WKT definition may or may not require a Math Transform WKT Record, which is a
+parameterized math transform definition. A CRS WKT definition may require an
 epoch record to precisely define the time point at which the CRS definition refers.
 
-OGC Math Transform WKT Record
+.. note::
+
+    Readers seeking further clarity regarding LAS WKT encoding are encouraged
+    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+
+
+OGC Math Transform WKT Record (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
@@ -90,7 +97,7 @@ following notes:
     <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ (commonly called "WKT2" or
     "WKTv2") and `12-063r5 <https://docs.ogc.org/is/12-063r5/12-063r5.html>`__
 
-Epoch Record
+Epoch Record (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-----------------+-----------------------------+
