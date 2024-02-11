@@ -8,8 +8,8 @@ Header Block to locate the starting position of the first Point Data Record.
 Note that all Point Data Records must be the same type (i.e., Point Data Record
 Format).
 
-PDRFs 0-5 as defined in previous versions of LAS are no longer valid for LAS 1.5.
-Point Data Record Formats (PDRFs) 6-10 have improved several aspects of the core
+Point Data Record Formats (PDRFs) 0-5 as defined in previous versions of LAS are no longer valid for LAS 1.5.
+PDRFs 6-10 have improved several aspects of the core
 information in the point data records, particularly support for 256 classes,
 the definition of a specific "Overlap" bit, support for multiple sensor channels, etc. 
 
@@ -273,7 +273,7 @@ Classification must adhere to the following standard:
     +------------------+-----------------------------+--------------------------------+
     | 7                | Low Point (Noise)           |                                |
     +------------------+-----------------------------+--------------------------------+
-    | 8                | *Reserved*                  | Formerly Model Key-Point       |
+    | 8                | *Reserved*                  |                                |
     +------------------+-----------------------------+--------------------------------+
     | 9                | Water                       |                                |
     +------------------+-----------------------------+--------------------------------+
@@ -281,7 +281,7 @@ Classification must adhere to the following standard:
     +------------------+-----------------------------+--------------------------------+
     | 11               | Road Surface                |                                |
     +------------------+-----------------------------+--------------------------------+
-    | 12               | *Reserved*                  | Formerly Overlap Point         |
+    | 12               | *Reserved*                  |                                |
     +------------------+-----------------------------+--------------------------------+
     | 13               | Wire -- Guard (Shield)      |                                |
     +------------------+-----------------------------+--------------------------------+
