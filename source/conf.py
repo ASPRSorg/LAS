@@ -73,7 +73,7 @@ def get_git_revision_short_hash():
     import os
     if 'GITHUB_SHA' in os.environ:
         return os.environ['GITHUB_SHA']
-    elif ' READTHEDOCS_GIT_COMMIT_HASH' in os.environ:
+    elif 'READTHEDOCS_GIT_COMMIT_HASH' in os.environ:
         return os.environ['READTHEDOCS_GIT_COMMIT_HASH']
 
 gitsha = get_git_revision_short_hash()
