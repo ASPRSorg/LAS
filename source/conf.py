@@ -42,11 +42,11 @@ templates_path = ['_templates']
 source_suffix = '.txt'
 
 # The master toctree document.
-master_doc = '00_index'
+master_doc = 'index'
 
 # General information about the project.
 project = u'LAS'
-copyright = u'2019, ASPRS'
+copyright = u'2024, ASPRS'
 author = u'ASPRS'
 
 # The version info for the project you're documenting, acts as replacement for

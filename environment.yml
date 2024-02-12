@@ -9,3 +9,4 @@ dependencies:
     - sphinx-rtd-theme
     - sphinxcontrib-bibtex
     - sphinxcontrib-spelling
+    - enchant
