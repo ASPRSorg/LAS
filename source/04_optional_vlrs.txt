@@ -19,7 +19,7 @@ Classification Lookup
 ::
 
     struct CLASSIFICATION {
-        unsigned char ClassNumber;
+        uint8_t ClassNumber;
         char Description[15];
     }; //total of 16 bytes
 
@@ -66,22 +66,22 @@ across applications. The extra bytes descriptor is defined as follows:
 ::
 
     struct EXTRA_BYTES {
-        unsigned char           reserved[2];     // 2 bytes
-        unsigned char           data_type;       // 1 byte
-        unsigned char           options;         // 1 byte
-        char                    name[32];        // 32 bytes
-        unsigned char           unused[4];       // 4 bytes
-        anytype                 no_data;         // 8 bytes
-        unsigned char           deprecated1[16]; // 16 bytes
-        anytype                 min;             // 8 bytes
-        unsigned char           deprecated2[16]; // 16 bytes
-        anytype                 max;             // 8 bytes
-        unsigned char           deprecated3[16]; // 16 bytes
-        double                  scale;           // 8 bytes
-        unsigned char           deprecated4[16]; // 16 bytes
-        double                  offset;          // 8 bytes
-        unsigned char           deprecated5[16]; // 16 bytes
-        char                    description[32]; // 32 bytes
+        uint8_t reserved[2];     // 2 bytes
+        uint8_t data_type;       // 1 byte
+        uint8_t options;         // 1 byte
+        char    name[32];        // 32 bytes
+        uint8_t unused[4];       // 4 bytes
+        anytype no_data;         // 8 bytes
+        uint8_t deprecated1[16]; // 16 bytes
+        anytype min;             // 8 bytes
+        uint8_t deprecated2[16]; // 16 bytes
+        anytype max;             // 8 bytes
+        uint8_t deprecated3[16]; // 16 bytes
+        double  scale;           // 8 bytes
+        uint8_t deprecated4[16]; // 16 bytes
+        double  offset;          // 8 bytes
+        uint8_t deprecated5[16]; // 16 bytes
+        char    description[32]; // 32 bytes
     };                                           // total of 192 bytes
 
 The 4 "extra bytes" could, for example, be of data_type 9 - a 4-byte floating
@@ -93,10 +93,10 @@ each point record:
 #) "laser pulse direction [0]" - data_type = 9 (float)
 #) "laser pulse direction [1]" - data_type = 9 (float)
 #) "laser pulse direction [2]" - data_type = 9 (float)
-#) "pulse width" - data_type = 3 (ushort)
+#) "pulse width" - data_type = 3 (uint16_t)
 
 In this example, an array of three individual floats collectively specify a
-"laser pulse direction" for that point, and one unsigned short integer specifies
+"laser pulse direction" for that point, and one uint16_t integer specifies
 a "pulse width" for that point.
 
 The "extra bytes" are made accessible via a unique name. The "name" field
@@ -127,21 +127,21 @@ Any unused characters in the "name" or "description" fields must be set to zero.
     | 0          | undocumented extra bytes      | specify value in  |
     |            |                               | ``options`` field |
     +------------+-------------------------------+-------------------+
-    | 1          | unsigned char                 | 1 byte            |
+    | 1          | uint8_t                       | 1 byte            |
     +------------+-------------------------------+-------------------+
-    | 2          | char                          | 1 byte            |
+    | 2          | int8_t                        | 1 byte            |
     +------------+-------------------------------+-------------------+
-    | 3          | unsigned short                | 2 bytes           |
+    | 3          | uint16_t                      | 2 bytes           |
     +------------+-------------------------------+-------------------+
-    | 4          | short                         | 2 bytes           |
+    | 4          | int16_t                       | 2 bytes           |
     +------------+-------------------------------+-------------------+
-    | 5          | unsigned long                 | 4 bytes           |
+    | 5          | uint32_t                      | 4 bytes           |
     +------------+-------------------------------+-------------------+
-    | 6          | long                          | 4 bytes           |
+    | 6          | int32_t                       | 4 bytes           |
     +------------+-------------------------------+-------------------+
-    | 7          | unsigned long long            | 8 bytes           |
+    | 7          | uint64_t                      | 8 bytes           |
     +------------+-------------------------------+-------------------+
-    | 8          | long long                     | 8 bytes           |
+    | 8          | int64_t                       | 8 bytes           |
     +------------+-------------------------------+-------------------+
     | 9          | float                         | 4 bytes           |
     +------------+-------------------------------+-------------------+
@@ -186,13 +186,13 @@ values in the corresponding fields are to be disregarded. Any unused
 
 If the selected data_type is less than 8 bytes, the no_data, min, and max fields
 should be upcast into 8-byte storage. For any float these 8 bytes would be
-upcast to a double, for any unsigned char, unsigned short, or unsigned long
-they would be upcast to an unsigned long long and for any char, short, or long,
-they would be upcast to a long long.
+upcast to a double, for any uint8_t, uint16_t, or uint32_t
+they would be upcast to a uint64_t and for any int8_t, int16_t, or int32_t,
+they would be upcast to a int64_t.
 
-If used, the min and max fields reflect the actual minimum and maximum values
-of the attribute in the LAS file, in its raw form, without any scale
-or offset values applied.
+If used, the min and max fields reflect the minimum and maximum values
+of the attribute in the LAS file as computed from the raw value stored in the LAS
+point record, without any scale or offset values applied.
 
 The "reserved" field, the "unused" field, and the "deprecated" fields must be
 set to zero and may be used in a future revision.
@@ -253,13 +253,13 @@ dataset, the LAS file supports up to 255 Waveform Packet Descriptors.
     +------------------------------+-------------------------+-----------+--------------+
     | Item                         | Format                  | Size      | Required     |
     +==============================+=========================+===========+==============+
-    | Bits per Sample              | unsigned char           | 1 byte    | yes          |
+    | Bits per Sample              | uint8_t                 | 1 byte    | yes          |
     +------------------------------+-------------------------+-----------+--------------+
-    | Waveform Compression Type    | unsigned char           | 1 byte    | yes          |
+    | Waveform Compression Type    | uint8_t                 | 1 byte    | yes          |
     +------------------------------+-------------------------+-----------+--------------+
-    | Number of Samples            | unsigned long           | 4 bytes   | yes          |
+    | Number of Samples            | uint32_t                | 4 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
-    | Temporal Sample Spacing      | unsigned long           | 4 bytes   | yes          |
+    | Temporal Sample Spacing      | uint32_t                | 4 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
     | Digitizer Gain               | double                  | 8 bytes   | yes          |
     +------------------------------+-------------------------+-----------+--------------+
