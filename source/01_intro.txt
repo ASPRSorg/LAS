@@ -117,7 +117,7 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
   * Clarified how and when certain header fields should be zero-filled.
     (`I-101 <https://github.com/ASPRSorg/LAS/issues/101>`_)
   * Added Official LAS Wiki section.
-    (`I-101 <https://github.com/ASPRSorg/LAS/issues/71>`_)
+    (`I-71 <https://github.com/ASPRSorg/LAS/issues/71>`_)
   * Clarified source of min/max XYZ and ExtraByte values.
     (`I-89 <https://github.com/ASPRSorg/LAS/issues/89>`_)
   * More closely aligned data types with C99 definitions.
