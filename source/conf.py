@@ -30,7 +30,16 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.mathjax', 'sphinxcontrib.spelling']
+
+HAVE_SPELLING = True
+try:
+    import sphinxcontrib.spelling
+except ImportError:
+    HAVE_SPELLING=False
+extensions = ['sphinx.ext.mathjax']
+
+if HAVE_SPELLING:
+    extensions.append('sphinxcontrib.spelling')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -73,7 +82,7 @@ def get_git_revision_short_hash():
     import os
     if 'GITHUB_SHA' in os.environ:
         return os.environ['GITHUB_SHA']
-    elif 'READTHEDOCS_GIT_COMMIT_HASH':
+    elif 'READTHEDOCS_GIT_COMMIT_HASH' in os.environ:
         return os.environ['READTHEDOCS_GIT_COMMIT_HASH']
     return ''
 gitsha = get_git_revision_short_hash()
@@ -83,7 +92,7 @@ gitsha = get_git_revision_short_hash()
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
