@@ -20,6 +20,6 @@ python:
     - requirements: source/requirements.txt
 
 conda:
-  environment: docs/environment.yml
+  environment: source/environment.yml
 
 formats: all
