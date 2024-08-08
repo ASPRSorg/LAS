@@ -51,7 +51,7 @@ templates_path = ['_templates']
 source_suffix = '.txt'
 
 # The master toctree document.
-master_doc = '00_index'
+master_doc = 'index'
 
 # General information about the project.
 project = u'LAS'
