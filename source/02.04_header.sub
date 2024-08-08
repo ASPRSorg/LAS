@@ -138,11 +138,17 @@ a value of 1). This bit field is defined as:
     +-------+-----------------------+------------------------------------------+
     | Bits  |  Field Name           | Description                              |
     +=======+=======================+==========================================+
-    | 0     | GPS Time Type         | The meaning of GPS Time in the point     |
-    |       |                       | records. If this bit is not set, the GPS |
-    |       |                       | time in the point record fields is GPS   |
+    | 0     | GPS Time Type         | Used in combination with Time Offset     |
+    |       |                       | Flag to indicate the meaning of          |
+    |       |                       | :ref:`GPS Time <gpstime_link>` in the    |
+    |       |                       | point records.                           |
+    |       |                       |                                          |
+    |       |                       | If neither bit is set, the GPS           |
+    |       |                       | Time in the point record fields is GPS   |
     |       |                       | Week Time (the same as versions 1.0      |
-    |       |                       | through 1.2 of LAS). Otherwise, if this  |
+    |       |                       | through 1.2 of LAS).                     |
+    |       |                       |                                          |
+    |       |                       | Otherwise, if this                       |
     |       |                       | bit is set, the GPS Time is standard GPS |
     |       |                       | Time (satellite GPS Time) minus          |
     |       |                       | 1 x :math:`10^9` (Adjusted Standard GPS  |
@@ -184,12 +190,18 @@ a value of 1). This bit field is defined as:
     +-------+-----------------------+------------------------------------------+
     | 5     | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
-    | 6     | Time Offset Flag      | If set, GPS Time is defined as Offset    |
-    |       |                       | GPS Time. The Offset GPS Time is         |
-    |       |                       | standard GPS Time (satellite GPS Time)   |
-    |       |                       | minus 1 x :math:`10^6` x Time Offset.    |
-    |       |                       | The Time Offset is specified in the LAS  |
-    |       |                       | header.                                  |
+    | 6     | Time Offset Flag      | Used in combination with GPS Time Type   |
+    |       |                       | to indicate the meaning of               |
+    |       |                       | :ref:`GPS Time <gpstime_link>` in the    |
+    |       |                       | point records.                           |
+    |       |                       |                                          |
+    |       |                       | If both bits are set, the GPS Time       |
+    |       |                       | is defined as Offset GPS Time. The       |
+    |       |                       | Offset GPS Time is standard GPS Time     |
+    |       |                       | (satellite GPS Time) minus               |
+    |       |                       | 1 x :math:`10^6` x Time Offset. The Time |
+    |       |                       | :ref:`Time Offset <timeoffset_link>`     |
+    |       |                       | is specified in the LAS header.          |
     |       |                       | The offset moves time to near zero to    |
     |       |                       | improve floating-point resolution for a  |
     |       |                       | given time period.                       |
@@ -426,9 +438,11 @@ if the file utilizes a point record format not supporting GPS Time, or if
 all point records within the file have GPS Time values set to zero,
 such as for certain :ref:`Aggregate Model Systems <aggregate_link>`.
 
+.. _timeoffset_link:
+
 **Time Offset**
 
-The Time Offset field can be used to optimize GPS Time precision for a desired time period.
+The Time Offset field can be used to optimize :ref:`GPS Time <gpstime_link>` precision for a desired time period.
 Offset GPS Time for a point record is equal to standard GPS Time, minus :math:`10^6` * Time Offset.
 
 For example, Adjusted Standard GPS Time uses a total offset of 1 billion (:math:`10^9`) seconds, which would be specified by a Time Offset of 1000.
