@@ -22,4 +22,6 @@ python:
 conda:
   environment: source/environment.yml
 
-formats: all
+formats:
+  - pdf
+  - epub
