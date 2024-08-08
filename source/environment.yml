@@ -1,0 +1,10 @@
+name: asprsorg
+channels:
+  - conda-forge
+dependencies:
+  - pip
+  - pip:
+    - pybtex
+    - sphinxcontrib-bibtex
+    - sphinxcontrib-spelling
+

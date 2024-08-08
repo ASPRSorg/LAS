@@ -19,4 +19,7 @@ python:
   install:
     - requirements: source/requirements.txt
 
+conda:
+  environment: docs/environment.yml
+
 formats: all
