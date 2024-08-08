@@ -21,8 +21,8 @@ the :ref:`Global Encoding <globalencoding_link>` bit.
 **Required**
 
 The WKT record is **required** and can be specified as either a VLR or an
-EVLR. An EVLR should **override** any definition provided by a VLR with the same
-User ID and Record ID.
+EVLR. If an EVLR is to override an already existing CRS VLR, writers
+should also write a :ref:`Superseded VLR <superseded_vlr_label>` to label it.
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |

@@ -9,7 +9,7 @@ Welcome to LAS's documentation!
 
    01_intro
    02.00_definition
-   03_required_vlrs
+   03_crs
    04_optional_vlrs
    05_defined_evlrs
    06_profiles
