@@ -304,4 +304,88 @@ absolute digitizer voltage using the formula:
     Users seeking further clarity regarding LAS waveform encoding are encouraged
     to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
 
+.. _mime_types:
+
+VLR Media Types
+................................................................................
+
++-----------------+-----------------------------+
+| User ID         | LASF_Spec                   |
++-----------------+-----------------------------+
+| Record ID       | 2046                        |
++-----------------+-----------------------------+
+
+The media types VLR/EVLR provides a `JSON
+<https://datatracker.ietf.org/doc/html/rfc8259>`__ map of `IANA Media Types
+<https://www.iana.org/assignments/media-types/media-types.xhtml>`__.  It is
+intended to communicate the type of VLR content being written into LAS files so
+more applications are able to interoperate. Some applications where this could
+be useful include storage of auxiliary metadata, preview images, or related
+support data such as GPS trajectories.
+
+Format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Must be valid RFC8259 JSON
+
+* An array of objects
+
+* Each element MUST contain:
+
+    * A ``user_id`` element as a string
+    * A ``record_id`` element as an integer
+    * A ``mimetype`` element as a string whose value is
+      a `registered IANA media type <https://www.iana.org/assignments/media-types/media-types.xhtml>`__
+
+* Each element MAY contain:
+
+    * A ``description`` element as a string
+    * A ``filename`` element as a string
+
+.. note::
+
+    It is valid for VLR entries described in the media types VLR to not exist in
+    the file. This might be done for applications that provide a standard mapping
+    of the various VLR content types it might be writing into output.
+
+    It is also valid for VLRs to NOT be described in the media types VLR – for example
+    when an application writes its own internal VLR or writes information with
+    no registered content type.
+
+Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example illustrates expected usage of the media types VLR:
+
+::
+
+    [
+        {
+            "user_id":"PDAL",
+            "record_id":12,
+            "mimetype":"application/json",
+            "description":"PDAL metadata output"
+        },
+        {
+            "user_id":"USGS",
+            "record_id":86,
+            "mimetype":"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "filename":"metadata.docx",
+            "description":"Random stuff pasted into a word document"
+        },
+        {
+            "user_id":"LINZ",
+            "record_id":42,
+            "mimetype":"application/pdf"
+            "description":"Boresight report"
+        },
+        {
+            "user_id":"RIEGL",
+            "record_id":3580,
+            "mimetype":"image/jpeg"
+            "filename":"preview.jpg",
+            "description":"Normalized reflectance preview image"
+        }
+    ]
+
 
