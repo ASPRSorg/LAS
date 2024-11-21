@@ -41,9 +41,8 @@ published OGC Well Known Text standard with the following considerations:
 
 .. note::
 
-  **Any published version** of an OGC WKT standard is a valid definition for LAS
-  1.5. Multiple
-  versions OGC has published multiple versions of WKT, including `18-010
+  Any published version of an OGC WKT standard is a valid definition for LAS 1.5.
+  OGC has published multiple versions of WKT, including `18-010
   <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ (commonly called "WKT2"
   or "WKTv2") and `12-063r5 <https://docs.ogc.org/is/12-063r5/12-063r5.html>`__
   (commonly called "WKT1" and the formally ratified variant of WKT that was used
@@ -54,8 +53,8 @@ published OGC Well Known Text standard with the following considerations:
 
     LAS 1.4 supported a dual definition of coordinate system depending on the
     PDRF. PDRFs 0-5 were able to have their coordinate systems defined by
-    GeoTIFF keys. It is no longer possible or valid to define coordinate system
-    information with GeoTIFF keys in LAS 1.5.
+    GeoTIFF keys, but they were removed in LAS 1.5. It is no longer possible 
+    or valid to define coordinate system information with GeoTIFF keys in LAS 1.5.
 
 .. _math_wkt:
 
@@ -74,9 +73,7 @@ supplemental parameterized math transform definition.
 +-----------------+-----------------------------+
 
 This record must contain a Math Transform WKT consistent with the same WKT
-specification being used by :ref:`crs_wkt`.
-
-following notes:
+specification being used by :ref:`crs_wkt`, with the following considerations:
 
 * The OGC Math Transform WKT VLR data shall be a null-terminated string.
 * The OGC Math Transform WKT VLR data shall be considered UTF-8.
@@ -96,10 +93,10 @@ following notes:
 | Record ID       | 2113                        |
 +-----------------+-----------------------------+
 
-The date at which coordinates in the LAS file are referenced to a dynamic
+The date against which coordinates in the LAS file are referenced in a dynamic
 coordinate reference system is expressed as a decimal year in the Gregorian
 calendar stored as a double. For example, an epoch of 2017-03-25 in the
-Gregorian calendar would be stored as ``2017.23`` in the VLR.
+Gregorian calendar would be stored as ``2017.23`` in the VLR (``2017 + 84/365``).
 
 .. note::
 
