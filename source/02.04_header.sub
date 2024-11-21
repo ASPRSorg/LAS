@@ -182,8 +182,8 @@ a value of 1). This bit field is defined as:
     |       |                       | multiple returns.                        |
     +-------+-----------------------+------------------------------------------+
     | 4     | WKT                   | If set, the Coordinate Reference System  |
-    |       |                       | (CRS) is WKT. This bit must be set.      |
-    |       |                       | GeoTIFF CRS definitions are not          |
+    |       |                       | (CRS) is WKT. This bit must be set in    |
+    |       |                       | LAS 1.5; GeoTIFF CRS definitions are not |
     |       |                       | supported for legacy                     |
     |       |                       | compatibility beginning with LAS 1.5.    |
     +-------+-----------------------+------------------------------------------+
