@@ -5,13 +5,15 @@
 Coordinate Reference System
 --------------------------------------------------------------------------------
 
+Coordinate Reference System (CRS) information is required for a LAS 1.5 file.
 LAS 1.5 defines VLRs in :ref:`vlrdef_label` and EVLRs in :ref:`evlrdef_label` and
-requires them for specifying the coordinate reference system of the file.
-Specification of Coordinate Reference System (CRS) information is required.
+requires them for specifying the Coordinate Reference System (CRS) of the file.
 
 CRS information shall be placed in VLRs or EVLRs and represented as `OGC Well
 Known Text <https://www.ogc.org/standard/wkt-crs/>`__ (WKT) without regard to
 the :ref:`Global Encoding <globalencoding_link>` bit.
+
+GeoTIFF CRS representations are no longer supported as of LAS 1.5.
 
 .. _crs_wkt:
 
