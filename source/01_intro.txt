@@ -32,10 +32,14 @@ The additions of LAS 1.5 include:
 * Backward compatibility with LAS 1.1 – LAS 1.4.
 * LAS 1.5 mode which supports:
 
+  * Removed support for PDRFs 0-5.
+    (`I-128 <https://github.com/ASPRSorg/LAS/issues/128>`_)
   * Added Max/Min GPS Time fields to header block.
     (`I-118 <https://github.com/ASPRSorg/LAS/issues/118>`_)
   * Added Offset GPS Time definition.
     (`I-6 <https://github.com/ASPRSorg/LAS/issues/6>`_)
+  * CRS support expanded to all published WKT versions, removing support for GeoTIFF CRS encoding.
+    (`I-144 <https://github.com/ASPRSorg/LAS/issues/144>`_)
 
 LAS 1.4 Revision History
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
