@@ -15,10 +15,8 @@ the :ref:`Global Encoding <globalencoding_link>` bit.
 
 .. _crs_wkt:
 
-`OGC Coordinate System WKT Record`_
+`OGC Coordinate System WKT Record`_ (Required)
 ................................................................................
-
-**Required**
 
 The WKT record is **required** and can be specified as either a VLR or an
 EVLR. If an EVLR is to override an already existing CRS VLR, writers
@@ -58,10 +56,8 @@ published OGC Well Known Text standard with the following considerations:
 
 .. _math_wkt:
 
-`OGC Math Transform WKT Record`_
+`OGC Math Transform WKT Record`_ (Optional)
 ................................................................................
-
-**Optional**
 
 Writers may include an optional OGC Math Transform WKT Record to provide a
 supplemental parameterized math transform definition.
@@ -82,10 +78,8 @@ specification being used by :ref:`crs_wkt`, with the following considerations:
 
 .. _epoch:
 
-`Epoch Record`_
+`Epoch Record`_ (Optional)
 ................................................................................
-
-**Optional**
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Projection             |
