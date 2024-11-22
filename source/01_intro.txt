@@ -39,7 +39,8 @@ The additions of LAS 1.5 include:
   * Added Offset GPS Time definition.
     (`I-6 <https://github.com/ASPRSorg/LAS/issues/6>`_)
   * CRS support expanded to all published WKT versions, removing support for GeoTIFF CRS encoding.
-    (`I-144 <https://github.com/ASPRSorg/LAS/issues/144>`_)
+    (`I-95 <https://github.com/ASPRSorg/LAS/issues/95>`_,
+    `I-129 <https://github.com/ASPRSorg/LAS/issues/129>`_)
 
 LAS 1.4 Revision History
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
