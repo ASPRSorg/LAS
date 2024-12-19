@@ -106,6 +106,10 @@ by another software. Descriptive names such as "normalized reflectivity", "echo
 width", or "shading normal" are encouraged. The use of generic names such as
 "variable1" or "temp1" is discouraged.
 
+Only one Extra Bytes VLR may exist in a given LAS file. If an Extra Bytes VLR
+already exists in a LAS file, then new Extra Byte definitions must be added to
+the existing Extra Bytes VLR.
+
 Multiple sequential "extra byte" records can compose an array of associated
 values. It is recommended that each member's name be consistent with other
 members, only varying by an index number wrapped in square brackets, as in
