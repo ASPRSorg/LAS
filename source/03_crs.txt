@@ -92,15 +92,15 @@ Epoch Record (Optional)
 The date against which coordinates in the LAS file are referenced in a dynamic
 coordinate reference system is expressed as a decimal year in the Gregorian
 calendar stored as a double. For example, an epoch of 2017-03-25 in the
-Gregorian calendar would be stored as ``2017.23`` in the VLR (``2017 + 84/365``).
+Gregorian calendar would be stored as ``2017.23`` in the VLR (``2017 + 84/365``),
+as described in OGC Abstract Specification Topic 2
+(`18-005r4<https://docs.ogc.org/as/18-005r4/18-005r4.html>`__).
 
-.. note::
+OGC WKT2 (18-010r7) and later supports the definition of ``EPOCH``, which
+should negate the need for an explicit epoch VLR entry on the file. It is
+strongly recommended to add Epoch Record VLRs only for CRS definitions
+relying on WKT versions earlier than 18-010r7.
 
-    OGC WKT2 (18-010r7) and later supports the definition of ``EPOCH``, which
-    should negate the need for an explicit epoch VLR entry on the file. It is
-    recommended to add `Epoch Record`_ VLRs only for WKT versions earlier than
-    18-010r7.
-
-    `GDAL <https://gdal.org>`__ provides excellent documentation on coordinate
-    epochs for coordinate reference systems and their usages in raster data
-    formats like GeoTIFF at https://gdal.org/user/coordinate_epoch.html
+`GDAL <https://gdal.org/user/coordinate_epoch.html>`__ provides excellent documentation on coordinate
+epochs for coordinate reference systems and their usages in raster data
+formats like GeoTIFF.
