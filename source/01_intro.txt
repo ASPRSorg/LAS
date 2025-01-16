@@ -40,6 +40,7 @@ The additions of LAS 1.5 include:
     (`I-6 <https://github.com/ASPRSorg/LAS/issues/6>`_)
   * CRS support expanded to all published WKT versions, removing support for GeoTIFF CRS encoding.
     (`I-95 <https://github.com/ASPRSorg/LAS/issues/95>`_,
+    `I-104 <https://github.com/ASPRSorg/LAS/issues/104>`_,
     `I-129 <https://github.com/ASPRSorg/LAS/issues/129>`_)
   * Clarify requirement that the Extra Bytes VLR must be unique.
     (`I-150 <https://github.com/ASPRSorg/LAS/issues/150>`_)
