@@ -56,13 +56,6 @@ published OGC Well Known Text standard with the following considerations:
   If OGC were to publish a new WKT standard, it would also be a
   valid definition for LAS 1.5.
 
-.. note::
-
-    LAS 1.4 supported a dual definition of coordinate system depending on the
-    PDRF. PDRFs 0-5 were able to have their coordinate systems defined by
-    GeoTIFF keys, but they were removed in LAS 1.5. It is no longer possible 
-    or valid to define coordinate system information with GeoTIFF keys in LAS 1.5.
-
 .. _math_wkt:
 
 OGC Math Transform WKT Record (Optional)
