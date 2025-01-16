@@ -42,11 +42,18 @@ published OGC Well Known Text standard with the following considerations:
 .. note::
 
   Any published version of an OGC WKT standard is a valid definition for LAS 1.5.
-  OGC has published multiple versions of WKT, including `18-010
-  <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ (commonly called "WKT2"
-  or "WKTv2") and `12-063r5 <https://docs.ogc.org/is/12-063r5/12-063r5.html>`__
-  (commonly called "WKT1" and the formally ratified variant of WKT that was used
-  for LAS 1.4). If OGC were to publish a new WKT standard, it would also be a
+  OGC has published multiple versions of WKT, including the following noteworthy versions:
+
+  * `18-010r11 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ - Commonly called "WKT2"
+    or "WKTv2" and is the most current version of WKT as of this publication.
+  * `18-010r7 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ - This variant of "WKT2"
+    added supports the definition of ``EPOCH`` for  defining the date against which 
+    coordinates in the LAS file are referenced in a dynamic coordinate reference system.
+  * `12-063r5 <https://portal.opengeospatial.org/files/12-063r5>`__ - 
+    Commonly called "WKT1" and the formally ratified variant of WKT that was used
+    for LAS 1.4.
+
+  If OGC were to publish a new WKT standard, it would also be a
   valid definition for LAS 1.5.
 
 .. note::
@@ -77,30 +84,3 @@ specification being used by :ref:`crs_wkt`, with the following considerations:
 * The OGC Math Transform WKT VLR data shall be considered UTF-8.
 * The OGC Math Transform WKT VLR data shall be considered C locale-based, and
   no localization of the numeric strings within the WKT should be performed.
-
-.. _epoch:
-
-Epoch Record (Optional)
-................................................................................
-
-+-----------------+-----------------------------+
-| User ID         | LASF_Projection             |
-+-----------------+-----------------------------+
-| Record ID       | 2113                        |
-+-----------------+-----------------------------+
-
-The date against which coordinates in the LAS file are referenced in a dynamic
-coordinate reference system is expressed as a decimal year in the Gregorian
-calendar stored as a double. For example, an epoch of 2017-03-25 in the
-Gregorian calendar would be stored as ``2017.23`` in the VLR (``2017 + 84/365``),
-as described in OGC Abstract Specification Topic 2
-(`18-005r4<https://docs.ogc.org/as/18-005r4/18-005r4.html>`__).
-
-OGC WKT2 (18-010r7) and later supports the definition of ``EPOCH``, which
-should negate the need for an explicit epoch VLR entry on the file. It is
-strongly recommended to add Epoch Record VLRs only for CRS definitions
-relying on WKT versions earlier than 18-010r7.
-
-`GDAL <https://gdal.org/user/coordinate_epoch.html>`__ provides excellent documentation on coordinate
-epochs for coordinate reference systems and their usages in raster data
-formats like GeoTIFF.
