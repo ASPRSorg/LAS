@@ -47,7 +47,7 @@ published OGC Well Known Text standard with the following considerations:
   * `18-010r11 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ - Commonly called "WKT2"
     or "WKTv2" and is the most current version of WKT as of this publication.
   * `18-010r7 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ - This variant of "WKT2"
-    added supports the definition of ``EPOCH`` for  defining the date against which 
+    added support for the definition of ``EPOCH`` for  defining the date against which 
     coordinates in the LAS file are referenced in a dynamic coordinate reference system.
   * `12-063r5 <https://portal.opengeospatial.org/files/12-063r5>`__ - 
     Commonly called "WKT1" and the formally ratified variant of WKT that was used
