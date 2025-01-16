@@ -1,0 +1,79 @@
+.. raw:: latex
+
+    \newpage
+
+Coordinate Reference System
+--------------------------------------------------------------------------------
+
+Coordinate Reference System (CRS) information is required for a LAS 1.5 file.
+LAS 1.5 defines VLRs in :ref:`vlrdef_label` and EVLRs in :ref:`evlrdef_label` and
+requires them for specifying the Coordinate Reference System (CRS) of the file.
+
+CRS information shall be placed in VLRs or EVLRs and represented as `OGC Well
+Known Text <https://www.ogc.org/standard/wkt-crs/>`__ (WKT) without regard to
+the :ref:`Global Encoding <globalencoding_link>` bit.
+
+GeoTIFF CRS representations are no longer supported as of LAS 1.5.
+
+.. _crs_wkt:
+
+OGC Coordinate System WKT Record (Required)
+................................................................................
+
+The WKT record is **required** and can be specified as either a VLR or an
+EVLR. If an EVLR is to override an already existing CRS VLR, writers
+should also write a :ref:`Superseded VLR <superseded_vlr_label>` to label it.
+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 2112                        |
++-----------------+-----------------------------+
+
+This record must contain the textual data representing a WKT as defined by any
+published OGC Well Known Text standard with the following considerations:
+
+* The OGC Coordinate System WKT VLR data shall be a null-terminated string.
+* The OGC Coordinate System WKT VLR data shall be considered UTF-8.
+* The OGC Coordinate System WKT VLR data shall be considered C locale-based with
+  no localization of the numeric strings within the WKT being performed.
+
+
+.. note::
+
+  Any published version of an OGC WKT standard is a valid definition for LAS 1.5.
+  OGC has published multiple versions of WKT, including the following noteworthy versions:
+
+  * `18-010r11 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ - Commonly called "WKT2"
+    or "WKTv2" and is the most current version of WKT as of this publication.
+  * `18-010r7 <https://docs.ogc.org/is/18-010r11/18-010r11.pdf>`__ - This variant of "WKT2"
+    added support for the definition of ``EPOCH`` for  defining the date against which 
+    coordinates in the LAS file are referenced in a dynamic coordinate reference system.
+  * `12-063r5 <https://portal.opengeospatial.org/files/12-063r5>`__ - 
+    Commonly called "WKT1" and the formally ratified variant of WKT that was used
+    for LAS 1.4.
+
+  If OGC were to publish a new WKT standard, it would also be a
+  valid definition for LAS 1.5.
+
+.. _math_wkt:
+
+OGC Math Transform WKT Record (Optional)
+................................................................................
+
+Writers may include an optional OGC Math Transform WKT Record to provide a
+supplemental parameterized math transform definition.
+
++-----------------+-----------------------------+
+| User ID         | LASF_Projection             |
++-----------------+-----------------------------+
+| Record ID       | 2111                        |
++-----------------+-----------------------------+
+
+This record must contain a Math Transform WKT consistent with the same WKT
+specification being used by :ref:`crs_wkt`, with the following considerations:
+
+* The OGC Math Transform WKT VLR data shall be a null-terminated string.
+* The OGC Math Transform WKT VLR data shall be considered UTF-8.
+* The OGC Math Transform WKT VLR data shall be considered C locale-based, and
+  no localization of the numeric strings within the WKT should be performed.

@@ -2,7 +2,9 @@
 
     \newpage
 
-Other Specification Defined VLRs (Optional)
+.. _optional_vlrs:
+
+Optional VLR Definitions
 --------------------------------------------------------------------------------
 
 Classification Lookup

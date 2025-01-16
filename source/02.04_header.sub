@@ -182,11 +182,10 @@ a value of 1). This bit field is defined as:
     |       |                       | multiple returns.                        |
     +-------+-----------------------+------------------------------------------+
     | 4     | WKT                   | If set, the Coordinate Reference System  |
-    |       |                       | (CRS) is WKT. If not set, the CRS is     |
-    |       |                       | GeoTIFF. It should not be set if the     |
-    |       |                       | file writer wishes to ensure legacy      |
-    |       |                       | compatibility (which means the CRS must  |
-    |       |                       | be GeoTIFF).                             |
+    |       |                       | (CRS) is WKT. This bit must be set in    |
+    |       |                       | LAS 1.5; GeoTIFF CRS definitions are not |
+    |       |                       | supported for legacy                     |
+    |       |                       | compatibility beginning with LAS 1.5.    |
     +-------+-----------------------+------------------------------------------+
     | 5     | Reserved              | Must be set to zero (0).                 |
     +-------+-----------------------+------------------------------------------+
@@ -446,7 +445,7 @@ The Time Offset field can be used to optimize :ref:`GPS Time <gpstime_link>` pre
 Offset GPS Time for a point record is equal to standard GPS Time, minus :math:`10^6` * Time Offset.
 
 For example, Adjusted Standard GPS Time uses a total offset of 1 billion (:math:`10^9`) seconds, which would be specified by a Time Offset of 1000.
-This achieves 100 nanosecond precision for the years 2007-2015. The LAS wiki provides 
+This achieves 100 nanosecond precision for the years 2007-2015. The LAS wiki provides
 `recommended values <https://github.com/ASPRSorg/LAS/wiki/Suggested-LAS-1.5-Time-Offset-Values>`_
 and year ranges that users are encouraged to use to maximize compatibility between datasets.
 
