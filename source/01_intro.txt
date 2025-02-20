@@ -190,7 +190,3 @@ followed at http://www.opengeospatial.org/standards/community.
 
 .. _`OGC`: http://www.opengeospatial.org
 
-.. raw:: latex
-
-    \newpage
-
