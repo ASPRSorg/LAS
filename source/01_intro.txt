@@ -180,13 +180,13 @@ this standard can be directed to ASPRS:
 OGC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-LAS has been recognized by the Open Geospatial Consortium (`OGC`_) in 2018 as an
+LAS has been recognized by the Open Geospatial Consortium (`OGC`_) since 2018 as an
 OGC Community Standard. The OGC version of the document with forward material
 about standards that LAS references and its status within the standard body can
-be found at https://portal.opengeospatial.org/files/17-030r1.
+be found at https://www.ogc.org/publications/standard/las/.
 
 Future recognition and activity on OGC referencing activities of LAS can be
-followed at http://www.opengeospatial.org/standards/community.
+followed at https://www.ogc.org/publications/.
 
-.. _`OGC`: http://www.opengeospatial.org
+.. _`OGC`: https://www.ogc.org
 

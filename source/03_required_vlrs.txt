@@ -26,7 +26,7 @@ Georeferencing Information Using WKT
 For definition of WKT, we refer to Open Geospatial Consortium (OGC)
 specification "OpenGIS coordinate transformation service implementation
 specification" revision 1.00 released 12 January 2001, section 7 (`"Coordinate
-Transformation Service Spec" <https://www.opengeospatial.org/standards/ct>`_).
+Transformation Service Spec" <https://www.ogc.org/publications/standard/ct/>`_).
 As there are a few dialects of WKT, please note that LAS is not using the "ESRI
 WKT" dialect, which does not include TOWGS84 and Authority nodes.
 
