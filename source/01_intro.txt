@@ -198,6 +198,6 @@ followed at https://www.ogc.org/publications/.
 Official LAS Wiki
 ................................................................................
 
-The official LAS wiki hosts supplementa guidance pages, links to external
+The official LAS wiki hosts supplemental guidance pages, links to external
 resources, public registries, and more LAS-related resources.
 The wiki can be found at https://github.com/ASPRSorg/LAS/wiki.
