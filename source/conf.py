@@ -264,7 +264,7 @@ latex_elements = {
 
 latex_toplevel_sectioning='section'
 latex_show_urls='footnote'
-latex_logo = './_static/asprslogo45.png'
+latex_logo = './_static/ASPRS_Logo_Blue.png'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
