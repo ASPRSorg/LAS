@@ -14,25 +14,6 @@ are provided in this section as a means to extend the LAS file format.
 Additional VLR definitions contributed by the LAS Working Group and the 
 LAS community can be found on the official LAS wiki: https://github.com/ASPRSorg/LAS/
 
-Classification Lookup
-................................................................................
-
-+----------------------------+-----------------------------------+
-| User ID                    | LASF_Spec                         |
-+----------------------------+-----------------------------------+
-| Record ID                  | 0                                 |
-+----------------------------+-----------------------------------+
-| Record Length after Header | 256 records * 16 bytes per struct |
-+----------------------------+-----------------------------------+
-
-::
-
-    struct CLASSIFICATION {
-        uint8_t ClassNumber;
-        char Description[15];
-    }; //total of 16 bytes
-
-
 Text Area Description
 ................................................................................
 
