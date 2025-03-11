@@ -27,9 +27,9 @@ The CRS representation is summarized below:
     | 6-10                  | Error                      | WKT                   |
     +-----------------------+----------------------------+-----------------------+
 
-It is considered a file error to have more than one GeoTIFF (E)VLR or more than
-one WKT (E)VLR in the file. A writer can append a new CRS EVLR to a file by
-"superseding" the existing CRS (E)VLR. Superseding is performed by changing the
+It is considered a file error to have more than one GeoTIFF VLR/EVLR or more than
+one WKT VLR/EVLR in the file. A writer can append a new CRS EVLR to a file by
+"superseding" the existing CRS VLR/EVLR. Superseding is performed by changing the
 LAS_Spec ID of the record to ":ref:`superseded_vlr_label`", a new LASF_Spec defined in this
 release.
 
