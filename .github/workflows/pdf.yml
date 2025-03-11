@@ -28,14 +28,16 @@ jobs:
     - name: Spelling
       run: |
         make spelling
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: PDF
         path: build/latex/LAS.pdf
-    - uses: actions/upload-artifact@v2
+        if-no-files-found: error
+    - uses: actions/upload-artifact@v4
       with:
         name: Misspelled
         path: build/spelling/output.txt
+        if-no-files-found: ignore
 
 
 
