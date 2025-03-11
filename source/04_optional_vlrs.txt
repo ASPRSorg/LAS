@@ -7,6 +7,13 @@
 Optional VLR Definitions
 --------------------------------------------------------------------------------
 
+LAS 1.5 defines Variable Length Records (VLRs) in :ref:`vlrdef_label` and EVLRs
+in :ref:`evlrdef_label`. Definitions for official VLRs as part of the specification 
+are provided in this section as a means to extend the LAS file format.
+
+Additional VLR definitions contributed by the LAS Working Group and the 
+LAS community can be found on the official LAS wiki: https://github.com/ASPRSorg/LAS/
+
 Classification Lookup
 ................................................................................
 
