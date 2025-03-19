@@ -191,7 +191,7 @@ file can be uniquely identified, globally.
 .. note::
 
     Example implementations of representing the Project ID fields as a GUID can
-    be found on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+    be found on the :ref:`Official LAS Wiki <laswiki_link>`.
 
 **Version Number**
 
