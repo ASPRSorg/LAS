@@ -10,7 +10,7 @@ Optional VLR Definitions
 Definitions for official :ref:`vlrdef_label` and :ref:`evlrdef_label` 
 are provided in this section as a means to extend the LAS file format.
 Additional VLR/EVLR definitions contributed by the LAS Working Group and the 
-LAS community can be found on the official LAS wiki: https://github.com/ASPRSorg/LAS/
+LAS community can be found on the :ref:`Official LAS Wiki <laswiki_link>`.
 
 Classification Lookup (Deprecated)
 ................................................................................
@@ -26,7 +26,7 @@ Classification Lookup (Deprecated)
 The legacy Classification Lookup VLR has a feature of the LAS specification
 since LAS 1.0. This VLR has been deprecated in LAS 1.5 due to 15 characters
 being too short to store a sufficiently detailed description. An updated
-version of the VLR can be found on the LAS wiki.
+version of the VLR can be found on the :ref:`Official LAS Wiki <laswiki_link>`.
 
 ::
 
