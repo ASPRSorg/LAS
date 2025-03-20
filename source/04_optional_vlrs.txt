@@ -23,17 +23,18 @@ Classification Lookup (Deprecated)
 | Record Length after Header | 256 records * 16 bytes per struct |
 +----------------------------+-----------------------------------+
 
-The legacy Classification Lookup VLR has a feature of the LAS specification
-since LAS 1.0. This VLR has been deprecated in LAS 1.5 due to 15 characters
-being too short to store a sufficiently detailed description. An updated
-version of the VLR can be found on the :ref:`Official LAS Wiki <laswiki_link>`.
-
 ::
 
     struct CLASSIFICATION {
         uint8_t ClassNumber;
         char Description[15];
     }; //total of 16 bytes
+
+The legacy Classification Lookup VLR (Record ID 0) has been a feature of the LAS specification
+since LAS 1.0. This VLR is deprecated in LAS 1.5 due to the limitation of
+15 characters being insufficient for a detailed description. An updated
+version of the VLR may be found on the :ref:`Official LAS Wiki <laswiki_link>`.
+
 
 Text Area Description
 ................................................................................
