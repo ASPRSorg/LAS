@@ -145,6 +145,8 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
     (`I-55 <https://github.com/ASPRSorg/LAS/issues/55>`_)
   * Clarified how and when certain header fields should be zero-filled.
     (`I-101 <https://github.com/ASPRSorg/LAS/issues/101>`_)
+  * Added Official LAS Wiki section.
+    (`I-71 <https://github.com/ASPRSorg/LAS/issues/71>`_)
   * More closely aligned data types with C99 definitions.
     (`I-115 <https://github.com/ASPRSorg/LAS/issues/115>`_)
 
@@ -178,7 +180,7 @@ The additions of LAS 1.4 include:
 
   * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
     Description".
-  * Added links to official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+  * Added references to :ref:`Official LAS Wiki <laswiki_link>`.
 
 
 Conformance
@@ -207,17 +209,22 @@ this standard can be directed to ASPRS:
 OGC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-LAS has been recognized by the Open Geospatial Consortium (`OGC`_) in 2018 as an
+LAS has been recognized by the Open Geospatial Consortium (`OGC`_) since 2018 as an
 OGC Community Standard. The OGC version of the document with forward material
 about standards that LAS references and its status within the standard body can
-be found at https://portal.opengeospatial.org/files/17-030r1.
+be found at https://www.ogc.org/publications/standard/las/.
 
 Future recognition and activity on OGC referencing activities of LAS can be
-followed at http://www.opengeospatial.org/standards/community.
+followed at https://www.ogc.org/publications/.
 
-.. _`OGC`: http://www.opengeospatial.org
+.. _`OGC`: https://www.ogc.org
 
-.. raw:: latex
 
-    \newpage
+.. _laswiki_link:
 
+Official LAS Wiki
+................................................................................
+
+The official LAS wiki hosts supplemental guidance pages, links to external
+resources, public registries, and more LAS-related resources.
+The wiki can be found at https://github.com/ASPRSorg/LAS/wiki.

@@ -315,6 +315,6 @@ absolute digitizer voltage using the formula:
 .. note::
 
     Users seeking further clarity regarding LAS waveform encoding are encouraged
-    to learn more on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+    to learn more on the :ref:`Official LAS Wiki <laswiki_link>`.
 
 
