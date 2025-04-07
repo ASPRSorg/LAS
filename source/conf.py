@@ -79,7 +79,7 @@ gitsha = get_git_revision_short_hash()
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -104,6 +104,11 @@ html_theme = 'alabaster'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
+# HTML theme options in Alabaster here:
+# https://alabaster.readthedocs.io/en/latest/customization.html
+# Alabaster default CSS is here: 
+# https://github.com/sphinx-doc/alabaster/blob/master/alabaster/static/alabaster.css_t
+
 # html_theme_options = {}
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -145,6 +150,7 @@ preamble = r'''
 
 % Override Sphinx defaults for table heading (bold instead of sans serif)
 % https://stackoverflow.com/a/42988749/1666676
+% https://github.com/sphinx-doc/sphinx/blob/a6d7ae16739bf92a032a7c4df0297db7cf120ec9/sphinx/texinputs/sphinxlatexstyletext.sty#L46
 \protected\def\sphinxstyletheadfamily{\bfseries}
 
 % leave this here... https://tex.stackexchange.com/a/8353/143333
@@ -260,7 +266,21 @@ latex_elements = {
 
     # Don't use atendofbody. Use fancyhdr calls in preamble instead (above).
 #    'atendofbody': """American Society for Photogrammetry \& Remote Sensing \\ LAS SPECIFICATION \\""" + releasename
+
+    # Customize sphinx setup parameters
+    # https://www.sphinx-doc.org/en/master/latex.html#latexsphinxsetup
+    # 'sphinxsetup': "TableRowColorOdd={rgb}{0,0,255},TableRowColorEven={rgb}{0,255,0}",
+    # 'sphinxsetup': "TableRowColorHeader={rgb}{235,235,235}",
 }
+
+# Customize latex table styles: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_table_style
+# Defaults are latex_table_style = ['booktabs', 'colorrows']
+# You can override for specific tables using rst-class directive
+# https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rstclass
+
+# Override default table styles back to plain tables because of aliasing issues with booktabs
+# latex_table_style = ['booktabs', 'colorrows']
+latex_table_style = ['standard']
 
 latex_toplevel_sectioning='section'
 latex_show_urls='footnote'
