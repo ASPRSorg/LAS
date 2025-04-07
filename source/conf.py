@@ -210,10 +210,9 @@ GitHub repo -- https://github.com/ASPRSorg/LAS
 \noindent Published by:\\
 }
 The American Society for Photogrammetry \& Remote Sensing\\
-425 Barlow Place, Suite 210\\
-Bethesda, Maryland 20814-2160\\
-Voice: 301-493-0290\\
-Fax: 225-408-4422\\
+8550 United Plaza Blvd, Suite 1001\\
+Baton Rouge, Louisiana 70809\\
+Voice: 225-408-4747\\
 Web: \underline{www.asprs.org}\\
 
 
