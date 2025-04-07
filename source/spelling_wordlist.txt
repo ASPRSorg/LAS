@@ -38,3 +38,4 @@ photogrammetrically
 Geospatial
 TerraScan
 OpenGIS
+uint
