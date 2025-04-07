@@ -44,5 +44,3 @@ jobs:
         path: build/spelling/output.txt
         if-no-files-found: ignore
 
-
-
