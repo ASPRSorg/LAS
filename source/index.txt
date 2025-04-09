@@ -1,5 +1,5 @@
 
-Welcome to LAS's documentation!
+ASPRS LAS 1.5 Specification
 ===============================
 
 .. toctree::

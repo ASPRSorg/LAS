@@ -54,9 +54,13 @@ source_suffix = '.txt'
 master_doc = 'index'
 
 # General information about the project.
-project = u'LAS'
-copyright = u'2025, ASPRS'
+project = u'LAS Specification'
+copyright = u'%Y, ASPRS'
 author = u'ASPRS'
+html_logo = './_static/asprslogo45.png'
+html_short_title = "Amazing Docs"
+theme_banner_text=False
+html_theme_path = ["html_themes"]
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -123,6 +127,18 @@ html_theme = 'piccolo_theme'
 # https://github.com/sphinx-doc/alabaster/blob/master/alabaster/static/alabaster.css_t
 
 # html_theme_options = {}
+
+
+html_theme_options = {
+    "banner_text": False,
+    "show_theme_credit":False,
+    "banner_hiding": "temporary",
+    "source_url": 'https://github.com/ASPRSorg/LAS',
+    "pdf_url": '/_/downloads/en/latest/pdf/',
+    "source_icon": "github",
+    "globaltoc_collapse": False
+}
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
