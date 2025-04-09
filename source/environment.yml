@@ -7,4 +7,5 @@ dependencies:
     - pybtex
     - sphinxcontrib-bibtex
     - sphinxcontrib-spelling
+    - sphinx-rtd-theme
 

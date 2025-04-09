@@ -129,7 +129,7 @@ html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'LASdoc'
-
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
 
 # -- Options for LaTeX output ---------------------------------------------
 
