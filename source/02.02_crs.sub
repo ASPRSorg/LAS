@@ -1,37 +1,19 @@
 Coordinate Reference System (CRS) Representation
 ................................................................................
 
-GeoTIFF is being replaced by Well Known Text (WKT) as the required Coordinate
-Reference System (CRS) representation for the new point types (6-10) introduced
-by LAS 1.4.
+Well Known Text (WKT) is the required Coordinate
+Reference System (CRS) representation for LAS 1.5. 
 
-GeoTIFF is maintained for legacy reasons for point types 0-5.
+A "WKT" bit is included in the :ref:`globalencoding_link` field in the Public Header
+Block. This bit must be set for LAS 1.5; GeoTIFF CRS definitions for legacy
+point formats are no longer supported in LAS 1.5. The CRS for the file must be 
+located in the WKT (Extended) Variable Length Records (EVLR, VLR).
 
-A "WKT" bit has been added to the Global Encoding flag in the Public Header
-Block. If this bit is set, the CRS for the file will be located in the WKT
-(Extended) Variable Length Records (EVLR, VLR).
-
-A file writer who desires to maintain backward compatibility with legacy LAS
-for point types 0-5 must add a GeoTIFF VLR to represent the CRS for the file
-and ensure that the WKT bit is false.
-
-The CRS representation is summarized below:
-
-.. table:: Coordinate Reference System Representation
-
-    +-----------------------+----------------------------+-----------------------+
-    | Point Type            | WKT bit == False           | WKT bit == True       |
-    +=======================+============================+=======================+
-    | 0-5                   | GeoTIFF                    | WKT                   |
-    +-----------------------+----------------------------+-----------------------+
-    | 6-10                  | Error                      | WKT                   |
-    +-----------------------+----------------------------+-----------------------+
-
-It is considered a file error to have more than one GeoTIFF (E)VLR or more than
+It is considered a file error to have more than 
 one WKT (E)VLR in the file. A writer can append a new CRS EVLR to a file by
 "superseding" the existing CRS (E)VLR. Superseding is performed by changing the
-LAS_Spec ID of the record to ":ref:`superseded_vlr_label`", a new LASF_Spec defined in this
-release.
+Record ID of the (E)VLR to match the :ref:`superseded_vlr_label` VLR defined
+later in this document.
 
 
 .. raw:: latex
