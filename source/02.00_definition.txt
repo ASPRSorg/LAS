@@ -22,7 +22,7 @@ allows, for example, adding projection information to a LAS file without having
 to rewrite the entire file.
 
 
-.. table:: LAS 1.4 Format Definition
+.. table:: LAS 1.5 Format Definition
 
     +--------------------------------------------+
     | :ref:`headerblock_label`                   |

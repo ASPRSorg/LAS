@@ -12,7 +12,7 @@ produce points with X, Y, and Z coordinates. The purpose of LAS is to provide
 an open format that allows different hardware and software tools to
 exchange point cloud data in a common format.
 
-This document reflects the fourth revision of the LAS format specification
+This document reflects the fifth version of the LAS format specification
 since its initial version 1.0 release.
 
 

@@ -52,8 +52,9 @@ Extra Bytes
 +----------------------------+-----------------------------+
 
 The Extra Bytes VLR provides a mechanism whereby additional information can be
-added to the end of a standard Point Record. This VLR has been added to LAS 1.4
-to formalize a process that has been used in prior versions of LAS. It is
+added to the end of a standard Point Record. This VLR was added to LAS 1.4
+to formalize a process that had been used in prior versions of LAS, and is 
+a core feature of the LAS 1.5 specification. It is
 envisioned that software that is not cognizant of the meaning of the extra
 bytes will simply copy these bytes when manipulating files.
 
@@ -115,11 +116,15 @@ the existing Extra Bytes VLR.
 Multiple sequential "extra byte" records can compose an array of associated
 values. It is recommended that each member's name be consistent with other
 members, only varying by an index number wrapped in square brackets, as in
-the above example. Zero-indexed arrays are encouraged. Previous revisions
-of the LAS 1.4 specification utilized data_types 11-30 to define standard
-two- and three-member arrays, but this feature was never widely implemented
-and was `deprecated in R14 <https://github.com/ASPRSorg/LAS/issues/1>`_ to
-simplify implementation.
+the above example. Zero-indexed arrays are encouraged. 
+
+.. note::
+
+    Previous versions of the LAS specification utilized data_type values 11-30 to define
+    two- and three-member arrays, but this feature was never widely implemented
+    and was `deprecated in LAS 1.4 R14 <https://github.com/ASPRSorg/LAS/issues/1>`_ to
+    simplify implementation.
+
 
 Any unused characters in the "name" or "description" fields must be set to zero.
 
