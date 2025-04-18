@@ -312,9 +312,11 @@ This field is unrelated to the number of EVLRs appended to the file.
 
 **Point Data Record Format**
 
-The point data record indicates the type of point data records contained in the
-file. LAS 1.4 defines types 0 through 10. These types are defined in the
+The point data record format (PDRF) value indicates the type of point data records contained in the
+file. LAS 1.5 defines types 6 through 10. These types are defined in the
 :ref:`ptrecords_label` section of this specification.
+PDRFs 0-5 as defined in previous versions of LAS are no longer valid
+for LAS 1.5.
 
 **Point Data Record Length**
 

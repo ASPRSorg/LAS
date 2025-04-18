@@ -12,7 +12,7 @@ produce points with X, Y, and Z coordinates. The purpose of LAS is to provide
 an open format that allows different hardware and software tools to
 exchange point cloud data in a common format.
 
-This document reflects the fifth version of the LAS format specification
+This document reflects the fifth version of the LAS file specification
 since its initial version 1.0 release.
 
 
@@ -30,7 +30,7 @@ Comparison of LAS 1.5 to Previous Versions
 The additions of LAS 1.5 include:
 
   * Backward compatibility with 64-bit LAS 1.4 files.
-  * Header compatibility with LAS 1.1-1.3 files.
+  * Header compatibility with LAS 1.1 - 1.4 files.
   * Removed support for legacy Point Data Record Formats 0-5.
     (`I-128 <https://github.com/ASPRSorg/LAS/issues/128>`_)
   * Added Max/Min GPS Time fields to header block.
