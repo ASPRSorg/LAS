@@ -35,7 +35,7 @@ to rewrite the entire file.
     +--------------------------------------------+
 
 
-A LAS file that contains point record types 4, 5, 9, or 10 could potentially
+A LAS file that contains point record types 9 or 10 could potentially
 contain one block of waveform data packets that is stored as the payload of any
 Extended Variable Length Record (EVLR). Unlike other EVLRs, the Waveform Data
 Packets (if stored internally to the file) have the offset to the storage
