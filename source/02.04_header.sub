@@ -125,10 +125,8 @@ systems.
 
 **Global Encoding**
 
-This is a bit field used to indicate certain global properties about the file.
-In LAS 1.2 (the version in which this field was introduced), only the low bit
-is defined (this is the bit, that if set, would have the unsigned integer yield
-a value of 1). This bit field is defined as:
+This is a bit field used to indicate certain global properties about the file,
+defined as follows:
 
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{11.0cm}|
