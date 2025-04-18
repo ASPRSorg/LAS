@@ -141,7 +141,7 @@ be between 1 and the Number of Returns, inclusive.
 
 For systems unable to record multiple returns, the Return Number should be
 set to one, unless it is synthetically derived and the Synthetic Return Number
-Global Encoding bit is set.
+:ref:`Global Encoding <globalencoding_link>` bit is set.
 
 **Number of Returns (Given Pulse)**
 
@@ -151,7 +151,7 @@ number of up to fifteen returns.
 
 For systems unable to record multiple returns, the Number of Returns should be
 set to one, unless it is synthetically derived and the Synthetic Return Number
-Global Encoding bit is set.
+:ref:`Global Encoding <globalencoding_link>` bit is set.
 
 .. note::
 
