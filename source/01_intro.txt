@@ -21,9 +21,17 @@ LAS 1.5 Revision History
 
 Summary of LAS 1.5 revisions (GitHub Issue numbers included when applicable):
 
-* R00 - Approved Version (Summer 2025). The additions of LAS 1.5 include:
+* R00 - Approved Version (Summer 2025). 
 
-  * Removed support for PDRFs 0-5.
+
+Comparison of LAS 1.5 to Previous Versions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The additions of LAS 1.5 include:
+
+  * Backward compatibility with 64-bit LAS 1.4 files.
+  * Header compatibility with LAS 1.1-1.3 files.
+  * Removed support for legacy Point Data Record Formats 0-5.
     (`I-128 <https://github.com/ASPRSorg/LAS/issues/128>`_)
   * Added Max/Min GPS Time fields to header block.
     (`I-118 <https://github.com/ASPRSorg/LAS/issues/118>`_)
@@ -35,38 +43,6 @@ Summary of LAS 1.5 revisions (GitHub Issue numbers included when applicable):
     `I-129 <https://github.com/ASPRSorg/LAS/issues/129>`_)
   * Clarify requirement that the Extra Bytes VLR must be unique.
     (`I-150 <https://github.com/ASPRSorg/LAS/issues/150>`_)
-
-
-Comparison of LAS 1.4 to Previous Versions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The additions of LAS 1.4 (2011-2025) include:
-
-* Backward compatibility with LAS 1.1 - LAS 1.3 when payloads consist of only
-  legacy content.
-* LAS 1.4 mode which supports:
-
-  * Extension of offsets and field sizes to support full 64 bit.
-  * Support for up to 15 returns per outgoing pulse.
-  * Extension of the Point Class field to support 256 classes.
-  * Definition of several new ASPRS standard classes.
-  * Extension of the Scan Angle field to 2 bytes to support finer angle resolution.
-  * Addition of a Sensor Channel bit field to support mobile mapping systems.
-  * Addition of Well Known Text (WKT) definitions for Coordinate Reference
-    Systems.
-  * Addition of an Overlap bit to indicate points in the overlap
-    region while maintaining the class definition.
-  * Addition of an (optional) :ref:`extrabytes_vlr_label` Variable Length Record to describe
-    "extra bytes" stored with each point.
-
-* Other minor changes:
-
-  * Added recognition of :ref:`domainprofile_label` functionality.
-  * Added links to official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
-  * Migration of specification management to GitHub.
-  * Added language to support technologies other than conventional linear-mode
-    lidar scanners.
-  * Closer alignment of data types with C99 definitions.
 
 
 Conformance
