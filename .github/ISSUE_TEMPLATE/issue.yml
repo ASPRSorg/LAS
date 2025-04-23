@@ -1,0 +1,20 @@
+name: Issue
+description: A standard issue or inquiry about the ASPRS LAS specification
+body:
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What is the issue about?
+      multiple: true
+      options:
+        - Software implementation
+        - Inquiry about the specification
+        - Committee efforts
+        - Other
+  - type: textarea
+    id: buginfo
+    attributes:
+      label: Issue description
+      description: Describe the issue or question
+    validations:
+      required: true
