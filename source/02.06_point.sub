@@ -135,22 +135,22 @@ pulse return magnitude, and may be derived from multiple sources.
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
-of return. The first return will have a Return Number of one, the second a
-Return Number of two, and so on up to fifteen returns. The Return Number must
+of return. The first return will have a Return Number of 1, the second a
+Return Number of 2, and so on up to 15 returns. The Return Number must
 be between 1 and the Number of Returns, inclusive.
 
 For systems unable to record multiple returns, the Return Number should be
-set to one, unless it is synthetically derived and the Synthetic Return Number
+set to 1, unless it is synthetically derived and the Synthetic Return Number
 :ref:`Global Encoding <globalencoding_link>` bit is set.
 
 **Number of Returns (Given Pulse)**
 
 The Number of Returns is the total number of returns for a given pulse. For
-example, a laser data point may be return two (Return Number) within a total
-number of up to fifteen returns.
+example, a laser data point may be return 2 (Return Number) within a total
+number of up to 15 returns.
 
 For systems unable to record multiple returns, the Number of Returns should be
-set to one, unless it is synthetically derived and the Synthetic Return Number
+set to 1, unless it is synthetically derived and the Synthetic Return Number
 :ref:`Global Encoding <globalencoding_link>` bit is set.
 
 .. note::
