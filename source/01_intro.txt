@@ -146,7 +146,7 @@ The additions of LAS 1.4 include:
     Systems.
   * Addition of an Overlap bit to indicate points in the overlap
     region while maintaining the class definition.
-  * Addition of an (optional) :ref:`extrabytes_vlr_label` Variable Length Record to describe
+  * Addition of an (optional) :ref:`Extra Bytes Variable Length Record <extrabytes_vlr_label>` to describe
     "extra bytes" stored with each point.
 
 * Other minor changes:

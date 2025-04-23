@@ -290,7 +290,7 @@ single LAS file must be the same type and hence the same length. If the
 specified size is larger than implied by the point format type (e.g., 32 bytes
 instead of 28 bytes for type 1) the remaining bytes are user-specific "extra
 bytes". The format and meaning of such "extra bytes" can (optionally) be
-described with an :ref:`extrabytes_vlr_label` VLR.
+described with an :ref:`Extra Bytes VLR <extrabytes_vlr_label>`.
 
 **Legacy Number of Point Records**
 

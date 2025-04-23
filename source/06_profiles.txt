@@ -11,7 +11,7 @@ needs of a particular subset of the broad point cloud community (e.g., the
 coastal/bathymetric lidar community, or the powerline mapping community). So as
 to not alter the LAS base specification, new classes can only be added to Point
 Data Record Formats 6-10, and classification values cannot start below 39. New
-attributes must be incorporated using :ref:`extrabytes_vlr_label` VLRs. It is strongly
+attributes must be incorporated using :ref:`Extra Bytes VLRs <extrabytes_vlr_label>`. It is strongly
 recommended that the development of Domain Profiles be coordinated to
 avoid unnecessary overlap or conflicts (e.g., conflicting class numbers)
 between profiles.
