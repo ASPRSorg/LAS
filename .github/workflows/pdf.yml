@@ -8,13 +8,13 @@ jobs:
   docs:
     name: Docs
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: true
-    container: osgeo/proj-docs
+    container: ghcr.io/osgeo/proj-docs
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Print versions
       run: |
           python3 --version
