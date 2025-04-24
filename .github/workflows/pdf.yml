@@ -35,9 +35,11 @@ jobs:
         if-no-files-found: error
     - uses: actions/upload-artifact@v4
       with:
+        name: TEX
+        path: build/latex/LAS.tex
+        if-no-files-found: error
+    - uses: actions/upload-artifact@v4
+      with:
         name: Misspelled
         path: build/spelling/output.txt
         if-no-files-found: ignore
-
-
-

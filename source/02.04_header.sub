@@ -8,8 +8,8 @@ Public Header Block
 .. table:: Public Header Block
 
     +----------------------------------+-------------------------+-----------------+-----------+--------------+
-    | **Item**                         | **Format**              | **Byte Offset** | **Size**  | **Required** |
-    +----------------------------------+-------------------------+-----------------+-----------+--------------+
+    |   Item                           |   Format                |   Byte Offset   |   Size    |   Required   |
+    +==================================+=========================+=================+===========+==============+
     | File Signature ("LASF")          | char[4]                 | 0               | 4 bytes   | yes          |
     +----------------------------------+-------------------------+-----------------+-----------+--------------+
     | File Source ID                   | uint16_t                | 4               | 2 bytes   | yes          |
@@ -224,7 +224,7 @@ file can be uniquely identified, globally.
 .. note::
 
     Example implementations of representing the Project ID fields as a GUID can
-    be found on the official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+    be found on the :ref:`Official LAS Wiki <laswiki_link>`.
 
 **Version Number**
 
@@ -444,8 +444,8 @@ The Time Offset field can be used to optimize :ref:`GPS Time <gpstime_link>` pre
 Offset GPS Time for a point record is equal to standard GPS Time, minus :math:`10^6` * Time Offset.
 
 For example, Adjusted Standard GPS Time uses a total offset of 1 billion (:math:`10^9`) seconds, which would be specified by a Time Offset of 1000.
-This achieves 100 nanosecond precision for the years 2007-2015. The LAS wiki provides
-`recommended values <https://github.com/ASPRSorg/LAS/wiki/Suggested-LAS-1.5-Time-Offset-Values>`_
+This achieves 100 nanosecond precision for the years 2007-2015. The
+:ref:`Official LAS Wiki <laswiki_link>` provides recommended values
 and year ranges that users are encouraged to use to maximize compatibility between datasets.
 
 This value must be set to zero if there are no point records in the file,
