@@ -277,7 +277,7 @@ latex_elements = {
     'maketitle': title,
 
     # Don't use atendofbody. Use fancyhdr calls in preamble instead (above).
-#    'atendofbody': """American Society for Photogrammetry \& Remote Sensing \\ LAS SPECIFICATION \\""" + releasename
+    # 'atendofbody': """American Society for Photogrammetry \& Remote Sensing \\ LAS SPECIFICATION \\""" + releasename
 
     # Customize sphinx setup parameters
     # https://www.sphinx-doc.org/en/master/latex.html#latexsphinxsetup
@@ -296,7 +296,7 @@ latex_table_style = ['standard']
 
 latex_toplevel_sectioning='section'
 latex_show_urls='footnote'
-latex_logo = './_static/asprslogo45.png'
+latex_logo = './_static/ASPRS_Logo_Blue.png'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,

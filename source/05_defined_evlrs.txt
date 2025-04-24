@@ -13,7 +13,7 @@ Waveform Data Packets
 .. warning::
 
     This EVLR is REQUIRED internally or externally when using Point Data Record 
-    Formats 4, 5, 9, or 10.
+    Formats 9 or 10.
 
 +-----------------+-----------------------------+
 | User ID         | LASF_Spec                   |
