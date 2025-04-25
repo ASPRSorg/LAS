@@ -12,27 +12,26 @@ produce points with X, Y, and Z coordinates. The purpose of LAS is to provide
 an open format that allows different hardware and software tools to
 exchange point cloud data in a common format.
 
-This document reflects the fourth revision of the LAS format specification
+This document reflects the fifth version of the LAS file specification
 since its initial version 1.0 release.
 
 
 LAS 1.5 Revision History
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Summary of LAS 1.5 revisions (GitHub Issue numbers included when applicable):
+Summary of LAS 1.5 revisions (topic links included when applicable):
 
-* R00 - Approved Version (XXXXXXX).
+* R00 - Approved Version (Summer 2025). 
 
 
 Comparison of LAS 1.5 to Previous Versions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The additions of LAS 1.5 include:
+The additions of LAS 1.5 include (topic links included when applicable):
 
-* Backward compatibility with LAS 1.1 – LAS 1.4.
-* LAS 1.5 mode which supports:
-
-  * Removed support for PDRFs 0-5.
+  * Backward compatibility with 64-bit LAS 1.4 files.
+  * Header compatibility with LAS 1.1 - 1.4 files.
+  * Removed support for legacy Point Data Record Formats 0-5.
     (`I-128 <https://github.com/ASPRSorg/LAS/issues/128>`_)
   * Added Max/Min GPS Time fields to header block.
     (`I-118 <https://github.com/ASPRSorg/LAS/issues/118>`_)
@@ -46,143 +45,6 @@ The additions of LAS 1.5 include:
     (`I-150 <https://github.com/ASPRSorg/LAS/issues/150>`_)
   * Deprecated Classification Lookup VLR.
     (`I-82 <https://github.com/ASPRSorg/LAS/issues/82>`_)
-
-LAS 1.4 Revision History
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
-
-* R11 - Approved Version (Nov 2011).
-* R12 - Errata (June 2012) - Typographical corrections:
-
-  * Corrected Public Header Size in descriptive paragraph to 375 bytes.
-  * Corrected two instances of Scan Angle Rank from "Unsigned Char" to "Char".
-
-* R13 - Added Domain Profile Section (July 2013).
-* R14 - Multiple updates (March 2019):
-
-  * Aesthetic changes from migration to GitHub.
-  * Multiple capitalization & typo corrections.
-  * Updated ASPRS contact info.
-    (`I-30 <https://github.com/ASPRSorg/LAS/issues/30>`_)
-  * Additional standard classifications 19-22 for PDRFs 6-10:
-    (`I-11 <https://github.com/ASPRSorg/LAS/issues/11>`_,
-    `I-26 <https://github.com/ASPRSorg/LAS/issues/26>`_)
-
-    * Class 19 -- Overhead Structure in PDRFs 6-10.
-    * Class 20 -- Ignored Ground.
-    * Class 21 -- Snow.
-    * Class 22 -- Temporal Exclusion.
-
-  * Added OGC endorsement.
-    (`I-31 <https://github.com/ASPRSorg/LAS/issues/31>`_)
-  * Added minimum PDRF sizes to attribute tables.
-    (`I-47 <https://github.com/ASPRSorg/LAS/issues/47>`_)
-  * Section reorganization:
-    (`I-57 <https://github.com/ASPRSorg/LAS/issues/57>`_)
-
-    * Addition of Table of Contents with section numbers. (c.f. 
-      `I-27 <https://github.com/ASPRSorg/LAS/issues/27>`_,
-      `I-49 <https://github.com/ASPRSorg/LAS/issues/49>`_)
-    * Divided Defined Variable Length Records section into Coordinate
-      Reference System VLRs section (s3) and Other Specification Defined
-      VLRs (s4).
-    * Expanded EVLR discussion in Legacy Compatibility section (s2.1) and moved
-      Legacy Compatibility section to EVLR definition (now s2.7.1).
-    * Swapped order of LAS 1.4 Revision History (now s1.1.1) and
-      LAS 1.4 Additions (now s1.1.2).
-    * Rearranged paragraphs in Extra Bytes VLR description.
-
-  * Deprecated "tuple" and "triple" extra byte data types.
-    (`I-1 <https://github.com/ASPRSorg/LAS/issues/1>`_)
-
-    * Added explanation and example of implicit arrays from descriptor names.
-
-  * Clarified that ExtraByte min/max should be an untransformed value.
-    (`I-4 <https://github.com/ASPRSorg/LAS/issues/4>`_)
-  * Clarified that Legacy Point Counts should be set to zero if using non-legacy
-    PDRFs. (`I-12 <https://github.com/ASPRSorg/LAS/issues/12>`_)
-  * Clarified Full Waveform descriptions and added wiki link.
-    (`I-9 <https://github.com/ASPRSorg/LAS/issues/9>`_)
-  * Renamed X(t), Y(t), and Z(t) from waveform packets to Parametric dx/dy/dz.
-  * PDRF9 now correctly requires Scanner Channel like other PDRFs.
-    (`I-29 <https://github.com/ASPRSorg/LAS/issues/29>`_)
-  * Clarified origin date/time for Adjusted Standard GPS Time.
-    (`I-40 <https://github.com/ASPRSorg/LAS/issues/40>`_)
-  * Clarified null-termination of fixed-length ``char`` arrays, especially VLR
-    Description. (`I-46 <https://github.com/ASPRSorg/LAS/issues/46>`_)
-  * Clarified relationship between FileSourceID and PointSourceID.
-    (`I-59 <https://github.com/ASPRSorg/LAS/issues/59>`_)
-  * Added language to support technologies other than conventional linear-mode
-    lidar scanners. (`I-35 <https://github.com/ASPRSorg/LAS/issues/35>`_)
-
-    * Clarified and renamed Synthetic Return Numbers Global Encoding bit.
-    * Clarified Synthetic point classification flag.
-    * Clarified validity of zero-value PointSourceID.
-    * Unified Return Number and Number of Returns descriptions between
-      legacy and non-legacy PDRFs.
-    * Clarified Scan Direction and Edge of Flight Line Flags for non-rotational systems.
-
-  * Added wiki link for Project ID examples.
-    (`I-38 <https://github.com/ASPRSorg/LAS/issues/38>`_)
-
-* R15 - Errata and typo corrections for R14 (July 2019):
-
-  * Minor editorial punctuation corrections.
-    (`I-78 <https://github.com/ASPRSorg/LAS/issues/78>`_)
-  * Fixed unintended reordering of Min/Max XYZ in R14 LAS header.
-    (`I-79 <https://github.com/ASPRSorg/LAS/issues/79>`_)
-  * Added missing Scanner Channel field in note about PDRF6-10 bit field.
-    (`I-80 <https://github.com/ASPRSorg/LAS/issues/80>`_)
-
-* R16 - DRAFT
-
-  * Clarified uniformity of GPS Time for all returns of a pulse.
-    (`I-81 <https://github.com/ASPRSorg/LAS/issues/81>`_)
-  * Added example usage of Overlap bit.
-    (`I-5 <https://github.com/ASPRSorg/LAS/issues/5>`_)
-  * Reworded mandatory zero Classification for Synthetic PDRF0-5.
-    (`I-86 <https://github.com/ASPRSorg/LAS/issues/86>`_)
-  * Added Byte Offset columns to Header, VLR, EVLR, and PDRF tables.
-    (`I-55 <https://github.com/ASPRSorg/LAS/issues/55>`_)
-  * Clarified how and when certain header fields should be zero-filled.
-    (`I-101 <https://github.com/ASPRSorg/LAS/issues/101>`_)
-  * Added Official LAS Wiki section.
-    (`I-71 <https://github.com/ASPRSorg/LAS/issues/71>`_)
-  * More closely aligned data types with C99 definitions.
-    (`I-115 <https://github.com/ASPRSorg/LAS/issues/115>`_)
-
-For detailed information on changes in revisions R14 and newer, review the
-inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
-
-
-Comparison of LAS 1.4 to Previous Versions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The additions of LAS 1.4 include:
-
-* Backward compatibility with LAS 1.1 – LAS 1.3 when payloads consist of only
-  legacy content.
-* LAS 1.4 mode which supports:
-
-  * Extension of offsets and field sizes to support full 64 bit.
-  * Support for up to 15 returns per outgoing pulse.
-  * Extension of the Point Class field to support 256 classes.
-  * Definition of several new ASPRS standard classes.
-  * Extension of the Scan Angle field to 2 bytes to support finer angle resolution.
-  * Addition of a Sensor Channel bit field to support mobile mapping systems.
-  * Addition of Well Known Text (WKT) definitions for Coordinate Reference
-    Systems.
-  * Addition of an Overlap bit to indicate points in the overlap
-    region while maintaining the class definition.
-  * Addition of an (optional) :ref:`extrabytes_vlr_label` Variable Length Record to describe
-    "extra bytes" stored with each point.
-
-* Other minor changes:
-
-  * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
-    Description".
-  * Added references to :ref:`Official LAS Wiki <laswiki_link>`.
 
 
 Conformance
@@ -204,7 +66,7 @@ organization as directed by the ASPRS Board of Directors. Questions related to
 this standard can be directed to ASPRS:
 
 * Online at https://github.com/ASPRSorg/LAS
-* By phone at 301-493-0290
+* By phone at 225-408-4747
 * By email at las@asprs.org or asprs@asprs.org
 * By mail at 8550 United Plaza Blvd, Suite 1001 Baton Rouge, LA 70809
 
