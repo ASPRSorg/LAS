@@ -149,6 +149,8 @@ preamble = r'''
 
 \usepackage{titling}
 \usepackage{fancyhdr}
+\usepackage{times}
+\usepackage{courier}
 \makeatletter
 \fancypagestyle{normal}{
     \fancyhf{}
@@ -261,7 +263,7 @@ latex_elements = {
 
     # The font size ('10pt', '11pt' or '12pt').
     #
-    'pointsize': '12pt',
+    'pointsize': '11pt',
 
     # Other document class options - ensure uniform header/footer
     'classoptions': ',oneside,openany',
