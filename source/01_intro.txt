@@ -104,7 +104,7 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
   * Added missing Scanner Channel field in note about PDRF6-10 bit field.
     (`I-80 <https://github.com/ASPRSorg/LAS/issues/80>`_)
 
-* R16 - DRAFT
+* R16 - Readability improvements and clarifications (June 2025):
 
   * Clarified uniformity of GPS Time for all returns of a pulse.
     (`I-81 <https://github.com/ASPRSorg/LAS/issues/81>`_)
