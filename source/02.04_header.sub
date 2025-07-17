@@ -426,8 +426,8 @@ intent.
 
 **Max and Min GPS Time**
 
-The max and min GPS Time fields reflect the highest and lowest valid (non-zero,
-generally) GPS Time values stored with the point records in this LAS file. The
+The max and min GPS Time fields reflect the highest and lowest non-zero
+GPS Time values stored with the point records in this LAS file. The
 GPS Time in this field will be in the same encoding described in the file's
 :ref:`Global Encoding <globalencoding_link>` field.
 
