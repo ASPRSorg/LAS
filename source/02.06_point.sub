@@ -88,10 +88,10 @@ Data Record Formats 6 to 10.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | GPS Time                         | double                  | 22          | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size* [1]_                                   | *30 bytes*                         |
+    | *Minimum PDRF Length* [1]_                                 | *30 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
-.. [1] Recall that the Point Data Record Size can be greater than the minimum
+.. [1] Recall that the Point Data Record Length can be greater than the minimum
     required for a PDRF. These "extra bytes" follow the standard Point Record
     fields and are described in the :ref:`extrabytes_vlr_label` VLR section.
 
@@ -439,7 +439,7 @@ point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Blue                             | uint16_t                | 34          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *36 bytes*                         |
+    | *Minimum PDRF Length*                                      | *36 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 **Red, Green, and Blue**
@@ -509,7 +509,7 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | NIR                              | uint16_t                | 36          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *38 bytes*                         |
+    | *Minimum PDRF Length*                                      | *38 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 **NIR**
@@ -584,7 +584,7 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Parametric dz                    | float                   | 55          | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *59 bytes*                         |
+    | *Minimum PDRF Length*                                      | *59 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 **Wave Packet Descriptor Index**
@@ -739,7 +739,7 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Parametric dz                    | float                   | 63          | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *67 bytes*                         |
+    | *Minimum PDRF Length*                                      | *67 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 .. raw:: latex

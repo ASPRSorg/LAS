@@ -59,9 +59,9 @@ envisioned that software that is not cognizant of the meaning of the extra
 bytes will simply copy these bytes when manipulating files.
 
 This VLR is only required for LAS files where points contain user-defined
-"extra bytes". This happens when the point record size is set to a larger value
+"extra bytes". This happens when the point record length is set to a larger value
 than required by the point type. For example, if a LAS file that contains
-point type 1 has a point record size of 32 instead of 28, there are 4 "extra
+point type 6 has a point record length of 34 instead of 30, there are 4 "extra
 bytes". The Extra Bytes VLR contains a simple description of the type and the
 meaning of these "extra bytes" so they can be accessed in a consistent manner
 across applications. The extra bytes descriptor is defined as follows:
