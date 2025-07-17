@@ -184,7 +184,7 @@ defined as follows:
     |       |                       | LAS 1.5; GeoTIFF CRS definitions are no  |
     |       |                       | longer supported in LAS 1.5.             |
     +-------+-----------------------+------------------------------------------+
-    | 5     | Reserved              | Must be set to zero (0).                 |
+    | 5     | Reserved              | Must be set to zero.                     |
     +-------+-----------------------+------------------------------------------+
     | 6     | Time Offset Flag      | Used in combination with GPS Time Type   |
     |       |                       | to indicate the meaning of               |
@@ -195,7 +195,7 @@ defined as follows:
     |       |                       | is defined as Offset GPS Time. The       |
     |       |                       | Offset GPS Time is standard GPS Time     |
     |       |                       | (satellite GPS Time) minus               |
-    |       |                       | 1 x :math:`10^6` x Time Offset. The Time |
+    |       |                       | 1 x :math:`10^6` x Time Offset. The      |
     |       |                       | :ref:`Time Offset <timeoffset_link>`     |
     |       |                       | is specified in the LAS header.          |
     |       |                       | The offset moves time to near zero to    |
@@ -207,7 +207,7 @@ defined as follows:
     |       |                       | The GPS Time Type flag must be set if    |
     |       |                       | the Time Offset Flag is set.             |
     +-------+-----------------------+------------------------------------------+
-    | 7:15  | Reserved              | Must be set to zero (0).                 |
+    | 7:15  | Reserved              | Must be set to zero.                     |
     +-------+-----------------------+------------------------------------------+
 
 
@@ -400,8 +400,7 @@ If there are no EVLRs, this value must be zero.
 
 This field contains the current number of EVLRs (including, if present, the
 Waveform Data Packet Record) that are stored in the file after the Point Data
-Records. If the number of EVLRs changes, then this number must be updated. If there
-are no EVLRs this value is zero.
+Records. If the number of EVLRs changes, then this number must be updated. 
 
 If there are no EVLRs, this value must be zero.
 
