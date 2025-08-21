@@ -43,7 +43,6 @@ header contained within the Public Header Block ("Start of Waveform Data Packet
 Record").
 
 .. include:: ./02.01_legacy.sub
-.. include:: ./02.02_crs.sub
 .. include:: ./02.03_datatypes.sub
 .. include:: ./02.04_header.sub
 .. include:: ./02.05_vlr.sub
