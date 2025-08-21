@@ -35,7 +35,7 @@ Text Area Description
 | Record ID       | 3                           |
 +-----------------+-----------------------------+
 
-This VLR/EVLR is used for providing a textual description of the content of the
+This VLR is used for providing a textual description of the content of the
 LAS file. It is a null-terminated, free-form ASCII string.
 
 .. _extrabytes_vlr_label:
@@ -231,8 +231,8 @@ Superseded
 | Record ID       | 7                           |
 +-----------------+-----------------------------+
 
-This LASF Record ID is used to negate an existing VLR/EVLR when rewriting the
-file (to remove the undesired VLR/EVLR). It is used, for example, when
+This LASF Record ID is used to negate an existing VLR or EVLR when rewriting the
+file (to remove the undesired VLR or EVLR). It is used, for example, when
 updating a record such as projection information where a new EVLR is appended
 to the end of the LAS file. The existing VLR which has been superseded must be
 marked with the SUPERSEDED Record ID.
