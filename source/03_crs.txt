@@ -16,8 +16,9 @@ the :ref:`Global Encoding <globalencoding_link>` bit.
 GeoTIFF CRS representations from prior versions of LAS are not supported in LAS 1.5.
 
 It is considered a file error to have more than one WKT VLR or EVLR in the file.
-A writer can efficiently revise a CRS VLR or EVLR without rewriting the entire LAS file by
-"superseding" the existing CRS VLR or EVLR. Superseding is performed by changing the
+A writer can efficiently revise a CRS definition without rewriting the entire LAS file by
+"superseding" the existing CRS VLR or EVLR and appending a new CRS definition in an EVLR. 
+Superseding is performed by changing the
 Record ID of the VLR or EVLR to match the :ref:`superseded_vlr_label` VLR definition.
 
 .. _crs_wkt:
