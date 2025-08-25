@@ -9,7 +9,7 @@ Optional VLR Definitions
 
 Definitions for official :ref:`vlrdef_label` and :ref:`evlrdef_label` 
 are provided in this section as a means to extend the LAS file format.
-Additional VLR/EVLR definitions contributed by the LAS Working Group and the 
+Additional VLR and EVLR definitions contributed by the LAS Working Group and the 
 LAS community can be found on the :ref:`Official LAS Wiki <laswiki_link>`.
 
 Classification Lookup (Deprecated)
