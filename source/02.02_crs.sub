@@ -10,9 +10,9 @@ point formats are no longer supported in LAS 1.5. The CRS for the file must be
 located in the WKT (Extended) Variable Length Records (EVLR, VLR).
 
 It is considered a file error to have more than 
-one WKT VLR/EVLR in the file. A writer can append a new CRS EVLR to a file by
-"superseding" the existing CRS VLR/EVLR. Superseding is performed by changing the
-Record ID of the VLR/EVLR to match the :ref:`superseded_vlr_label` VLR defined
+one WKT (E)VLR in the file. A writer can append a new CRS EVLR to a file by
+"superseding" the existing CRS (E)VLR. Superseding is performed by changing the
+Record ID of the (E)VLR to match the :ref:`superseded_vlr_label` VLR defined
 later in this document.
 
 
