@@ -43,6 +43,8 @@ The additions of LAS 1.5 include (topic links included when applicable):
     `I-129 <https://github.com/ASPRSorg/LAS/issues/129>`_)
   * Clarify requirement that the Extra Bytes VLR must be unique.
     (`I-150 <https://github.com/ASPRSorg/LAS/issues/150>`_)
+  * Deprecated Classification Lookup VLR.
+    (`I-82 <https://github.com/ASPRSorg/LAS/issues/82>`_)
 
 
 Conformance

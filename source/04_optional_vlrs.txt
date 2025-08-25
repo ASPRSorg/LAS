@@ -7,7 +7,12 @@
 Optional VLR Definitions
 --------------------------------------------------------------------------------
 
-Classification Lookup
+Definitions for official :ref:`vlrdef_label` and :ref:`evlrdef_label` 
+are provided in this section as a means to extend the LAS file format.
+Additional VLR and EVLR definitions contributed by the LAS Working Group and the 
+LAS community can be found on the :ref:`Official LAS Wiki <laswiki_link>`.
+
+Classification Lookup (Deprecated)
 ................................................................................
 
 +----------------------------+-----------------------------------+
@@ -24,6 +29,11 @@ Classification Lookup
         uint8_t ClassNumber;
         char Description[15];
     }; //total of 16 bytes
+
+The legacy Classification Lookup VLR (Record ID 0) has been a feature of the LAS specification
+since LAS 1.0. This VLR is deprecated in LAS 1.5 due to the limitation of
+15 characters being insufficient for a detailed description. An updated
+version of the VLR may be found on the :ref:`Official LAS Wiki <laswiki_link>`.
 
 
 Text Area Description
@@ -236,6 +246,10 @@ file (to remove the undesired VLR or EVLR). It is used, for example, when
 updating a record such as projection information where a new EVLR is appended
 to the end of the LAS file. The existing VLR which has been superseded must be
 marked with the SUPERSEDED Record ID.
+
+.. raw:: latex
+
+    \newpage
 
 .. _fwf_descriptor_label:
 
