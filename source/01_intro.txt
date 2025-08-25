@@ -104,7 +104,7 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
   * Added missing Scanner Channel field in note about PDRF6-10 bit field.
     (`I-80 <https://github.com/ASPRSorg/LAS/issues/80>`_)
 
-* R16 - Readability improvements and clarifications (June 2025):
+* R16 - Readability improvements and clarifications (August 2025):
 
   * Clarified uniformity of GPS Time for all returns of a pulse.
     (`I-81 <https://github.com/ASPRSorg/LAS/issues/81>`_)
@@ -175,9 +175,9 @@ organization as directed by the ASPRS Board of Directors. Questions related to
 this standard can be directed to ASPRS:
 
 * Online at https://github.com/ASPRSorg/LAS
-* By phone at 301-493-0290
+* By phone at 225-408-4747
 * By email at las@asprs.org or asprs@asprs.org
-* By mail at 8550 United Plaza Blvd, Suite 1001 Baton Rouge, LA 70809
+* By mail at 8550 United Plaza Blvd, Suite 1001, Baton Rouge, LA 70809
 
 OGC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -64,7 +64,7 @@ version=''
 
 # Publication info (approval date, release date, and GitHub SHA)
 today='XX XXXX 2025'
-releasedate='XX XXXX 2025'
+releasedate='27 August 2025'
 approvaldate = 'November 2011'
 
 import subprocess
@@ -212,10 +212,9 @@ GitHub repo -- https://github.com/ASPRSorg/LAS
 \noindent Published by:\\
 }
 The American Society for Photogrammetry \& Remote Sensing\\
-425 Barlow Place, Suite 210\\
-Bethesda, Maryland 20814-2160\\
-Voice: 301-493-0290\\
-Fax: 225-408-4422\\
+8550 United Plaza Blvd. Suite 1001\\
+Baton Rouge, LA 70809\\
+Voice: 225-408-4747\\
 Web: \underline{www.asprs.org}\\
 
 
