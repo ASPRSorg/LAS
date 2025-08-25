@@ -43,11 +43,10 @@ header contained within the Public Header Block ("Start of Waveform Data Packet
 Record").
 
 .. include:: ./02.01_legacy.sub
-.. include:: ./02.02_crs.sub
-.. include:: ./02.03_datatypes.sub
-.. include:: ./02.04_header.sub
-.. include:: ./02.05_vlr.sub
-.. include:: ./02.06_point.sub
-.. include:: ./02.07_evlr.sub
+.. include:: ./02.02_datatypes.sub
+.. include:: ./02.03_header.sub
+.. include:: ./02.04_vlr.sub
+.. include:: ./02.05_point.sub
+.. include:: ./02.06_evlr.sub
 
 

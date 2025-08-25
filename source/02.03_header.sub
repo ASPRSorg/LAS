@@ -1,3 +1,7 @@
+.. raw:: latex
+
+    \newpage
+
 .. _headerblock_label:
 
 Public Header Block
@@ -179,10 +183,14 @@ defined as follows:
     |       |                       | for a system not directly supporting     |
     |       |                       | multiple returns.                        |
     +-------+-----------------------+------------------------------------------+
-    | 4     | WKT                   | If set, the Coordinate Reference System  |
-    |       |                       | (CRS) is WKT. This bit must be set in    |
-    |       |                       | LAS 1.5; GeoTIFF CRS definitions are no  |
-    |       |                       | longer supported in LAS 1.5.             |
+    | 4     | Well Known Text (WKT) | If set, the Coordinate Reference System  |
+    |       |                       | (CRS) is formatted as OGC WKT. This bit  |
+    |       |                       | must be set in LAS 1.5; GeoTIFF CRS      |
+    |       |                       | definitions from prior versions of LAS   |
+    |       |                       | are no longer supported in LAS 1.5.      |
+    |       |                       | The CRS definition will be located in    |
+    |       |                       | the WKT VLR(s) or EVLR(s) as defined in  |
+    |       |                       | the :ref:`crs_label` section.            |
     +-------+-----------------------+------------------------------------------+
     | 5     | Reserved              | Must be set to zero.                     |
     +-------+-----------------------+------------------------------------------+
