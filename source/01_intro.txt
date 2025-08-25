@@ -66,7 +66,7 @@ this standard can be directed to ASPRS:
 * Online at https://github.com/ASPRSorg/LAS
 * By phone at 225-408-4747
 * By email at las@asprs.org or asprs@asprs.org
-* By mail at 8550 United Plaza Blvd, Suite 1001 Baton Rouge, LA 70809
+* By mail at 8550 United Plaza Blvd, Suite 1001, Baton Rouge, LA 70809
 
 OGC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
