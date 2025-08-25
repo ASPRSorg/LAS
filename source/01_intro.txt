@@ -104,6 +104,25 @@ Summary of LAS 1.4 revisions (GitHub Issue numbers included when applicable):
   * Added missing Scanner Channel field in note about PDRF6-10 bit field.
     (`I-80 <https://github.com/ASPRSorg/LAS/issues/80>`_)
 
+* R16 - Readability improvements and clarifications (August 2025):
+
+  * Clarified uniformity of GPS Time for all returns of a pulse.
+    (`I-81 <https://github.com/ASPRSorg/LAS/issues/81>`_)
+  * Added example usage of Overlap bit.
+    (`I-5 <https://github.com/ASPRSorg/LAS/issues/5>`_)
+  * Reworded mandatory zero Classification for Synthetic PDRF0-5.
+    (`I-86 <https://github.com/ASPRSorg/LAS/issues/86>`_)
+  * Added Byte Offset columns to Header, VLR, EVLR, and PDRF tables.
+    (`I-55 <https://github.com/ASPRSorg/LAS/issues/55>`_)
+  * Clarified how and when certain header fields should be zero-filled.
+    (`I-101 <https://github.com/ASPRSorg/LAS/issues/101>`_)
+  * Added Official LAS Wiki section.
+    (`I-71 <https://github.com/ASPRSorg/LAS/issues/71>`_)
+  * Clarified source of min/max XYZ and ExtraByte values.
+    (`I-89 <https://github.com/ASPRSorg/LAS/issues/89>`_)
+  * More closely aligned data types with C99 definitions.
+    (`I-115 <https://github.com/ASPRSorg/LAS/issues/115>`_)
+
 For detailed information on changes in revisions R14 and newer, review the
 inline differencing provided on the `GitHub page <https://github.com/ASPRSorg/LAS>`_.
 
@@ -127,21 +146,21 @@ The additions of LAS 1.4 include:
     Systems.
   * Addition of an Overlap bit to indicate points in the overlap
     region while maintaining the class definition.
-  * Addition of an (optional) :ref:`extrabytes_vlr_label` Variable Length Record to describe
+  * Addition of an (optional) :ref:`Extra Bytes Variable Length Record <extrabytes_vlr_label>` to describe
     "extra bytes" stored with each point.
 
 * Other minor changes:
 
   * Added definitions for "LAS Domain Profile" and "LAS Domain Profile
     Description".
-  * Added links to official LAS wiki: https://github.com/ASPRSorg/LAS/wiki
+  * Added references to :ref:`Official LAS Wiki <laswiki_link>`.
 
 
 Conformance
 ................................................................................
 
 The data types used in the LAS format definition are conformant to the 1999
-ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99").
+ANSI C Language Specification (ANSI/ISO/IEC 9899:1999 ("C99")).
 
 
 Authority
@@ -156,24 +175,29 @@ organization as directed by the ASPRS Board of Directors. Questions related to
 this standard can be directed to ASPRS:
 
 * Online at https://github.com/ASPRSorg/LAS
-* By phone at 301-493-0290
+* By phone at 225-408-4747
 * By email at las@asprs.org or asprs@asprs.org
-* By mail at 425 Barlow Place, Suite 210, Bethesda, Maryland 20814-2160
+* By mail at 8550 United Plaza Blvd, Suite 1001, Baton Rouge, LA 70809
 
 OGC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-LAS has been recognized by the Open Geospatial Consortium (`OGC`_) in 2018 as an
+LAS has been recognized by the Open Geospatial Consortium (`OGC`_) since 2018 as an
 OGC Community Standard. The OGC version of the document with forward material
 about standards that LAS references and its status within the standard body can
-be found at https://portal.opengeospatial.org/files/17-030r1.
+be found at https://www.ogc.org/publications/standard/las/.
 
 Future recognition and activity on OGC referencing activities of LAS can be
-followed at http://www.opengeospatial.org/standards/community.
+followed at https://www.ogc.org/publications/.
 
-.. _`OGC`: http://www.opengeospatial.org
+.. _`OGC`: https://www.ogc.org
 
-.. raw:: latex
 
-    \newpage
+.. _laswiki_link:
 
+Official LAS Wiki
+................................................................................
+
+The official LAS wiki hosts supplemental guidance pages, links to external
+resources, public registries, and more LAS-related resources.
+The wiki can be found at https://github.com/ASPRSorg/LAS/wiki.
