@@ -247,10 +247,6 @@ updating a record such as projection information where a new EVLR is appended
 to the end of the LAS file. The existing VLR which has been superseded must be
 marked with the SUPERSEDED Record ID.
 
-.. raw:: latex
-
-    \newpage
-
 .. _fwf_descriptor_label:
 
 Waveform Packet Descriptor
