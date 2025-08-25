@@ -225,8 +225,8 @@ GitHub repo -- https://github.com/ASPRSorg/LAS
 \noindent Published by:\\
 }
 The American Society for Photogrammetry \& Remote Sensing\\
-8550 United Plaza Blvd, Suite 1001\\
-Baton Rouge, Louisiana 70809\\
+8550 United Plaza Blvd. Suite 1001\\
+Baton Rouge, LA 70809\\
 Voice: 225-408-4747\\
 Web: \underline{www.asprs.org}\\
 
