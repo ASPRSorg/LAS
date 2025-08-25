@@ -21,7 +21,7 @@ LAS 1.5 Revision History
 
 Summary of LAS 1.5 revisions (topic links included when applicable):
 
-* R00 - Approved Version (Summer 2025). 
+* R00 - Approved Version (August 2025). 
 
 
 Comparison of LAS 1.5 to Previous Versions
