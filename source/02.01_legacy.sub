@@ -1,17 +1,15 @@
 Legacy Compatibility (LAS 1.1 - LAS 1.3)
 ................................................................................
 
-LAS 1.4 moves the file specification from a 32 bit file structure (maximum
-value of :math:`2^{32}-1 \equiv 4,294,967,295 \equiv \mbox{UINT32\_MAX}`) to a
-64 bit file structure (:math:`2^{64} - 1`).
-
-To maintain the ability to place a LAS 1.1 through LAS 1.3 payload (point
-record types 0-5, GeoTIFF coordinate reference system, referred to as "Legacy"
-payloads) in a LAS 1.4 file structure, it is necessary to duplicate some of
-the fields within the LAS 1.4 file structure. These duplicate fields are named
+LAS 1.4 moved the file specification from a 32 bit file structure to a
+64 bit file structure.
+To maintain the ability to place a LAS 1.1 through LAS 1.3 payload
+in a LAS 1.4 or LAS 1.5 file header, optional support for the 32 bit field 
+variants is retained alongside the required 64 bit fields.
+These duplicate 32 bit fields are named
 "Legacy xxx" where "xxx" denotes the meaning of the field.
 
-A LAS 1.4 file writer who wishes to maintain backward compatibility must
+A LAS 1.5 file writer who wishes to maintain backward compatibility must
 maintain both the legacy fields and the equivalent non-legacy fields in
 synchronization. However, this is not possible if the number of points
 exceeds UINT32_MAX, in which case the legacy fields must be set to zero. If a
@@ -19,12 +17,12 @@ file writer is not maintaining backward compatibility, the legacy fields must
 always be set to zero.
 
 If there is a discrepancy between a non-zero legacy field and the equivalent
-LAS 1.4 field, the LAS 1.4 reader should use the legacy value to maintain the
-same behavior as a LAS 1.1 through LAS 1.3 reader. Best practice is to also
+LAS 1.5 field, the LAS reader should use the legacy value to maintain the
+same behavior as prior versions of LAS. Best practice is to also
 throw an informative error so that the file can be repaired.
 
 LAS 1.4 introduced the option to define Variable Length Records (VLRs) as
-Extended Variable Length Records (EVLRs) instead. A LAS 1.4 file writer wishing
+Extended Variable Length Records (EVLRs) instead. A LAS file writer wishing
 to maintain backward compatibility must use only VLRs. See the
 :ref:`evlr_legacy_label` section for more information.
 

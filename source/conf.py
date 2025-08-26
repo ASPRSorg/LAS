@@ -69,16 +69,15 @@ html_theme_path = ["html_themes"]
 # The short X.Y version.
 #version = u'1.4'
 # Custom non-keyword version tag for header
-myversion = u'1.5 - R20 DRAFT'
+myversion = u'1.5 - R00'
 # The full version, including alpha/beta/rc tags.
 release = u'VERSION ' + myversion
 releasename = release
 version=''
 
 # Publication info (approval date, release date, and GitHub SHA)
-today='09 July 2019'
-releasedate='09 July 2019'
-approvaldate = 'November 2011'
+releasedate='27 August 2025'
+approvaldate = 'August 2025'
 
 import subprocess
 
@@ -169,6 +168,8 @@ preamble = r'''
 \usepackage{titling}
 
 \usepackage{fancyhdr}
+\usepackage{times}
+\usepackage{courier}
 \makeatletter
 \fancypagestyle{normal}{
     \fancyhf{}
@@ -243,8 +244,8 @@ GitHub repo -- https://github.com/ASPRSorg/LAS
 \noindent Published by:\\
 }
 The American Society for Photogrammetry \& Remote Sensing\\
-8550 United Plaza Blvd, Suite 1001\\
-Baton Rouge, Louisiana 70809\\
+8550 United Plaza Blvd. Suite 1001\\
+Baton Rouge, LA 70809\\
 Voice: 225-408-4747\\
 Web: \underline{www.asprs.org}\\
 
@@ -281,7 +282,7 @@ latex_elements = {
 
     # The font size ('10pt', '11pt' or '12pt').
     #
-    'pointsize': '12pt',
+    'pointsize': '11pt',
 
     # Other document class options - ensure uniform header/footer
     'classoptions': ',oneside,openany',
@@ -297,7 +298,7 @@ latex_elements = {
     'maketitle': title,
 
     # Don't use atendofbody. Use fancyhdr calls in preamble instead (above).
-#    'atendofbody': """American Society for Photogrammetry \& Remote Sensing \\ LAS SPECIFICATION \\""" + releasename
+    # 'atendofbody': """American Society for Photogrammetry \& Remote Sensing \\ LAS SPECIFICATION \\""" + releasename
 
     # Customize sphinx setup parameters
     # https://www.sphinx-doc.org/en/master/latex.html#latexsphinxsetup

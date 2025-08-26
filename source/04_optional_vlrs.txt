@@ -7,7 +7,12 @@
 Optional VLR Definitions
 --------------------------------------------------------------------------------
 
-Classification Lookup
+Definitions for official :ref:`vlrdef_label` and :ref:`evlrdef_label` 
+are provided in this section as a means to extend the LAS file format.
+Additional VLR and EVLR definitions contributed by the LAS Working Group and the 
+LAS community can be found on the :ref:`Official LAS Wiki <laswiki_link>`.
+
+Classification Lookup (Deprecated)
 ................................................................................
 
 +----------------------------+-----------------------------------+
@@ -25,6 +30,11 @@ Classification Lookup
         char Description[15];
     }; //total of 16 bytes
 
+The legacy Classification Lookup VLR (Record ID 0) has been a feature of the LAS specification
+since LAS 1.0. This VLR is deprecated in LAS 1.5 due to the limitation of
+15 characters being insufficient for a detailed description. An updated
+version of the VLR may be found on the :ref:`Official LAS Wiki <laswiki_link>`.
+
 
 Text Area Description
 ................................................................................
@@ -35,7 +45,7 @@ Text Area Description
 | Record ID       | 3                           |
 +-----------------+-----------------------------+
 
-This VLR/EVLR is used for providing a textual description of the content of the
+This VLR is used for providing a textual description of the content of the
 LAS file. It is a null-terminated, free-form ASCII string.
 
 .. _extrabytes_vlr_label:
@@ -52,15 +62,16 @@ Extra Bytes
 +----------------------------+-----------------------------+
 
 The Extra Bytes VLR provides a mechanism whereby additional information can be
-added to the end of a standard Point Record. This VLR has been added to LAS 1.4
-to formalize a process that has been used in prior versions of LAS. It is
+added to the end of a standard Point Record. This VLR was added to LAS 1.4
+to formalize a process that had been used in prior versions of LAS, and is 
+a core feature of the LAS 1.5 specification. It is
 envisioned that software that is not cognizant of the meaning of the extra
 bytes will simply copy these bytes when manipulating files.
 
 This VLR is only required for LAS files where points contain user-defined
-"extra bytes". This happens when the point record size is set to a larger value
+"extra bytes". This happens when the point record length is set to a larger value
 than required by the point type. For example, if a LAS file that contains
-point type 1 has a point record size of 32 instead of 28, there are 4 "extra
+point type 6 has a point record length of 34 instead of 30, there are 4 "extra
 bytes". The Extra Bytes VLR contains a simple description of the type and the
 meaning of these "extra bytes" so they can be accessed in a consistent manner
 across applications. The extra bytes descriptor is defined as follows:
@@ -115,11 +126,15 @@ the existing Extra Bytes VLR.
 Multiple sequential "extra byte" records can compose an array of associated
 values. It is recommended that each member's name be consistent with other
 members, only varying by an index number wrapped in square brackets, as in
-the above example. Zero-indexed arrays are encouraged. Previous revisions
-of the LAS 1.4 specification utilized data_types 11-30 to define standard
-two- and three-member arrays, but this feature was never widely implemented
-and was `deprecated in R14 <https://github.com/ASPRSorg/LAS/issues/1>`_ to
-simplify implementation.
+the above example. Zero-indexed arrays are encouraged. 
+
+.. note::
+
+    Previous versions of the LAS specification utilized data_type values 11-30 to define
+    two- and three-member arrays, but this feature was never widely implemented
+    and was `deprecated in LAS 1.4 R14 <https://github.com/ASPRSorg/LAS/issues/1>`_ to
+    simplify implementation.
+
 
 Any unused characters in the "name" or "description" fields must be set to zero.
 
@@ -226,8 +241,8 @@ Superseded
 | Record ID       | 7                           |
 +-----------------+-----------------------------+
 
-This LASF Record ID is used to negate an existing VLR/EVLR when rewriting the
-file (to remove the undesired VLR/EVLR). It is used, for example, when
+This LASF Record ID is used to negate an existing VLR or EVLR when rewriting the
+file (to remove the undesired VLR or EVLR). It is used, for example, when
 updating a record such as projection information where a new EVLR is appended
 to the end of the LAS file. The existing VLR which has been superseded must be
 marked with the SUPERSEDED Record ID.

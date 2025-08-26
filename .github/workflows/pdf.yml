@@ -19,6 +19,8 @@ jobs:
       run: |
           python3 --version
           sphinx-build --version
+          DEBIAN_FRONTEND=noninteractive apt-get update  -y
+          DEBIAN_FRONTEND=noninteractive apt-get install texlive-fonts-recommended -y
     - name: Lint .rst files
       run: |
         if find . -name '*.rst' | xargs grep -P '\t'; then echo 'Tabs are bad, please use four spaces in .rst files.'; false; fi
@@ -43,4 +45,9 @@ jobs:
         name: Misspelled
         path: build/spelling/output.txt
         if-no-files-found: ignore
+<<<<<<<<< Temporary merge branch 1
+
+
+=========
+>>>>>>>>> Temporary merge branch 2
 

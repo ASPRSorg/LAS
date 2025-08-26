@@ -66,17 +66,17 @@ Data Record Formats 6 to 10.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Intensity                        | uint16_t                | 12          | 2 bytes   | no       |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Return Number                    | 4 bits (bits 0-3)       | 14          | 4 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       |             | 4 bits    | yes      |
+    | Return Number                    | 4 bits (bits 0-3)       | 14:0        | 4 bits    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Classification Flags             | 4 bits (bits 0-3)       | 15          | 4 bits    | no       |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       |             | 2 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scan Direction Flag              | 1 bit (bit 6)           |             | 1 bit     | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 7)           |             | 1 bit     | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 14:4        | 4 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Classification Flags             | 4 bits (bits 0-3)       | 15:0        | 4 bits    | no       |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 15:4        | 2 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scan Direction Flag              | 1 bit (bit 6)           | 15:6        | 1 bit     | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Edge of Flight Line              | 1 bit (bit 7)           | 15:7        | 1 bit     | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Classification                   | uint8_t                 | 16          | 1 byte    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
@@ -88,10 +88,10 @@ Data Record Formats 6 to 10.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | GPS Time                         | double                  | 22          | 8 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size* [1]_                                   | *30 bytes*                         |
+    | *Minimum PDRF Length* [1]_                                 | *30 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
-.. [1] Recall that the Point Data Record Size can be greater than the minimum
+.. [1] Recall that the Point Data Record Length can be greater than the minimum
     required for a PDRF. These "extra bytes" follow the standard Point Record
     fields and are described in the :ref:`extrabytes_vlr_label` VLR section.
 
@@ -135,23 +135,23 @@ pulse return magnitude, and may be derived from multiple sources.
 
 The Return Number is the pulse return number for a given output pulse. A given
 output laser pulse can have many returns, and they must be marked in sequence
-of return. The first return will have a Return Number of one, the second a
-Return Number of two, and so on up to fifteen returns. The Return Number must
+of return. The first return will have a Return Number of 1, the second a
+Return Number of 2, and so on up to 15 returns. The Return Number must
 be between 1 and the Number of Returns, inclusive.
 
 For systems unable to record multiple returns, the Return Number should be
-set to one, unless it is synthetically derived and the Synthetic Return Number
-Global Encoding bit is set.
+set to 1, unless it is synthetically derived and the Synthetic Return Number
+:ref:`Global Encoding <globalencoding_link>` bit is set.
 
 **Number of Returns (Given Pulse)**
 
 The Number of Returns is the total number of returns for a given pulse. For
-example, a laser data point may be return two (Return Number) within a total
-number of up to fifteen returns.
+example, a laser data point may be return 2 (Return Number) within a total
+number of up to 15 returns.
 
 For systems unable to record multiple returns, the Number of Returns should be
-set to one, unless it is synthetically derived and the Synthetic Return Number
-Global Encoding bit is set.
+set to 1, unless it is synthetically derived and the Synthetic Return Number
+:ref:`Global Encoding <globalencoding_link>` bit is set.
 
 .. note::
 
@@ -258,8 +258,8 @@ Classification must adhere to the following standard:
     | Value            | Meaning                     | Notes                          |
     +==================+=============================+================================+
     | 0                | Created, Never Classified   | See note [2]_                  |
-    +------------------+-----------------------------+                                +
-    | 1                | Unclassified                |                                |
+    +------------------+-----------------------------+--------------------------------+
+    | 1                | Unclassified                | See note [2]_                  |
     +------------------+-----------------------------+--------------------------------+
     | 2                | Ground                      |                                |
     +------------------+-----------------------------+--------------------------------+
@@ -411,17 +411,17 @@ point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Intensity                        | uint16_t                | 12          | 2 bytes   | no       |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Return Number                    | 4 bits (bits 0-3)       | 14          | 4 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       |             | 4 bits    | yes      |
+    | Return Number                    | 4 bits (bits 0-3)       | 14:0        | 4 bits    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Classification Flags             | 4 bits (bits 0-3)       | 15          | 4 bits    | no       |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       |             | 2 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scan Direction Flag              | 1 bit (bit 6)           |             | 1 bit     | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 7)           |             | 1 bit     | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 14:4        | 4 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Classification Flags             | 4 bits (bits 0-3)       | 15:0        | 4 bits    | no       |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 15:4        | 2 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scan Direction Flag              | 1 bit (bit 6)           | 15:6        | 1 bit     | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Edge of Flight Line              | 1 bit (bit 7)           | 15:7        | 1 bit     | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Classification                   | uint8_t                 | 16          | 1 byte    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
@@ -439,7 +439,7 @@ point using ancillary data, typically from a camera.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Blue                             | uint16_t                | 34          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *36 bytes*                         |
+    | *Minimum PDRF Length*                                      | *36 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 **Red, Green, and Blue**
@@ -479,17 +479,17 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Intensity                        | uint16_t                | 12          | 2 bytes   | no       |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Return Number                    | 4 bits (bits 0-3)       | 14          | 4 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       |             | 4 bits    | yes      |
+    | Return Number                    | 4 bits (bits 0-3)       | 14:0        | 4 bits    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Classification Flags             | 4 bits (bits 0-3)       | 15          | 4 bits    | no       |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       |             | 2 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scan Direction Flag              | 1 bit (bit 6)           |             | 1 bit     | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 7)           |             | 1 bit     | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 14:4        | 4 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Classification Flags             | 4 bits (bits 0-3)       | 15:0        | 4 bits    | no       |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 15:4        | 2 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scan Direction Flag              | 1 bit (bit 6)           | 15:6        | 1 bit     | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Edge of Flight Line              | 1 bit (bit 7)           | 15:7        | 1 bit     | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Classification                   | uint8_t                 | 16          | 1 byte    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
@@ -509,7 +509,7 @@ addition of a NIR (near infrared) channel.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | NIR                              | uint16_t                | 36          | 2 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *38 bytes*                         |
+    | *Minimum PDRF Length*                                      | *38 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 **NIR**
@@ -548,17 +548,17 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Intensity                        | uint16_t                | 12          | 2 bytes   | no       |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Return Number                    | 4 bits (bits 0-3)       | 14          | 4 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       |             | 4 bits    | yes      |
+    | Return Number                    | 4 bits (bits 0-3)       | 14:0        | 4 bits    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Classification Flags             | 4 bits (bits 0-3)       | 15          | 4 bits    | no       |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       |             | 2 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scan Direction Flag              | 1 bit (bit 6)           |             | 1 bit     | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 7)           |             | 1 bit     | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 14:4        | 4 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Classification Flags             | 4 bits (bits 0-3)       | 15:0        | 4 bits    | no       |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 15:4        | 2 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scan Direction Flag              | 1 bit (bit 6)           | 15:6        | 1 bit     | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Edge of Flight Line              | 1 bit (bit 7)           | 15:7        | 1 bit     | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Classification                   | uint8_t                 | 16          | 1 byte    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
@@ -584,7 +584,7 @@ Point Data Record Format 9 adds Wave Packets to Point Data Record Format 6.
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Parametric dz                    | float                   | 55          | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *59 bytes*                         |
+    | *Minimum PDRF Length*                                      | *59 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 **Wave Packet Descriptor Index**
@@ -695,17 +695,17 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Intensity                        | uint16_t                | 12          | 2 bytes   | no       |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Return Number                    | 4 bits (bits 0-3)       | 14          | 4 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       |             | 4 bits    | yes      |
+    | Return Number                    | 4 bits (bits 0-3)       | 14:0        | 4 bits    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | Classification Flags             | 4 bits (bits 0-3)       | 15          | 4 bits    | no       |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scanner Channel                  | 2 bits (bits 4-5)       |             | 2 bits    | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Scan Direction Flag              | 1 bit (bit 6)           |             | 1 bit     | yes      |
-    +----------------------------------+-------------------------+             +-----------+----------+
-    | Edge of Flight Line              | 1 bit (bit 7)           |             | 1 bit     | yes      |
+    | Number of Returns (Given Pulse)  | 4 bits (bits 4-7)       | 14:4        | 4 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Classification Flags             | 4 bits (bits 0-3)       | 15:0        | 4 bits    | no       |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scanner Channel                  | 2 bits (bits 4-5)       | 15:4        | 2 bits    | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Scan Direction Flag              | 1 bit (bit 6)           | 15:6        | 1 bit     | yes      |
+    +----------------------------------+-------------------------+-------------+-----------+----------+
+    | Edge of Flight Line              | 1 bit (bit 7)           | 15:7        | 1 bit     | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Classification                   | uint8_t                 | 16          | 1 byte    | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
@@ -739,7 +739,7 @@ Point Data Record Format 10 is the same as Point Data Record Format 9 with RGB a
     +----------------------------------+-------------------------+-------------+-----------+----------+
     | Parametric dz                    | float                   | 63          | 4 bytes   | yes      |
     +----------------------------------+-------------------------+-------------+-----------+----------+
-    | *Minimum PDRF Size*                                        | *67 bytes*                         |
+    | *Minimum PDRF Length*                                      | *67 bytes*                         |
     +------------------------------------------------------------+------------------------------------+
 
 .. raw:: latex

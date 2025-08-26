@@ -1,3 +1,7 @@
+.. raw:: latex
+
+    \newpage
+
 .. _headerblock_label:
 
 Public Header Block
@@ -125,10 +129,8 @@ systems.
 
 **Global Encoding**
 
-This is a bit field used to indicate certain global properties about the file.
-In LAS 1.2 (the version in which this field was introduced), only the low bit
-is defined (this is the bit, that if set, would have the unsigned integer yield
-a value of 1). This bit field is defined as:
+This is a bit field used to indicate certain global properties about the file,
+defined as follows:
 
 
 .. tabularcolumns:: |p{2.0cm}|p{3.0cm}|p{11.0cm}|
@@ -181,13 +183,16 @@ a value of 1). This bit field is defined as:
     |       |                       | for a system not directly supporting     |
     |       |                       | multiple returns.                        |
     +-------+-----------------------+------------------------------------------+
-    | 4     | WKT                   | If set, the Coordinate Reference System  |
-    |       |                       | (CRS) is WKT. This bit must be set in    |
-    |       |                       | LAS 1.5; GeoTIFF CRS definitions are not |
-    |       |                       | supported for legacy                     |
-    |       |                       | compatibility beginning with LAS 1.5.    |
+    | 4     | Well Known Text (WKT) | If set, the Coordinate Reference System  |
+    |       |                       | (CRS) is formatted as OGC WKT. This bit  |
+    |       |                       | must be set in LAS 1.5; GeoTIFF CRS      |
+    |       |                       | definitions from prior versions of LAS   |
+    |       |                       | are no longer supported in LAS 1.5.      |
+    |       |                       | The CRS definition will be located in    |
+    |       |                       | the WKT VLR(s) or EVLR(s) as defined in  |
+    |       |                       | the :ref:`crs_label` section.            |
     +-------+-----------------------+------------------------------------------+
-    | 5     | Reserved              | Must be set to zero (0).                 |
+    | 5     | Reserved              | Must be set to zero.                     |
     +-------+-----------------------+------------------------------------------+
     | 6     | Time Offset Flag      | Used in combination with GPS Time Type   |
     |       |                       | to indicate the meaning of               |
@@ -198,7 +203,7 @@ a value of 1). This bit field is defined as:
     |       |                       | is defined as Offset GPS Time. The       |
     |       |                       | Offset GPS Time is standard GPS Time     |
     |       |                       | (satellite GPS Time) minus               |
-    |       |                       | 1 x :math:`10^6` x Time Offset. The Time |
+    |       |                       | 1 x :math:`10^6` x Time Offset. The      |
     |       |                       | :ref:`Time Offset <timeoffset_link>`     |
     |       |                       | is specified in the LAS header.          |
     |       |                       | The offset moves time to near zero to    |
@@ -210,7 +215,7 @@ a value of 1). This bit field is defined as:
     |       |                       | The GPS Time Type flag must be set if    |
     |       |                       | the Time Offset Flag is set.             |
     +-------+-----------------------+------------------------------------------+
-    | 7:15  | Reserved              | Must be set to zero (0).                 |
+    | 7:15  | Reserved              | Must be set to zero.                     |
     +-------+-----------------------+------------------------------------------+
 
 
@@ -315,16 +320,18 @@ This field is unrelated to the number of EVLRs appended to the file.
 
 **Point Data Record Format**
 
-The point data record indicates the type of point data records contained in the
-file. LAS 1.4 defines types 0 through 10. These types are defined in the
+The point data record format (PDRF) value indicates the type of point data records contained in the
+file. LAS 1.5 defines types 6 through 10. These types are defined in the
 :ref:`ptrecords_label` section of this specification.
+PDRFs 0-5 as defined in previous versions of LAS are no longer valid
+for LAS 1.5.
 
 **Point Data Record Length**
 
 The size, in bytes, of the Point Data Record. All Point Data Records within a
-single LAS file must be the same type and hence the same length. If the
-specified size is larger than implied by the point format type (e.g., 32 bytes
-instead of 28 bytes for type 1) the remaining bytes are user-specific "extra
+single LAS file must be the same PDRF and hence the same length. If the
+specified size is larger than implied by the PDRF type (e.g., 32 bytes
+instead of 30 bytes for PDRF 6) the remaining bytes are user-specific "extra
 bytes". The format and meaning of such "extra bytes" can (optionally) be
 described with an :ref:`extrabytes_vlr_label` VLR.
 
@@ -385,8 +392,8 @@ point records in the file, these values must be set to zero.
 This value provides the offset, in bytes, from the beginning of the LAS file to
 the first byte of the Waveform Data Package Record. Note that this will be the
 first byte of the Waveform Data Packet header. If no waveform records are
-contained within the file or they are stored externally, this value must be zero. It should be noted that LAS
-1.4 allows multiple Extended Variable Length Records (EVLRs) and that the
+contained within the file or they are stored externally, this value must be zero. It should be noted that
+LAS 1.5 allows multiple Extended Variable Length Records (EVLRs) and that the
 Waveform Data Packet Record is not necessarily the first EVLR in the file.
 
 **Start of First Extended Variable Length Record**
@@ -401,8 +408,7 @@ If there are no EVLRs, this value must be zero.
 
 This field contains the current number of EVLRs (including, if present, the
 Waveform Data Packet Record) that are stored in the file after the Point Data
-Records. If the number of EVLRs changes, then this number must be updated. If there
-are no EVLRs this value is zero.
+Records. If the number of EVLRs changes, then this number must be updated. 
 
 If there are no EVLRs, this value must be zero.
 
@@ -427,13 +433,12 @@ intent.
 
 **Max and Min GPS Time**
 
-The max and min GPS Time fields reflect the highest and lowest valid (non-zero,
-generally) GPS Time values stored with the point records in this LAS file. The
+The max and min GPS Time fields reflect the highest and lowest non-zero
+GPS Time values stored with the point records in this LAS file. The
 GPS Time in this field will be in the same encoding described in the file's
 :ref:`Global Encoding <globalencoding_link>` field.
 
-These values must be set to zero if there are no point records in the file,
-if the file utilizes a point record format not supporting GPS Time, or if
+These values must be set to zero if there are no point records in the file or if
 all point records within the file have GPS Time values set to zero,
 such as for certain :ref:`Aggregate Model Systems <aggregate_link>`.
 
@@ -452,7 +457,6 @@ and year ranges that users are encouraged to use to maximize compatibility betwe
 This value must be set to zero if there are no point records in the file,
 if the file is derived from a source not utilizing GPS Time
 (such as for certain :ref:`Aggregate Model Systems <aggregate_link>`),
-if the file utilizes a point record format not supporting GPS Time, or if
-the Time Offset Flag is unset.
+or if the Time Offset Flag is unset.
 
 It is invalid for the GPS Time Type bit to be unset if the Offset Time Flag bit is set.
