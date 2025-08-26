@@ -45,9 +45,3 @@ jobs:
         name: Misspelled
         path: build/spelling/output.txt
         if-no-files-found: ignore
-<<<<<<<<< Temporary merge branch 1
-
-
-=========
->>>>>>>>> Temporary merge branch 2
-
