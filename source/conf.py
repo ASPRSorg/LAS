@@ -72,8 +72,8 @@ releasename = release
 version=''
 
 # Publication info (approval date, release date, and GitHub SHA)
-releasedate='XX XXX 2025'
-approvaldate = 'November 2011'
+releasedate='27 August 2025'
+approvaldate = 'August 2025'
 
 import subprocess
 
