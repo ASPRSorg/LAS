@@ -125,8 +125,6 @@ html_theme = 'piccolo_theme'
 # Alabaster default CSS is here:
 # https://github.com/sphinx-doc/alabaster/blob/master/alabaster/static/alabaster.css_t
 
-# html_theme_options = {}
-
 
 html_theme_options = {
     "banner_text": False,
