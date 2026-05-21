@@ -57,10 +57,10 @@ master_doc = 'index'
 project = u'LAS Specification'
 copyright = u'%Y, ASPRS'
 author = u'ASPRS'
-html_logo = './_static/asprslogo45.png'
+html_logo = './_static/ASPRS_Logo_Blue.png'
 html_short_title = "Amazing Docs"
 theme_banner_text=False
-html_theme_path = ["html_themes"]
+html_theme_path = ["../html_themes"]
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
