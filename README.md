@@ -6,7 +6,7 @@ Specification, the remote sensing industry's most widely used file format for
 point cloud data. 
 
 The current published version of the ASPRS LAS Specification can be found at
-https://www.asprs.org/committee-general/laser-las-file-format-exchange-activities.html
+https://lasformat.org
 
 ## Repo Contents
 
@@ -23,5 +23,3 @@ request changes to the wiki pages or specification.
 New to LAS? New to GitHub? Want to help? No problem! 
 
 Learn how to sign up and contribute [here](https://github.com/ASPRSorg/LAS/wiki/Get-Involved).
-
-[![Build Status](https://api.travis-ci.org/ASPRSorg/LAS.svg?branch=master)](https://travis-ci.org/ASPRSorg/LAS)
